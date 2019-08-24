@@ -1,30 +1,36 @@
 <template>
     <div class="home">
         <Intro v-if="stepOne"/>
-        <PlayerInfo v-if="stepTwo" :good="true" :bad="false" :merlin="false" :assassin="false"/>
+        <PlayerInfo v-if="stepTwo" :good="good" :bad="bad" :merlin="merlin" :assassin="assassin"/>
     </div>
 </template>
 
 <script>
-    import Vue from 'vue'
     import store from "../store/index.js"
     import Intro from "../components/Intro"
     import PlayerInfo from "../components/PlayerInfo"
 
     export default {
         name: 'home',
+        data: function() {
+          return {
+              good: false,
+              bad: false,
+              merlin: false,
+              assassin: false,
+          }
+        },
         components: {
             PlayerInfo,
             Intro
         },
         sockets: {
             playerInfoMessage: function (playerInfoMessage) {
-                console.log(playerInfoMessage)
+                this.good = playerInfoMessage.good
+                this.bad = playerInfoMessage.bad
+                this.merlin = playerInfoMessage.merlin
+                this.assassin = playerInfoMessage.assassin
                 store.dispatch("stepOneToStepTwo")
-                let PlayerInfoClass = Vue.extend(PlayerInfo)
-                let instance = new PlayerInfoClass()
-                instance.$mount()
-
             },
         },
         computed: {
@@ -33,7 +39,7 @@
             },
             stepTwo: function() {
                 return store.getters.getStepTwo
-            }
+            },
         },
     }
 </script>
