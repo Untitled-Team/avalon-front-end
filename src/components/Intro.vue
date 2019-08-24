@@ -1,7 +1,6 @@
 <template>
     <div id="intro">
         <h1>Welcome to Avalon!</h1>
-
         <div id="menu">
             <form>
                 <input v-model="nickname" type="text" class="textInput" name="nickname" placeholder="Player Nickname...">
@@ -33,7 +32,6 @@
         },
         methods: {
             createGame: function() {
-                console.log('create')
                 this.$socket.emit('create', {
                     nickname: this.nickname,
                     numPlayers: this.numPlayers,
@@ -41,7 +39,6 @@
                     assassin: this.assassin,
                 })},
             joinGame: function() {
-                console.log('join')
                 this.$socket.emit('join', {
                     nickname: this.nickname,
                     gameRoomNumber: this.gameRoomNumber
