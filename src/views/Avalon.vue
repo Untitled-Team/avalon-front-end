@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <Intro v-if="stepOne"/>
-        <PlayerInfo v-if="stepTwo" :good="good" :bad="bad" :merlin="merlin" :assassin="assassin"/>
+        <PlayerInfo v-if="stepTwo" :good="good" :bad="bad" :merlin="merlin" :assassin="assassin" :badGuys="badGuys"/>
     </div>
 </template>
 
@@ -18,6 +18,7 @@
               bad: false,
               merlin: false,
               assassin: false,
+              badGuys: []
           }
         },
         components: {
@@ -30,6 +31,7 @@
                 this.bad = playerInfoMessage.bad
                 this.merlin = playerInfoMessage.merlin
                 this.assassin = playerInfoMessage.assassin
+                this.badGuys = playerInfoMessage.badGuys
                 store.dispatch("stepOneToStepTwo")
             },
         },
