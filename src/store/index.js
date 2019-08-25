@@ -5,23 +5,29 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        connected: false,
+        stepOne: true, //intro
+        stepTwo: false //playerInfo
     },
-    // getters: {
-    //     words(state) {
-    //         if (state.game.solution) {
-    //             return Object.keys(state.game.solution);
-    //         }
-    //         return [];
-    //     },
-    // },
+    getters: {
+        getStepOne: state => {
+            return state.stepOne;
+        },
+        getStepTwo: state => {
+            return state.stepTwo;
+        },
+    },
     mutations: {
-        SOCKET_CONNECT(state) {
-            state.connected = true;
-            console.log("connected :)")
+        toggleStepOne: state => {
+            state.stepOne = !state.stepOne
         },
-        SOCKET_DISCONNECT(state) {
-            state.connected = false;
+        toggleStepTwo: state => {
+            state.stepTwo = !state.stepTwo
         },
     },
+    actions: {
+        stepOneToStepTwo: ({commit}) => {
+            commit('toggleStepOne')
+            commit('toggleStepTwo')
+        }
+    }
 });
