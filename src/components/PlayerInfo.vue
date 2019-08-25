@@ -4,25 +4,25 @@
             <p>You're a regular good guy!</p>
             <p>Keep reading this for a second so it's not obvious.</p>
             <p>More text</p>
-            <button v-on:click="confirmReady" >Got it. I'm ready!</button>
+            <button v-show="!ready" v-on:click="confirmReady" >Got it. I'm ready!</button>
         </div>
         <div class="card bad" v-if="isBad">
             <p>You're a regular bad guy!</p>
             <p>The bad guys are: </p>
             <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
-            <button v-on:click="confirmReady" >Got it. I'm ready!</button>
+            <button v-show="!ready" v-on:click="confirmReady" >Got it. I'm ready!</button>
         </div>
         <div class="card merlin" v-if="isMerlin">
             <p>You're Merlin!</p>
             <p>The bad guys are: </p>
             <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
-            <button v-on:click="confirmReady" >Got it. I'm ready!</button>
+            <button v-show="!ready" v-on:click="confirmReady" >Got it. I'm ready!</button>
         </div>
         <div class="card assassin" v-if="isAssassin">
             <p>You're the assassin!</p>
             <p>The bad guys are: </p>
             <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
-            <button v-on:click="confirmReady" >Got it. I'm ready!</button>
+            <button v-show="!ready" v-on:click="confirmReady" >Got it. I'm ready!</button>
         </div>
         <div class="ready" v-show="ready">Great!  Once everybody is ready the first mission will begin.</div>
     </div>
