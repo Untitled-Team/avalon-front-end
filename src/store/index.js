@@ -6,7 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         stepOne: true, //intro
-        stepTwo: false //playerInfo
+        stepTwo: false, //playerInfo
+        questInfoDisplay: false,
     },
     getters: {
         getStepOne: state => {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
         },
         getStepTwo: state => {
             return state.stepTwo;
+        },
+        getQuestInfoDisplay: state => {
+            return state.questInfoDisplay;
         },
     },
     mutations: {
@@ -23,11 +27,18 @@ export default new Vuex.Store({
         toggleStepTwo: state => {
             state.stepTwo = !state.stepTwo
         },
+        toggleQuestInfoDisplay: state => {
+            state.questInfoDisplay = !state.questInfoDisplay
+        },
     },
     actions: {
         stepOneToStepTwo: ({commit}) => {
             commit('toggleStepOne')
             commit('toggleStepTwo')
+        },
+        stepTwoToQuestPhase: ({commit}) => {
+            commit('toggleStepTwo')
+            commit('toggleQuestInfoDisplay')
         }
     }
 });

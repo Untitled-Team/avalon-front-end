@@ -52,7 +52,6 @@
     }
 </script>
 
-
 <style scoped>
     #playerInfo {
         text-align: center;
