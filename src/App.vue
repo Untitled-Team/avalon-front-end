@@ -12,7 +12,7 @@
     components: {
       Avalon
     },
-    sockets: {
+    actions: {
       connect: function () {
         console.log('socket connected')
       },

@@ -28,7 +28,7 @@
             PlayerInfo,
             Intro
         },
-        sockets: {
+        actions: {
             playerInfoMessage: function (playerInfoMessage) {
                 this.good = playerInfoMessage.good
                 this.bad = playerInfoMessage.bad

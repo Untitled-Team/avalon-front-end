@@ -35,16 +35,29 @@
             }
         },
         methods: {
+            // createGame: function () {
+            //     this.$socket.sendObj({
+            //         action: 'createGame',
+            //         nickname: this.nickname,
+            //         numPlayers: this.numPlayers,
+            //         merlin: this.merlin,
+            //         assassin: this.assassin,
+            //     });
+            //
+            // },
             createGame: function () {
-                this.$socket.emit('create', {
+                this.$socket.sendObj({
+                    action: 'CreateGame',
                     nickname: this.nickname,
-                    numPlayers: this.numPlayers,
-                    merlin: this.merlin,
-                    assassin: this.assassin,
-                })
+                    config: {
+                        merlin: this.merlin,
+                        assassin: this.assassin,
+                    }
+                });
             },
             joinGame: function () {
-                this.$socket.emit('join', {
+                this.$socket.sendObj({
+                    action: 'join',
                     nickname: this.nickname,
                     gameRoomNumber: this.gameRoomNumber,
                 })
