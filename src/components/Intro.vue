@@ -35,16 +35,6 @@
             }
         },
         methods: {
-            // createGame: function () {
-            //     this.$socket.sendObj({
-            //         action: 'createGame',
-            //         nickname: this.nickname,
-            //         numPlayers: this.numPlayers,
-            //         merlin: this.merlin,
-            //         assassin: this.assassin,
-            //     });
-            //
-            // },
             createGame: function () {
                 this.$socket.sendObj({
                     action: 'CreateGame',
