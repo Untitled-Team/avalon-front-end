@@ -39,8 +39,8 @@
         props: ["good", "bad", "merlin", "assassin", "badGuys"],
         methods: {
             confirmReady: function () {
-                this.ready = true
-                this.$socket.emit('playerReady', {})
+                this.ready = true;
+                this.$socket.sendObj({action: 'playerReady'});
             }
         },
         computed: {
