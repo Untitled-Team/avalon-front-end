@@ -8,6 +8,16 @@ export default new Vuex.Store({
         stepOne: true, //intro
         stepTwo: false, //playerInfo
         questInfoDisplay: false,
+
+
+        playerInfoStuff: {
+            good: false,
+            bad: false,
+            merlin: false,
+            assassin: false,
+            badGuys: []
+        },
+        missionLeader: false,
     },
     getters: {
         getStepOne: state => {
@@ -19,6 +29,9 @@ export default new Vuex.Store({
         getQuestInfoDisplay: state => {
             return state.questInfoDisplay;
         },
+        playerInfoStuff: state => {
+            return state.playerInfoStuff;
+        }
     },
     mutations: {
         toggleStepOne: state => {
@@ -32,6 +45,16 @@ export default new Vuex.Store({
         },
     },
     actions: {
+        playerInfoMessage: function (context, playerInfoMessage) {
+            console.log("HERE" + JSON.stringify(playerInfoMessage));
+            this.state.playerInfoStuff = playerInfoMessage; //does this need done with a mutation?
+
+            this.dispatch("stepOneToStepTwo")
+        },
+        allPlayersReadyMessage: function (context, allPlayersReadyMessage) {
+            this.state.missionLeader = allPlayersReadyMessage.missionLeader
+            this.dispatch("stepTwoToQuestPhase")
+        },
         stepOneToStepTwo: ({commit}) => {
             commit('toggleStepOne')
             commit('toggleStepTwo')
