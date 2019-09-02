@@ -29,7 +29,7 @@
             return {
                 nickname: "",
                 gameRoomNumber: "",
-                numPlayers: 0,
+                numPlayers: 5,
                 merlin: false,
                 assassin: false,
             }
@@ -46,7 +46,7 @@
             joinGame: function () {
                 this.$socket.emit('join', {
                     nickname: this.nickname,
-                    gameRoomNumber: this.gameRoomNumber
+                    gameRoomNumber: this.gameRoomNumber,
                 })
             }
         }

@@ -2,6 +2,7 @@
     <div class="home">
         <Intro v-if="stepOne"/>
         <PlayerInfo v-if="stepTwo" :good="good" :bad="bad" :merlin="merlin" :assassin="assassin" :badGuys="badGuys"/>
+        <QuestInfo v-if="questInfoDisplay"/>
     </div>
 </template>
 
@@ -9,6 +10,7 @@
     import store from "../store/index.js"
     import Intro from "../components/Intro"
     import PlayerInfo from "../components/PlayerInfo"
+    import QuestInfo from "../components/QuestInfo";
 
     export default {
         name: 'home',
@@ -22,6 +24,7 @@
           }
         },
         components: {
+            QuestInfo,
             PlayerInfo,
             Intro
         },
@@ -34,6 +37,10 @@
                 this.badGuys = playerInfoMessage.badGuys
                 store.dispatch("stepOneToStepTwo")
             },
+            allPlayersReadyMessage: function (allPlayersReadyMessage) {
+                this.missionLeader = allPlayersReadyMessage.missionLeader
+                store.dispatch("stepTwoToQuestPhase")
+            }
         },
         computed: {
             stepOne: function() {
@@ -41,6 +48,9 @@
             },
             stepTwo: function() {
                 return store.getters.getStepTwo
+            },
+            questInfoDisplay: function() {
+                return store.getters.getQuestInfoDisplay
             },
         },
     }
