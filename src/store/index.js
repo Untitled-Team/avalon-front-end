@@ -9,6 +9,7 @@ export default new Vuex.Store({
         stepTwo: false, //playerInfo
         questInfoDisplay: false,
 
+
         playerInfoStuff: {
             good: false,
             bad: false,
