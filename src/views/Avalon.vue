@@ -24,7 +24,6 @@
                 return store.getters.getStepOne
             },
             stepTwo: function() {
-                console.log("hitting step two now")
                 return store.getters.getStepTwo
             },
             questInfoDisplay: function() {
