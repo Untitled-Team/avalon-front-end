@@ -9,8 +9,6 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
-
     export default {
         name: 'Lobby',
         props: ['players'],
@@ -18,11 +16,6 @@
             startGame: function () {
                 this.$socket.sendObj({action: 'lobbyReady'});
             }
-        },
-        computed: {
-            lobbyNicknames: function () {
-                return store.getters.getLobbyNicknames
-            },
         },
     }
 </script>

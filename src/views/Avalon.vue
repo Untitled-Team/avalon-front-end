@@ -29,6 +29,7 @@
                     bad: false,
                     merlin: false,
                     assassin: false,
+                    missionLeader: "",
                     badGuys: []
                 }
             },
@@ -52,18 +53,21 @@
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
-                if (msgJSON.action == 'moveToLobby') {
+                if (msgJSON.action === 'moveToLobby') {
                     store.dispatch('stepOneToLobbyStep')
                     this.players = msgJSON.nicknames
-                } else if (msgJSON.action == 'playerJoinedLobby') {
+                } else if (msgJSON.action === 'playerJoinedLobby') {
                     this.players = msgJSON.nicknames
-                } else if (msgJSON.action == 'playerInfo') {
+                } else if (msgJSON.action === 'playerInfo') {
                     this.good = msgJSON.good
                     this.bad = msgJSON.bad
                     this.merlin = msgJSON.merlin
                     this.assassin = msgJSON.assassin
                     this.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
+                } else if (msgJSON.action === 'allPlayersReadyMessage') {
+                    this.missionLeader = msgJSON.missionLeader
+                    store.dispatch("stepTwoToQuestPhase")
                 }
             }
         }

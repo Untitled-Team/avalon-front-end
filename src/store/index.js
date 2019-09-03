@@ -9,16 +9,6 @@ export default new Vuex.Store({
         lobbyStep: false,
         stepTwo: false, //playerInfo
         questInfoDisplay: false,
-
-        playerInfoStuff: {
-            good: false,
-            bad: false,
-            merlin: false,
-            assassin: false,
-            badGuys: []
-        },
-        missionLeader: false,
-        lobbyNicknames: []
     },
     getters: {
         getStepOne: state => {
@@ -33,12 +23,6 @@ export default new Vuex.Store({
         getQuestInfoDisplay: state => {
             return state.questInfoDisplay;
         },
-        getPlayerInfoStuff: state => {
-            return state.playerInfoStuff;
-        },
-        getLobbyNicknames: state => {
-            return state.lobbyNicknames
-        }
     },
     mutations: {
         toggleStepOne: state => {
@@ -55,17 +39,6 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        // playerInfoMessage: function (context, playerInfoMessage) {
-        //     console.log("HERE" + JSON.stringify(playerInfoMessage));
-        //     this.state.playerInfoStuff = playerInfoMessage; //does this need done with a mutation?
-        //     //this.dispatch("lobbyStepToStepTwo")
-        // },
-        allPlayersReadyMessage: function (context, allPlayersReadyMessage) {
-            this.state.missionLeader = allPlayersReadyMessage.missionLeader
-            this.dispatch("stepTwoToQuestPhase")
-        },
-
-
         stepOneToLobbyStep: ({commit}) => {
             commit('toggleStepOne')
             commit('toggleLobbyStep')
