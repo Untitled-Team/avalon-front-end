@@ -37,7 +37,7 @@
         methods: {
             createGame: function () {
                 this.$socket.sendObj({
-                    action: 'CreateGame',
+                    action: 'CreateGameLobby',
                     nickname: this.nickname,
                     config: {
                         merlin: this.merlin,

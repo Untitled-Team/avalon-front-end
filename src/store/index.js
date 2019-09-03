@@ -6,9 +6,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         stepOne: true, //intro
+        lobbyStep: false,
         stepTwo: false, //playerInfo
         questInfoDisplay: false,
-
 
         playerInfoStuff: {
             good: false,
@@ -18,10 +18,14 @@ export default new Vuex.Store({
             badGuys: []
         },
         missionLeader: false,
+        lobbyNicknames: []
     },
     getters: {
         getStepOne: state => {
             return state.stepOne;
+        },
+        getLobbyStep: state => {
+            return state.lobbyStep;
         },
         getStepTwo: state => {
             return state.stepTwo;
@@ -29,13 +33,19 @@ export default new Vuex.Store({
         getQuestInfoDisplay: state => {
             return state.questInfoDisplay;
         },
-        playerInfoStuff: state => {
+        getPlayerInfoStuff: state => {
             return state.playerInfoStuff;
+        },
+        getLobbyNicknames: state => {
+            return state.lobbyNicknames
         }
     },
     mutations: {
         toggleStepOne: state => {
             state.stepOne = !state.stepOne
+        },
+        toggleLobbyStep: state => {
+            state.lobbyStep = !state.lobbyStep
         },
         toggleStepTwo: state => {
             state.stepTwo = !state.stepTwo
@@ -45,23 +55,28 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        playerInfoMessage: function (context, playerInfoMessage) {
-            console.log("HERE" + JSON.stringify(playerInfoMessage));
-            this.state.playerInfoStuff = playerInfoMessage; //does this need done with a mutation?
-
-            this.dispatch("stepOneToStepTwo")
-        },
+        // playerInfoMessage: function (context, playerInfoMessage) {
+        //     console.log("HERE" + JSON.stringify(playerInfoMessage));
+        //     this.state.playerInfoStuff = playerInfoMessage; //does this need done with a mutation?
+        //     //this.dispatch("lobbyStepToStepTwo")
+        // },
         allPlayersReadyMessage: function (context, allPlayersReadyMessage) {
             this.state.missionLeader = allPlayersReadyMessage.missionLeader
             this.dispatch("stepTwoToQuestPhase")
         },
-        stepOneToStepTwo: ({commit}) => {
+
+
+        stepOneToLobbyStep: ({commit}) => {
             commit('toggleStepOne')
+            commit('toggleLobbyStep')
+        },
+        lobbyStepToStepTwo: ({commit}) => {
+            commit('toggleLobbyStep')
             commit('toggleStepTwo')
         },
         stepTwoToQuestPhase: ({commit}) => {
             commit('toggleStepTwo')
             commit('toggleQuestInfoDisplay')
-        }
+        },
     }
 });
