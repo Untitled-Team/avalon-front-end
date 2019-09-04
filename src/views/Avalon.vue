@@ -1,8 +1,8 @@
 <template>
     <div class="home">
         <Intro v-if="stepOne"/>
-        <Lobby v-if="lobbyStep" :players="players" :roomNumber="roomNumber"/>
-        <PlayerInfo v-if="stepTwo" :good="this.good" :bad="this.bad" :merlin="this.merlin" :assassin="this.assassin" :badGuys="this.badGuys"/>
+        <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
+        <PlayerInfo v-if="stepTwo" :character="this.character" :badGuys="this.badGuys"/>
         <QuestInfo v-if="questInfoDisplay"/>
     </div>
 </template>
@@ -25,13 +25,10 @@
         data: function() {
                 return {
                     players: [],
-                    good: false,
-                    bad: false,
-                    merlin: false,
-                    assassin: false,
+                    character: "",
                     missionLeader: "",
                     badGuys: [],
-                    roomNumber: null,
+                    roomId: null,
                 }
             },
         computed: {
@@ -51,20 +48,17 @@
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
-                if (msgJSON.action === 'moveToLobby') {
+                if (msgJSON.action === 'MoveToLobby') {
                     store.dispatch('stepOneToLobbyStep')
-                    this.players = msgJSON.nicknames
-                    this.roomNumber = msgJSON.roomNumber
-                } else if (msgJSON.action === 'playerJoinedLobby') {
-                    this.players = msgJSON.nicknames
-                } else if (msgJSON.action === 'playerInfo') {
-                    this.good = msgJSON.good
-                    this.bad = msgJSON.bad
-                    this.merlin = msgJSON.merlin
-                    this.assassin = msgJSON.assassin
+                    this.players = msgJSON.players
+                    this.roomId = msgJSON.roomId
+                } else if (msgJSON.action === 'ChangeInLobby') {
+                    this.players = msgJSON.players
+                } else if (msgJSON.action === 'PlayerInfo') {
+                    this.character = msgJSON.character
                     this.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
-                } else if (msgJSON.action === 'allPlayersReadyMessage') {
+                } else if (msgJSON.action === 'TeamAssignmentPhase') {
                     this.missionLeader = msgJSON.missionLeader
                     store.dispatch("stepTwoToQuestPhase")
                 }
