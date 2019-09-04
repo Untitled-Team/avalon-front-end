@@ -5,8 +5,8 @@
             <form>
                 <input v-model="nickname" type="text" class="textInput" name="nickname"
                        placeholder="Player Nickname...">
-                <input v-model="gameRoomNumber" type="text" class="textInput" name="gameRoomNumber"
-                       placeholder="Game Room Number...">
+                <input v-model="roomId" type="text" class="textInput" name="roomId"
+                       placeholder="Room ID...">
                 <input type="button" class="buttonInput button" name="joinGame" value="Join Existing Game"
                        v-on:click="joinGame">
             </form>
@@ -35,7 +35,7 @@
         data: function () {
             return {
                 nickname: "",
-                gameRoomNumber: "",
+                roomId: "",
                 numPlayers: 5,
                 merlin: false,
                 assassin: false,
@@ -44,19 +44,15 @@
         methods: {
             createGame: function () {
                 this.$socket.sendObj({
-                    action: 'CreateGameLobby',
+                    action: 'CreateGame',
                     nickname: this.nickname,
-                    config: {
-                        merlin: this.merlin,
-                        assassin: this.assassin,
-                    }
                 });
             },
             joinGame: function () {
                 this.$socket.sendObj({
-                    action: 'join',
+                    action: 'JoinGame',
                     nickname: this.nickname,
-                    gameRoomNumber: this.gameRoomNumber,
+                    roomId: this.roomId,
                 })
             }
         }

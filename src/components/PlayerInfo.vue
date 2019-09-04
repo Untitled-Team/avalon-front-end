@@ -40,25 +40,25 @@
                 ready: false
             }
         },
-        props: ["good", "bad", "merlin", "assassin", "badGuys"],
+        props: ["character", "badGuys"],
         methods: {
             confirmReady: function () {
                 this.ready = true;
-                this.$socket.sendObj({action: 'playerReady'});
+                this.$socket.sendObj({action: 'PlayerReady'});
             }
         },
         computed: {
             isGood: function () {
-                return this.good
+                return this.character === "NormalGoodGuy"
             },
             isBad: function () {
-                return this.bad
+                return this.character === "NormalBadGuy"
             },
             isMerlin: function () {
-                return this.merlin
+                return this.character === "Merlin"
             },
             isAssassin: function () {
-                return this.assassin
+                return this.character === "Assassin"
             }
         }
     }

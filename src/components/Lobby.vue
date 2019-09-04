@@ -2,7 +2,7 @@
     <div id="lobby">
         <h1>Begin the game once everyone is in the lobby</h1>
         <h2>Once the game has begun new players cannot join</h2>
-        <p>Room Number: {{ roomNumber }}</p>
+        <p>Room Number: {{ roomId }}</p>
         <p>Total Players: {{ players.length }}</p>
         <div class="lobbyPlayer" v-bind:key="player" v-for="player in players">
             {{ player }}
@@ -14,10 +14,10 @@
 <script>
     export default {
         name: 'Lobby',
-        props: ['players', 'roomNumber'],
+        props: ['players', 'roomId'],
         methods: {
             startGame: function () {
-                this.$socket.sendObj({action: 'lobbyReady'});
+                this.$socket.sendObj({action: 'StartGame'});
             }
         },
     }
