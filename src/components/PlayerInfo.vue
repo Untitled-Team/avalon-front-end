@@ -5,28 +5,28 @@
             <p>You're a regular good guy!</p>
             <p>Keep reading this for a second so it's not obvious.</p>
             <p>More text</p>
-            <button v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
+            <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
         </div>
         <div class="card bad" v-if="isBad">
             <img src="@/assets/badGuy.jpg">
             <p>You're a regular bad guy!</p>
             <p>The bad guys are: </p>
             <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
-            <button v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
+            <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
         </div>
         <div class="card merlin" v-if="isMerlin">
             <img src="@/assets/merlin.jpg">
             <p>You're Merlin!</p>
             <p>The bad guys are: </p>
             <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
-            <button v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
+            <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
         </div>
         <div class="card assassin" v-if="isAssassin">
             <img src="@/assets/assassin.jpg">
             <p>You're the assassin!</p>
             <p>The bad guys are: </p>
             <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
-            <button v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
+            <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
         </div>
         <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
     </div>

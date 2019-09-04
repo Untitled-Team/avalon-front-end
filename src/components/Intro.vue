@@ -13,9 +13,9 @@
                 <input v-model="merlin" type="checkbox" name="merlin" id="merlin">
                 <label for="assassin">Use Assassin?</label>
                 <input v-model="assassin" type="checkbox" name="assassin" id="assassin">
-                <input type="button" class="buttonInput" name="joinGame" value="Join Existing Game"
+                <input type="button" class="buttonInput button" name="joinGame" value="Join Existing Game"
                        v-on:click="joinGame">
-                <input type="button" class="buttonInput" name="createGame" value="Create a New Game Room"
+                <input type="button" class="buttonInput button" name="createGame" value="Create a New Game Room"
                        v-on:click="createGame">
             </form>
         </div>
