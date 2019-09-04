@@ -1,20 +1,27 @@
 <template>
     <div id="intro">
         <h1>Welcome to Avalon!</h1>
-        <div id="menu">
+        <div class="menu">
             <form>
                 <input v-model="nickname" type="text" class="textInput" name="nickname"
                        placeholder="Player Nickname...">
                 <input v-model="gameRoomNumber" type="text" class="textInput" name="gameRoomNumber"
                        placeholder="Game Room Number...">
+                <input type="button" class="buttonInput button" name="joinGame" value="Join Existing Game"
+                       v-on:click="joinGame">
+            </form>
+        </div>
+        <br>
+        <div class="menu">
+            <form>
+                <input v-model="nickname" type="text" class="textInput" name="nickname"
+                       placeholder="Player Nickname...">
                 <label for="numPlayers">Number of Players</label>
                 <input v-model="numPlayers" type="number" id="numPlayers" min="5" max="10">
                 <label for="merlin">Use Merlin?</label>
                 <input v-model="merlin" type="checkbox" name="merlin" id="merlin">
                 <label for="assassin">Use Assassin?</label>
                 <input v-model="assassin" type="checkbox" name="assassin" id="assassin">
-                <input type="button" class="buttonInput button" name="joinGame" value="Join Existing Game"
-                       v-on:click="joinGame">
                 <input type="button" class="buttonInput button" name="createGame" value="Create a New Game Room"
                        v-on:click="createGame">
             </form>
@@ -59,14 +66,13 @@
 <style scoped>
     #intro {
         margin: 40px 0 0;
-        text-align: center;
     }
 
-    #menu {
+    .menu {
         margin: auto;
         padding: 15px;
         background: #8B77A7;
-        width: 25%;
+        width: 65%;
         display: flex;
         justify-content: center;
     }

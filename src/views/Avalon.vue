@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <Intro v-if="stepOne"/>
-        <Lobby v-if="lobbyStep" :players="players"/>
+        <Lobby v-if="lobbyStep" :players="players" :roomNumber="roomNumber"/>
         <PlayerInfo v-if="stepTwo" :good="this.good" :bad="this.bad" :merlin="this.merlin" :assassin="this.assassin" :badGuys="this.badGuys"/>
         <QuestInfo v-if="questInfoDisplay"/>
     </div>
@@ -30,7 +30,8 @@
                     merlin: false,
                     assassin: false,
                     missionLeader: "",
-                    badGuys: []
+                    badGuys: [],
+                    roomNumber: null,
                 }
             },
         computed: {
@@ -46,9 +47,6 @@
             questInfoDisplay: function() {
                 return store.getters.getQuestInfoDisplay
             },
-            playerInfoStuff: function() {
-                return store.getters.getPlayerInfoStuff;
-            }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
@@ -56,6 +54,7 @@
                 if (msgJSON.action === 'moveToLobby') {
                     store.dispatch('stepOneToLobbyStep')
                     this.players = msgJSON.nicknames
+                    this.roomNumber = msgJSON.roomNumber
                 } else if (msgJSON.action === 'playerJoinedLobby') {
                     this.players = msgJSON.nicknames
                 } else if (msgJSON.action === 'playerInfo') {
