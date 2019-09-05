@@ -16,12 +16,6 @@
             <form>
                 <input v-model="nickname" type="text" class="textInput" name="nickname"
                        placeholder="Player Nickname...">
-                <label for="numPlayers">Number of Players</label>
-                <input v-model="numPlayers" type="number" id="numPlayers" min="5" max="10">
-                <label for="merlin">Use Merlin?</label>
-                <input v-model="merlin" type="checkbox" name="merlin" id="merlin">
-                <label for="assassin">Use Assassin?</label>
-                <input v-model="assassin" type="checkbox" name="assassin" id="assassin">
                 <input type="button" class="buttonInput button" name="createGame" value="Create a New Game Room"
                        v-on:click="createGame">
             </form>
@@ -30,25 +24,26 @@
 </template>
 
 <script>
+    import store from "../store/index.js"
+
     export default {
         name: 'Intro',
         data: function () {
             return {
                 nickname: "",
                 roomId: "",
-                numPlayers: 5,
-                merlin: false,
-                assassin: false,
             }
         },
         methods: {
             createGame: function () {
+                store.commit('setNickname', this.nickname)
                 this.$socket.sendObj({
                     action: 'CreateGame',
                     nickname: this.nickname,
                 });
             },
             joinGame: function () {
+                store.commit('setNickname', this.nickname)
                 this.$socket.sendObj({
                     action: 'JoinGame',
                     nickname: this.nickname,

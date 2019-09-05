@@ -1,32 +1,43 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+        //Game Phase
         stepOne: true, //intro
         lobbyStep: false,
         stepTwo: false, //playerInfo
         questInfoDisplay: false,
         proposeMissionParty: false,
+
+        //Other State
+        players: [],
+        nickname: "",
     },
     getters: {
         getStepOne: state => {
-            return state.stepOne;
+            return state.stepOne
         },
         getLobbyStep: state => {
-            return state.lobbyStep;
+            return state.lobbyStep
         },
         getStepTwo: state => {
-            return state.stepTwo;
+            return state.stepTwo
         },
         getQuestInfoDisplay: state => {
-            return state.questInfoDisplay;
+            return state.questInfoDisplay
         },
         getProposeMissionParty: state => {
-            return state.proposeMissionParty;
+            return state.proposeMissionParty
         },
+        getPlayers: state => {
+            return state.players
+        },
+        getNickname: state => {
+            return state.nickname
+        }
     },
     mutations: {
         toggleStepOne: state => {
@@ -44,6 +55,12 @@ export default new Vuex.Store({
         toggleProposeMissionParty: state => {
             state.proposeMissionParty = !state.proposeMissionParty
         },
+        setPlayers: (state, players) => {
+            state.players = players
+        },
+        setNickname: (state, nickname) => {
+            state.nickname = nickname
+        }
     },
     actions: {
         stepOneToLobbyStep: ({commit}) => {
@@ -59,5 +76,5 @@ export default new Vuex.Store({
             commit('toggleQuestInfoDisplay')
             commit('toggleProposeMissionParty')
         },
-    }
+    },
 });

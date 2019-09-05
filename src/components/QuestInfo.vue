@@ -24,4 +24,10 @@
         width: 100px;
         height: 100px;
     }
+
+    #questInfo {
+        margin: auto;
+        display: inline-block;
+        padding: 15px;
+    }
 </style>

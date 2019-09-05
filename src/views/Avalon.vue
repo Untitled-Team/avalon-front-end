@@ -1,10 +1,11 @@
 <template>
     <div class="home">
+        my nicknername: {{ nickname }}
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
         <QuestInfo v-if="questInfoDisplay" :missions="missions"/>
-        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"/>
+        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader" :currentMissionPartySize="currentMissionPartySize"/>
     </div>
 </template>
 
@@ -32,7 +33,7 @@
                 character: "",
                 badGuys: [],
                 missionLeader: "",
-                missionNumber: 0,
+                missionNumber: 1,
                 numberInParty: 0,
                 missions: [],
             }
@@ -51,8 +52,14 @@
                 return store.getters.getQuestInfoDisplay
             },
             proposeMissionParty: function () {
-                return store.getters.proposeMissionParty
+                return store.getters.getProposeMissionParty
             },
+            currentMissionPartySize: function () {
+                return this.missions[this.missionNumber-1].numberOfAdventurers
+            },
+            nickname: function () {
+                return store.getters.getNickname
+            }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
@@ -64,14 +71,18 @@
                 } else if (msgJSON.action === 'ChangeInLobby') {
                     this.players = msgJSON.players
                 } else if (msgJSON.action === 'PlayerInfo') {
+                    store.commit('setPlayers', this.players)
                     this.character = msgJSON.character
                     this.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.action === 'TeamAssignmentPhase') {
                     this.missionLeader = msgJSON.missionLeader
-                    this.missionNumber = msgJSON.missionLeader
+                    this.missionNumber = msgJSON.missionNumber
                     this.missions = msgJSON.missions
                     store.dispatch("stepTwoToQuestPhase")
+                } else if (msgJSON.action === 'ProposedParty') {
+                    this.proposedParty = msgJSON.proposedParty
+                    console.log(this.proposedParty)
                 }
             }
         }
@@ -79,4 +90,7 @@
 </script>
 
 <style>
+    .home {
+        text-align: center;
+    }
 </style>
