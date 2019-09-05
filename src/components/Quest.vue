@@ -1,8 +1,8 @@
 <template>
     <div id="questInfo">
-        <div class="questWrapper">
+        <span class="questWrapper">
             <div class="partySize">{{ partySize }}</div>
-        </div>
+        </span>
     </div>
 </template>
 
@@ -14,10 +14,15 @@
 </script>
 
 <style scoped>
+    #questInfo {
+        border-bottom: #7f8a69 ridge;
+    }
+
     .questWrapper {
         display: inline;
         float: left;
     }
+
     .partySize {
         border-radius: 50%;
         background: slategrey;

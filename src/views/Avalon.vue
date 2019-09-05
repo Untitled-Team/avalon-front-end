@@ -1,9 +1,11 @@
 <template>
     <div class="home">
+        my nicknername: {{ nickname }}
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
-        <PlayerInfo v-if="stepTwo" :character="this.character" :badGuys="this.badGuys"/>
-        <QuestInfo v-if="questInfoDisplay"/>
+        <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
+        <QuestInfo v-if="questInfoDisplay" :missions="missions"/>
+        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader" :currentMissionPartySize="currentMissionPartySize"/>
     </div>
 </template>
 
@@ -13,37 +15,51 @@
     import PlayerInfo from "../components/PlayerInfo"
     import QuestInfo from "../components/QuestInfo";
     import Lobby from "../components/Lobby";
+    import ProposeMissionMenu from "../components/ProposeMissionMenu";
 
     export default {
         name: 'home',
         components: {
+            ProposeMissionMenu,
             QuestInfo,
             PlayerInfo,
             Intro,
             Lobby,
         },
-        data: function() {
-                return {
-                    players: [],
-                    character: "",
-                    missionLeader: "",
-                    badGuys: [],
-                    roomId: null,
-                }
-            },
+        data: function () {
+            return {
+                players: [],
+                roomId: null,
+                character: "",
+                badGuys: [],
+                missionLeader: "",
+                missionNumber: 1,
+                numberInParty: 0,
+                missions: [],
+            }
+        },
         computed: {
-            stepOne: function() {
+            stepOne: function () {
                 return store.getters.getStepOne
             },
-            lobbyStep: function() {
+            lobbyStep: function () {
                 return store.getters.getLobbyStep
             },
-            stepTwo: function() {
+            stepTwo: function () {
                 return store.getters.getStepTwo
             },
-            questInfoDisplay: function() {
+            questInfoDisplay: function () {
                 return store.getters.getQuestInfoDisplay
             },
+            proposeMissionParty: function () {
+                return store.getters.getProposeMissionParty
+            },
+            currentMissionPartySize: function () {
+                return this.missions[this.missionNumber-1].numberOfAdventurers
+            },
+            nickname: function () {
+                return store.getters.getNickname
+            }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
@@ -55,12 +71,18 @@
                 } else if (msgJSON.action === 'ChangeInLobby') {
                     this.players = msgJSON.players
                 } else if (msgJSON.action === 'PlayerInfo') {
+                    store.commit('setPlayers', this.players)
                     this.character = msgJSON.character
                     this.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.action === 'TeamAssignmentPhase') {
                     this.missionLeader = msgJSON.missionLeader
+                    this.missionNumber = msgJSON.missionNumber
+                    this.missions = msgJSON.missions
                     store.dispatch("stepTwoToQuestPhase")
+                } else if (msgJSON.action === 'ProposedParty') {
+                    this.proposedParty = msgJSON.proposedParty
+                    console.log(this.proposedParty)
                 }
             }
         }
@@ -68,4 +90,7 @@
 </script>
 
 <style>
+    .home {
+        text-align: center;
+    }
 </style>
