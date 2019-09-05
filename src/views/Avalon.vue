@@ -2,8 +2,9 @@
     <div class="home">
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
-        <PlayerInfo v-if="stepTwo" :character="this.character" :badGuys="this.badGuys"/>
-        <QuestInfo v-if="questInfoDisplay"/>
+        <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
+        <QuestInfo v-if="questInfoDisplay" :missions="missions"/>
+        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"/>
     </div>
 </template>
 
@@ -13,36 +14,44 @@
     import PlayerInfo from "../components/PlayerInfo"
     import QuestInfo from "../components/QuestInfo";
     import Lobby from "../components/Lobby";
+    import ProposeMissionMenu from "../components/ProposeMissionMenu";
 
     export default {
         name: 'home',
         components: {
+            ProposeMissionMenu,
             QuestInfo,
             PlayerInfo,
             Intro,
             Lobby,
         },
-        data: function() {
-                return {
-                    players: [],
-                    character: "",
-                    missionLeader: "",
-                    badGuys: [],
-                    roomId: null,
-                }
-            },
+        data: function () {
+            return {
+                players: [],
+                roomId: null,
+                character: "",
+                badGuys: [],
+                missionLeader: "",
+                missionNumber: 0,
+                numberInParty: 0,
+                missions: [],
+            }
+        },
         computed: {
-            stepOne: function() {
+            stepOne: function () {
                 return store.getters.getStepOne
             },
-            lobbyStep: function() {
+            lobbyStep: function () {
                 return store.getters.getLobbyStep
             },
-            stepTwo: function() {
+            stepTwo: function () {
                 return store.getters.getStepTwo
             },
-            questInfoDisplay: function() {
+            questInfoDisplay: function () {
                 return store.getters.getQuestInfoDisplay
+            },
+            proposeMissionParty: function () {
+                return store.getters.proposeMissionParty
             },
         },
         created() {
@@ -60,6 +69,8 @@
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.action === 'TeamAssignmentPhase') {
                     this.missionLeader = msgJSON.missionLeader
+                    this.missionNumber = msgJSON.missionLeader
+                    this.missions = msgJSON.missions
                     store.dispatch("stepTwoToQuestPhase")
                 }
             }

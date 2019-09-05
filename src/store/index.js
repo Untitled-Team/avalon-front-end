@@ -9,6 +9,7 @@ export default new Vuex.Store({
         lobbyStep: false,
         stepTwo: false, //playerInfo
         questInfoDisplay: false,
+        proposeMissionParty: false,
     },
     getters: {
         getStepOne: state => {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
         },
         getQuestInfoDisplay: state => {
             return state.questInfoDisplay;
+        },
+        getProposeMissionParty: state => {
+            return state.proposeMissionParty;
         },
     },
     mutations: {
@@ -37,6 +41,9 @@ export default new Vuex.Store({
         toggleQuestInfoDisplay: state => {
             state.questInfoDisplay = !state.questInfoDisplay
         },
+        toggleProposeMissionParty: state => {
+            state.proposeMissionParty = !state.proposeMissionParty
+        },
     },
     actions: {
         stepOneToLobbyStep: ({commit}) => {
@@ -50,6 +57,7 @@ export default new Vuex.Store({
         stepTwoToQuestPhase: ({commit}) => {
             commit('toggleStepTwo')
             commit('toggleQuestInfoDisplay')
+            commit('toggleProposeMissionParty')
         },
     }
 });

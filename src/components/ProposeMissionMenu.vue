@@ -1,19 +1,15 @@
 <template>
     <div id="proposeMissionMenu">
-        ProposeMissionMenu
+        Mission Leader: {{ missionLeader }}
     </div>
 </template>
 
 <script>
-export default {
-    name: 'ProposeMissionMenu',
-    components: {
-    },
-    data: function () {
-        return {
-        }
+    export default {
+        name: 'ProposeMissionMenu',
+        components: {},
+        props: ["missionLeader"]
     }
-}
 
 </script>
 
