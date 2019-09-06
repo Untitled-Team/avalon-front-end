@@ -1,6 +1,7 @@
 <template>
     <div class="home">
         my nicknername: {{ nickname }}
+        <br />
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
@@ -91,7 +92,7 @@
                     this.missions = msgJSON.missions
                     if (this.proposedPartyVote) {
                         store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
-                    } else {\
+                    } else {
                         store.dispatch("stepTwoToQuestPhase")
                     }
                 } else if (msgJSON.action === 'ProposedParty') {
