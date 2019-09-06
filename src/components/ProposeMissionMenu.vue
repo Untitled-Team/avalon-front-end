@@ -7,7 +7,7 @@
                 <input type="checkbox" :value="player" v-model="selectedPlayers" :disabled="!playerIsMissionLeader"/>
                 {{ player }}
             </div>
-            <input type="button" class="button" v-on:click="proposeParty" value="Propose Party">
+            <input type="button" class="button" v-on:click="proposeParty" value="Propose Party" v-show="playerIsMissionLeader">
         </form>
     </div>
 </template>

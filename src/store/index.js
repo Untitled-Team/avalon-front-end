@@ -11,6 +11,7 @@ export default new Vuex.Store({
         stepTwo: false, //playerInfo
         questInfoDisplay: false,
         proposeMissionParty: false,
+        proposedPartyVote: false,
 
         //Other State
         players: [],
@@ -31,6 +32,9 @@ export default new Vuex.Store({
         },
         getProposeMissionParty: state => {
             return state.proposeMissionParty
+        },
+        getProposedPartyVote: state => {
+            return state.proposedPartyVote
         },
         getPlayers: state => {
             return state.players
@@ -55,6 +59,9 @@ export default new Vuex.Store({
         toggleProposeMissionParty: state => {
             state.proposeMissionParty = !state.proposeMissionParty
         },
+        toggleProposedPartyVote: state => {
+            state.proposedPartyVote = !state.proposedPartyVote
+        },
         setPlayers: (state, players) => {
             state.players = players
         },
@@ -75,6 +82,10 @@ export default new Vuex.Store({
             commit('toggleStepTwo')
             commit('toggleQuestInfoDisplay')
             commit('toggleProposeMissionParty')
+        },
+        ToggleProposeMissionPartyAndProposedPartyVote: ({commit}) => {
+            commit('toggleProposeMissionParty')
+            commit('toggleProposedPartyVote')
         },
     },
 });
