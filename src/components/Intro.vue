@@ -3,21 +3,46 @@
         <h1>Welcome to Avalon!</h1>
         <div class="menu">
             <form>
-                <input v-model="nickname" type="text" class="textInput" name="nickname"
-                       placeholder="Player Nickname...">
-                <input v-model="roomId" type="text" class="textInput" name="roomId"
-                       placeholder="Room ID...">
-                <input type="button" class="buttonInput button" name="joinGame" value="Join Existing Game"
-                       v-on:click="joinGame">
+                <input
+                        v-model="nickname"
+                        type="text"
+                        class="textInput"
+                        name="nickname"
+                        placeholder="Player Nickname..."
+                />
+                <input
+                        v-model="roomId"
+                        type="text"
+                        class="textInput"
+                        name="roomId"
+                        placeholder="Room ID..."
+                />
+                <input
+                        type="button"
+                        class="buttonInput button"
+                        name="joinGame"
+                        value="Join Existing Game"
+                        v-on:click="joinGame"
+                />
             </form>
         </div>
-        <br>
+        <br/>
         <div class="menu">
             <form>
-                <input v-model="nickname" type="text" class="textInput" name="nickname"
-                       placeholder="Player Nickname...">
-                <input type="button" class="buttonInput button" name="createGame" value="Create a New Game Room"
-                       v-on:click="createGame">
+                <input
+                        v-model="nickname"
+                        type="text"
+                        class="textInput"
+                        name="nickname"
+                        placeholder="Player Nickname..."
+                />
+                <input
+                        type="button"
+                        class="buttonInput button"
+                        name="createGame"
+                        value="Create a New Game Room"
+                        v-on:click="createGame"
+                />
             </form>
         </div>
     </div>
@@ -27,31 +52,31 @@
     import store from "../store/index.js"
 
     export default {
-        name: 'Intro',
+        name: "Intro",
         data: function () {
             return {
                 nickname: "",
-                roomId: "",
+                roomId: ""
             }
         },
         methods: {
             createGame: function () {
-                store.commit('setNickname', this.nickname)
+                store.commit("setNickname", this.nickname);
                 this.$socket.sendObj({
-                    action: 'CreateGame',
-                    nickname: this.nickname,
-                });
+                    action: "CreateGame",
+                    nickname: this.nickname
+                })
             },
             joinGame: function () {
-                store.commit('setNickname', this.nickname)
+                store.commit("setNickname", this.nickname);
                 this.$socket.sendObj({
-                    action: 'JoinGame',
+                    action: "JoinGame",
                     nickname: this.nickname,
-                    roomId: this.roomId,
+                    roomId: this.roomId
                 })
             }
         }
-    }
+    };
 </script>
 
 <style scoped>
@@ -62,7 +87,7 @@
     .menu {
         margin: auto;
         padding: 15px;
-        background: #8B77A7;
+        background: #8b77a7;
         width: 65%;
         display: flex;
         justify-content: center;
@@ -78,7 +103,7 @@
     }
 
     #menu label {
-        font-size: .8em;
+        font-size: 0.8em;
         display: inline-block;
     }
 </style>

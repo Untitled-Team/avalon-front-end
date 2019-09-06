@@ -2,15 +2,15 @@
     <div id="passFailVote">
         The players on the mission are:
         <br/>
-        {{ proposedParty }}
+        {{ missionParty }}
         <br/>
-        <div id="vote" v-show="!playersHasVoted">
+        <div id="vote" v-show="!playersHasVoted && playerVoting">
             <input type="button" class="button" v-on:click="voteToPass" value="Vote To Pass Quest">
             <br/>
             <input type="button" class="button" v-on:click="voteToFail" value="Vote To Fail Quest">
         </div>
         <div id="WaitingOnOthers" v-show="playersHasVoted || !playerVoting">
-            The game will continue once all players have voted.
+            The game will continue once all players in the mission have voted.
         </div>
     </div>
 </template>
@@ -20,7 +20,7 @@
 
     export default {
         name: 'PassFailVote',
-        props: ["proposedParty"],
+        props: ["missionParty"],
         data: function () {
             return {
                 playersHasVoted: false,
@@ -42,7 +42,7 @@
         },
         computed: {
             playerVoting: function () {
-                return this.proposedParty.includes(store.getters.getNickname)
+                return this.missionParty.includes(store.getters.getNickname)
             }
         },
     }
