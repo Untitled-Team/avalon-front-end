@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        my nicknername: {{ nickname }}
+        my nickername: {{ nickname }}
         <br/>
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
@@ -9,7 +9,8 @@
         <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
                             :currentMissionPartySize="currentMissionPartySize"/>
         <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
-        <PassFailVote v-if="passFailVote" :proposed-party="proposedParty"/>
+        <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
+        <DisplayPassFailVoteResults v-if="displayPassFailVoteReults" :passVotes="passVotes" :failVotes="failVotes"/>
     </div>
 </template>
 
@@ -22,10 +23,12 @@
     import ProposeMissionMenu from "../components/ProposeMissionMenu";
     import ProposedPartyVoteMenu from "../components/ProposedPartyVoteMenu";
     import PassFailVote from "../components/PassFailVote";
+    import DisplayPassFailVoteResults from "../components/DisplayPassFailVoteResults";
 
     export default {
         name: 'home',
         components: {
+            DisplayPassFailVoteResults,
             PassFailVote,
             ProposedPartyVoteMenu,
             ProposeMissionMenu,
@@ -45,6 +48,8 @@
                 numberInParty: 0,
                 missions: [],
                 proposedParty: [],
+                passVotes: 0,
+                failVotes: 0,
             }
         },
         computed: {
@@ -68,6 +73,9 @@
             },
             passFailVote: function () {
                 return store.getters.getPassFailVote
+            },
+            displayPassFailVoteReults: function () {
+                return store.getters.getDisplayPassFailVoteResults
             },
             currentMissionPartySize: function () {
                 return this.missions[this.missionNumber - 1].numberOfAdventurers
@@ -98,6 +106,8 @@
                     this.missions = msgJSON.missions
                     if (this.proposedPartyVote) {
                         store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
+                    } else if (this.displayPassFailVoteReults) {
+                        store.dispatch("displayPassFailVoteResultsToProposeMissionParty")
                     } else {
                         store.dispatch("stepTwoToQuestPhase")
                     }
@@ -106,6 +116,10 @@
                     store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
                 } else if (msgJSON.action === 'PartyApproved') {
                     store.dispatch("ProposedPartyVoteToPassFailVote")
+                } else if (msgJSON.action === 'PassFailVoteResults') {
+                    this.passVotes = msgJSON.passVotes
+                    this.failVotes = msgJSON.failVotes
+                    store.dispatch("PassFailVoteToDisplayPassFailVoteResults")
                 }
             }
         }

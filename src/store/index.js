@@ -13,6 +13,7 @@ export default new Vuex.Store({
         proposeMissionParty: false,
         proposedPartyVote: false,
         passFailVote: false,
+        displayPassFailVoteResults: false,
 
         //Other State
         players: [],
@@ -37,14 +38,17 @@ export default new Vuex.Store({
         getProposedPartyVote: state => {
             return state.proposedPartyVote
         },
+        getPassFailVote: state => {
+            return state.passFailVote
+        },
+        getDisplayPassFailVoteResults: state => {
+            return state.displayPassFailVoteResults
+        },
         getPlayers: state => {
             return state.players
         },
         getNickname: state => {
             return state.nickname
-        },
-        getPassFailVote: state => {
-            return state.passFailVote
         },
     },
     mutations: {
@@ -68,6 +72,9 @@ export default new Vuex.Store({
         },
         togglePassFailVote: state => {
             state.passFailVote = !state.passFailVote
+        },
+        toggleDisplayPassFailVoteResults: state => {
+            state.displayPassFailVoteResults = !state.displayPassFailVoteResults
         },
         setPlayers: (state, players) => {
             state.players = players
@@ -97,6 +104,14 @@ export default new Vuex.Store({
         ProposedPartyVoteToPassFailVote: ({commit}) => {
             commit('toggleProposedPartyVote')
             commit('togglePassFailVote')
+        },
+        PassFailVoteToDisplayPassFailVoteResults: ({commit}) => {
+            commit('togglePassFailVote')
+            commit('toggleDisplayPassFailVoteResults')
+        },
+        displayPassFailVoteResultsToProposeMissionParty: ({commit}) => {
+            commit('toggleDisplayPassFailVoteResults')
+            commit('toggleProposeMissionParty')
         },
     },
 });
