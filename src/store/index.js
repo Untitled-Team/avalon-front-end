@@ -12,6 +12,7 @@ export default new Vuex.Store({
         questInfoDisplay: false,
         proposeMissionParty: false,
         proposedPartyVote: false,
+        passFailVote: false,
 
         //Other State
         players: [],
@@ -41,7 +42,10 @@ export default new Vuex.Store({
         },
         getNickname: state => {
             return state.nickname
-        }
+        },
+        getPassFailVote: state => {
+            return state.passFailVote
+        },
     },
     mutations: {
         toggleStepOne: state => {
@@ -61,6 +65,9 @@ export default new Vuex.Store({
         },
         toggleProposedPartyVote: state => {
             state.proposedPartyVote = !state.proposedPartyVote
+        },
+        togglePassFailVote: state => {
+            state.passFailVote = !state.passFailVote
         },
         setPlayers: (state, players) => {
             state.players = players
@@ -86,6 +93,10 @@ export default new Vuex.Store({
         ToggleProposeMissionPartyAndProposedPartyVote: ({commit}) => {
             commit('toggleProposeMissionParty')
             commit('toggleProposedPartyVote')
+        },
+        ProposedPartyVoteToPassFailVote: ({commit}) => {
+            commit('toggleProposedPartyVote')
+            commit('togglePassFailVote')
         },
     },
 });

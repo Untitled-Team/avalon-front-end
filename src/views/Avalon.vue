@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         my nicknername: {{ nickname }}
-        <br />
+        <br/>
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
@@ -9,6 +9,7 @@
         <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
                             :currentMissionPartySize="currentMissionPartySize"/>
         <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
+        <PassFailVote v-if="passFailVote" :proposed-party="proposedParty"/>
     </div>
 </template>
 
@@ -20,10 +21,12 @@
     import Lobby from "../components/Lobby";
     import ProposeMissionMenu from "../components/ProposeMissionMenu";
     import ProposedPartyVoteMenu from "../components/ProposedPartyVoteMenu";
+    import PassFailVote from "../components/PassFailVote";
 
     export default {
         name: 'home',
         components: {
+            PassFailVote,
             ProposedPartyVoteMenu,
             ProposeMissionMenu,
             QuestInfo,
@@ -63,6 +66,9 @@
             proposedPartyVote: function () {
                 return store.getters.getProposedPartyVote
             },
+            passFailVote: function () {
+                return store.getters.getPassFailVote
+            },
             currentMissionPartySize: function () {
                 return this.missions[this.missionNumber - 1].numberOfAdventurers
             },
@@ -99,7 +105,7 @@
                     this.proposedParty = msgJSON.proposedParty
                     store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
                 } else if (msgJSON.action === 'PartyApproved') {
-                    console.log('Party Approved :)')
+                    store.dispatch("ProposedPartyVoteToPassFailVote")
                 }
             }
         }
