@@ -5,7 +5,9 @@
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
         <QuestInfo v-if="questInfoDisplay" :missions="missions"/>
-        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader" :currentMissionPartySize="currentMissionPartySize"/>
+        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
+                            :currentMissionPartySize="currentMissionPartySize"/>
+        <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
     </div>
 </template>
 
@@ -16,10 +18,12 @@
     import QuestInfo from "../components/QuestInfo";
     import Lobby from "../components/Lobby";
     import ProposeMissionMenu from "../components/ProposeMissionMenu";
+    import ProposedPartyVoteMenu from "../components/ProposedPartyVoteMenu";
 
     export default {
         name: 'home',
         components: {
+            ProposedPartyVoteMenu,
             ProposeMissionMenu,
             QuestInfo,
             PlayerInfo,
@@ -36,6 +40,7 @@
                 missionNumber: 1,
                 numberInParty: 0,
                 missions: [],
+                proposedParty: [],
             }
         },
         computed: {
@@ -54,16 +59,21 @@
             proposeMissionParty: function () {
                 return store.getters.getProposeMissionParty
             },
+            proposedPartyVote: function () {
+                return store.getters.getProposedPartyVote
+            },
             currentMissionPartySize: function () {
-                return this.missions[this.missionNumber-1].numberOfAdventurers
+                return this.missions[this.missionNumber - 1].numberOfAdventurers
             },
             nickname: function () {
                 return store.getters.getNickname
-            }
+            },
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
+                console.log(msgJSON)
+
                 if (msgJSON.action === 'MoveToLobby') {
                     store.dispatch('stepOneToLobbyStep')
                     this.players = msgJSON.players
@@ -79,10 +89,16 @@
                     this.missionLeader = msgJSON.missionLeader
                     this.missionNumber = msgJSON.missionNumber
                     this.missions = msgJSON.missions
-                    store.dispatch("stepTwoToQuestPhase")
+                    if (this.proposedPartyVote) {
+                        store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
+                    } else {\
+                        store.dispatch("stepTwoToQuestPhase")
+                    }
                 } else if (msgJSON.action === 'ProposedParty') {
                     this.proposedParty = msgJSON.proposedParty
-                    console.log(this.proposedParty)
+                    store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
+                } else if (msgJSON.action === 'PartyApproved') {
+                    console.log('Party Approved :)')
                 }
             }
         }
