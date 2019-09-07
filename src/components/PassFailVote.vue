@@ -30,13 +30,13 @@
             voteToPass: function () {
                 this.playersHasVoted = true
                 this.$socket.sendObj({
-                    action: 'PassVote',
+                    action: 'QuestPassVote',
                 })
             },
             voteToFail: function () {
                 this.playersHasVoted = true
                 this.$socket.sendObj({
-                    action: 'FailVote',
+                    action: 'QuestFailVote',
                 })
             },
         },
