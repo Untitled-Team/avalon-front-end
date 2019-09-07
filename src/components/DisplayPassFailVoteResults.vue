@@ -27,6 +27,7 @@
         height: 100px;
         width: 250px;
         margin: auto;
+        padding: 5px;
     }
 
     .pass {
