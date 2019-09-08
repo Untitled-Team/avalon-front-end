@@ -27,7 +27,7 @@
         methods: {
             proposeParty: function () {
                 this.$socket.sendObj({
-                    action: 'ProposeParty',
+                    event: 'ProposeParty',
                     proposedParty: this.selectedPlayers,
                 })
             }

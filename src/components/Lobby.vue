@@ -17,7 +17,7 @@
         props: ['players', 'roomId'],
         methods: {
             startGame: function () {
-                this.$socket.sendObj({action: 'StartGame'});
+                this.$socket.sendObj({event: 'StartGame'});
             }
         },
     }

@@ -26,7 +26,7 @@
         methods: {
             submitAssassinGuess: function () {
                 this.$socket.sendObj({
-                    action: 'submitAssassinGuess',
+                    event: 'submitAssassinGuess',
                     guess: this.merlinGuess
                 })
             }

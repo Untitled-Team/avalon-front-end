@@ -44,7 +44,7 @@
         methods: {
             confirmReady: function () {
                 this.ready = true;
-                this.$socket.sendObj({action: 'PlayerReady'});
+                this.$socket.sendObj({event: 'PlayerReady'});
             }
         },
         computed: {

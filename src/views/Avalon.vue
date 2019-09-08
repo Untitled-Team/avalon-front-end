@@ -104,18 +104,18 @@
                 let msgJSON = JSON.parse(msg.data)
                 console.log(msgJSON)
 
-                if (msgJSON.action === 'MoveToLobby') {
+                if (msgJSON.event === 'MoveToLobby') {
                     store.dispatch('stepOneToLobbyStep')
                     this.players = msgJSON.players
                     this.roomId = msgJSON.roomId
-                } else if (msgJSON.action === 'ChangeInLobby') {
+                } else if (msgJSON.event === 'ChangeInLobby') {
                     this.players = msgJSON.players
-                } else if (msgJSON.action === 'PlayerInfo') {
+                } else if (msgJSON.event === 'PlayerInfo') {
                     store.commit('setPlayers', this.players)
                     this.character = msgJSON.character
                     this.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
-                } else if (msgJSON.action === 'TeamAssignmentPhase') {
+                } else if (msgJSON.event === 'TeamAssignmentPhase') {
                     this.missionLeader = msgJSON.missionLeader
                     this.missionNumber = msgJSON.missionNumber
                     this.missions = msgJSON.missions
@@ -126,19 +126,19 @@
                     } else {
                         store.dispatch("stepTwoToQuestPhase")
                     }
-                } else if (msgJSON.action === 'ProposedParty') {
+                } else if (msgJSON.event === 'ProposedParty') {
                     this.proposedParty = msgJSON.proposedParty
                     store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
-                } else if (msgJSON.action === 'PartyApproved') {
+                } else if (msgJSON.event === 'PartyApproved') {
                     store.dispatch("ProposedPartyVoteToPassFailVote")
-                } else if (msgJSON.action === 'PassFailVoteResults') {
+                } else if (msgJSON.event === 'PassFailVoteResults') {
                     this.passVotes = msgJSON.passVotes
                     this.failVotes = msgJSON.failVotes
                     store.dispatch("PassFailVoteToDisplayPassFailVoteResults")
-                } else if (msgJSON.action === 'AssassinVote') {
+                } else if (msgJSON.event === 'AssassinVote') {
                     this.assassinVoteData = msgJSON.assassinVoteData
                     store.dispatch("displayPassFailVoteResultsToAssassinVote")
-                } else if (msgJSON.action === 'GameOver') {
+                } else if (msgJSON.event === 'GameOver') {
                     this.gameOverData = msgJSON.gameOverData
                     if (msgJSON.gameOverData.winningTeam === "BadGuys") {
                         if (this.assassinVote) {
