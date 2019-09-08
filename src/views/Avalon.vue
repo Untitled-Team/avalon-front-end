@@ -10,7 +10,10 @@
                             :currentMissionPartySize="currentMissionPartySize"/>
         <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
         <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
-        <DisplayPassFailVoteResults v-if="displayPassFailVoteReults" :passVotes="passVotes" :failVotes="failVotes"/>
+        <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes" :failVotes="failVotes"/>
+        <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
+        <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
+
     </div>
 </template>
 
@@ -24,10 +27,14 @@
     import ProposedPartyVoteMenu from "../components/ProposedPartyVoteMenu";
     import PassFailVote from "../components/PassFailVote";
     import DisplayPassFailVoteResults from "../components/DisplayPassFailVoteResults";
+    import Winner from "../components/Winner";
+    import AssassinVote from "../components/AssassinVote";
 
     export default {
         name: 'home',
         components: {
+            AssassinVote,
+            Winner,
             DisplayPassFailVoteResults,
             PassFailVote,
             ProposedPartyVoteMenu,
@@ -50,6 +57,8 @@
                 proposedParty: [],
                 passVotes: 0,
                 failVotes: 0,
+                assassinVoteData: {},
+                gameOverData: {},
             }
         },
         computed: {
@@ -74,8 +83,14 @@
             passFailVote: function () {
                 return store.getters.getPassFailVote
             },
-            displayPassFailVoteReults: function () {
+            displayPassFailVoteResults: function () {
                 return store.getters.getDisplayPassFailVoteResults
+            },
+            assassinVote: function () {
+                return store.getters.getAssassinVote
+            },
+            teamHasWon: function () {
+                return store.getters.getBadGuysWin || store.getters.getGoodGuysWin
             },
             currentMissionPartySize: function () {
                 return this.missions[this.missionNumber - 1].numberOfAdventurers
@@ -106,7 +121,7 @@
                     this.missions = msgJSON.missions
                     if (this.proposedPartyVote) {
                         store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
-                    } else if (this.displayPassFailVoteReults) {
+                    } else if (this.displayPassFailVoteResults) {
                         store.dispatch("displayPassFailVoteResultsToProposeMissionParty")
                     } else {
                         store.dispatch("stepTwoToQuestPhase")
@@ -120,6 +135,22 @@
                     this.passVotes = msgJSON.passVotes
                     this.failVotes = msgJSON.failVotes
                     store.dispatch("PassFailVoteToDisplayPassFailVoteResults")
+                } else if (msgJSON.action === 'AssassinVote') {
+                    this.assassinVoteData = msgJSON.assassinVoteData
+                    store.dispatch("displayPassFailVoteResultsToAssassinVote")
+                } else if (msgJSON.action === 'GameOver') {
+                    this.gameOverData = msgJSON.gameOverData
+                    if (msgJSON.gameOverData.winningTeam === "BadGuys") {
+                        if (this.assassinVote) {
+                            console.log("got here")
+                            store.dispatch("assassinVoteToBadGuysWin")
+                        } else {
+                            console.log("DID NOT GET EHRE!!!")
+                            store.dispatch("displayPassFailVoteResultsToBadGuysWin")
+                        }
+                    } else if (msgJSON.gameOverData.winningTeam === "GoodGuys") {
+                        store.dispatch("assassinVoteToGoodGuysWin")
+                    }
                 }
             }
         }

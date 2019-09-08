@@ -14,6 +14,9 @@ export default new Vuex.Store({
         proposedPartyVote: false,
         passFailVote: false,
         displayPassFailVoteResults: false,
+        assassinVote: false,
+        badGuysWin: false,
+        goodGuysWin: false,
 
         //Other State
         players: [],
@@ -43,6 +46,15 @@ export default new Vuex.Store({
         },
         getDisplayPassFailVoteResults: state => {
             return state.displayPassFailVoteResults
+        },
+        getAssassinVote: state => {
+            return state.assassinVote
+        },
+        getBadGuysWin: state => {
+            return state.badGuysWin
+        },
+        getGoodGuysWin: state => {
+            return state.goodGuysWin
         },
         getPlayers: state => {
             return state.players
@@ -75,6 +87,15 @@ export default new Vuex.Store({
         },
         toggleDisplayPassFailVoteResults: state => {
             state.displayPassFailVoteResults = !state.displayPassFailVoteResults
+        },
+        toggleAssassinVote: state => {
+            state.assassinVote = !state.assassinVote
+        },
+        toggleBadGuysWin: state => {
+            state.badGuysWin = !state.badGuysWin
+        },
+        toggleGoodGuysWin: state => {
+            state.goodGuysWin = !state.goodGuysWin
         },
         setPlayers: (state, players) => {
             state.players = players
@@ -112,6 +133,22 @@ export default new Vuex.Store({
         displayPassFailVoteResultsToProposeMissionParty: ({commit}) => {
             commit('toggleDisplayPassFailVoteResults')
             commit('toggleProposeMissionParty')
+        },
+        displayPassFailVoteResultsToAssassinVote: ({commit}) => {
+            commit('toggleDisplayPassFailVoteResults')
+            commit('toggleAssassinVote')
+        },
+        displayPassFailVoteResultsToBadGuysWin: ({commit}) => {
+            commit('toggleDisplayPassFailVoteResults')
+            commit('toggleBadGuysWin')
+        },
+        assassinVoteToGoodGuysWin: ({commit}) => {
+            commit('toggleAssassinVote')
+            commit('toggleGoodGuysWin')
+        },
+        assassinVoteToBadGuysWin: ({commit}) => {
+            commit('toggleAssassinVote')
+            commit('toggleBadGuysWin')
         },
     },
 });

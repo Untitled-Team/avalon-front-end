@@ -1,0 +1,69 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="800" height="600" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="38.5" cy="37.5" rx="30" ry="30"/>
+	<text x="19.5" y="43.5" font-family="Times New Roman" font-size="20">Intro</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="240.5" cy="67.5" rx="30" ry="30"/>
+	<text x="214.5" y="73.5" font-family="Times New Roman" font-size="20">Lobby</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="436.5" cy="77.5" rx="30" ry="30"/>
+	<text x="394.5" y="83.5" font-family="Times New Roman" font-size="20">PlayerInfo</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="724.5" cy="77.5" rx="30" ry="30"/>
+	<text x="671.5" y="83.5" font-family="Times New Roman" font-size="20">ProposeParty</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="93.5" cy="198.5" rx="30" ry="30"/>
+	<text x="22.5" y="204.5" font-family="Times New Roman" font-size="20">ProposePartyVote</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="47.5" cy="335.5" rx="30" ry="30"/>
+	<text x="6.5" y="341.5" font-family="Times New Roman" font-size="20">QuestVote</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="526.5" cy="555.5" rx="30" ry="30"/>
+	<text x="467.5" y="561.5" font-family="Times New Roman" font-size="20">Bad Guys Win</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="526.5" cy="555.5" rx="24" ry="24"/>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="72.5" cy="555.5" rx="30" ry="30"/>
+	<text x="7.5" y="561.5" font-family="Times New Roman" font-size="20">Good Guys Win</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="72.5" cy="555.5" rx="24" ry="24"/>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="240.5" cy="555.5" rx="30" ry="30"/>
+	<text x="187.5" y="561.5" font-family="Times New Roman" font-size="20">AssassinVote</text>
+	<ellipse stroke="black" stroke-width="1" fill="none" cx="260.5" cy="377.5" rx="30" ry="30"/>
+	<text x="148.5" y="383.5" font-family="Times New Roman" font-size="20">DisplayPassFailVoteResults</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 213.993,81.446 A 153.165,153.165 0 0 1 59.81,58.548"/>
+	<polygon fill="black" stroke-width="1" points="213.993,81.446 204.698,79.83 208.467,89.093"/>
+	<text x="50.5" y="118.5" font-family="Times New Roman" font-size="20">MoveToLobby</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 408.287,87.631 A 219.188,219.188 0 0 1 267.535,80.45"/>
+	<polygon fill="black" stroke-width="1" points="408.287,87.631 399.227,85.004 401.955,94.624"/>
+	<text x="292.5" y="118.5" font-family="Times New Roman" font-size="20">PlayerInfo</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 463.264,63.976 A 290.005,290.005 0 0 1 697.736,63.976"/>
+	<polygon fill="black" stroke-width="1" points="697.736,63.976 692.44,56.169 688.398,65.315"/>
+	<text x="487.5" y="30.5" font-family="Times New Roman" font-size="20">TeamAssignmentPhase</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 700.984,96.123 A 666.595,666.595 0 0 1 122.237,207.103"/>
+	<polygon fill="black" stroke-width="1" points="122.237,207.103 128.625,214.046 131.277,204.404"/>
+	<text x="399.5" y="245.5" font-family="Times New Roman" font-size="20">ProposedParty</text>
+	<polygon stroke="black" stroke-width="1" points="83.951,226.94 57.049,307.06"/>
+	<polygon fill="black" stroke-width="1" points="57.049,307.06 64.335,301.068 54.856,297.885"/>
+	<text x="78.5" y="280.5" font-family="Times New Roman" font-size="20">PartyApproved</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 266.588,540.721 A 264.076,264.076 0 0 1 500.412,540.721"/>
+	<polygon fill="black" stroke-width="1" points="500.412,540.721 495.452,532.696 491.025,541.662"/>
+	<text x="339.5" y="504.5" font-family="Times New Roman" font-size="20">GameOver</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 99.194,541.911 A 156.456,156.456 0 0 1 213.806,541.911"/>
+	<polygon fill="black" stroke-width="1" points="99.194,541.911 108.47,543.633 104.807,534.328"/>
+	<text x="112.5" y="522.5" font-family="Times New Roman" font-size="20">GameOver</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 253.397,40.544 A 22.5,22.5 0 1 1 269.741,61.34"/>
+	<text x="299.5" y="17.5" font-family="Times New Roman" font-size="20">ChangeInLobby</text>
+	<polygon fill="black" stroke-width="1" points="269.741,61.34 277.924,66.035 277.547,56.042"/>
+	<polygon stroke="black" stroke-width="1" points="122.963,192.85 695.037,83.15"/>
+	<polygon fill="black" stroke-width="1" points="695.037,83.15 686.238,79.746 688.122,89.567"/>
+	<text x="368.5" y="167.5" font-family="Times New Roman" font-size="20">TeamAssignmentPhase</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 704.416,99.784 A 1005.83,1005.83 0 0 1 289.063,368.331"/>
+	<polygon fill="black" stroke-width="1" points="704.416,99.784 695.308,102.243 702.636,109.048"/>
+	<text x="518.5" y="281.5" font-family="Times New Roman" font-size="20">TeamAssignmentPhase</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 77.386,333.004 A 343.318,343.318 0 0 1 233.798,363.846"/>
+	<polygon fill="black" stroke-width="1" points="233.798,363.846 228.603,355.971 224.443,365.065"/>
+	<text x="123.5" y="322.5" font-family="Times New Roman" font-size="20">PassFailVoteResults</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 263.373,407.354 A 363.217,363.217 0 0 1 249.927,527.029"/>
+	<polygon fill="black" stroke-width="1" points="249.927,527.029 256.933,520.711 247.318,517.962"/>
+	<text x="268.5" y="474.5" font-family="Times New Roman" font-size="20">AssassinVote</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 288.592,388.02 A 634.245,634.245 0 0 1 506.061,533.544"/>
+	<polygon fill="black" stroke-width="1" points="506.061,533.544 504.051,524.327 496.895,531.311"/>
+	<text x="409.5" y="440.5" font-family="Times New Roman" font-size="20">GameOver</text>
+	<path stroke="black" stroke-width="1" fill="none" d="M 730.605,106.866 A 437.939,437.939 0 0 1 551.582,539.052"/>
+	<polygon fill="black" stroke-width="1" points="551.582,539.052 561.001,538.524 555.235,530.354"/>
+	<text x="711.5" y="364.5" font-family="Times New Roman" font-size="20">GameOver</text>
+</svg>

@@ -15,7 +15,7 @@
             }
             sleep(5000).then(() => {
                 this.$socket.sendObj({
-                    action: "VotesDisplayed",
+                    action: "QuestVotesDisplayed",
                 })
             })
         }
