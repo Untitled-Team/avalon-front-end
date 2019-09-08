@@ -12,7 +12,7 @@
         <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
         <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes" :failVotes="failVotes"/>
         <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
-        <Winner v-if="teamHasWon" :theWinnerIs="theWinnerIs"/>
+        <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
 
     </div>
 </template>
@@ -57,7 +57,8 @@
                 proposedParty: [],
                 passVotes: 0,
                 failVotes: 0,
-                assassinVoteData: {}
+                assassinVoteData: {},
+                gameOverData: {},
             }
         },
         computed: {
@@ -90,14 +91,6 @@
             },
             teamHasWon: function () {
                 return store.getters.getBadGuysWin || store.getters.getGoodGuysWin
-            },
-            theWinnerIs: function () {
-                if (store.getters.getBadGuysWin) {
-                    return "badGuysWin"
-                } else if (store.getters.getGoodGuysWin) {
-                    return "goodGuysWin"
-                }
-                return null
             },
             currentMissionPartySize: function () {
                 return this.missions[this.missionNumber - 1].numberOfAdventurers
@@ -146,12 +139,16 @@
                     this.assassinVoteData = msgJSON.assassinVoteData
                     store.dispatch("displayPassFailVoteResultsToAssassinVote")
                 } else if (msgJSON.action === 'GameOver') {
-                    if (msgJSON.winningTeam === "BadGuys") {
+                    this.gameOverData = msgJSON.gameOverData
+                    if (msgJSON.gameOverData.winningTeam === "BadGuys") {
                         if (this.assassinVote) {
+                            console.log("got here")
                             store.dispatch("assassinVoteToBadGuysWin")
+                        } else {
+                            console.log("DID NOT GET EHRE!!!")
+                            store.dispatch("displayPassFailVoteResultsToBadGuysWin")
                         }
-                        store.dispatch("displayPassFailVoteResultsToBadGuysWin")
-                    } else if (msgJSON.winningTeam === "GoodGuys") {
+                    } else if (msgJSON.gameOverData.winningTeam === "GoodGuys") {
                         store.dispatch("assassinVoteToGoodGuysWin")
                     }
                 }

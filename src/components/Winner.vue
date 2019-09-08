@@ -1,5 +1,6 @@
 <template>
     <div id="questInfo">
+        WINNER!!!! :p
         <div v-show="badGuysWin">
             Bad guys win :)
         </div>
@@ -12,13 +13,13 @@
 <script>
     export default {
         name: 'Winner',
-        props: ['theWinnerIs'],
+        props: ['gameOverData'],
         computed: {
             goodGuysWin: function () {
-                return this.theWinnerIs === 'goodGuysWin'
+                return this.gameOverData.winningTeam === 'GoodGuys'
             },
             badGuysWin: function () {
-                return this.theWinnerIs === 'badGuysWin'
+                return this.gameOverData.winningTeam === 'BadGuys'
             }
         }
     }
