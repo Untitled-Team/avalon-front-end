@@ -102,7 +102,8 @@ export default new Vuex.Store({
         },
         setNickname: (state, nickname) => {
             state.nickname = nickname
-        }
+        },
+        SOCKET_ONMESSAGE: state => {state}
     },
     actions: {
         stepOneToLobbyStep: ({commit}) => {

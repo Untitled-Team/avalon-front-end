@@ -13,9 +13,7 @@
       Avalon
     },
     actions: {
-      connect: function () {
-        console.log('socket connected')
-      },
+      connect: function () {},
     }
   }
 </script>

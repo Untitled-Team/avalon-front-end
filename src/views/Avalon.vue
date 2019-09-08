@@ -102,7 +102,6 @@
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
-                console.log(msgJSON)
 
                 if (msgJSON.event === 'MoveToLobby') {
                     store.dispatch('stepOneToLobbyStep')
@@ -142,10 +141,8 @@
                     this.gameOverData = msgJSON.gameOverData
                     if (msgJSON.gameOverData.winningTeam === "BadGuys") {
                         if (this.assassinVote) {
-                            console.log("got here")
                             store.dispatch("assassinVoteToBadGuysWin")
                         } else {
-                            console.log("DID NOT GET EHRE!!!")
                             store.dispatch("displayPassFailVoteResultsToBadGuysWin")
                         }
                     } else if (msgJSON.gameOverData.winningTeam === "GoodGuys") {
