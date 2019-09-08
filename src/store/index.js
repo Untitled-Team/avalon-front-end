@@ -142,5 +142,13 @@ export default new Vuex.Store({
             commit('toggleDisplayPassFailVoteResults')
             commit('toggleBadGuysWin')
         },
+        assassinVoteToGoodGuysWin: ({commit}) => {
+            commit('toggleAssassinVote')
+            commit('toggleGoodGuysWin')
+        },
+        assassinVoteToBadGuysWin: ({commit}) => {
+            commit('toggleAssassinVote')
+            commit('toggleBadGuysWin')
+        },
     },
 });

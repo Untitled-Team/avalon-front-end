@@ -3,7 +3,7 @@
         <div v-show="badGuysWin">
             Bad guys win :)
         </div>
-        <div v-show="!badGuysWin">
+        <div v-show="goodGuysWin">
             Good guys win :)
         </div>
     </div>
@@ -12,7 +12,15 @@
 <script>
     export default {
         name: 'Winner',
-        props: ['badGuysWin']
+        props: ['theWinnerIs'],
+        computed: {
+            goodGuysWin: function () {
+                return this.theWinnerIs === 'goodGuysWin'
+            },
+            badGuysWin: function () {
+                return this.theWinnerIs === 'badGuysWin'
+            }
+        }
     }
 </script>
 

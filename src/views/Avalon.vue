@@ -12,7 +12,7 @@
         <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
         <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes" :failVotes="failVotes"/>
         <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
-        <Winner v-if="badGuysWin" :badGuysWin="badGuysWin"/>
+        <Winner v-if="teamHasWon" :theWinnerIs="theWinnerIs"/>
 
     </div>
 </template>
@@ -88,8 +88,16 @@
             assassinVote: function () {
                 return store.getters.getAssassinVote
             },
-            badGuysWin: function () {
-                return store.getters.getBadGuysWin
+            teamHasWon: function () {
+                return store.getters.getBadGuysWin || store.getters.getGoodGuysWin
+            },
+            theWinnerIs: function () {
+                if (store.getters.getBadGuysWin) {
+                    return "badGuysWin"
+                } else if (store.getters.getGoodGuysWin) {
+                    return "goodGuysWin"
+                }
+                return null
             },
             currentMissionPartySize: function () {
                 return this.missions[this.missionNumber - 1].numberOfAdventurers
@@ -139,9 +147,12 @@
                     store.dispatch("displayPassFailVoteResultsToAssassinVote")
                 } else if (msgJSON.action === 'GameOver') {
                     if (msgJSON.winningTeam === "BadGuys") {
+                        if (this.assassinVote) {
+                            store.dispatch("assassinVoteToBadGuysWin")
+                        }
                         store.dispatch("displayPassFailVoteResultsToBadGuysWin")
                     } else if (msgJSON.winningTeam === "GoodGuys") {
-                        console.log("let's gogo good boyos")
+                        store.dispatch("assassinVoteToGoodGuysWin")
                     }
                 }
             }
