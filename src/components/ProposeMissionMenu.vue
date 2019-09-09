@@ -3,7 +3,7 @@
         <div>Mission Leader: {{ missionLeader }}</div>
         <div>party size: {{ currentMissionPartySize }}</div>
         <form>
-            <div :key="player" v-for="player in players">
+            <div :key="index" v-for="(player, index) in players">
                 <input type="checkbox" :value="player" v-model="selectedPlayers" :disabled="!playerIsMissionLeader"/>
                 {{ player }}
             </div>

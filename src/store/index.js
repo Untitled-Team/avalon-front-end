@@ -21,6 +21,7 @@ export default new Vuex.Store({
         //Other State
         players: [],
         nickname: "",
+        activeMission: 1,
     },
     getters: {
         getStepOne: state => {
@@ -103,7 +104,9 @@ export default new Vuex.Store({
         setNickname: (state, nickname) => {
             state.nickname = nickname
         },
-        SOCKET_ONMESSAGE: state => {state}
+        SOCKET_ONMESSAGE: state => {state},
+        SOCKET_ONOPEN: state => {state},
+        SOCKET_ONCLOSE: state => {state},
     },
     actions: {
         stepOneToLobbyStep: ({commit}) => {

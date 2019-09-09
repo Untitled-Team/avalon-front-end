@@ -28,13 +28,15 @@
             voteToApprove: function () {
                 this.playersHasVoted = true
                 this.$socket.sendObj({
-                    event: 'ApproveParty',
+                    event: 'PartyApprovalVote',
+                    partyPassVote: true,
                 })
             },
             voteToDeny: function () {
                 this.playersHasVoted = true
                 this.$socket.sendObj({
-                    event: 'DenyParty',
+                    event: 'PartyApprovalVote',
+                    partyPassVote: false,
                 })
             },
         },

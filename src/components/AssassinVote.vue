@@ -3,8 +3,8 @@
         The good guys have passed 3 missions, but it's not over yet!
         {{assassinVoteData.assassin }}, GuESs MeRLin
         <ul>
-            <li :key="goodGuy" v-for="goodGuy in assassinVoteData.goodGuys">
-                <input type="radio" :value="goodGuy" v-model="merlinGuess" :disabled="!playerIsAssassin"/>
+            <li :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys">
+                <input type="radio" :value="goodGuy" v-model="guess" :disabled="!playerIsAssassin"/>
                 {{ goodGuy }}
             </li>
         </ul>
@@ -19,15 +19,15 @@
         name: 'AssassinVote',
         data: function() {
             return {
-                merlinGuess: null
+                guess: null
             }
         },
         props: ["assassinVoteData"],
         methods: {
             submitAssassinGuess: function () {
                 this.$socket.sendObj({
-                    event: 'submitAssassinGuess',
-                    guess: this.merlinGuess
+                    event: 'AssassinVote',
+                    guess: this.guess
                 })
             }
         },
@@ -36,7 +36,7 @@
                 return store.getters.getNickname
             },
             noGuessSelected: function () {
-                return this.merlinGuess === null
+                return this.guess === null
 
             },
         }

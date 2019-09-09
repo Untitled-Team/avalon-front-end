@@ -1,7 +1,7 @@
 <template>
     <div id="displayPassFailVotes">
-        <div v-for="passVote in passVotes" :key="passVote" class="vote pass">PASS</div>
-        <div v-for="failVote in failVotes" :key="failVote" class="vote fail">FAIL :p haha</div>
+        <div v-for="(passVote, index) in passVotes" :key="index" class="vote pass">PASS</div>
+        <div v-for="(failVote, index) in failVotes" :key="index" class="vote fail">FAIL :p haha</div>
     </div>
 </template>
 
