@@ -1,49 +1,42 @@
 <template>
-    <div id="intro">
-        <h1>Welcome to Avalon!</h1>
-        <div class="menu">
-            <form>
-                <input
-                        v-model="nickname"
-                        type="text"
-                        class="textInput"
-                        name="nickname"
-                        placeholder="Player Nickname..."
-                />
-                <input
-                        v-model="roomId"
-                        type="text"
-                        class="textInput"
-                        name="roomId"
-                        placeholder="Room ID..."
-                />
-                <input
-                        type="button"
-                        class="buttonInput button"
-                        name="joinGame"
-                        value="Join Existing Game"
-                        v-on:click="joinGame"
-                />
-            </form>
-        </div>
-        <br/>
-        <div class="menu">
-            <form>
-                <input
-                        v-model="nickname"
-                        type="text"
-                        class="textInput"
-                        name="nickname"
-                        placeholder="Player Nickname..."
-                />
-                <input
-                        type="button"
-                        class="buttonInput button"
-                        name="createGame"
-                        value="Create a New Game Room"
-                        v-on:click="createGame"
-                />
-            </form>
+    <div class="intro">
+        <div class="columns">
+            <div class="column is-one-quarter"></div>
+            <div class="column is-half">
+                <p>Welcome to Avalon!</p>
+                <div class="section menu">
+                    <div class="container">
+                        <div class="field">
+                            <input v-model="nickname" type="text" class="textInput" name="nickname"
+                                   placeholder="Player Nickname..."/>
+                        </div>
+                        <div class="field">
+                            <input v-model="roomId" type="text" class="textInput" name="roomId"
+                                   placeholder="Room ID..."/>
+                        </div>
+                        <div class="field">
+                            <input type="button" class="buttonInput button is-small" name="joinGame" value="Join Existing Game"
+                                   v-on:click="joinGame"/>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="section menu">
+                    <div class="container">
+                        <div class="field">
+                            <input v-model="nickname" type="text" class="textInput" name="nickname"
+                                   placeholder="Player Nickname..."/>
+                        </div>
+                        <div class="field">
+                            <input type="button" class="buttonInput button is-small" name="createGame"
+                                   value="Create a New Game Room"
+                                   v-on:click="createGame"/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="column is-one-quarter"></div>
         </div>
     </div>
 </template>
@@ -80,30 +73,16 @@
 </script>
 
 <style scoped>
-    #intro {
-        margin: 40px 0 0;
-    }
-
     .menu {
-        margin: auto;
-        padding: 15px;
         background: #8b77a7;
-        width: 65%;
-        display: flex;
-        justify-content: center;
+        padding: 1em;
     }
 
-    #menu input {
-        width: 70%;
-        margin: 35px;
-        border: 1px solid yellow;
-        min-height: 40px;
-        position: relative;
-        display: inline-block;
+    .field {
+        padding: 1em;
     }
 
-    #menu label {
-        font-size: 0.8em;
-        display: inline-block;
+    p {
+        font-size: 4em;
     }
 </style>
