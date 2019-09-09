@@ -2,23 +2,26 @@
     <div class="home">
         my nickername: {{ nickname }}
         <br/>
+
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
 
-        <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
+        <div v-show="!teamHasWon">
+            <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
-        <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
-            <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
-                                :currentMissionPartySize="currentMissionPartySize"/>
-            <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
-            <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
-            <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
-                                        :failVotes="failVotes"/>
-            <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
+            <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
+                <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
+                                    :currentMissionPartySize="currentMissionPartySize"/>
+                <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
+                <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
+                <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
+                                            :failVotes="failVotes"/>
+                <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
+            </div>
+
+            <NotCurrentMissionData v-if="activeMissionNotCurrent"/>
         </div>
-
-        <NotCurrentMissionData v-if="activeMissionNotCurrent"/>
 
         <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
     </div>
