@@ -4,7 +4,7 @@
         <h2>Once the game has begun new players cannot join</h2>
         <p>Room Number: {{ roomId }}</p>
         <p>Total Players: {{ players.length }}</p>
-        <div class="lobbyPlayer" v-bind:key="player" v-for="player in players">
+        <div class="lobbyPlayer" :key="index" v-for="(player, index) in players">
             {{ player }}
         </div>
         <button class="button" v-on:click="startGame">Everyone's in! Ready to start</button>
@@ -17,7 +17,7 @@
         props: ['players', 'roomId'],
         methods: {
             startGame: function () {
-                this.$socket.sendObj({action: 'StartGame'});
+                this.$socket.sendObj({event: 'StartGame'});
             }
         },
     }

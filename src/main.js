@@ -6,7 +6,7 @@ import store from "./store/index.js"
 
 Vue.config.productionTip = false
 
-Vue.use(VueNativeSock, 'ws://localhost:8000/test', { store: store, format: 'json' });
+Vue.use(VueNativeSock, 'ws://avalonga.me:8000/test', { store: store, format: 'json' });
 
 new Vue({
   router,

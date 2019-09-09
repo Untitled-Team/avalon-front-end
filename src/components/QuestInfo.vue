@@ -1,8 +1,7 @@
 <template>
     <div id="questInfo">
-        <span class="quest" :key="quest" v-for="quest in missions">
-            <Quest :party-size="quest.numberOfAdventurers" :pass="quest.pass" :votes="quest.votes"
-                   :party="quest.players"/>
+        <span class="quest" :key="index" v-for="(quest, index) in quests">
+            <Quest :quest="quest" :missionNumber="index+1"/>
         </span>
     </div>
 </template>
@@ -15,7 +14,7 @@
         components: {
             Quest,
         },
-        props: ["missions"]
+        props: ["quests"]
     }
 </script>
 
@@ -29,6 +28,5 @@
     #questInfo {
         margin: auto;
         display: inline-block;
-        padding: 15px;
     }
 </style>

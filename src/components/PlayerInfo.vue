@@ -11,21 +11,21 @@
             <img src="@/assets/badGuy.jpg">
             <p>You're a regular bad guy!</p>
             <p>The bad guys are: </p>
-            <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
+            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
             <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
         </div>
         <div class="card merlin" v-if="isMerlin">
             <img src="@/assets/merlin.jpg">
             <p>You're Merlin!</p>
             <p>The bad guys are: </p>
-            <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
+            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
             <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
         </div>
         <div class="card assassin" v-if="isAssassin">
             <img src="@/assets/assassin.jpg">
             <p>You're the assassin!</p>
             <p>The bad guys are: </p>
-            <p v-bind:key="badGuy" v-for="badGuy in badGuys">{{badGuy}}</p>
+            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
             <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
         </div>
         <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
@@ -44,7 +44,7 @@
         methods: {
             confirmReady: function () {
                 this.ready = true;
-                this.$socket.sendObj({action: 'PlayerReady'});
+                this.$socket.sendObj({event: 'PlayerReady'});
             }
         },
         computed: {

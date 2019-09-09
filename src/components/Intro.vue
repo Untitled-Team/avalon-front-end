@@ -63,14 +63,14 @@
             createGame: function () {
                 store.commit("setNickname", this.nickname);
                 this.$socket.sendObj({
-                    action: "CreateGame",
+                    event: "CreateGame",
                     nickname: this.nickname
                 })
             },
             joinGame: function () {
                 store.commit("setNickname", this.nickname);
                 this.$socket.sendObj({
-                    action: "JoinGame",
+                    event: "JoinGame",
                     nickname: this.nickname,
                     roomId: this.roomId
                 })

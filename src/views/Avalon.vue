@@ -1,19 +1,30 @@
 <template>
     <div class="home">
-        my nickername: {{ nickname }}
+        my nickername: {{ nickname }} <br/>
+        my role: {{ character }}
         <br/>
+
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
-        <QuestInfo v-if="questInfoDisplay" :missions="missions"/>
-        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
-                            :currentMissionPartySize="currentMissionPartySize"/>
-        <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
-        <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
-        <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes" :failVotes="failVotes"/>
-        <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
-        <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
 
+        <div v-show="!teamHasWon">
+            <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
+
+            <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
+                <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
+                                    :currentMissionPartySize="currentMissionPartySize"/>
+                <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
+                <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
+                <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
+                                            :failVotes="failVotes"/>
+                <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
+            </div>
+
+            <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+        </div>
+
+        <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
     </div>
 </template>
 
@@ -29,10 +40,12 @@
     import DisplayPassFailVoteResults from "../components/DisplayPassFailVoteResults";
     import Winner from "../components/Winner";
     import AssassinVote from "../components/AssassinVote";
+    import NotCurrentMissionData from "../components/NotCurrentMissionData";
 
     export default {
         name: 'home',
         components: {
+            NotCurrentMissionData,
             AssassinVote,
             Winner,
             DisplayPassFailVoteResults,
@@ -53,7 +66,7 @@
                 missionLeader: "",
                 missionNumber: 1,
                 numberInParty: 0,
-                missions: [],
+                quests: [],
                 proposedParty: [],
                 passVotes: 0,
                 failVotes: 0,
@@ -93,32 +106,39 @@
                 return store.getters.getBadGuysWin || store.getters.getGoodGuysWin
             },
             currentMissionPartySize: function () {
-                return this.missions[this.missionNumber - 1].numberOfAdventurers
+                return this.quests[this.missionNumber - 1].numberOfAdventurers
             },
             nickname: function () {
                 return store.getters.getNickname
             },
+            activeMissionNotCurrent: function () {
+                return store.state.activeMission !== this.missionNumber
+            },
+            activeQuestData: function () {
+                return this.quests[store.state.activeMission-1]
+            }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
                 console.log(msgJSON)
 
-                if (msgJSON.action === 'MoveToLobby') {
+                if (msgJSON.event === 'MoveToLobby') {
                     store.dispatch('stepOneToLobbyStep')
                     this.players = msgJSON.players
                     this.roomId = msgJSON.roomId
-                } else if (msgJSON.action === 'ChangeInLobby') {
+                } else if (msgJSON.event === 'ChangeInLobby') {
                     this.players = msgJSON.players
-                } else if (msgJSON.action === 'PlayerInfo') {
+                } else if (msgJSON.event === 'PlayerInfo') {
                     store.commit('setPlayers', this.players)
                     this.character = msgJSON.character
                     this.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
-                } else if (msgJSON.action === 'TeamAssignmentPhase') {
+                } else if (msgJSON.event === 'TeamAssignmentPhase') {
+                    store.state.activeMission = msgJSON.missionNumber
                     this.missionLeader = msgJSON.missionLeader
                     this.missionNumber = msgJSON.missionNumber
-                    this.missions = msgJSON.missions
+                    this.quests = msgJSON.missions
                     if (this.proposedPartyVote) {
                         store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
                     } else if (this.displayPassFailVoteResults) {
@@ -126,26 +146,24 @@
                     } else {
                         store.dispatch("stepTwoToQuestPhase")
                     }
-                } else if (msgJSON.action === 'ProposedParty') {
-                    this.proposedParty = msgJSON.proposedParty
+                } else if (msgJSON.event === 'ProposedParty') {
+                    this.proposedParty = msgJSON.players
                     store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
-                } else if (msgJSON.action === 'PartyApproved') {
+                } else if (msgJSON.event === 'PartyApproved') {
                     store.dispatch("ProposedPartyVoteToPassFailVote")
-                } else if (msgJSON.action === 'PassFailVoteResults') {
+                } else if (msgJSON.event === 'PassFailVoteResults') {
                     this.passVotes = msgJSON.passVotes
                     this.failVotes = msgJSON.failVotes
                     store.dispatch("PassFailVoteToDisplayPassFailVoteResults")
-                } else if (msgJSON.action === 'AssassinVote') {
+                } else if (msgJSON.event === 'AssassinVote') {
                     this.assassinVoteData = msgJSON.assassinVoteData
                     store.dispatch("displayPassFailVoteResultsToAssassinVote")
-                } else if (msgJSON.action === 'GameOver') {
+                } else if (msgJSON.event === 'GameOver') {
                     this.gameOverData = msgJSON.gameOverData
                     if (msgJSON.gameOverData.winningTeam === "BadGuys") {
                         if (this.assassinVote) {
-                            console.log("got here")
                             store.dispatch("assassinVoteToBadGuysWin")
                         } else {
-                            console.log("DID NOT GET EHRE!!!")
                             store.dispatch("displayPassFailVoteResultsToBadGuysWin")
                         }
                     } else if (msgJSON.gameOverData.winningTeam === "GoodGuys") {

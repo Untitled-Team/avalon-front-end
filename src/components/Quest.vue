@@ -1,32 +1,61 @@
 <template>
     <div id="questInfo">
-        <span class="questWrapper">
-            <div class="partySize" v-bind:class="{passing: didPass, failing: didFail}">{{ partySize }}</div>
+        <span class="questWrapper" v-on:click="makeActive" v-bind:class="{active: isActive, inactive: !isActive }">
+            <div class="big"> {{ missionNumber }}</div>
+            <div class="partySize"
+                 v-bind:class="{passing: didPass, failing: didFail}">
+                {{ quest.numberOfAdventurers }}
+            </div>
+           <div>Pass Votes: {{ quest.votes.passVotes }}</div>
+           <div>Fail Votes: {{ quest.votes.failVotes }}</div>
+            <div>Party: {{ quest.party }}</div>
         </span>
-        Pass Votes: {{ votes.passVotes }} <br />
-        Fail Votes: {{ votes.failVotes }}
-        Party: {{ party }}
     </div>
 </template>
 
 <script>
+    import store from "../store/index.js"
+
     export default {
         name: 'Quest',
-        props: ["partySize", "pass", "votes", "party"],
+        props: ["quest", "missionNumber"],
+        methods: {
+            makeActive: function () {
+                store.state.activeMission = this.missionNumber
+            }
+        },
         computed: {
             didPass: function () {
-                return this.pass === true
+                return this.quest.pass === true
             },
             didFail: function () {
-                return this.pass === false
+                return this.quest.pass === false
             },
+            isActive: function () {
+                return this.missionNumber === store.state.activeMission
+            }
         }
     }
 </script>
 
 <style scoped>
+    .big {
+        font-size: 25px;
+    }
+
     #questInfo {
-        border-bottom: #7f8a69 ridge;
+        cursor: pointer;
+    }
+
+    .active {
+        border-top: 5px solid red;
+        border-left: 2.5px solid red;
+        border-right: 2.5px solid red;
+        border-bottom: 5px solid white;
+    }
+
+    .inactive {
+        border: 5px solid red;
     }
 
     .questWrapper {
@@ -44,6 +73,7 @@
         display: table-cell;
         font-size: 35px;
     }
+
     .passing {
         background: lightblue;
     }
