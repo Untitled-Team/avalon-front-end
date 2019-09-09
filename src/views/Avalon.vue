@@ -1,6 +1,7 @@
 <template>
     <div class="home">
-        my nickername: {{ nickname }}
+        my nickername: {{ nickname }} <br/>
+        my role: {{ character }}
         <br/>
 
         <Intro v-if="stepOne"/>
@@ -20,7 +21,7 @@
                 <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
             </div>
 
-            <NotCurrentMissionData v-if="activeMissionNotCurrent"/>
+            <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
         </div>
 
         <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
@@ -112,6 +113,9 @@
             },
             activeMissionNotCurrent: function () {
                 return store.state.activeMission !== this.missionNumber
+            },
+            activeQuestData: function () {
+                return this.quests[store.state.activeMission-1]
             }
         },
         created() {
