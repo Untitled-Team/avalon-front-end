@@ -24,19 +24,4 @@
 </script>
 
 <style scoped>
-    #lobby {
-        background: #7f8a69;
-        width: 60%;
-        margin: auto;
-        padding: 30px;
-    }
-
-    .lobbyPlayer {
-        padding: 15px;
-        font-size: 1.5em;
-    }
-
-    p {
-        font-size: 2em;
-    }
 </style>

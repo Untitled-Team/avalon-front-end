@@ -1,5 +1,9 @@
 <template>
     <div id="app">
+        <head>
+            <!DOCTYPE html>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
         <Avalon/>
     </div>
 </template>
@@ -35,7 +39,6 @@
         font: bold 8px Numbers, Hellovetica, Helvetica;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2f3026;
     }
 
