@@ -1,6 +1,6 @@
 <template>
     <div id="questInfo">
-        <span class="questWrapper" v-bind:class="{active: isActive, inactive: !isActive }">
+        <span class="questWrapper" v-on:click="makeActive" v-bind:class="{active: isActive, inactive: !isActive }">
             <div class="big"> {{ missionNumber }}</div>
             <div class="partySize"
                  v-bind:class="{passing: didPass, failing: didFail}">
@@ -19,12 +19,17 @@
     export default {
         name: 'Quest',
         props: ["quest", "missionNumber"],
+        methods: {
+            makeActive: function () {
+                store.state.activeMission = this.missionNumber
+            }
+        },
         computed: {
             didPass: function () {
-                return this.pass === true
+                return this.quest.pass === true
             },
             didFail: function () {
-                return this.pass === false
+                return this.quest.pass === false
             },
             isActive: function () {
                 return this.missionNumber === store.state.activeMission
