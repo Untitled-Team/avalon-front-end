@@ -26,6 +26,7 @@
 <style>
     @font-face {
         font-family: 'Numbers';
+        font-size: 1.5em;
         src: url("./assets/VT323-Regular.ttf");
         unicode-range: U+30-39;
     }
@@ -40,6 +41,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2f3026;
+        font-size-adjust: 1;
     }
 
     .button::-moz-focus-inner {
