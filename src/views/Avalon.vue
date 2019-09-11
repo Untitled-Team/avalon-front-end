@@ -2,33 +2,32 @@
     <div class="main section">
         <div class="container">
 
+                <div>my nickername: {{ nickname }}</div>
+                <div>my role: {{ character }}</div>
+                <br/>
 
-            <div>my nickername: {{ nickname }}</div>
-            <div>my role: {{ character }}</div>
-            <br/>
+                <Intro v-if="stepOne"/>
+                <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
+                <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
 
-            <Intro v-if="stepOne"/>
-            <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
-            <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
+                <div v-show="!teamHasWon">
+                    <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
-            <div v-show="!teamHasWon">
-                <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
+                    <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
+                        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
+                                            :currentMissionPartySize="currentMissionPartySize"/>
+                        <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
+                        <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
+                        <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
+                                                    :failVotes="failVotes"/>
+                        <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
+                    </div>
 
-                <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
-                    <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
-                                        :currentMissionPartySize="currentMissionPartySize"/>
-                    <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
-                    <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
-                    <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
-                                                :failVotes="failVotes"/>
-                    <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
+                    <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
                 </div>
 
-                <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
             </div>
-
-            <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
-        </div>
     </div>
 </template>
 
@@ -180,7 +179,12 @@
 </script>
 
 <style>
+
     .main {
         text-align: center
+    }
+
+    .section {
+        padding: 3rem 3rem;
     }
 </style>

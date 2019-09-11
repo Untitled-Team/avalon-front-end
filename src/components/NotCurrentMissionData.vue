@@ -1,29 +1,33 @@
 <template>
-    <div id="notCurrentMissionData">
+    <div id="notCurrentMissionData" class="section">
         <div v-if="questHasData">
-            <h1>Mission History:</h1>
-            <h3>These {{ activeQuestData.numberOfAdventurers }} went on the mission:</h3>
+            <div class="bigText">Mission History:</div>
+            <div class="mediumText">These {{ activeQuestData.numberOfAdventurers }} went on the mission:</div>
             <div v-for="(player, index) in activeQuestData.players" :key="index">
                 <p>
                     {{player}}
                 </p>
             </div>
-            <div v-show="activeQuestData.pass">
-                The mission was a success!
+            <div class="bigText" v-show="activeQuestData.pass">
+                The quest was a success!
             </div>
-            <div v-show="!activeQuestData.pass">
-                The mission was a failure!
-            </div>
-            <div>
-                {{ activeQuestData.votes }}
-                There were {{ votesData['fail'] }} pass votes.
-            </div>
-            <div>
-<!--                There were {{ activeQuestData.votes['fail'].length }} fail votes.-->
+            <h1 v-show="!activeQuestData.pass">
+                The quest was a failure!
+            </h1>
+            <div class="columns">
+                <div class="column is-one-third"></div>
+                <div class="column is-one-third">
+                    <div class="partyVote somePadding" :key="index" v-for="(partyVote, index) in votesData">
+                        <div>Party vote {{ index+1 }} of {{ votesData.length }}:</div>
+                        <div>There were {{ partyVote.successVotes.length }} votes to approve the party</div>
+                        <div>There were {{ partyVote.failVotes.length }} votes to deny the party</div>
+                    </div>
+                </div>
+                <div class="column is-one-third"></div>
             </div>
         </div>
         <div v-else>
-            This Quest hasn't happened yet!
+            This quest hasn't happened yet!
         </div>
     </div>
 </template>
@@ -49,5 +53,10 @@
 <style scoped>
     #notCurrentMissionData {
         padding: 20px;
+    }
+
+    .partyVote {
+        border: 1px solid #bbb;
+        margin-top: .4em;
     }
 </style>
