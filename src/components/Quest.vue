@@ -36,8 +36,12 @@
 
 <style scoped>
     .section {
-        padding: 3rem 4rem;
+        padding-top: 3rem;
+        padding-right: 1.5rem;
+        padding-bottom: 0rem;
+        padding-left: 1.5rem;
     }
+
     .partySize {
         border-radius: 50%;
         background: grey;
@@ -46,17 +50,20 @@
 
     .questWrapper {
         cursor: pointer;
+        padding-bottom: 3rem;
     }
 
     .active {
-        border-top: 5px solid red;
-        border-left: 2.5px solid red;
-        border-right: 2.5px solid red;
-        border-bottom: 5px solid white;
+        border-top: 5px solid #b0912a;
+        border-left: 2.5px solid #b0912a;
+        border-right: 2.5px solid #b0912a;
+        border-bottom: 5px solid transparent;
+        background: #5a596b;
     }
 
     .inactive {
-        border: 5px solid red;
+        border: 5px solid #b0912a;
+        background: #3d3c5c;
     }
 
     .passing {

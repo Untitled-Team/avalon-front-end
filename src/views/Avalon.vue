@@ -1,6 +1,7 @@
 <template>
     <div class="main section">
         <div class="container">
+            <div class="containedWidth">
 
                 <div>my nickername: {{ nickname }}</div>
                 <div>my role: {{ character }}</div>
@@ -13,21 +14,24 @@
                 <div v-show="!teamHasWon">
                     <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
-                    <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
-                        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
-                                            :currentMissionPartySize="currentMissionPartySize"/>
-                        <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
-                        <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
-                        <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
-                                                    :failVotes="failVotes"/>
-                        <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
-                    </div>
+                    <div v-show="questInfoDisplay" class="cssWrapper">
+                        <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
+                            <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
+                                                :currentMissionPartySize="currentMissionPartySize"/>
+                            <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
+                            <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
+                            <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
+                                                        :failVotes="failVotes"/>
+                            <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
+                        </div>
 
-                    <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                    </div>
                 </div>
 
                 <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
             </div>
+        </div>
     </div>
 </template>
 
@@ -179,12 +183,29 @@
 </script>
 
 <style>
+    .section {
+        padding-top: 3rem;
+        padding-right: 1.5rem;
+        padding-bottom: 0rem;
+        padding-left: 1.5rem;
+    }
+    .cssWrapper {
+        border-bottom: #b0912a 5px solid;
+        border-left: #b0912a 2.5px solid;
+        border-right: #b0912a 2.5px solid;
+        padding: 1.5rem 3rem;
+        margin-left: .75rem;
+        margin-right: .75rem;
+        margin-top: -2.5rem;
+        background: #5a596b;
+    }
+
+    .containedWidth {
+        margin: auto;
+        max-width: 65%;
+    }
 
     .main {
         text-align: center
-    }
-
-    .section {
-        padding: 3rem 3rem;
     }
 </style>
