@@ -11,19 +11,19 @@
             <div class="bigText" v-show="activeQuestData.pass">
                 The quest was a success!
             </div>
-            <h1 v-show="!activeQuestData.pass">
+            <h1 class="bigText" v-show="!activeQuestData.pass">
                 The quest was a failure!
             </h1>
-            <div class="columns">
-                <div class="column is-one-third"></div>
-                <div class="column is-one-third">
+            <div class="columns is-mobile">
+                <div class="column is-one-fifth"></div>
+                <div class="column is-three-fifths">
                     <div class="partyVote somePadding" :key="index" v-for="(partyVote, index) in votesData">
                         <div>Party vote {{ index+1 }} of {{ votesData.length }}:</div>
                         <div>There were {{ partyVote.successVotes.length }} votes to approve the party</div>
                         <div>There were {{ partyVote.failVotes.length }} votes to deny the party</div>
                     </div>
                 </div>
-                <div class="column is-one-third"></div>
+                <div class="column is-one-fifth"></div>
             </div>
         </div>
         <div v-else>

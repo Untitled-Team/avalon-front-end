@@ -1,6 +1,6 @@
 <template>
     <div class="intro">
-        <div class="columns">
+        <div class="columns is-mobile">
             <div class="column is-one-quarter"></div>
             <div class="column is-half">
                 <p>Welcome to Avalon!</p>
@@ -29,10 +29,9 @@
                         </div>
                         <div class="field">
                             <input type="button" class="buttonInput button is-small" name="createGame"
-                                   value="Create a New Game Room"
+                                   value="Create a New Game"
                                    v-on:click="createGame"/>
                         </div>
-
                     </div>
                 </div>
             </div>

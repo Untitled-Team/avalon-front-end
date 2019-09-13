@@ -1,11 +1,7 @@
 <template>
-    <div class="main section">
+    <div class="main">
         <div class="container">
-
-                <div>my nickername: {{ nickname }}</div>
-                <div>my role: {{ character }}</div>
-                <br/>
-
+            <div class="containedWidth">
                 <Intro v-if="stepOne"/>
                 <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
                 <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
@@ -13,21 +9,25 @@
                 <div v-show="!teamHasWon">
                     <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
-                    <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
-                        <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
-                                            :currentMissionPartySize="currentMissionPartySize"/>
-                        <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
-                        <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
-                        <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
-                                                    :failVotes="failVotes"/>
-                        <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
-                    </div>
+                    <div v-show="questInfoDisplay" class="cssWrapper">
+                        <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
+                            <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
+                                                :currentMissionPartySize="currentMissionPartySize"/>
+                            <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"
+                                                   :missionLeader="missionLeader"/>
+                            <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
+                            <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
+                                                        :failVotes="failVotes"/>
+                            <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
+                        </div>
 
-                    <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                    </div>
                 </div>
 
                 <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
             </div>
+        </div>
     </div>
 </template>
 
@@ -64,7 +64,6 @@
             return {
                 players: [],
                 roomId: null,
-                character: "",
                 badGuys: [],
                 missionLeader: "",
                 missionNumber: 1,
@@ -119,6 +118,9 @@
             },
             activeQuestData: function () {
                 return this.quests[store.state.activeMission - 1]
+            },
+            character: function () {
+                return store.state.character
             }
         },
         created() {
@@ -134,7 +136,7 @@
                     this.players = msgJSON.players
                 } else if (msgJSON.event === 'PlayerInfo') {
                     store.commit('setPlayers', this.players)
-                    this.character = msgJSON.character
+                    store.state.character = msgJSON.character
                     this.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
@@ -142,6 +144,7 @@
                     this.missionLeader = msgJSON.missionLeader
                     this.missionNumber = msgJSON.missionNumber
                     this.quests = msgJSON.missions
+                    store.state.currentMission = msgJSON.missionNumber
                     if (this.proposedPartyVote) {
                         store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
                     } else if (this.displayPassFailVoteResults) {
@@ -179,12 +182,28 @@
 </script>
 
 <style>
+    .container {
+        padding-top: 5px;
+        margin-top: 5px;
+    }
+
+    .cssWrapper {
+        border-bottom: #b0912a 5px solid;
+        border-left: #b0912a 2.5px solid;
+        border-right: #b0912a 2.5px solid;
+        padding: 1.5rem 3rem;
+        margin-left: .75rem;
+        margin-right: .75rem;
+        margin-top: -2.5rem;
+        background: #5a596b;
+    }
+
+    .containedWidth {
+        margin: auto;
+        max-width: 65%;
+    }
 
     .main {
         text-align: center
-    }
-
-    .section {
-        padding: 3rem 3rem;
     }
 </style>
