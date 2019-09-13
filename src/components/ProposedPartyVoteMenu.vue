@@ -5,8 +5,12 @@
             <div :key="index" v-for="(player, index) in proposedParty" class="mediumText">
                 {{ player }}
             </div>
-            <input type="button" class="button is-small" v-on:click="voteToApprove" value="Vote To Approve">
-            <input type="button" class="button is-small" v-on:click="voteToDeny" value="Vote To Deny">
+            <div class="someMargin">
+                <input type="button" class="button is-small" v-on:click="voteToApprove" value="Approve">
+            </div>
+            <div class="someMargin">
+                <input type="button" class="button is-small" v-on:click="voteToDeny" value="Deny">
+            </div>
         </div>
         <div id="WaitingOnOthers" v-show="playersHasVoted">
             Thanks for your vote! The game will proceed once all players have voted to approve or deny!
@@ -18,7 +22,7 @@
     export default {
         name: 'ProposedPartyVoteMenu',
         props: ["proposedParty", "missionLeader"],
-        data: function() {
+        data: function () {
             return {
                 playersHasVoted: false,
             }
@@ -45,5 +49,9 @@
 <style scoped>
     #proposedPartyVoteMenu {
         padding: 15px;
+    }
+
+    .someMargin {
+        margin: 1em 0px;
     }
 </style>

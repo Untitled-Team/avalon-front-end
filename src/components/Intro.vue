@@ -29,10 +29,9 @@
                         </div>
                         <div class="field">
                             <input type="button" class="buttonInput button is-small" name="createGame"
-                                   value="Create a New Game Room"
+                                   value="Create a New Game"
                                    v-on:click="createGame"/>
                         </div>
-
                     </div>
                 </div>
             </div>

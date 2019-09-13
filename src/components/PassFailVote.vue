@@ -3,13 +3,17 @@
         <div class="bigText">
             The players on the mission are
             <span :key="index" v-for="(player, index) in missionParty">
-                <span v-if="index == missionParty.length-1"> and </span>{{player}}<span v-if="!(index == missionParty.length-1 || index == missionParty.length-2)">, </span>
+                <span v-if="index == missionParty.length-1"> and </span>{{player}}<span
+                    v-if="!(index == missionParty.length-1 || index == missionParty.length-2)">, </span>
             </span>.
         </div>
         <div id="vote" v-show="!playersHasVoted && playerVoting">
-            <input type="button" class="button is-small" v-on:click="voteToPass" value="Vote To Pass Quest">
-            <br/>
-            <input type="button" class="button is-small" v-on:click="voteToFail" value="Vote To Fail Quest">
+            <div class="someMargin">
+                <input type="button" class="button is-small" v-on:click="voteToPass" value="Pass Quest">
+            </div>
+            <div class="someMargin">
+                <input type="button" class="button is-small someMargin" v-on:click="voteToFail" value="Fail Quest">
+            </div>
         </div>
         <div id="WaitingOnOthers" v-show="playersHasVoted || !playerVoting">
             The game will continue once all players in the mission have voted.
@@ -53,4 +57,7 @@
 </script>
 
 <style scoped>
+    .someMargin {
+        margin: 1em 0px;
+    }
 </style>
