@@ -1,12 +1,7 @@
 <template>
-    <div class="main section">
+    <div class="main">
         <div class="container">
             <div class="containedWidth">
-
-                <div>my nickername: {{ nickname }}</div>
-                <div>my role: {{ character }}</div>
-                <br/>
-
                 <Intro v-if="stepOne"/>
                 <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
                 <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
@@ -18,7 +13,8 @@
                         <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
                             <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
                                                 :currentMissionPartySize="currentMissionPartySize"/>
-                            <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"/>
+                            <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"
+                                                   :missionLeader="missionLeader"/>
                             <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
                             <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
                                                         :failVotes="failVotes"/>
@@ -68,7 +64,6 @@
             return {
                 players: [],
                 roomId: null,
-                character: "",
                 badGuys: [],
                 missionLeader: "",
                 missionNumber: 1,
@@ -123,6 +118,9 @@
             },
             activeQuestData: function () {
                 return this.quests[store.state.activeMission - 1]
+            },
+            character: function () {
+                return store.state.character
             }
         },
         created() {
@@ -138,7 +136,7 @@
                     this.players = msgJSON.players
                 } else if (msgJSON.event === 'PlayerInfo') {
                     store.commit('setPlayers', this.players)
-                    this.character = msgJSON.character
+                    store.state.character = msgJSON.character
                     this.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
@@ -146,6 +144,7 @@
                     this.missionLeader = msgJSON.missionLeader
                     this.missionNumber = msgJSON.missionNumber
                     this.quests = msgJSON.missions
+                    store.state.currentMission = msgJSON.missionNumber
                     if (this.proposedPartyVote) {
                         store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
                     } else if (this.displayPassFailVoteResults) {
@@ -183,12 +182,11 @@
 </script>
 
 <style>
-    .section {
-        padding-top: 3rem;
-        padding-right: 1.5rem;
-        padding-bottom: 0rem;
-        padding-left: 1.5rem;
+    .container {
+        padding-top: 5px;
+        margin-top: 5px;
     }
+
     .cssWrapper {
         border-bottom: #b0912a 5px solid;
         border-left: #b0912a 2.5px solid;

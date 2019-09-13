@@ -21,7 +21,9 @@ export default new Vuex.Store({
         //Other State
         players: [],
         nickname: "",
+        character: "",
         activeMission: 1,
+        currentMission: 1,
     },
     getters: {
         getStepOne: state => {
@@ -62,6 +64,14 @@ export default new Vuex.Store({
         },
         getNickname: state => {
             return state.nickname
+        },
+        getCharacter: state => {
+            if (state.character == "NormalGoodGuy") {
+                return "Good Guy"
+            } else if (state.character == "NormalBadGuy") {
+                return "Bad Guy"
+            }
+            return state.character
         },
     },
     mutations: {

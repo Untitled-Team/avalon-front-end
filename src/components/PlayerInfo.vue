@@ -1,32 +1,40 @@
 <template>
     <div id="playerInfo">
         <div class="card good" v-if="isGood">
-            <img src="@/assets/goodGuy.jpg">
+            <div class="card-image">
+                <img src="@/assets/goodGuy.jpg">
+            </div>
             <p>You're a regular good guy!</p>
             <p>Keep reading this for a second so it's not obvious.</p>
             <p>More text</p>
-            <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
         <div class="card bad" v-if="isBad">
-            <img src="@/assets/badGuy.jpg">
+            <div class="card-image">
+                <img src="@/assets/badGuy.jpg">
+            </div>
             <p>You're a regular bad guy!</p>
             <p>The bad guys are: </p>
             <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-            <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
         <div class="card merlin" v-if="isMerlin">
-            <img src="@/assets/merlin.jpg">
+            <div class="card-image">
+                <img src="@/assets/merlin.jpg">
+            </div>
             <p>You're Merlin!</p>
             <p>The bad guys are: </p>
             <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-            <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
         <div class="card assassin" v-if="isAssassin">
-            <img src="@/assets/assassin.jpg">
+            <div class="card-image">
+                <img src="@/assets/assassin.jpg">
+            </div>
             <p>You're the assassin!</p>
             <p>The bad guys are: </p>
             <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-            <button class="button" v-show="!ready" v-on:click="confirmReady">Got it. I'm ready!</button>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
         <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
     </div>
@@ -65,22 +73,26 @@
 </script>
 
 <style scoped>
+    p {
+        padding: 1em;
+    }
+
     #playerInfo {
         text-align: center;
         padding: 3%;
     }
 
     .card {
+        color: white;
         margin: auto;
-        width: 50%;
-        height: 200px;
-        color: beige;
         padding: 35px;
         display: inline-block;
+        width: 100%;
     }
 
     .good {
         background: lightblue;
+        color: black;
     }
 
     .bad {
@@ -96,18 +108,9 @@
     }
 
     .ready {
-        margin: auto;
-        width: 50%;
         height: 40px;
         background-color: seagreen;
         color: sandybrown;
         padding: 35px;
-    }
-
-    img {
-        display: block;
-        height: auto;
-        float: left;
-        max-height: 100%;
     }
 </style>

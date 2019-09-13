@@ -11,10 +11,10 @@
             <div class="bigText" v-show="activeQuestData.pass">
                 The quest was a success!
             </div>
-            <h1 v-show="!activeQuestData.pass">
+            <h1 class="bigText" v-show="!activeQuestData.pass">
                 The quest was a failure!
             </h1>
-            <div class="columns">
+            <div class="columns is-mobile">
                 <div class="column is-one-fifth"></div>
                 <div class="column is-three-fifths">
                     <div class="partyVote somePadding" :key="index" v-for="(partyVote, index) in votesData">

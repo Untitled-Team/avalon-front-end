@@ -1,6 +1,6 @@
 <template>
     <div class="intro">
-        <div class="columns">
+        <div class="columns is-mobile">
             <div class="column is-one-quarter"></div>
             <div class="column is-half">
                 <p>Welcome to Avalon!</p>

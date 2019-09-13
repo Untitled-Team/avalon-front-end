@@ -1,13 +1,12 @@
 <template>
     <div id="proposedPartyVoteMenu">
         <div id="vote" v-show="!playersHasVoted">
-            Proposed Party
-            <br/>
-            {{ proposedParty }}
-            <br/>
-            <input type="button" class="button" v-on:click="voteToApprove" value="Vote To Approve">
-            <br/>
-            <input type="button" class="button" v-on:click="voteToDeny" value="Vote To Deny">
+            <div class="bigText">{{ missionLeader }} has proposed the following party for the quest:</div>
+            <div :key="index" v-for="(player, index) in proposedParty" class="mediumText">
+                {{ player }}
+            </div>
+            <input type="button" class="button is-small" v-on:click="voteToApprove" value="Vote To Approve">
+            <input type="button" class="button is-small" v-on:click="voteToDeny" value="Vote To Deny">
         </div>
         <div id="WaitingOnOthers" v-show="playersHasVoted">
             Thanks for your vote! The game will proceed once all players have voted to approve or deny!
@@ -18,7 +17,7 @@
 <script>
     export default {
         name: 'ProposedPartyVoteMenu',
-        props: ["proposedParty"],
+        props: ["proposedParty", "missionLeader"],
         data: function() {
             return {
                 playersHasVoted: false,
