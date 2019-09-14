@@ -3,35 +3,34 @@
         <div class="columns is-mobile">
             <div class="column is-one-quarter"></div>
             <div class="column is-half">
-                <p>Welcome to Avalon!</p>
+                <div class="bigText">Welcome to Avalon!</div>
                 <div class="section menu">
                     <div class="container">
-                        <div class="field">
-                            <input v-model="nickname" type="text" class="textInput" name="nickname"
-                                   placeholder="Player Nickname..."/>
-                        </div>
-                        <div class="field">
-                            <input v-model="roomId" type="text" class="textInput" name="roomId"
-                                   placeholder="Room ID..."/>
-                        </div>
-                        <div class="field">
-                            <input type="button" class="buttonInput button is-small" name="joinGame" value="Join Existing Game"
-                                   v-on:click="joinGame"/>
-                        </div>
+                        <form @submit.prevent="joinGame">
+                            <div class="field">
+                                <input v-model="nickname" type="text" placeholder="Player Nickname..." required/>
+                            </div>
+                            <div class="field">
+                                <input v-model="roomId" type="text" placeholder="Room ID..." required/>
+                            </div>
+                            <div class="field">
+                                <input type="submit" class="buttonInput button is-small" value="Join Existing Game"/>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <br>
                 <div class="section menu">
                     <div class="container">
-                        <div class="field">
-                            <input v-model="nickname" type="text" class="textInput" name="nickname"
-                                   placeholder="Player Nickname..."/>
-                        </div>
-                        <div class="field">
-                            <input type="button" class="buttonInput button is-small" name="createGame"
-                                   value="Create a New Game"
-                                   v-on:click="createGame"/>
-                        </div>
+                        <form @submit.prevent="createGame">
+                            <div class="field">
+                                    <input v-model="nickname" type="text" placeholder="Player Nickname..." required/>
+                            </div>
+                            <div class="field">
+                                <input type="submit" class="buttonInput button is-small" name="createGame"
+                                       value="Create a New Game"/>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -66,7 +65,7 @@
                     nickname: this.nickname,
                     roomId: this.roomId
                 })
-            }
+            },
         }
     };
 </script>
@@ -81,7 +80,7 @@
         padding: 1em;
     }
 
-    p {
+    .bigText {
         font-size: 4em;
     }
 </style>
