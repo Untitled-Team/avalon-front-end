@@ -1,14 +1,20 @@
 <template>
     <div id="assassinVote">
         <div class="mediumText">The good guys have passed 3 missions, but it's not over yet!</div>
-        <div class="bigText">{{assassinVoteData.assassin }}, Guess Merlin</div>
-        <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys">
-            <label :class="{ selected: goodGuy === guess }">
-                <input type="radio" :value="goodGuy" v-model="guess" :disabled="!playerIsAssassin"/>{{ goodGuy }}
-            </label>
-        </div>
-        <input type="button" class="button is-small" v-on:click="submitAssassinGuess" :disabled="noGuessSelected"
-               value="Submit Guess">
+        <div class="bigText">{{ assassinVoteData.assassin }}, Guess Merlin</div>
+
+        <form @submit.prevent="submitAssassinGuess">
+            <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
+                <label :class="{ selected: goodGuy === guess }">
+                    <input type="radio" :value="goodGuy" v-model="guess" :disabled="!playerIsAssassin"/>{{ goodGuy }}
+                </label>
+            </div>
+
+            <div v-show="playerIsAssassin && !noGuessSelected" class="somePadding">
+                <input type="submit" class="button is-small" value="Submit Guess">
+            </div>
+        </form>
+
     </div>
 </template>
 
@@ -19,7 +25,7 @@
         name: 'AssassinVote',
         data: function () {
             return {
-                guess: null
+                guess: ""
             }
         },
         props: ["assassinVoteData"],
@@ -33,14 +39,11 @@
         },
         computed: {
             playerIsAssassin: function () {
-                return store.getters.getNickname
+                return store.getters.getNickname === this.assassinVoteData.assassin
             },
             noGuessSelected: function () {
-                return this.guess === null
+                return this.guess === ""
             },
-            isMerlinGuess: function () {
-                return
-            }
         }
     }
 </script>
@@ -63,5 +66,13 @@
 
     .selected {
         background: #b0912a;
+    }
+
+    .somePadding {
+        padding: 3em;
+    }
+
+    .lessPadding {
+        padding: 1em;
     }
 </style>

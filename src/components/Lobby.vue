@@ -1,14 +1,21 @@
 <template>
     <div id="lobby">
         <div class="section">
-            <div class="somePadding"><h1>Begin the game once everyone is in the lobby</h1></div>
-            <div class="somePadding"><h2>Once the game has begun new players cannot join</h2></div>
-            <div class="somePadding"><h3>Room Number: {{ roomId }}</h3></div>
-            <div class="somePadding"><h3>Total Players: {{ players.length }}</h3></div>
+            <h1 class="somePadding">Begin the game once everyone is in the lobby</h1>
+            <h2 class="somePadding">Once the game has begun new players cannot join</h2>
+            <h1 class="somePadding bold">Room Number: {{ roomId }}</h1>
+            <h3 class="somePadding">Total Players: {{ players.length }}</h3>
             <div class="lobbyPlayer somePadding" :key="index" v-for="(player, index) in players">
                 {{ player }}
             </div>
-            <button class="button is-small" v-on:click="startGame">Everyone's in!</button>
+
+            <form @submit.prevent="startGame">
+                <input type="submit" class="button is-small" value="Everyone's in!"/>
+            </form>
+
+            <div v-show="!correctPlayerNumbers">
+                Avalon requires between 5 and 10 players.
+            </div>
         </div>
     </div>
 </template>
@@ -17,10 +24,17 @@
     export default {
         name: 'Lobby',
         props: ['players', 'roomId'],
+        computed: {
+            correctPlayerNumbers: function () {
+                return this.players.length >= 5 && this.players.length <= 10
+            }
+        },
         methods: {
             startGame: function () {
-                this.$socket.sendObj({event: 'StartGame'});
-            }
+                if (this.correctPlayerNumbers) {
+                    this.$socket.sendObj({event: 'StartGame'});
+                }
+            },
         },
     }
 </script>
@@ -43,6 +57,10 @@
     }
 
     .somePadding {
-        padding: 1.3em;
+        padding: .5em;
+    }
+
+    .bold {
+        font-weight: bold;
     }
 </style>
