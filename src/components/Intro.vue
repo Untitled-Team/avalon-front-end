@@ -5,15 +5,18 @@
                 <div class="bigText">Welcome to Avalon!</div>
                 <div class="section menu">
                     <div class="container">
-                        <form @submit.prevent="joinGame">
+                        <form id="joinGameForm" @submit.prevent="joinGame">
                             <div class="field">
-                                <input v-model="nickname" type="text" placeholder="Player Nickname..." required/>
+                                <input id="joinGameNickname" v-model="nickname" type="text"
+                                       placeholder="Player Nickname..." required/>
                             </div>
                             <div class="field">
-                                <input v-model="roomId" type="text" placeholder="Room ID..." required/>
+                                <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
+                                       required/>
                             </div>
                             <div class="field">
-                                <input type="submit" class="buttonInput button is-small" value="Join Existing Game"/>
+                                <input id="joinGameSubmit" type="submit" class="buttonInput button is-small"
+                                       value="Join Existing Game"/>
                             </div>
                         </form>
                     </div>
@@ -21,12 +24,13 @@
                 <br>
                 <div class="section menu">
                     <div class="container">
-                        <form @submit.prevent="createGame">
+                        <form id="createGameForm" @submit.prevent="createGame">
                             <div class="field">
-                                    <input v-model="nickname" type="text" placeholder="Player Nickname..." required/>
+                                <input id="createGameNickname" v-model="nickname" type="text"
+                                       placeholder="Player Nickname..." required/>
                             </div>
                             <div class="field">
-                                <input type="submit" class="buttonInput button is-small" name="createGame"
+                                <input id="createGameSubmit" type="submit" class="buttonInput button is-small"
                                        value="Create a New Game"/>
                             </div>
                         </form>
@@ -38,7 +42,7 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
+    import WebsocketService from "../services/WebsocketService";
 
     export default {
         name: "Intro",
@@ -50,19 +54,21 @@
         },
         methods: {
             createGame: function () {
-                store.commit("setNickname", this.nickname);
-                this.$socket.sendObj({
-                    event: "CreateGame",
-                    nickname: this.nickname
-                })
-            },
-            joinGame: function () {
-                store.commit("setNickname", this.nickname);
-                this.$socket.sendObj({
+                this.$store.commit("setNickname", this.nickname);
+                const createGameMessage = {
                     event: "JoinGame",
                     nickname: this.nickname,
                     roomId: this.roomId
-                })
+                }
+                WebsocketService.sendObj(this.$socket, createGameMessage)
+            },
+            joinGame: function () {
+                this.$store.commit("setNickname", this.nickname);
+                const joinGameMessage = {
+                    event: "CreateGame",
+                    nickname: this.nickname
+                }
+                WebsocketService.sendObj(this.$socket, joinGameMessage)
             },
         }
     };
