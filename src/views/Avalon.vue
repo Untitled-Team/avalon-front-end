@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <div class="container">
+        <div class="container is-paddingless">
             <div class="containedWidth">
                 <Intro v-if="stepOne"/>
                 <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
