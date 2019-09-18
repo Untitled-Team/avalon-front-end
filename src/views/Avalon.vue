@@ -198,11 +198,6 @@
         background: #5a596b;
     }
 
-    .containedWidth {
-        margin: auto;
-        max-width: 65%;
-    }
-
     .main {
         text-align: center
     }

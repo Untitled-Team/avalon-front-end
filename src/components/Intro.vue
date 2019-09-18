@@ -1,8 +1,7 @@
 <template>
     <div class="intro">
         <div class="columns is-mobile">
-            <div class="column is-one-quarter"></div>
-            <div class="column is-half">
+            <div class="column is-full">
                 <div class="bigText">Welcome to Avalon!</div>
                 <div class="section menu">
                     <div class="container">
@@ -34,7 +33,6 @@
                     </div>
                 </div>
             </div>
-            <div class="column is-one-quarter"></div>
         </div>
     </div>
 </template>
