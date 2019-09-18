@@ -53,22 +53,22 @@
             }
         },
         methods: {
-            createGame: function () {
-                this.$store.commit("setNickname", this.nickname);
-                const createGameMessage = {
+            joinGame: function () {
+                this.$store.commit("setNickname",  this.nickname);
+                const joinGameMessage = {
                     event: "JoinGame",
                     nickname: this.nickname,
                     roomId: this.roomId
                 }
-                WebsocketService.sendObj(this.$socket, createGameMessage)
+                WebsocketService.sendObj(this.$socket, joinGameMessage)
             },
-            joinGame: function () {
+            createGame: function () {
                 this.$store.commit("setNickname", this.nickname);
-                const joinGameMessage = {
+                const createGameMessage = {
                     event: "CreateGame",
                     nickname: this.nickname
                 }
-                WebsocketService.sendObj(this.$socket, joinGameMessage)
+                WebsocketService.sendObj(this.$socket, createGameMessage)
             },
         }
     };
