@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import {createLocalVue, shallowMount} from '@vue/test-utils'
+import {shallowMount} from '@vue/test-utils'
 import WebsocketService from '../../src/services/WebsocketService.js'
 import Intro from '@/components/Intro.vue'
 import { assert, stub, match, restore} from "sinon";
@@ -11,7 +11,6 @@ let joinGameFormWrapper
 let createGameFormWrapper
 let mutations
 let store
-const localVue = createLocalVue()
 
 Vue.use(Vuex)
 

@@ -30,6 +30,8 @@
 </template>
 
 <script>
+    import WebsocketService from "../services/WebsocketService";
+
     export default {
         name: 'Lobby',
         props: ['players', 'roomId'],
@@ -41,7 +43,8 @@
         methods: {
             startGame: function () {
                 if (this.correctPlayerNumbers) {
-                    this.$socket.sendObj({event: 'StartGame'});
+                    let StartGameMessage = {event: 'StartGame'};
+                    WebsocketService.sendObj(StartGameMessage);
                 }
             },
         },
@@ -59,7 +62,7 @@
     background-color: #189371;
   }
   */
-  
+
   #lobby {
       background-color: #189338;
       max-width: 500px;
