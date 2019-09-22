@@ -132,6 +132,8 @@
                     store.dispatch('stepOneToLobbyStep')
                     this.players = msgJSON.players
                     this.roomId = msgJSON.roomId
+                    store.commit("setRoomId", this.roomId);
+
                 } else if (msgJSON.event === 'ChangeInLobby') {
                     this.players = msgJSON.players
                 } else if (msgJSON.event === 'PlayerInfo') {
