@@ -24,13 +24,15 @@
 </script>
 
 <style>
-    @font-face {
-        font-family: "Fairfax";
-        src: url("./assets/Fairfax.ttf");
-    }
+@font-face {
+    font-family: "Fairfax";
+    src: url("./assets/Fairfax.ttf");
+}
 
-    #app {
-        font: bold 8px Fairfax, Fairfax;
+#app {
+    height: 100vh;
+    background-color: #5B585F;
+    font: bold 8px Fairfax, Fairfax;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2f3026;

@@ -182,23 +182,24 @@
 </script>
 
 <style>
-    .container {
-        padding-top: 5px;
-        margin-top: 5px;
-    }
+.container {
+    padding-top: 5px;
+    margin-top: 5px;
+}
 
-    .cssWrapper {
-        border-bottom: #b0912a 5px solid;
-        border-left: #b0912a 2.5px solid;
-        border-right: #b0912a 2.5px solid;
-        padding: 1.5rem 3rem;
-        margin-left: .75rem;
-        margin-right: .75rem;
-        margin-top: -2.5rem;
-        background: #5a596b;
-    }
+.cssWrapper {
+    /* border-bottom: #b0912a 5px solid; */
+    /* border-left: #b0912a 2.5px solid; */
+    /* border-right: #b0912a 2.5px solid; */
+    /* padding: 1.5rem 3rem; */
+    /* margin-left: .75rem; */
+    /* margin-right: .75rem; */
+    /* margin-top: -2.5rem; */
+    height: 100%;
+    background: #5B585F;
+}
 
-    .main {
-        text-align: center
-    }
+.main {
+    text-align: center
+}
 </style>
