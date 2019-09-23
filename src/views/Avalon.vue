@@ -21,10 +21,9 @@
                             <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
                         </div>
 
-                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/> 
                     </div>
                 </div>
-
                 <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
             </div>
         </div>
@@ -184,10 +183,6 @@
 </script>
 
 <style>
-.container {
-    padding-top: 5px;
-    margin-top: 5px;
-}
 
 .cssWrapper {
     /* border-bottom: #b0912a 5px solid; */
@@ -197,7 +192,7 @@
     /* margin-left: .75rem; */
     /* margin-right: .75rem; */
     /* margin-top: -2.5rem; */
-    height: 100%;
+    height: 100vh;
     background: #5B585F;
 }
 

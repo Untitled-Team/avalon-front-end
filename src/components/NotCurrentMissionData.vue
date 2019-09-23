@@ -1,5 +1,6 @@
 <template>
-    <div id="notCurrentMissionData" class="section">
+  <div id="notCurrentMissionData" class="section"
+       v-bind:class="{passed: isPassed, failed: isFailed, notCompleted: !questHasData}">
         <div v-if="questHasData">
             <div class="bigText">Mission History:</div>
             <div class="mediumText">These {{ activeQuestData.numberOfAdventurers }} went on the mission:</div>
@@ -39,7 +40,13 @@
         name: 'NotCurrentMissionData',
         props: ["activeQuestData"],
         computed: {
-            questHasData: function () {
+    isPassed: function() {
+        return this.activeQuestData.pass === true
+    },
+    isFailed: function() {
+        return this.activeQuestData.pass === false
+    },
+    questHasData: function () {
                 return this.activeQuestData.pass !== null
             },
             votesData: function () {
@@ -51,12 +58,23 @@
 
 
 <style scoped>
-    #notCurrentMissionData {
-        padding: 20px;
-    }
+#notCurrentMissionData {
+    padding: 20px;
+    height: 100%;
+}
 
-    .partyVote {
-        border: 1px solid #bbb;
-        margin-top: .4em;
-    }
+.partyVote {
+    border: 1px solid #bbb;
+    margin-top: .4em;
+}
+
+.passed {
+    background: #6EC0EC;
+    color: #F6F3FA;
+}
+
+.failed {
+    background: #E94646;
+    color: #F6F3FA;
+}
 </style>

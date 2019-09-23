@@ -1,13 +1,14 @@
 <template>
-    <div class="questWrapper"
-         v-on:click="makeActive" v-bind:class="{active: isActive, inactive: !isActive}">
+    <div class="questWrapper container is-paddingless"
+         v-on:click="makeActive"
+         v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
         <!-- <div class="mediumText"> -->
         <!--     {{ missionNumber }} -->
         <!-- </div> -->
         <div class="partySize biggerText" v-bind:class="{current: isCurrent}">
             {{ quest.numberOfAdventurers }}
         </div>
-        <div class="container passOrFail is-paddingless" v-bind:class="{passing: didPass, failing: didFail}"></div>
+        <!-- <div class="passOrFail" v-bind:class="{passing: didPass, failing: didFail}"></div> -->
         
     </div>
 </template>
@@ -30,6 +31,9 @@
             didFail: function () {
                 return this.quest.pass === false
             },
+            completed: function() {
+                return this.quest.pass !== null
+            },
             isActive: function () {
                 return this.missionNumber === store.state.activeMission
             },
@@ -49,7 +53,11 @@
 }
 
 .passOrFail {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    /*margin: 0 auto;*/
+    margin-right: auto;
+    margin-left: auto;
     /*margin-right: 1px;*/
     border-radius: 50%;
     background: #9A969E;
@@ -108,11 +116,20 @@
 /*     color: #F6F3FA; */
 /* } */
 
-.passing {
-    background: lightblue;
-    }
+.passing:not(.active) {
+    background: #3468C3;
+}
 
-    .failing {
-        background: tomato;
-    }
+.passing.active {
+    background: #6EC0EC;
+}
+
+.failing:not(.active) {
+    background: #C21B1B;
+}
+
+.failing.active {
+    background: #E94646;
+}
+
 </style>
