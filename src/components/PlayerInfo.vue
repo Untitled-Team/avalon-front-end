@@ -62,7 +62,7 @@
             confirmReady: function () {
                 this.ready = true;
                 let confirmReadyObj = {event: 'PlayerReady'};
-                WebsocketService.sendObj(confirmReadyObj);
+                WebsocketService.sendObj(this.$socket, confirmReadyObj);
             }
         },
         computed: {

@@ -44,7 +44,7 @@
             startGame: function () {
                 if (this.correctPlayerNumbers) {
                     let StartGameMessage = {event: 'StartGame'};
-                    WebsocketService.sendObj(StartGameMessage);
+                    WebsocketService.sendObj(this.$socket, StartGameMessage);
                 }
             },
         },
