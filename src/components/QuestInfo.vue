@@ -17,7 +17,6 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
     import Quest from "./Quest";
 
     export default {
@@ -28,10 +27,10 @@
         props: ["quests"],
         computed: {
             nickname: function () {
-                return store.getters.getNickname
+                return this.$store.getters.getNickname
             },
             character: function () {
-                return store.getters.getCharacter
+                return this.$store.getters.getCharacter
             },
         }
     }
@@ -41,7 +40,7 @@
   #playerInfo {
     margin: 1.5px;
   }
-  
+
   #questInfo {
   min-height: 120px;
       height: 22vh;
