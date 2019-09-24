@@ -5,46 +5,210 @@
         <!-- <div class="mediumText"> -->
         <!--     {{ missionNumber }} -->
         <!-- </div> -->
-        <div class="partySize biggerText" v-bind:class="{current: isCurrent}">
+        <div class="partySize biggerText" v-bind:class="{current: isCurrent, first: isFirst, middle: isMiddle, last: isLast}">
             {{ quest.numberOfAdventurers }}
         </div>
         <!-- <div class="passOrFail" v-bind:class="{passing: didPass, failing: didFail}"></div> -->
-        
+
+        <div class="firstRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="secondRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="thirdRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="fourthRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="fifthRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="sixthRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="seventhRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="eighthRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="ninthRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
+        <div class="tenthRow">
+          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+          </div>
+        </div>
     </div>
 </template>
 
 <script>
-    import store from "../store/index.js"
+import store from "../store/index.js"
 
-    export default {
-        name: 'Quest',
-        props: ["quest", "missionNumber"],
-        methods: {
-            makeActive: function () {
-                store.state.activeMission = this.missionNumber
-            }
-        },
-        computed: {
-            didPass: function () {
-                return this.quest.pass === true
-            },
-            didFail: function () {
-                return this.quest.pass === false
-            },
-            completed: function() {
-                return this.quest.pass !== null
-            },
-            isActive: function () {
-                return this.missionNumber === store.state.activeMission
-            },
-            isCurrent: function () {
-                return this.missionNumber === store.state.currentMission
-            },
+export default {
+    name: 'Quest',
+    props: ["quest", "missionNumber"],
+    methods: {
+        makeActive: function () {
+            store.state.activeMission = this.missionNumber
         }
+    },
+    computed: {
+        didPass: function () {
+            return this.quest.pass === true
+        },
+        didFail: function () {
+            return this.quest.pass === false
+        },
+        completed: function() {
+            return this.quest.pass !== null
+        },
+        isActive: function () {
+            return this.missionNumber === store.state.activeMission
+        },
+        isCurrent: function () {
+            return this.missionNumber === store.state.currentMission
+        },
+        isFirst: function () {
+            return this.missionNumber === 1
+        },
+        isMiddle: function () {
+            return this.missionNumber !== 1 && this.missionNumber !== 5
+        },
+        isLast: function () {
+            return this.missionNumber === 5
+        },
     }
+}
 </script>
 
 <style scoped>
+  .first {
+      border-left: none;
+      border-right: 2px solid #F6F3FA;
+  }
+
+  .middle {
+  border-right: 2px solid #F6F3FA;
+  border-left: 2px solid #F6F3FA;
+  }
+
+  .last {
+      border-right: none;
+      border-left: 2px solid #F6F3FA;
+  }
+
+  
+.overwrite {
+    background: #343236;
+    /*width: 95%;*/
+    height: 100%;
+    margin: 0 auto;
+}
+
+.inactive > .firstRow {
+    width: 100%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .secondRow {
+    width: 90%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .thirdRow {
+    width: 80%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .fourthRow {
+    width: 70%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .fifthRow {
+    width:60%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .sixthRow {
+    width:50%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .seventhRow {
+    width:40%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .eighthRow {
+    width:30%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .ninthRow {
+    width:20%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+.inactive > .tenthRow {
+    width: 10%;
+    height: 4px;
+    padding: 0px 5%;
+    background: #F6F3FA;
+    /*border-right: 4px solid #F6F3FA;*/
+    margin: 0 auto;
+}
+
+
+
 .section {
     padding-top: 3rem;
     padding-right: 1.5rem;

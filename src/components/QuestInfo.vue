@@ -10,7 +10,7 @@
         <!-- </div> -->
         <div class="columns is-mobile is-paddingless is-marginless quests">
             <div class="column is-one-fifth is-marginless is-paddingless quest" :key="index" v-for="(quest, index) in quests">
-                <Quest :quest="quest" :missionNumber="index+1"/>
+                <Quest :quest="quest" :missionNumber="index+1" class="index"/>
             </div>
         </div>
     </div>
@@ -62,64 +62,62 @@
     height: 100%;
 }
 
-.active {
-    /*border-top: 4px solid #b0912a;*/
-    border-left: 2px solid #F6F3FA;
-    border-right: 2px solid #F6F3FA;
-    /*border-bottom: 4px solid transparent;*/
-    /*border-bottom-left-radius: 0px;*/
-    /*border-radius: 0px;*/
-    /*background: #5B585F;*/
-    color: #F6F3FA;
-}
+/* .active { */
+/*     /\*border-top: 4px solid #b0912a;*\/ */
+/*     border-left: 2px solid #F6F3FA; */
+/*     border-right: 2px solid #F6F3FA; */
+/*     /\*border-bottom: 4px solid transparent;*\/ */
+/*     /\*border-bottom-left-radius: 0px;*\/ */
+/*     /\*border-radius: 0px;*\/ */
+/*     /\*background: #5B585F;*\/ */
+/*     color: #F6F3FA; */
+/* } */
 
-.active.notCompleted {
-    background: #5B585F;
-}
+/* .active.notCompleted { */
+/*     background: #5B585F; */
+/* } */
 
-.quests > .quest:nth-of-type(1) > .active {
-    border: none;
-    border-bottom: none;
-    border-left: none;
-    border-right: 2px solid #F6F3FA;
-    /*background: #5B585F;*/
-    color: #F6F3FA;
-}
+/* .quests > .quest:nth-of-type(1) > .active { */
+/*     border: none; */
+/*     border-bottom: none; */
+/*     border-left: none; */
+/*     border-right: 2px solid #F6F3FA; */
+/*     /\*background: #5B585F;*\/ */
+/*     color: #F6F3FA; */
+/* } */
 
-.quests > .quest:nth-of-type(5) > .active {
-    border: none;
-    border-bottom: none;
-    border-left: 2px solid #F6F3FA;
-    border-right: none;
-    /*background: #5B585F;*/
-    color: #F6F3FA;
-}
+/* .quests > .quest:nth-of-type(5) > .active { */
+/*     border: none; */
+/*     border-left: 2px solid #F6F3FA; */
+/*     border-right: none; */
+/*     /\*background: #5B585F;*\/ */
+/*     color: #F6F3FA; */
+/* } */
 
-.quests > .quest > .inactive {
-    border-bottom: 4px solid #F6F3FA;
-    border-left: 2px solid #F6F3FA;
-    border-right: 2px solid #F6F3FA;
-    /*background: #343236;*/
-    color: #F6F3FA;
-}
+/* .quests > .quest > .inactive  > div.biggerText { */
+/*     border-left: 2px solid #F6F3FA; */
+/*     border-right: 2px solid #F6F3FA; */
+/*     /\*background: #343236;*\/ */
+/*     color: #F6F3FA; */
+/* } */
 
-.quests > .quest:nth-of-type(1) > .inactive {
-    border: none;
-    border-bottom: 4px solid #F6F3FA;
-    border-left: none;
-    border-right: 2px solid #F6F3FA;
-    /*background: #343236;*/
-    color: #F6F3FA;
-}
+/* .quests > .quest:nth-of-type(1) > .inactive { */
+/*     border: none; */
+/*     border-bottom: 4px solid #F6F3FA; */
+/*     border-left: none; */
+/*     border-right: 2px solid #F6F3FA; */
+/*     /\*background: #343236;*\/ */
+/*     color: #F6F3FA; */
+/* } */
 
-.quests > .quest:nth-of-type(5) > .inactive {
-    border: none;
-    border-bottom: 4px solid #F6F3FA;
-    border-left: 2px solid #F6F3FA;
-    border-right: none;
-    /*background: #343236;*/
-    color: #F6F3FA;
-}
+/* .quests > .quest:nth-of-type(5) > .inactive { */
+/*     border: none; */
+/*     border-bottom: 4px solid #F6F3FA; */
+/*     border-left: 2px solid #F6F3FA; */
+/*     border-right: none; */
+/*     /\*background: #343236;*\/ */
+/*     color: #F6F3FA; */
+/* } */
 
 .questWrapper {
     /*position: absolute;*/
