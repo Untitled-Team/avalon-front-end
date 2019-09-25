@@ -144,8 +144,6 @@ describe('NotCurrentMissionData.vue', () => {
         })
 
         it('should display a party vote div for each party vote in the data', () => {
-            console.log('first')
-
             wrapper = shallowMount(
                 NotCurrentMissionData,
                 {
@@ -161,12 +159,8 @@ describe('NotCurrentMissionData.vue', () => {
                         }
                     }
                 })
-            console.log('second')
-
 
             const partyVoteWrapper = wrapper.findAll('.partyVote')
-
-            console.log('third')
 
             expect(partyVoteWrapper.length).to.equal(4)
         })
