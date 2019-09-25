@@ -1,12 +1,12 @@
 <template>
     <div id="assassinVote">
         <div class="mediumText">The good guys have passed 3 missions, but it's not over yet!</div>
-        <div class="bigText">{{ assassinVoteData.assassin }}, Guess Merlin</div>
+        <div id="assassin" class="bigText">{{ assassinVoteData.assassin }}, Guess Merlin</div>
 
-        <form @submit.prevent="submitAssassinGuess">
+        <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
             <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
                 <label :class="{ selected: goodGuy === guess }">
-                    <input type="radio" :value="goodGuy" v-model="guess" :disabled="!playerIsAssassin"/>{{ goodGuy }}
+                    <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess" :disabled="!playerIsAssassin"/>{{ goodGuy }}
                 </label>
             </div>
 
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
+    import WebsocketService from "../services/WebsocketService";
 
     export default {
         name: 'AssassinVote',
@@ -31,15 +31,16 @@
         props: ["assassinVoteData"],
         methods: {
             submitAssassinGuess: function () {
-                this.$socket.sendObj({
+                let assassinVoteMessage = {
                     event: 'AssassinVote',
                     guess: this.guess
-                })
+                }
+                WebsocketService.sendObj(this.$socket, assassinVoteMessage)
             }
         },
         computed: {
             playerIsAssassin: function () {
-                return store.getters.getNickname === this.assassinVoteData.assassin
+                return this.$store.getters.getNickname === this.assassinVoteData.assassin
             },
             noGuessSelected: function () {
                 return this.guess === ""

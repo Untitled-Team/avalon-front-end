@@ -1,18 +1,18 @@
 <template>
-  <div id="notCurrentMissionData" class="section"
-       v-bind:class="{passed: isPassed, failed: isFailed, notCompleted: !questHasData}">
-        <div v-if="questHasData">
+    <div id="notCurrentMissionData" class="section"
+         v-bind:class="{passed: isPassed, failed: isFailed, notCompleted: !questHasData}">
+        <div id= "missionHistory" v-if="questHasData">
             <div class="bigText">Mission History:</div>
-            <div class="mediumText">These {{ activeQuestData.numberOfAdventurers }} went on the mission:</div>
+            <div id="numberOfAdventurers" class="mediumText">These {{ activeQuestData.numberOfAdventurers }} went on the mission:</div>
             <div v-for="(player, index) in activeQuestData.players" :key="index">
                 <p>
                     {{player}}
                 </p>
             </div>
-            <div class="bigText" v-show="activeQuestData.pass">
+            <div id="success" class="bigText" v-if="activeQuestData.pass">
                 The quest was a success!
             </div>
-            <h1 class="bigText" v-show="!activeQuestData.pass">
+            <h1 id="failure" class="bigText" v-else>
                 The quest was a failure!
             </h1>
             <div class="columns is-mobile">
@@ -27,16 +27,14 @@
                 <div class="column is-one-fifth"></div>
             </div>
         </div>
-        <div v-else>
+        <div id="NoQuestData" v-else>
             This quest hasn't happened yet!
         </div>
     </div>
 </template>
 
 <script>
-    import store from "../store/index.js"
-
-    export default {
+export default {
         name: 'NotCurrentMissionData',
         props: ["activeQuestData"],
         computed: {
