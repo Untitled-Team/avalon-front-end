@@ -21,6 +21,7 @@ export default new Vuex.Store({
         //Other State
         players: [],
         nickname: "",
+        roomId: "",
         character: "",
         activeMission: 1,
         currentMission: 1,
@@ -114,9 +115,31 @@ export default new Vuex.Store({
         setNickname: (state, nickname) => {
             state.nickname = nickname
         },
+        setRoomId: (state, roomId) => {
+            state.roomId = roomId
+        },
         SOCKET_ONMESSAGE: state => {state},
-        SOCKET_ONOPEN: state => {state},
+        SOCKET_ONOPEN: state => {
+            if (state.nickname && state.roomId) {
+                Vue.prototype.$socket.sendObj({
+                    event: "Reconnect",
+                    nickname: state.nickname,
+                    roomId: state.roomId
+                });                
+            }
+            console.log("ON OPEN")
+            state
+        },
         SOCKET_ONCLOSE: state => {state},
+        SOCKET_ONERROR: state => {state},
+        SOCKET_RECONNECT: state => {
+            console.log("TRYING TO RECONNECT");
+            Vue.prototype.$socket.sendObj({
+                event: "Reconnect",
+                nickname: state.nickname,
+                roomId: state.roomId
+            });
+        }
     },
     actions: {
         stepOneToLobbyStep: ({commit}) => {

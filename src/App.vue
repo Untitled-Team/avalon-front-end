@@ -24,20 +24,15 @@
 </script>
 
 <style>
-    @font-face {
-        font-family: 'Numbers';
-        font-size: 1.5em;
-        src: url("./assets/VT323-Regular.ttf");
-        unicode-range: U+30-39;
-    }
+@font-face {
+    font-family: "Fairfax";
+    src: url("./assets/Fairfax.ttf");
+}
 
-    @font-face {
-        font-family: "Hellovetica";
-        src: url("./assets/hellovetica.ttf");
-    }
-
-    #app {
-        font: bold 8px Numbers, Hellovetica, Helvetica;
+#app {
+    height: 100vh;
+    background-color: #5B585F;
+    font: bold 8px Fairfax, Fairfax;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2f3026;

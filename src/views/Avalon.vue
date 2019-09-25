@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <div class="container">
+        <div class="container is-paddingless">
             <div class="containedWidth">
                 <Intro v-if="stepOne"/>
                 <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
@@ -21,10 +21,9 @@
                             <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
                         </div>
 
-                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/> 
                     </div>
                 </div>
-
                 <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
             </div>
         </div>
@@ -132,6 +131,8 @@
                     store.dispatch('stepOneToLobbyStep')
                     this.players = msgJSON.players
                     this.roomId = msgJSON.roomId
+                    store.commit("setRoomId", this.roomId);
+
                 } else if (msgJSON.event === 'ChangeInLobby') {
                     this.players = msgJSON.players
                 } else if (msgJSON.event === 'PlayerInfo') {
@@ -182,28 +183,20 @@
 </script>
 
 <style>
-    .container {
-        padding-top: 5px;
-        margin-top: 5px;
-    }
 
-    .cssWrapper {
-        border-bottom: #b0912a 5px solid;
-        border-left: #b0912a 2.5px solid;
-        border-right: #b0912a 2.5px solid;
-        padding: 1.5rem 3rem;
-        margin-left: .75rem;
-        margin-right: .75rem;
-        margin-top: -2.5rem;
-        background: #5a596b;
-    }
+.cssWrapper {
+    /* border-bottom: #b0912a 5px solid; */
+    /* border-left: #b0912a 2.5px solid; */
+    /* border-right: #b0912a 2.5px solid; */
+    /* padding: 1.5rem 3rem; */
+    /* margin-left: .75rem; */
+    /* margin-right: .75rem; */
+    /* margin-top: -2.5rem; */
+    height: 100vh;
+    background: #5B585F;
+}
 
-    .containedWidth {
-        margin: auto;
-        max-width: 65%;
-    }
-
-    .main {
-        text-align: center
-    }
+.main {
+    text-align: center
+}
 </style>

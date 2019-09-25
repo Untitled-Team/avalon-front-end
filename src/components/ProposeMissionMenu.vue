@@ -67,7 +67,7 @@
         margin: auto .2em;
         border: .5px ridge #3d3c5c;
         border-radius: 12px;
-        box-shadow: 3px 3px #3d3c5c;
+        /* box-shadow: 3px 3px #3d3c5c; */
     }
 
     .selected {
