@@ -1,7 +1,7 @@
 <template>
     <div id="proposeMissionMenu">
-        <div class="bigText">Mission Leader: {{ missionLeader }}</div>
-        <div class="mediumText">Party Size: {{ currentMissionPartySize }}</div>
+        <div id="missionLeader" class="bigText">Mission Leader: {{ missionLeader }}</div>
+        <div id="partySize" class="mediumText">Party Size: {{ currentMissionPartySize }}</div>
         <form @submit.prevent="proposeParty">
             <div :key="index" v-for="(player, index) in players">
                 <label @click="e => addSelectedClass(e)">
@@ -10,7 +10,7 @@
                 </label>
             </div>
             <input type="submit" class="button is-small" value="Propose Party" v-show="playerIsMissionLeader">
-            <div v-show="!proposedPartyIsCorrectSize && playerIsMissionLeader">
+            <div id="partySizeWarning" v-show="!proposedPartyIsCorrectSize && playerIsMissionLeader">
                 Please submit exactly {{ currentMissionPartySize }} players for the quest.
             </div>
         </form>
@@ -18,13 +18,13 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
+    import WebsocketService from "../services/WebsocketService"
 
     export default {
         name: 'ProposeMissionMenu',
         data: function () {
             return {
-                players: store.state.players,
+                players: this.$store.state.players,
                 selectedPlayers: [],
             }
         },
@@ -32,11 +32,11 @@
         methods: {
             proposeParty: function () {
                 if (this.proposedPartyIsCorrectSize) {
-                    console.log("correct size")
-                    this.$socket.sendObj({
+                    let proposePartyMessage = {
                         event: 'ProposeParty',
                         proposedParty: this.selectedPlayers,
-                    })
+                    }
+                    WebsocketService.sendObj(this.$socket, proposePartyMessage)
                 }
             },
             addSelectedClass: function (event) {
@@ -47,7 +47,7 @@
         },
         computed: {
             playerIsMissionLeader: function () {
-                return store.state.nickname === this.missionLeader
+                return this.$store.state.nickname === this.missionLeader
             },
             proposedPartyIsCorrectSize: function () {
                 return this.selectedPlayers.length === this.currentMissionPartySize

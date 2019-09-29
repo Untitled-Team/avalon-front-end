@@ -1,21 +1,23 @@
 <template>
     <div id="winner">
-        <div v-show="badGuysWin" class="bigText">
+        <div id="badGuysWin" v-show="badGuysWin" class="bigText">
             Bad guys win!
         </div>
-        <div v-show="goodGuysWin" class="bigText">
+        <div id="goodGuysWin" v-show="goodGuysWin" class="bigText">
             Good guys win!
         </div>
         <div class="mediumText">
-            <div>Merlin: {{ gameOverData.merlin }}</div>
-            <div>Good Guys:</div>
-            <div :key="index" v-for="(goodGuy, index) in goodGuysSansMerlin">
-                {{ goodGuy}}
+            <div id="merlin">Merlin: {{ gameOverData.merlin }}</div>
+            <div id="goodGuys">Good Guys:
+                <div :key="index" v-for="(goodGuy, index) in goodGuysSansMerlin">
+                    {{ goodGuy}}
+                </div>
             </div>
-            <div>Assassin: {{ gameOverData.assassin }}</div>
-            <div>Bad Guys:</div>
-            <div :key="index" v-for="(badGuy, index) in badGuysSansAssassin">
-                {{ badGuy}}
+            <div id="assassin">Assassin: {{ gameOverData.assassin }}</div>
+            <div id="badGuys">Bad Guys:
+                <div :key="index" v-for="(badGuy, index) in badGuysSansAssassin">
+                    {{ badGuy}}
+                </div>
             </div>
         </div>
     </div>

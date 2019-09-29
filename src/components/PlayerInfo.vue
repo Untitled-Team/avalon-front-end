@@ -4,43 +4,52 @@
             <div class="card-image">
                 <img src="@/assets/goodGuy.jpg">
             </div>
-            <p>You're a regular good guy!</p>
-            <p>Keep reading this for a second so it's not obvious.</p>
-            <p>More text</p>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+            <div class="info">
+                <p>You're a regular good guy!</p>
+                <p>Keep reading this for a second so it's not obvious.</p>
+                <p>More text</p>
+            </div>
         </div>
+
         <div class="card bad" v-if="isBad">
             <div class="card-image">
                 <img src="@/assets/badGuy.jpg">
             </div>
-            <p>You're a regular bad guy!</p>
-            <p>The bad guys are: </p>
-            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+            <div class="info">
+                <p>You're a regular bad guy!</p>
+            </div>
         </div>
+
         <div class="card merlin" v-if="isMerlin">
             <div class="card-image">
                 <img src="@/assets/merlin.jpg">
             </div>
-            <p>You're Merlin!</p>
-            <p>The bad guys are: </p>
-            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+            <div class="info">
+                <p>You're Merlin!</p>
+            </div>
         </div>
+
         <div class="card assassin" v-if="isAssassin">
             <div class="card-image">
                 <img src="@/assets/assassin.jpg">
             </div>
-            <p>You're the assassin!</p>
+            <div class="info">
+                <p>You're the assassin!</p>
+            </div>
+        </div>
+
+        <div v-if="!isGood">
             <p>The bad guys are: </p>
             <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
+        <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
     </div>
 </template>
 
 <script>
+    import WebsocketService from "../services/WebsocketService";
+
     export default {
         name: 'PlayerInfo',
         data: function () {
@@ -51,8 +60,9 @@
         props: ["character", "badGuys"],
         methods: {
             confirmReady: function () {
-                this.ready = true;
-                this.$socket.sendObj({event: 'PlayerReady'});
+                this.ready = true
+                let confirmReadyObj = {event: 'PlayerReady'};
+                WebsocketService.sendObj(this.$socket, confirmReadyObj);
             }
         },
         computed: {

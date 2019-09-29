@@ -14,14 +14,12 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
-
     export default {
         name: 'Quest',
         props: ["quest", "missionNumber"],
         methods: {
             makeActive: function () {
-                store.state.activeMission = this.missionNumber
+                this.$store.state.activeMission = this.missionNumber
             }
         },
         computed: {
@@ -35,10 +33,10 @@
                 return this.quest.pass !== null
             },
             isActive: function () {
-                return this.missionNumber === store.state.activeMission
+                return this.missionNumber === this.$store.state.activeMission
             },
             isCurrent: function () {
-                return this.missionNumber === store.state.currentMission
+                return this.missionNumber === this.$store.state.currentMission
             },
         }
     }

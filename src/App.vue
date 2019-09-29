@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import Avalon from "./views/Avalon";
+    import Avalon from "./views/Avalon"
 
     export default {
         name: "App",
