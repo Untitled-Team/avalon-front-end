@@ -118,6 +118,9 @@ export default new Vuex.Store({
         setRoomId: (state, roomId) => {
             state.roomId = roomId
         },
+        setActiveMission: (state, activeMission) => {
+            state.activeMission = activeMission
+        },
         SOCKET_ONMESSAGE: state => {state},
         SOCKET_ONOPEN: state => {
             if (state.nickname && state.roomId) {
