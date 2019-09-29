@@ -1,13 +1,13 @@
 <template>
     <div id="questInfo" class="container is-paddingless">
-        <!-- <div id="playerInfo" class="columns is-marginless"> -->
-        <!--     <div class="column is-full permanentPlayerInfo mediumText"> -->
-        <!--         <div class="level"> -->
-        <!--             <span class="level-left level-item">{{ nickname }}</span> -->
-        <!--             <span class="level-right level-item">{{ character }}</span> -->
-        <!--         </div> -->
-        <!--     </div> -->
-        <!-- </div> -->
+         <div id="playerInfo" class="columns is-marginless">
+             <div class="column is-full permanentPlayerInfo mediumText">
+                 <div class="level">
+                     <span id="nickname" class="level-left level-item">{{ nickname }}</span>
+                     <span id="character" class="level-right level-item">{{ character }}</span>
+                 </div>
+             </div>
+         </div>
         <div class="columns is-mobile is-paddingless is-marginless quests">
             <div class="column is-one-fifth is-marginless is-paddingless quest" :key="index" v-for="(quest, index) in quests">
                 <Quest :quest="quest" :missionNumber="index+1"/>

@@ -60,7 +60,7 @@
         props: ["character", "badGuys"],
         methods: {
             confirmReady: function () {
-                this.ready = true;
+                this.ready = true
                 let confirmReadyObj = {event: 'PlayerReady'};
                 WebsocketService.sendObj(this.$socket, confirmReadyObj);
             }

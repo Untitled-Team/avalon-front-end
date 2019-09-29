@@ -3,7 +3,7 @@
         <div class="bigText">
             The players on the mission are
             <span :key="index" v-for="(player, index) in missionParty">
-                <span v-if="index == missionParty.length-1"> and </span>{{player}}<span>
+                <span v-if="index == missionParty.length-1"> and </span>{{player}}<span
                     v-if="!(index == missionParty.length-1 || index == missionParty.length-2)">, </span>
             </span>.
         </div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-    import WebsocketService from "../services/WebsocketService";
+    import WebsocketService from "../services/WebsocketService"
 
     export default {
         name: 'PassFailVote',

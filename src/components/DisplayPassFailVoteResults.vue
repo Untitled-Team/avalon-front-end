@@ -1,5 +1,4 @@
 <template>
-
     <div id="displayPassFailVotes">
         <div class="modal is-active">
             <div class="modal-background"></div>
@@ -13,6 +12,8 @@
 </template>
 
 <script>
+    import WebsocketService from "../services/WebsocketService";
+
     export default {
         name: 'DisplayPassFailVotes',
         props: ["passVotes", "failVotes"],
@@ -20,10 +21,13 @@
             const sleep = (milliseconds) => {
                 return new Promise(resolve => setTimeout(resolve, milliseconds))
             }
+
+            const votesDisplayedMessage = {
+                event: "QuestVotesDisplayed",
+            }
             sleep(5000).then(() => {
-                this.$socket.sendObj({
-                    event: "QuestVotesDisplayed",
-                })
+                console.log('NOTTTT~!')
+                WebsocketService.sendObj(this.$socket, votesDisplayedMessage)
             })
         }
     }

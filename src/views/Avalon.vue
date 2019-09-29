@@ -34,15 +34,15 @@
     import store from "../store/index.js"
     import Intro from "../components/Intro"
     import PlayerInfo from "../components/PlayerInfo"
-    import QuestInfo from "../components/QuestInfo";
-    import Lobby from "../components/Lobby";
-    import ProposeMissionMenu from "../components/ProposeMissionMenu";
-    import ProposedPartyVoteMenu from "../components/ProposedPartyVoteMenu";
-    import PassFailVote from "../components/PassFailVote";
-    import DisplayPassFailVoteResults from "../components/DisplayPassFailVoteResults";
-    import Winner from "../components/Winner";
-    import AssassinVote from "../components/AssassinVote";
-    import NotCurrentMissionData from "../components/NotCurrentMissionData";
+    import QuestInfo from "../components/QuestInfo"
+    import Lobby from "../components/Lobby"
+    import ProposeMissionMenu from "../components/ProposeMissionMenu"
+    import ProposedPartyVoteMenu from "../components/ProposedPartyVoteMenu"
+    import PassFailVote from "../components/PassFailVote"
+    import DisplayPassFailVoteResults from "../components/DisplayPassFailVoteResults"
+    import Winner from "../components/Winner"
+    import AssassinVote from "../components/AssassinVote"
+    import NotCurrentMissionData from "../components/NotCurrentMissionData"
 
     export default {
         name: 'home',

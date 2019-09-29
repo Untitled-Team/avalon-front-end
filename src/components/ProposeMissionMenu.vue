@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import WebsocketService from "../services/WebsocketService";
+    import WebsocketService from "../services/WebsocketService"
 
     export default {
         name: 'ProposeMissionMenu',

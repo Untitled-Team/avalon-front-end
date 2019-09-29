@@ -1,8 +1,8 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import Vuex from "vuex";
-import Vue from "vue";
-import Quest from "../../src/components/Quest";
+import Vuex from "vuex"
+import Vue from "vue"
+import Quest from "../../src/components/Quest"
 
 let wrapper
 let store
@@ -16,12 +16,51 @@ describe('Quest.vue', () => {
         })
     })
 
-    it('should display the nickname', () => {
-        const expectedNickname = 'steve'
-        wrapper = shallowMount(Quest, {store})
+    it('should have the correct class if mission passes', () => {
+        const expectedClass = "passing"
+        const unexpectedClasses = ["notCompleted", "failing"]
+        wrapper = shallowMount(Quest, {store, propsData: {quest: {pass: true}}})
 
-        const nicknameWrapper = wrapper.find('#nickname')
+        const questWrapper = wrapper.find('.questWrapper')
 
-        expect(nicknameWrapper.text()).to.equal(expectedNickname)
+        expect(questWrapper.classes()).to.contain(expectedClass)
+        unexpectedClasses.forEach((unexpectedClass) => {
+            expect(wrapper.classes()).not.to.contain(unexpectedClass, `${unexpectedClass} should not be a class on the quest!`)
+        })
+    })
+
+    it('should have the correct class if mission fails', () => {
+        const expectedClass = "failing"
+        const unexpectedClasses = ["passing", "notCompleted"]
+        wrapper = shallowMount(Quest, {store, propsData: {quest: {pass: false}}})
+
+        const questWrapper = wrapper.find('.questWrapper')
+
+        expect(questWrapper.classes()).to.contain(expectedClass)
+        unexpectedClasses.forEach((unexpectedClass) => {
+            expect(wrapper.classes()).not.to.contain(unexpectedClass, `${unexpectedClass} should not be a class on the quest!`)
+        })
+    })
+
+    it('should have the correct class if mission hasn\'t happened', () => {
+        const expectedClass = "notCompleted"
+        const unexpectedClasses = ["passing", "failing"]
+        wrapper = shallowMount(Quest, {store, propsData: {quest: {pass: null}}})
+
+        const questWrapper = wrapper.find('.questWrapper')
+
+        expect(questWrapper.classes()).to.contain(expectedClass)
+        unexpectedClasses.forEach((unexpectedClass) => {
+            expect(wrapper.classes()).not.to.contain(unexpectedClass, `${unexpectedClass} should not be a class on the quest!`)
+        })
+    })
+
+    it('should display the number of adventurers', () => {
+        const expectedNumberOfAdventurers = 32432
+        wrapper = shallowMount(Quest, {store, propsData: {quest: {pass: null, numberOfAdventurers: expectedNumberOfAdventurers}}})
+
+        const partySizeWrapper = wrapper.find('.partySize')
+
+        expect(partySizeWrapper.text()).to.contain(expectedNumberOfAdventurers)
     })
 })
