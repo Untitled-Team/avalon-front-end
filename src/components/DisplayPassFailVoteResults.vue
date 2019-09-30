@@ -4,8 +4,8 @@
             <div class="modal-background"></div>
             <div class="modal-content container is-centered">
                 <div class="bigText">Quest votes:</div>
-                <div v-for="(passVote, index) in passVotes" :key="index" class="vote pass is-centered"></div>
-                <div v-for="(failVote, index) in failVotes" :key="index" class="vote fail is-centered"></div>
+                <div v-for="(passVote, index) in passVotes" :key="'pass' + index" class="vote pass is-centered"></div>
+                <div v-for="(failVote, index) in failVotes" :key="'fail' + index" class="vote fail is-centered"></div>
             </div>
         </div>
     </div>

@@ -1,8 +1,7 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import WebsocketService from '../../src/services/WebsocketService.js'
 import QuestInfo from "../../src/components/QuestInfo";
-import { assert, stub, match, restore} from "sinon";
+import {stub, restore} from "sinon";
 import Vuex from "vuex";
 import Vue from "vue";
 
@@ -25,23 +24,23 @@ describe('QuestInfo.vue', () => {
         restore()
     })
 
-    it('should display the nickname', () => {
-        const expectedNickname = 'steve'
-        wrapper = shallowMount(QuestInfo, {store})
-
-        const nicknameWrapper = wrapper.find('#nickname')
-
-        expect(nicknameWrapper.text()).to.equal(expectedNickname)
-    })
-
-    it('should display the character', () => {
-        const expectedCharacter = 'Merlin'
-        wrapper = shallowMount(QuestInfo, {store})
-
-        const nicknameWrapper = wrapper.find('#character')
-
-        expect(nicknameWrapper.text()).to.equal(expectedCharacter)
-    })
+    // it('should display the nickname', () => {
+    //     const expectedNickname = 'steve'
+    //     wrapper = shallowMount(QuestInfo, {store})
+    //
+    //     const nicknameWrapper = wrapper.find('#nickname')
+    //
+    //     expect(nicknameWrapper.text()).to.equal(expectedNickname)
+    // })
+    //
+    // it('should display the character', () => {
+    //     const expectedCharacter = 'Merlin'
+    //     wrapper = shallowMount(QuestInfo, {store})
+    //
+    //     const nicknameWrapper = wrapper.find('#character')
+    //
+    //     expect(nicknameWrapper.text()).to.equal(expectedCharacter)
+    // })
 
     it('should display 5 quests', () => {
         wrapper = shallowMount(
