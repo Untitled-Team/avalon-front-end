@@ -3,11 +3,10 @@ import {shallowMount} from '@vue/test-utils'
 import Vuex from "vuex";
 import Vue from "vue";
 import DisplayPassFailVoteResults from "../../src/components/DisplayPassFailVoteResults";
-import {restore, stub, match, assert, useFakeTimers} from "sinon";
+import {restore, stub,} from "sinon";
 import WebsocketService from "../../src/services/WebsocketService";
 
 let wrapper
-let clock
 Vue.use(Vuex)
 
 describe('DisplayPassFailVoteResults.vue', () => {
