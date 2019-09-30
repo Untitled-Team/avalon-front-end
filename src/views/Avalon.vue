@@ -25,6 +25,7 @@
                     </div>
                 </div>
                 <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
+                <NicknameCharacterBadGuys :bad-guys="badGuys" v-if="questInfoDisplay"/>
             </div>
         </div>
     </div>
@@ -43,10 +44,12 @@
     import Winner from "../components/Winner"
     import AssassinVote from "../components/AssassinVote"
     import NotCurrentMissionData from "../components/NotCurrentMissionData"
+    import NicknameCharacterBadGuys from "../components/NicknameCharacterBadGuys";
 
     export default {
         name: 'home',
         components: {
+            NicknameCharacterBadGuys,
             NotCurrentMissionData,
             AssassinVote,
             Winner,
