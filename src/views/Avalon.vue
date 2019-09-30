@@ -21,11 +21,11 @@
                             <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
                         </div>
 
-                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/> 
+                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                        <NicknameCharacterBadGuys :bad-guys="badGuys" v-if="questInfoDisplay"/>
                     </div>
                 </div>
                 <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
-                <NicknameCharacterBadGuys :bad-guys="badGuys" v-if="questInfoDisplay"/>
             </div>
         </div>
     </div>
@@ -187,19 +187,19 @@
 
 <style>
 
-.cssWrapper {
-    /* border-bottom: #b0912a 5px solid; */
-    /* border-left: #b0912a 2.5px solid; */
-    /* border-right: #b0912a 2.5px solid; */
-    /* padding: 1.5rem 3rem; */
-    /* margin-left: .75rem; */
-    /* margin-right: .75rem; */
-    /* margin-top: -2.5rem; */
-    height: 100vh;
-    background: #5B585F;
-}
+    .cssWrapper {
+        /* border-bottom: #b0912a 5px solid; */
+        /* border-left: #b0912a 2.5px solid; */
+        /* border-right: #b0912a 2.5px solid; */
+        /* padding: 1.5rem 3rem; */
+        /* margin-left: .75rem; */
+        /* margin-right: .75rem; */
+        /* margin-top: -2.5rem; */
+        height: 100vh;
+        background: #5B585F;
+    }
 
-.main {
-    text-align: center
-}
+    .main {
+        text-align: center
+    }
 </style>
