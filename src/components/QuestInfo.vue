@@ -10,7 +10,7 @@
         <!-- </div> -->
         <div class="columns is-mobile is-paddingless is-marginless quests">
             <div class="column is-one-fifth is-marginless is-paddingless quest" :key="index" v-for="(quest, index) in quests">
-                <Quest :quest="quest" :missionNumber="index+1" class="index"/>
+                <Quest :quest="quest" :missionNumber="index+1" :quests="quests" class="index"/>
             </div>
         </div>
     </div>
