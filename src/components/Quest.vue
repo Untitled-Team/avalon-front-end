@@ -5,52 +5,54 @@
         <!-- <div class="mediumText"> -->
         <!--     {{ missionNumber }} -->
         <!-- </div> -->
+<!--        <div class="hapticfeedback" v-bind:class="{active: isActive}">-->
         <div class="partySize biggerText" v-bind:class="{current: isCurrent, first: isFirst, middle: isMiddle, last: isLast, active: isActive}">
-            {{ quest.numberOfAdventurers }}
+            <div class="questNumber">{{ quest.numberOfAdventurers }}</div>
         </div>
+<!--        </div>-->
         <!-- <div class="passOrFail" v-bind:class="{passing: didPass, failing: didFail}"></div> -->
         <div class="bannerContainer"
-             v-bind:class="{activeMissionPassing: activeMissionPassing, activeMissionFailing: activeMissionFailing, activeMissionIncomplete: activeMissionIncomplete}">
-        <div class="firstRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="secondRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="thirdRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="fourthRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="fifthRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="sixthRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="seventhRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="eighthRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="ninthRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
-        <div class="tenthRow">
-          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-          </div>
-        </div>
+             v-bind:class="{activeMissionPassing: activeMissionPassing, activeMissionFailing: activeMissionFailing, activeMissionIncomplete: activeMissionIncomplete, last: isLast, first: isFirst}">
+            <div class="firstRow">
+                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+                </div>
+            </div>
+            <div class="secondRow">
+                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+                </div>
+            </div>
+            <div class="thirdRow">
+                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+                </div>
+            </div>
+            <div class="fourthRow">
+                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+                </div>
+            </div>
+            <div class="fifthRow">
+                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+                </div>
+            </div>
+            <div class="sixthRow">
+                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
+                </div>
+            </div>
+<!--        <div class="seventhRow">-->
+<!--          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="eighthRow">-->
+<!--          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="ninthRow">-->
+<!--          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="tenthRow">-->
+<!--          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">-->
+<!--          </div>-->
+<!--        </div>-->
         </div>
     </div>
 </template>
@@ -116,7 +118,35 @@ export default {
 
 <style scoped>
     .partySize.active {
-        padding-top: 4px;
+        /*padding-top: 4px;*/
+    }
+
+    div.questNumber {
+        /*margin: 0;*/
+        /*position: absolute;*/
+        /*top: 50%;*/
+        /*-ms-transform: translateY(-50%);*/
+        /*transform: translateY(-50%);*/
+        /*display: block;*/
+
+        margin: 0 auto; /* Important */
+        /*text-align: center;*/
+        justify-content: center;
+        display: flex;
+    }
+
+    .partySize {
+        /*display: flex;*/
+        /*justify-content: center;*/
+        /*flex-direction: column;*/
+        /*display: table-cell;*/
+        /*vertical-align: middle;*/
+        /*margin-top: 4px;*/
+        /*margin-bottom: 47px;*/
+        /*padding-top: 4px;*/
+        /*padding-top: 4px;*/
+        /*padding-bottom: 4px;*/
+        height: 100%;
     }
 
     .questWrapper.active.notCompleted {
@@ -124,8 +154,21 @@ export default {
     }
 
     .bannerContainer {
-        height: 100%;
+        padding-left: 2px;
+        padding-right: 2px;
+        bottom: 0px;
+        height: 32px;
+        /*height: 100%;*/
     }
+
+    .bannerContainer.first {
+        padding-left: 0px;
+    }
+
+    .bannerContainer.last {
+        padding-right: 0px;
+    }
+
     .activeMissionPassing {
         background: #6EC0EC;
     }
@@ -138,20 +181,22 @@ export default {
         background: #5B585F;
     }
 
-    .first {
+    .partySize.first {
         border-left: none;
         border-right: 2px solid #F6F3FA;
     }
 
-    .middle {
+    .partySize.middle {
         border-right: 2px solid #F6F3FA;
         border-left: 2px solid #F6F3FA;
     }
 
-    .last {
+    .partySize.last {
         border-right: none;
         border-left: 2px solid #F6F3FA;
     }
+
+
 
     .overwrite {
         background: #343236;
@@ -181,41 +226,41 @@ export default {
     .inactive > .bannerContainer > .thirdRow {
         width: 80%;
         height: 4px;
-        padding: 0px 5%;
+        padding: 0px 10%;
         background: #F6F3FA;
         /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
     .inactive > .bannerContainer > .fourthRow {
-        width: 70%;
+        width: 60%;
         height: 4px;
-        padding: 0px 5%;
+        padding: 0px 10%;
         background: #F6F3FA;
         /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
     .inactive > .bannerContainer > .fifthRow {
-        width:60%;
+        width: 40%;
         height: 4px;
-        padding: 0px 5%;
+        padding: 0px 17.5%;
         background: #F6F3FA;
         /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
     .inactive > .bannerContainer > .sixthRow {
-        width:50%;
+        width: 5%;
         height: 4px;
-        padding: 0px 5%;
+        padding: 0px 3%;
         background: #F6F3FA;
         /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
     .inactive > .bannerContainer > .seventhRow {
-        width:40%;
+        width: 40%;
         height: 4px;
         padding: 0px 5%;
         background: #F6F3FA;
@@ -224,7 +269,7 @@ export default {
     }
 
     .inactive > .bannerContainer > .eighthRow {
-        width:30%;
+        width: 30%;
         height: 4px;
         padding: 0px 5%;
         background: #F6F3FA;
@@ -233,7 +278,7 @@ export default {
     }
 
     .inactive > .bannerContainer > .ninthRow {
-        width:20%;
+        width: 20%;
         height: 4px;
         padding: 0px 5%;
         background: #F6F3FA;

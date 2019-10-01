@@ -43,8 +43,8 @@
   }
   
   #questInfo {
-  min-height: 120px;
-      height: 22vh;
+      min-height: 120px;
+      height: 15vh;
     }
 
 .column {
