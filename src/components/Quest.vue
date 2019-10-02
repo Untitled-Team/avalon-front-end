@@ -2,15 +2,11 @@
     <div class="questWrapper container is-paddingless"
          v-on:click="makeActive"
          v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
-        <!-- <div class="mediumText"> -->
-        <!--     {{ missionNumber }} -->
-        <!-- </div> -->
-<!--        <div class="hapticfeedback" v-bind:class="{active: isActive}">-->
-        <div class="partySize biggerText" v-bind:class="{current: isCurrent, first: isFirst, middle: isMiddle, last: isLast, active: isActive}">
-            <div class="questNumber">{{ quest.numberOfAdventurers }}</div>
+        <div class="hapticfeedback" v-bind:class="{active: isActive}">
+        <div class="partySize biggerText is-size-1-mobile" v-bind:class="{current: isCurrent, first: isFirst, middle: isMiddle, last: isLast, active: isActive}">
+            <p class="numberOfPlayers">{{ quest.numberOfAdventurers }}</p>
         </div>
-<!--        </div>-->
-        <!-- <div class="passOrFail" v-bind:class="{passing: didPass, failing: didFail}"></div> -->
+        </div>
         <div class="bannerContainer"
              v-bind:class="{activeMissionPassing: activeMissionPassing, activeMissionFailing: activeMissionFailing, activeMissionIncomplete: activeMissionIncomplete, last: isLast, first: isFirst}">
             <div class="firstRow">
@@ -37,22 +33,6 @@
                 <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
                 </div>
             </div>
-<!--        <div class="seventhRow">-->
-<!--          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="eighthRow">-->
-<!--          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="ninthRow">-->
-<!--          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="tenthRow">-->
-<!--          <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">-->
-<!--          </div>-->
-<!--        </div>-->
         </div>
     </div>
 </template>
@@ -117,36 +97,24 @@ export default {
 </script>
 
 <style scoped>
-    .partySize.active {
-        /*padding-top: 4px;*/
+    .numberOfPlayers {
+        margin-left: 5px;
+        margin-top: 5px;
     }
 
-    div.questNumber {
-        /*margin: 0;*/
-        /*position: absolute;*/
-        /*top: 50%;*/
-        /*-ms-transform: translateY(-50%);*/
-        /*transform: translateY(-50%);*/
-        /*display: block;*/
-
-        margin: 0 auto; /* Important */
-        /*text-align: center;*/
-        justify-content: center;
+    .hapticfeedback {
+        height: 12.5vh;
+        min-height: 90px;
         display: flex;
+        justify-content: center;
     }
 
     .partySize {
-        /*display: flex;*/
-        /*justify-content: center;*/
-        /*flex-direction: column;*/
-        /*display: table-cell;*/
-        /*vertical-align: middle;*/
-        /*margin-top: 4px;*/
-        /*margin-bottom: 47px;*/
-        /*padding-top: 4px;*/
-        /*padding-top: 4px;*/
-        /*padding-bottom: 4px;*/
-        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        /*margin: 0 auto;*/
     }
 
     .questWrapper.active.notCompleted {
@@ -158,7 +126,6 @@ export default {
         padding-right: 2px;
         bottom: 0px;
         height: 32px;
-        /*height: 100%;*/
     }
 
     .bannerContainer.first {
@@ -196,11 +163,8 @@ export default {
         border-left: 2px solid #F6F3FA;
     }
 
-
-
     .overwrite {
         background: #343236;
-        /*width: 95%;*/
         height: 100%;
         margin: 0 auto;
     }
@@ -210,7 +174,6 @@ export default {
         height: 4px;
         padding: 0px 5%;
         background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
@@ -219,7 +182,6 @@ export default {
         height: 4px;
         padding: 0px 5%;
         background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
@@ -228,7 +190,6 @@ export default {
         height: 4px;
         padding: 0px 10%;
         background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
@@ -237,7 +198,6 @@ export default {
         height: 4px;
         padding: 0px 10%;
         background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
@@ -246,7 +206,6 @@ export default {
         height: 4px;
         padding: 0px 17.5%;
         background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
@@ -255,43 +214,6 @@ export default {
         height: 4px;
         padding: 0px 3%;
         background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
-        margin: 0 auto;
-    }
-
-    .inactive > .bannerContainer > .seventhRow {
-        width: 40%;
-        height: 4px;
-        padding: 0px 5%;
-        background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
-        margin: 0 auto;
-    }
-
-    .inactive > .bannerContainer > .eighthRow {
-        width: 30%;
-        height: 4px;
-        padding: 0px 5%;
-        background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
-        margin: 0 auto;
-    }
-
-    .inactive > .bannerContainer > .ninthRow {
-        width: 20%;
-        height: 4px;
-        padding: 0px 5%;
-        background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
-        margin: 0 auto;
-    }
-
-    .inactive > .bannerContainer > .tenthRow {
-        width: 10%;
-        height: 4px;
-        padding: 0px 5%;
-        background: #F6F3FA;
-        /*border-right: 4px solid #F6F3FA;*/
         margin: 0 auto;
     }
 
@@ -305,10 +227,8 @@ export default {
     .passOrFail {
         margin-bottom: 10px;
         text-align: center;
-        /*margin: 0 auto;*/
         margin-right: auto;
         margin-left: auto;
-        /*margin-right: 1px;*/
         border-radius: 50%;
         background: #9A969E;
         height: 20px;
@@ -316,56 +236,13 @@ export default {
     }
   
     .partySize {
-        /* border-radius: 50%; */
-        /* background: grey; */
         color: whitesmoke;
-        /* -moz-box-shadow: 2px 2px black; */
-        /* -webkit-box-shadow: 2px 2px black; */
-        /* box-shadow: 3px 3px black; */
     }
-  
-  /* .questWrapper { */
-  /*     cursor: pointer; */
-  /*     /\*padding-bottom: 3rem;*\/ */
-  /*     /\*padding-top: 2.75rem;*\/ */
-  /*     height: 100%; */
-  /* } */
-  
+
     .current {
         color: #EDC430;
-        /*background: #3040ED;*/
     }
-  
-  /* div:first-child { */
-  /*     /\*border-top: 4px solid #b0912a;*\/ */
-  /*     border-left: 3.75px solid transparent; */
-  /*     border-right: 0px solid #b0912a; */
-  /*     /\*border-bottom: 4px solid transparent;*\/ */
-  /*     /\*border-bottom-left-radius: 0px;*\/ */
-  /*     /\*border-radius: 0px;*\/ */
-  /*     background: #5a596b; */
-  
-  /* } */
-  
-  /* .active { */
-  /*     /\*border-top: 4px solid #b0912a;*\/ */
-  /*     border-left: 3.75px solid #b0912a; */
-  /*     border-right: 0px solid #b0912a; */
-  /*     /\*border-bottom: 4px solid transparent;*\/ */
-  /*     /\*border-bottom-left-radius: 0px;*\/ */
-  /*     /\*border-radius: 0px;*\/ */
-  /*     background: #5B585F; */
-  /*     color: #F6F3FA; */
-  /* } */
-  
-  /* .inactive { */
-  /*     border-bottom: 4px solid #b0912a; */
-  /*     border-left: 2px solid #b0912a; */
-  /*     border-right: 2px solid #b0912a; */
-  /*     background: #343236; */
-  /*     color: #F6F3FA; */
-  /* } */
-  
+
     .passing:not(.active) {
         background: #3468C3;
     }

@@ -43,8 +43,8 @@
   }
   
   #questInfo {
-      min-height: 120px;
-      height: 15vh;
+      /*min-height: 10vh;*/
+      /*height: 22vh;*/
     }
 
 .column {
@@ -126,7 +126,7 @@
     cursor: pointer;
     /*padding-bottom: 3rem;*/
     /*padding-top: 2.5vh;*/
-    height: 100%;
+    /*height: 100%;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
