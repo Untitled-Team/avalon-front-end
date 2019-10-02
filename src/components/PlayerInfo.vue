@@ -9,6 +9,7 @@
                 <p>Keep reading this for a second so it's not obvious.</p>
                 <p>More text</p>
             </div>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
         <div class="card bad" v-if="isBad">
@@ -18,6 +19,9 @@
             <div class="info">
                 <p>You're a regular bad guy!</p>
             </div>
+            <p>The bad guys are: </p>
+            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
         <div class="card merlin" v-if="isMerlin">
@@ -27,6 +31,9 @@
             <div class="info">
                 <p>You're Merlin!</p>
             </div>
+            <p>The bad guys are: </p>
+            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
         <div class="card assassin" v-if="isAssassin">
@@ -36,13 +43,11 @@
             <div class="info">
                 <p>You're the assassin!</p>
             </div>
-        </div>
-
-        <div v-if="!isGood">
             <p>The bad guys are: </p>
             <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
-        <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+
         <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
     </div>
 </template>

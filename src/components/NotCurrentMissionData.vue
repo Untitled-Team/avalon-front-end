@@ -61,7 +61,6 @@
     #notCurrentMissionData {
         padding: 20px;
         height: 100%;
-        margin-top: 1000px;
     }
 
     .partyVote {
