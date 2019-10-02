@@ -4,7 +4,7 @@
          v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
         <div class="hapticfeedback" v-bind:class="{active: isActive}">
         <div class="partySize biggerText is-size-1-mobile" v-bind:class="{current: isCurrent, first: isFirst, middle: isMiddle, last: isLast, active: isActive}">
-            <p class="numberOfPlayers">{{ quest.numberOfAdventurers }}</p>
+            <p class="numberOfPlayers" v-bind:class="{active: isActive}">{{ quest.numberOfAdventurers }}</p>
         </div>
         </div>
         <div class="bannerContainer"
@@ -100,6 +100,10 @@ export default {
     .numberOfPlayers {
         margin-left: 5px;
         margin-top: 5px;
+    }
+
+    .numberOfPlayers.active {
+        margin-top: 12px;
     }
 
     .hapticfeedback {
