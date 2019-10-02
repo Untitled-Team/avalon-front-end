@@ -26,24 +26,28 @@ describe('NicknameCharacterBadGuys.vue', () => {
     it('should display the nickname from the store', () => {
         const expectedNickname = 'steve'
         wrapper = shallowMount(NicknameCharacterBadGuys, {store})
+        wrapper.find('#toggleModal').trigger('click')
 
         const nicknameWrapper = wrapper.find('#nickname')
 
-        expect(nicknameWrapper.text()).to.equal(expectedNickname)
+        expect(nicknameWrapper.text()).to.include(expectedNickname)
     })
 
     it('should display the character from the store', () => {
         const expectedCharacter = 'Merlin'
         wrapper = shallowMount(NicknameCharacterBadGuys, {store})
+        wrapper.find('#toggleModal').trigger('click')
+
 
         const characterWrapper = wrapper.find('#character')
 
-        expect(characterWrapper.text()).to.equal(expectedCharacter)
+        expect(characterWrapper.text()).to.include(expectedCharacter)
     })
 
     it('should display the badGuys passed in as a prop', () => {
         let expectedBadGuys = ["a", "b", "c"];
-        wrapper = shallowMount(NicknameCharacterBadGuys, {propsData: { badGuys: expectedBadGuys}, store})
+        wrapper = shallowMount(NicknameCharacterBadGuys, {propsData: {badGuys: expectedBadGuys}, store})
+        wrapper.find('#toggleModal').trigger('click')
 
         const badGuysWrapper = wrapper.find('#badGuys')
 
