@@ -129,7 +129,13 @@ describe('PlayerInfo.vue', () => {
     });
 
     it('button does not display after player clicks it', () => {
-        wrapper = shallowMount(PlayerInfo)
+        wrapper = shallowMount(
+            PlayerInfo,
+            {
+                propsData: {
+                    character: 'NormalGoodGuy'
+                }
+            })
 
         const buttonWrapper = wrapper.find('button')
         expect(buttonWrapper.isVisible()).to.be.true
@@ -139,7 +145,13 @@ describe('PlayerInfo.vue', () => {
     });
 
     it('ready div does not display before player clicks button', () => {
-        wrapper = shallowMount(PlayerInfo)
+        wrapper = shallowMount(
+            PlayerInfo,
+            {
+                propsData: {
+                    character: 'NormalGoodGuy'
+                }
+            })
 
         const readyWrapper = wrapper.find('.ready')
         expect(readyWrapper.isVisible()).to.be.false
@@ -149,9 +161,15 @@ describe('PlayerInfo.vue', () => {
     });
 
     it('should call sendObj correctly when submitted', () => {
-        wrapper = shallowMount(PlayerInfo)
+        wrapper = shallowMount(
+            PlayerInfo,
+            {
+                propsData: {
+                    character: 'NormalGoodGuy'
+                }
+            })
 
-        wrapper.find('button').trigger('click')
+        wrapper.find('.button').trigger('click')
 
         assert.calledWith(WebsocketService.sendObj, match.any,{event: 'PlayerReady'})
     });

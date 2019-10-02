@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div id="toggleModal" v-on:click="toggleModalActive">Toggle Player Information</div>
+        <div id="toggleModalButton" v-on:click="toggleModalActive">Toggle Player Information</div>
     </div>
 </template>
 
@@ -57,23 +57,28 @@
     }
 
     .modal-background {
-        background: #b0912a;
+        background: lightgrey;
     }
 
     .modal {
         height: 25%;
         width: 25%;
+        top: initial;
     }
 
     .is-active {
-position: fixed;
-        top: 37.5%;
-        left: 37.5%;
+        position: fixed;
+        bottom: 40px;
+        width: 100%;
     }
 
-    #toggleModal {
+    #toggleModalButton {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 40px;
+        border: grey .5em solid;
+        background: lightgrey;
         width: 100%;
-        border: #04b004 .5em solid;
-        background: turquoise;
     }
 </style>
