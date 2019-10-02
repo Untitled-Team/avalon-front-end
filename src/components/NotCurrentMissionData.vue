@@ -69,7 +69,7 @@
 }
 
 .passed {
-    background: #6EC0EC;
+    background: #1F8A17;
     color: #F6F3FA;
 }
 

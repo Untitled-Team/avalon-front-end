@@ -193,7 +193,7 @@
     /* margin-right: .75rem; */
     /* margin-top: -2.5rem; */
     height: 100vh;
-    background: #5B585F;
+    background: #848484;
 }
 
 .main {

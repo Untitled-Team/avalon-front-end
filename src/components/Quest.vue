@@ -122,7 +122,7 @@ export default {
     }
 
     .questWrapper.active.notCompleted {
-        background: #5B585F;
+        background: #848484;
     }
 
     .bannerContainer {
@@ -141,7 +141,7 @@ export default {
     }
 
     .activeMissionPassing {
-        background: #6EC0EC;
+        background: #1F8A17;
     }
 
     .activeMissionFailing {
@@ -149,22 +149,22 @@ export default {
     }
 
     .activeMissionIncomplete {
-        background: #5B585F;
+        background: #848484;
     }
 
     .partySize.first {
         border-left: none;
-        border-right: 2px solid #F6F3FA;
+        border-right: 2px solid #B8A66C;
     }
 
     .partySize.middle {
-        border-right: 2px solid #F6F3FA;
-        border-left: 2px solid #F6F3FA;
+        border-right: 2px solid #B8A66C;
+        border-left: 2px solid #B8A66C;
     }
 
     .partySize.last {
         border-right: none;
-        border-left: 2px solid #F6F3FA;
+        border-left: 2px solid #B8A66C;
     }
 
     .overwrite {
@@ -177,7 +177,7 @@ export default {
         width: 100%;
         height: 4px;
         padding: 0px 5%;
-        background: #F6F3FA;
+        background: #B8A66C;
         margin: 0 auto;
     }
 
@@ -185,7 +185,7 @@ export default {
         width: 90%;
         height: 4px;
         padding: 0px 5%;
-        background: #F6F3FA;
+        background: #B8A66C;
         margin: 0 auto;
     }
 
@@ -193,7 +193,7 @@ export default {
         width: 80%;
         height: 4px;
         padding: 0px 10%;
-        background: #F6F3FA;
+        background: #B8A66C;
         margin: 0 auto;
     }
 
@@ -201,7 +201,7 @@ export default {
         width: 60%;
         height: 4px;
         padding: 0px 10%;
-        background: #F6F3FA;
+        background: #B8A66C;
         margin: 0 auto;
     }
 
@@ -209,7 +209,7 @@ export default {
         width: 40%;
         height: 4px;
         padding: 0px 17.5%;
-        background: #F6F3FA;
+        background: #B8A66C;
         margin: 0 auto;
     }
 
@@ -217,7 +217,7 @@ export default {
         width: 5%;
         height: 4px;
         padding: 0px 3%;
-        background: #F6F3FA;
+        background: #B8A66C;
         margin: 0 auto;
     }
 
@@ -248,11 +248,11 @@ export default {
     }
 
     .passing:not(.active) {
-        background: #3468C3;
+        background: #3F6932;
     }
 
     .passing.active {
-        background: #6EC0EC;
+        background: #1F8A17;
     }
 
     .failing:not(.active) {
