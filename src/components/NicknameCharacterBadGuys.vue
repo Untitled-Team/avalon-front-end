@@ -58,10 +58,10 @@
 
     .modal-background {
         background: lightgrey;
+        border-top: grey;
     }
 
     .modal {
-        height: 25%;
         width: 25%;
         top: initial;
     }
