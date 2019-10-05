@@ -2,9 +2,9 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: avalon-front-end-lb
+  name: avalon-front-end-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: avalon-front-end
   ports:
@@ -31,7 +31,7 @@ spec:
         app: avalon-front-end
     spec:
       containers:
-        - name: avalon-back-end
+        - name: avalon-front-end
           image: tbrown1979/avalon-front-end:latest
           ports:
             - containerPort: 80
