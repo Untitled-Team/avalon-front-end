@@ -1,18 +1,19 @@
 <template>
-
     <div id="displayPassFailVotes">
         <div class="modal is-active">
             <div class="modal-background"></div>
             <div class="modal-content container is-centered">
                 <div class="bigText">Quest votes:</div>
-                <div v-for="(passVote, index) in passVotes" :key="index" class="vote pass is-centered"></div>
-                <div v-for="(failVote, index) in failVotes" :key="index" class="vote fail is-centered"></div>
+                <div v-for="(passVote, index) in passVotes" :key="'pass' + index" class="vote pass is-centered"></div>
+                <div v-for="(failVote, index) in failVotes" :key="'fail' + index" class="vote fail is-centered"></div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import WebsocketService from "../services/WebsocketService";
+
     export default {
         name: 'DisplayPassFailVotes',
         props: ["passVotes", "failVotes"],
@@ -20,10 +21,13 @@
             const sleep = (milliseconds) => {
                 return new Promise(resolve => setTimeout(resolve, milliseconds))
             }
+
+            const votesDisplayedMessage = {
+                event: "QuestVotesDisplayed",
+            }
             sleep(5000).then(() => {
-                this.$socket.sendObj({
-                    event: "QuestVotesDisplayed",
-                })
+                console.log('NOTTTT~!')
+                WebsocketService.sendObj(this.$socket, votesDisplayedMessage)
             })
         }
     }

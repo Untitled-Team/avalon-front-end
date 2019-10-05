@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Avalon from "./views/Avalon";
+import Avalon from "./views/Avalon"
 
 Vue.use(Router)
 
