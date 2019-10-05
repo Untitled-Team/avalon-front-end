@@ -45,63 +45,6 @@
     height: 100%;
 }
 
-/* .active { */
-/*     /\*border-top: 4px solid #b0912a;*\/ */
-/*     border-left: 2px solid #F6F3FA; */
-/*     border-right: 2px solid #F6F3FA; */
-/*     /\*border-bottom: 4px solid transparent;*\/ */
-/*     /\*border-bottom-left-radius: 0px;*\/ */
-/*     /\*border-radius: 0px;*\/ */
-/*     /\*background: #5B585F;*\/ */
-/*     color: #F6F3FA; */
-/* } */
-
-/* .active.notCompleted { */
-/*     background: #5B585F; */
-/* } */
-
-/* .quests > .quest:nth-of-type(1) > .active { */
-/*     border: none; */
-/*     border-bottom: none; */
-/*     border-left: none; */
-/*     border-right: 2px solid #F6F3FA; */
-/*     /\*background: #5B585F;*\/ */
-/*     color: #F6F3FA; */
-/* } */
-
-/* .quests > .quest:nth-of-type(5) > .active { */
-/*     border: none; */
-/*     border-left: 2px solid #F6F3FA; */
-/*     border-right: none; */
-/*     /\*background: #5B585F;*\/ */
-/*     color: #F6F3FA; */
-/* } */
-
-/* .quests > .quest > .inactive  > div.biggerText { */
-/*     border-left: 2px solid #F6F3FA; */
-/*     border-right: 2px solid #F6F3FA; */
-/*     /\*background: #343236;*\/ */
-/*     color: #F6F3FA; */
-/* } */
-
-/* .quests > .quest:nth-of-type(1) > .inactive { */
-/*     border: none; */
-/*     border-bottom: 4px solid #F6F3FA; */
-/*     border-left: none; */
-/*     border-right: 2px solid #F6F3FA; */
-/*     /\*background: #343236;*\/ */
-/*     color: #F6F3FA; */
-/* } */
-
-/* .quests > .quest:nth-of-type(5) > .inactive { */
-/*     border: none; */
-/*     border-bottom: 4px solid #F6F3FA; */
-/*     border-left: 2px solid #F6F3FA; */
-/*     border-right: none; */
-/*     /\*background: #343236;*\/ */
-/*     color: #F6F3FA; */
-/* } */
-
 .questWrapper {
     /*position: absolute;*/
     /* top: 50%; */
