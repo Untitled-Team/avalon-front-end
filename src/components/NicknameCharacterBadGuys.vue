@@ -1,16 +1,15 @@
 <template>
     <div id="displayPassFailVotes">
         <div class="modal" :class="{'is-active': modalActive === true}">
-            <div class="modal-background is-centered">
-                <div class="permanentPlayerInfo is-centered">
-                    <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
-                    <div id="character" class="fontSizing">Role: {{ character }}</div>
-                    <div id="badGuys" v-if="!isRegularGoodGuy" class="fontSizing">
-                        Bad guys:
-                        <span v-for="(badGuy, index) in badGuys" :key="index">
+            <div class="modal-background is-centered"></div>
+            <div class="modal-content permanentPlayerInfo is-centered">
+                <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
+                <div id="character" class="fontSizing">Role: {{ character }}</div>
+                <div id="badGuys" v-if="!isRegularGoodGuy" class="fontSizing">
+                    Bad guys:
+                    <span v-for="(badGuy, index) in badGuys" :key="index">
                                 {{badGuy}}
                             </span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -35,7 +34,6 @@
                 return this.$store.getters.getCharacter
             },
             isRegularGoodGuy: function () {
-                console.log(this.$store.getters.getCharacter)
                 return this.$store.getters.getCharacter === 'Good Guy'
             },
         },
@@ -80,5 +78,19 @@
         border: grey .5em solid;
         background: lightgrey;
         width: 100%;
+    }
+
+    @media (min-width: 600px) {
+        #toggleModalButton {
+            width: 85%;
+            left: 7.5%;
+        }
+
+        .is-active {
+            position: fixed;
+            bottom: 40px;
+            width: 85%;
+            left: 7.5%;
+        }
     }
 </style>
