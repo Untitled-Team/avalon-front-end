@@ -6,15 +6,13 @@ import Vue from "vue";
 import PlayerInfo from "../../src/components/PlayerInfo";
 import VueNativeSock from "vue-native-websocket";
 
-import { WebSocket, Server } from 'mock-socket';
+import {WebSocket} from 'mock-socket';
 
 global.WebSocket = WebSocket;
 
 let wrapper
 
-let mockServerURL = 'ws://localhost:8080';
-Vue.use(VueNativeSock, mockServerURL, {});
-const mockServer = new Server(mockServerURL);
+Vue.use(VueNativeSock, 'ws://localhost:8080', {});
 
 
 describe('PlayerInfo.vue', () => {
@@ -143,12 +141,6 @@ describe('PlayerInfo.vue', () => {
     //                 character: 'NormalGoodGuy'
     //             }
     //         })
-    //     mockServer.on('connection', socket => {
-    //         console.log('here')
-    //         // socket.on('PlayerReady', data => {
-    //         //     socket.send({event: "PlayerReadyAcknowledgement"});
-    //         // });
-    //     });
     //
     //     const buttonWrapper = wrapper.find('button')
     //     expect(buttonWrapper.isVisible()).to.be.true
@@ -157,7 +149,7 @@ describe('PlayerInfo.vue', () => {
     //
     //     expect(buttonWrapper.isVisible()).to.be.false
     // });
-    //
+
     // it('ready div does not display before player clicks button', () => {
     //     wrapper = shallowMount(
     //         PlayerInfo,
