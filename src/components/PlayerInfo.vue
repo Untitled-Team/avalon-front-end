@@ -87,13 +87,13 @@
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
+                console.log(msgJSON)
 
                 if (msgJSON.event === 'PlayerReadyAcknowledgement') {
                     this.ready = true
                 }
             }
-        }
-    }
+        }}
 </script>
 
 <style scoped>
