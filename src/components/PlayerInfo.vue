@@ -65,7 +65,7 @@
         props: ["character", "badGuys"],
         methods: {
             confirmReady: function () {
-                this.ready = true
+                console.log('player ready clicked')
                 let confirmReadyObj = {event: 'PlayerReady'};
                 WebsocketService.sendObj(this.$socket, confirmReadyObj);
             }
@@ -82,6 +82,16 @@
             },
             isAssassin: function () {
                 return this.character === "Assassin"
+            }
+        },
+        created() {
+            this.$options.sockets.onmessage = (msg) => {
+                let msgJSON = JSON.parse(msg.data)
+                console.log(msgJSON)
+
+                if (msgJSON.event === 'PlayerReadyAcknowledgement') {
+                    this.ready = true
+                }
             }
         }
     }

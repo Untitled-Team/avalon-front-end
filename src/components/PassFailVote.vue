@@ -40,7 +40,6 @@
         },
         methods: {
             voteToPass: function () {
-                this.playerHasVoted = true
                 let QuestVotePassObj = {
                     event: 'QuestVote',
                     questPassVote: true,
@@ -48,7 +47,6 @@
                 WebsocketService.sendObj(this.$socket, QuestVotePassObj)
             },
             voteToFail: function () {
-                this.playerHasVoted = true
                 let QuestVoteFailObj = {
                     event: 'QuestVote',
                     questPassVote: false,
@@ -61,6 +59,15 @@
                 return this.missionParty.includes(this.$store.getters.getNickname)
             }
         },
+        created() {
+            this.$options.sockets.onmessage = (msg) => {
+                let msgJSON = JSON.parse(msg.data)
+
+                if (msgJSON.event === 'QuestVoteAcknowledgement') {
+                    this.playerHasVoted = true
+                }
+            }
+        }
     }
 </script>
 

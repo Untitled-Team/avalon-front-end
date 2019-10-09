@@ -8,7 +8,7 @@ import 'buefy/dist/buefy.css'
 
 Vue.config.productionTip = false
 
-Vue.use(VueNativeSock, 'ws://avalonga.me:8000/test', {
+Vue.use(VueNativeSock, 'wss://avalonga.me/test', {
     store: store,
     format: 'json',
     reconnection: true,      // (Boolean) whether to reconnect automatically (false)

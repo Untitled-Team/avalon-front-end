@@ -31,7 +31,6 @@
         },
         methods: {
             voteToApprove: function () {
-                this.playerHasVoted = true
                 const partyApproveMessage = {
                     event: 'PartyApprovalVote',
                     partyPassVote: true,
@@ -39,14 +38,22 @@
                 WebsocketService.sendObj(this.$socket, partyApproveMessage)
             },
             voteToDeny: function () {
-                this.playerHasVoted = true
                 const partyDenyMessage = {
                     event: 'PartyApprovalVote',
                     partyPassVote: false,
                 }
                 WebsocketService.sendObj(this.$socket, partyDenyMessage)
             },
-        },
+        },created() {
+            this.$options.sockets.onmessage = (msg) => {
+                let msgJSON = JSON.parse(msg.data)
+                console.log(msgJSON)
+
+                if (msgJSON.event === 'PartyApprovalVoteAcknowledgement') {
+                    this.playerHasVoted = true
+                }
+            }
+        }
     }
 </script>
 

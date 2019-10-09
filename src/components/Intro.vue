@@ -54,7 +54,7 @@
         },
         methods: {
             joinGame: function () {
-                this.$store.commit("setNickname",  this.nickname);
+                this.$store.commit("setNickname", this.nickname);
                 const joinGameMessage = {
                     event: "JoinGame",
                     nickname: this.nickname,
@@ -74,9 +74,11 @@
     };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../styles/variables";
+
     .menu {
-        background: #8b77a7;
+        background: $mainGray;
         padding: 1em;
     }
 
