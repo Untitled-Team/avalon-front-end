@@ -93,7 +93,8 @@
                     this.ready = true
                 }
             }
-        }}
+        }
+    }
 </script>
 
 <style scoped>
