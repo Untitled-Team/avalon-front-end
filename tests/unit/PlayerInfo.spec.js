@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import WebsocketService from '../../src/services/WebsocketService.js'
-import {assert, match, restore, stub} from "sinon";
+import { assert, stub, restore, match} from "sinon";
 import Vue from "vue";
 import PlayerInfo from "../../src/components/PlayerInfo";
 import VueNativeSock from "vue-native-websocket";
@@ -177,6 +177,6 @@ describe('PlayerInfo.vue', () => {
 
         wrapper.find('.button').trigger('click')
 
-        assert.calledWith(WebsocketService.sendObj, match.any, {event: 'PlayerReady'})
+        assert.calledWith(WebsocketService.sendObj, match.any,{event: 'PlayerReady'})
     });
 })

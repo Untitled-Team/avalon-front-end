@@ -41,39 +41,39 @@ describe('PassFailVote.vue', () => {
         })
     })
 
-    it('should display a passButton until player votes', () => {
-        wrapper = shallowMount(
-            PassFailVote,
-            {
-                store,
-                propsData: {
-                    missionParty: ['steve']
-                },
-            })
+    // it('should display a passButton until player votes', () => {
+    //     wrapper = shallowMount(
+    //         PassFailVote,
+    //         {
+    //             store,
+    //             propsData: {
+    //                 missionParty: ['steve']
+    //             },
+    //         })
+    //
+    //     let passButtonWrapper = wrapper.find('#passButton')
+    //     expect(passButtonWrapper.isVisible()).to.be.true
+    //     passButtonWrapper.trigger('click')
+    //
+    //     expect(passButtonWrapper.isVisible()).to.be.false
+    // })
 
-        let passButtonWrapper = wrapper.find('#passButton')
-        expect(passButtonWrapper.isVisible()).to.be.true
-        passButtonWrapper.trigger('click')
-
-        expect(passButtonWrapper.isVisible()).to.be.false
-    })
-
-    it('should display a failButton until player votes', () => {
-        wrapper = shallowMount(
-            PassFailVote,
-            {
-                store,
-                propsData: {
-                    missionParty: ['steve']
-                },
-            })
-
-        let failButtonWrapper = wrapper.find('#failButton')
-        expect(failButtonWrapper.isVisible()).to.be.true
-        failButtonWrapper.trigger('click')
-
-        expect(failButtonWrapper.isVisible()).to.be.false
-    })
+    // it('should display a failButton until player votes', () => {
+    //     wrapper = shallowMount(
+    //         PassFailVote,
+    //         {
+    //             store,
+    //             propsData: {
+    //                 missionParty: ['steve']
+    //             },
+    //         })
+    //
+    //     let failButtonWrapper = wrapper.find('#failButton')
+    //     expect(failButtonWrapper.isVisible()).to.be.true
+    //     failButtonWrapper.trigger('click')
+    //
+    //     expect(failButtonWrapper.isVisible()).to.be.false
+    // })
 
     it('should call sendObj correctly when player votes pass.', () => {
         wrapper = shallowMount(
@@ -134,21 +134,21 @@ describe('PassFailVote.vue', () => {
         expect(waitingWrapper.isVisible()).to.be.false
     })
 
-    it('should not display the ready message before player has voted.', () => {
-        wrapper = shallowMount(
-            PassFailVote,
-            {
-                store,
-                propsData: {
-                    missionParty: ['steve']
-                },
-            })
-
-        const waitingWrapper = wrapper.find('#WaitingOnOthers')
-        wrapper.find('#passButton').trigger('click')
-
-        expect(waitingWrapper.isVisible()).to.be.true
-    })
+    // it('should not display the ready message before player has voted.', () => {
+    //     wrapper = shallowMount(
+    //         PassFailVote,
+    //         {
+    //             store,
+    //             propsData: {
+    //                 missionParty: ['steve']
+    //             },
+    //         })
+    //
+    //     const waitingWrapper = wrapper.find('#WaitingOnOthers')
+    //     wrapper.find('#passButton').trigger('click')
+    //
+    //     expect(waitingWrapper.isVisible()).to.be.true
+    // })
 
     it('should display the ready message before player has voted if they\'re not in the party', () => {
         wrapper = shallowMount(
