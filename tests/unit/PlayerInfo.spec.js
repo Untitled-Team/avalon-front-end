@@ -2,13 +2,20 @@ import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import WebsocketService from '../../src/services/WebsocketService.js'
 import { assert, stub, restore, match} from "sinon";
-import Vuex from "vuex";
 import Vue from "vue";
 import PlayerInfo from "../../src/components/PlayerInfo";
+import VueNativeSock from "vue-native-websocket";
+
+import { WebSocket, Server } from 'mock-socket';
+
+global.WebSocket = WebSocket;
 
 let wrapper
 
-Vue.use(Vuex)
+let mockServerURL = 'ws://localhost:8080';
+Vue.use(VueNativeSock, mockServerURL, {});
+const mockServer = new Server(mockServerURL);
+
 
 describe('PlayerInfo.vue', () => {
     beforeEach(() => {
@@ -128,7 +135,7 @@ describe('PlayerInfo.vue', () => {
         expect(infoWrapper.length).to.equal(1)
     });
 
-    it('button does not display after player clicks it', () => {
+    it('button does not display after player receives server acknowledgement of readiness', () => {
         wrapper = shallowMount(
             PlayerInfo,
             {
@@ -136,10 +143,17 @@ describe('PlayerInfo.vue', () => {
                     character: 'NormalGoodGuy'
                 }
             })
+        mockServer.on('connection', socket => {
+            console.log('here')
+            // socket.on('PlayerReady', data => {
+            //     socket.send({event: "PlayerReadyAcknowledgement"});
+            // });
+        });
 
         const buttonWrapper = wrapper.find('button')
         expect(buttonWrapper.isVisible()).to.be.true
         buttonWrapper.trigger('click')
+
 
         expect(buttonWrapper.isVisible()).to.be.false
     });
