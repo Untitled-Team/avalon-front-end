@@ -38,14 +38,12 @@
 </template>
 
 <script>
-import store from "../store/index.js"
-
 export default {
     name: 'Quest',
     props: ["quest", "missionNumber", "quests"],
     methods: {
         makeActive: function () {
-            store.state.activeMission = this.missionNumber
+            this.$store.state.activeMission = this.missionNumber
         }
     },
     computed: {
@@ -59,10 +57,10 @@ export default {
             return this.quest.pass !== null
         },
         isActive: function () {
-            return this.missionNumber === store.state.activeMission
+            return this.missionNumber === this.$store.state.activeMission
         },
         isCurrent: function () {
-            return this.missionNumber === store.state.currentMission
+            return this.missionNumber === this.$store.state.currentMission
         },
         isFirst: function () {
             return this.missionNumber === 1
@@ -74,13 +72,14 @@ export default {
             return this.missionNumber === 5
         },
         activeMissionPassing: function() {
-            return this.quests[store.state.activeMission - 1].pass === true
+            console.log(this.$store.state.activeMission - 1)
+            return this.quests[this.$store.state.activeMission - 1].pass === true
         },
         activeMissionFailing: function() {
-            return this.quests[store.state.activeMission - 1].pass === false
+            return this.quests[this.$store.state.activeMission - 1].pass === false
         },
         activeMissionIncomplete: function() {
-            return this.quests[store.state.activeMission - 1].pass === null
+            return this.quests[this.$store.state.activeMission - 1].pass === null
         },
 
         // focusedMission: function() {
