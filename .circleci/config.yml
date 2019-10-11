@@ -36,3 +36,16 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+workflows:
+  version: 2
+  build-master:
+    jobs:
+#      - deploy:
+#          filters:
+#            branches:
+#              only: master
+      - build:
+          filters:
+            branches:
+              ignore: master
