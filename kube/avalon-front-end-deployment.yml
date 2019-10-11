@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
         - name: avalon-front-end
-          image: tbrown1979/avalon-front-end:latest
+          image: tbrown1979/avalon-front-end:$COMMIT_SHA1
           ports:
             - containerPort: 80
               name: http
