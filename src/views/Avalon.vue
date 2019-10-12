@@ -5,7 +5,7 @@
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
 
-        <div v-show="!teamHasWon" class="containedWidth">
+        <div v-show="!teamHasWon && !lobbyStep && !stepOne" class="containedWidth">
             <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
@@ -193,14 +193,7 @@
     .containedWidth {
         display: flex;
         flex-flow: column;
-    }
-
-    @media (min-width: 800px) {
-        .containedWidth {
-            display: flex;
-            flex-flow: column;
-            height: 100%;
-        }
+        height: 100%;
     }
 
     .main {
@@ -209,7 +202,6 @@
     }
 
     #currentMissionScreens {
-
         height: 100%;
         background: $current;
     }

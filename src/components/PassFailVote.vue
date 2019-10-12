@@ -1,24 +1,18 @@
 <template>
     <div id="passFailVote">
         <div class="bigText">
-            The players on the mission are
+            Mission Party:
             <span :key="index" v-for="(player, index) in missionParty">
                 <span v-if="index == missionParty.length-1"> and </span>{{player}}<span
                     v-if="!(index == missionParty.length-1 || index == missionParty.length-2)">, </span>
             </span>.
         </div>
 
-        <div id="vote" v-show="!playerHasVoted && playerVoting">
-            <div class="someMargin">
-                <button id="passButton" class="button is-small someMargin" v-on:click="voteToPass">
-                    Pass Quest
-                </button>
-            </div>
-            <div class="someMargin">
-                <button id="failButton" class="button is-small someMargin" v-on:click="voteToFail">
-                    Fail Quest
-                </button>
-            </div>
+        <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
+
+        <div v-show="!playerHasVoted && playerVoting">
+            <img class="passButton" src="@/assets/passTextBig.png" v-on:click="voteToPass"/>
+            <img class="failButton" src="@/assets/failTextBig.png" v-on:click="voteToFail"/>
         </div>
 
         <div id="WaitingOnOthers" v-show="playerHasVoted || !playerVoting">
@@ -74,5 +68,23 @@
 <style scoped>
     .someMargin {
         margin: .5em 0px;
+    }
+
+    .crossedSwords {
+        width: 50%;
+    }
+
+    .passButton {
+        top: -70%;
+        width: 25%;
+        margin-right: 10%;
+        cursor: pointer;
+    }
+
+    .failButton {
+        top: -70%;
+        width: 25%;
+        margin-left: 10%;
+        cursor: pointer;
     }
 </style>
