@@ -57,9 +57,13 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../styles/variables";
+
     #proposedPartyVoteMenu {
         padding: 15px;
+        height: 100%;
+        background: $current;
     }
 
     .someMargin {
