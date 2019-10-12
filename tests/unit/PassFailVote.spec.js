@@ -89,7 +89,7 @@ describe('PassFailVote.vue', () => {
             questPassVote: true,
         }
 
-        wrapper.find('#passButton').trigger('click')
+        wrapper.find('.passButton').trigger('click')
 
         assert.calledWith(
             WebsocketService.sendObj,
@@ -111,7 +111,7 @@ describe('PassFailVote.vue', () => {
                 questPassVote: false,
             }
 
-            wrapper.find('#failButton').trigger('click')
+            wrapper.find('.failButton').trigger('click')
 
             assert.calledWith(
                 WebsocketService.sendObj,
