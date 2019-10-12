@@ -90,4 +90,10 @@
         left: 20%;
         right: 20%;
     }
+
+
+    input[type=text] {
+        border: floralwhite 5px solid;
+        font-family: inherit;
+    }
 </style>
