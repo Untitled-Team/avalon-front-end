@@ -1,32 +1,25 @@
 <template>
-<div id="lobby-container" class="container is-paddingless">
-  <div id="lobby" class="container is-paddingless">
+    <div id="lobby" class="container is-paddingless">
 
-    <div id="lobby-header" class="container">
-      <h3 class="title">
-        Waiting for other players...
-      </h3>
+        <img src="@/assets/castleBigger.png">
+        <img class="title" src="@/assets/titleBig.png">
+
+        <div class="lobbyData">
+            <p class="roomId">{{ roomId }} - Lobby</p>
+            <h3 id="totalPlayers">Total Players: {{ players.length }}</h3>
+            <div class="lobbyPlayer" :key="index" v-for="(player, index) in players">
+                {{ player }}
+            </div>
+
+            <form id="lobbyReadyForm" @submit.prevent="startGame">
+                <input type="submit" class="button is-small" value="Everyone's in!"/>
+            </form>
+
+            <div id="warning" v-if="!correctPlayerNumbers">
+                Avalon requires between 5 and 10 players.
+            </div>
+        </div>
     </div>
-
-    <div class="section">
-      <h1 class="somePadding">Begin the game once everyone is in the lobby</h1>
-      <h2 class="somePadding">Once the game has begun new players cannot join</h2>
-      <h1 id="roomId" class="somePadding bold">Room Number: {{ roomId }}</h1>
-      <h3 id="totalPlayers" class="somePadding">Total Players: {{ players.length }}</h3>
-      <div class="lobbyPlayer somePadding" :key="index" v-for="(player, index) in players">
-        {{ player }}
-      </div>
-
-      <form id="lobbyReadyForm" @submit.prevent="startGame">
-        <input type="submit" class="button is-small" value="Everyone's in!"/>
-      </form>
-
-      <div id="warning" v-if="!correctPlayerNumbers">
-        Avalon requires between 5 and 10 players.
-      </div>
-    </div>
-  </div>
-</div>
 </template>
 
 <script>
@@ -51,43 +44,40 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../styles/variables";
 
-  #lobby-header {
-    padding: 10px;
-  }
+    #lobby {
+        background: $water;
+        height: 100%;
+      color: whitesmoke;
+    }
 
-  /*
-  #lobby-container {
-    background-color: #189371;
-  }
-  */
+    .field {
+        padding: 3px;
+    }
 
-  #lobby {
-      background-color: #189338;
-      max-width: 500px;
-  }
+    .bigText {
+        font-size: 4em;
+    }
 
-  h1 {
-      height: 20vh;
-      font-size: 2em;
-  }
+    .title {
+        position: absolute;
+        top: 7%;
+        width: 60%;
+        left: 20%;
+        right: 20%;
+    }
 
-  h2 {
-      font-size: 1.75em;
-  }
+    .bold {
+        font-weight: bold;
+    }
 
-  h3 {
-      font-size: 1.5em;
-      letter-spacing: -.06rem;
-      word-spacing: -1px;
-  }
+    .lobbyData {
+        top: -10%;
+    }
 
-  .somePadding {
-      padding: .5em;
-  }
-
-  .bold {
-      font-weight: bold;
-  }
+    .roomId {
+      font-size: 1.3em;
+    }
 </style>
