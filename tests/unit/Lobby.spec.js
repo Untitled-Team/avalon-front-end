@@ -11,7 +11,7 @@ describe('Lobby.vue', () => {
         restore()
     })
 
-    it('displays the number of players in the lobby', () => {
+    it('displays the lobby ID', () => {
         let expectedRoomId = "690 blaze it";
         wrapper = shallowMount(
             Lobby,
@@ -23,9 +23,9 @@ describe('Lobby.vue', () => {
                     }
             },
         )
-        let totalPlayersWrapper = wrapper.find('#roomId')
+        let totalPlayersWrapper = wrapper.find('.roomId')
 
-        expect(totalPlayersWrapper.text()).to.equal(`Room Number: ${expectedRoomId}`)
+        expect(totalPlayersWrapper.text()).to.contain(`${expectedRoomId}`)
     })
 
     it('displays the number of players in the lobby', () => {
