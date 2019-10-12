@@ -46,6 +46,9 @@
             isFailed: function () {
                 return this.activeQuestData.pass === false
             },
+            isCurrent: function () {
+                return this
+            },
             questHasData: function () {
                 return this.activeQuestData.pass !== null
             },
@@ -57,7 +60,9 @@
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../styles/variables";
+
     #notCurrentMissionData {
         padding: 20px;
         height: 100%;
@@ -69,12 +74,12 @@
     }
 
     .passed {
-        background: #1F8A17;
+        background: $successful;
         color: #F6F3FA;
     }
 
     .failed {
-        background: #E94646;
+        background: $failed;
         color: #F6F3FA;
     }
 </style>

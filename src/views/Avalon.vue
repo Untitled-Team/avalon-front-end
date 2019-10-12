@@ -1,33 +1,30 @@
 <template>
     <div class="main">
-        <div class="container is-paddingless">
-            <div class="containedWidth">
-                <Intro v-if="stepOne"/>
-                <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
-                <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
 
-                <div v-show="!teamHasWon">
-                    <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
+        <Intro v-if="stepOne"/>
+        <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
+        <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
 
-                    <div v-show="questInfoDisplay" class="cssWrapper">
-                        <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
-                            <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
-                                                :currentMissionPartySize="currentMissionPartySize"/>
-                            <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"
-                                                   :missionLeader="missionLeader"/>
-                            <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
-                            <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
-                                                        :failVotes="failVotes"/>
-                            <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
-                        </div>
+        <div v-show="!teamHasWon" class="containedWidth">
+            <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
-                        <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
-                        <NicknameCharacterBadGuys :bad-guys="badGuys" v-if="questInfoDisplay"/>
-                    </div>
+            <div v-show="questInfoDisplay" class="cssWrapper">
+                <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
+                    <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
+                                        :currentMissionPartySize="currentMissionPartySize"/>
+                    <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"
+                                           :missionLeader="missionLeader"/>
+                    <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
+                    <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
+                                                :failVotes="failVotes"/>
+                    <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
                 </div>
-                <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
+
+                <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
+                <NicknameCharacterBadGuys :bad-guys="badGuys" v-if="questInfoDisplay"/>
             </div>
         </div>
+        <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
     </div>
 </template>
 
@@ -184,20 +181,29 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+    @import "../styles/variables";
     .cssWrapper {
-        /* border-bottom: #b0912a 5px solid; */
-        /* border-left: #b0912a 2.5px solid; */
-        /* border-right: #b0912a 2.5px solid; */
-        /* padding: 1.5rem 3rem; */
-        /* margin-left: .75rem; */
-        /* margin-right: .75rem; */
-        /* margin-top: -2.5rem; */
-        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
         background: #848484;
     }
 
+    .containedWidth {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+    }
+
     .main {
+        height: 100vh;
         text-align: center
+    }
+
+    #currentMissionScreens {
+
+        height: 100%;
+        background: $current;
     }
 </style>

@@ -58,7 +58,9 @@
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../styles/variables";
+
     label {
         width: 20rem;
         cursor: pointer;
@@ -67,16 +69,10 @@
         margin: auto .2em;
         border: .5px ridge #3d3c5c;
         border-radius: 12px;
-        /* box-shadow: 3px 3px #3d3c5c; */
     }
 
     .selected {
         background: #b0912a;
-    }
-
-    #proposeMissionMenu {
-        padding: 0px 10px 10px 10px;
-        margin: 0px 10px 10px 10px;
     }
 
     div {
