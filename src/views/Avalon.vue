@@ -193,7 +193,14 @@
     .containedWidth {
         display: flex;
         flex-flow: column;
-        height: 100%;
+    }
+
+    @media (min-width: 800px) {
+        .containedWidth {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
     }
 
     .main {

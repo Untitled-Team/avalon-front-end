@@ -26,14 +26,6 @@ describe('Intro.vue', () => {
         restore()
     })
 
-    it('has a welcome to avalon message', () => {
-        wrapper = shallowMount(Intro)
-
-        let expectedHeader = "Welcome to Avalon!"
-
-        expect(wrapper.text()).to.include(expectedHeader)
-    })
-
     describe('join game menu', () => {
         beforeEach(() => {
             stub(WebsocketService, 'sendObj')
