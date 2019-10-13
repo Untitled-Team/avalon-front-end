@@ -2,7 +2,8 @@
     <div id="playerInfo">
         <div v-if="isGood">
             <div class="card-image">
-                <img src="@/assets/goodGuyBig.png">
+                <img class="cardBackground" src="@/assets/merlinCardBig.png">
+                <img class="cardPicture" src="@/assets/goodGuyBig.png">
             </div>
             <div class="info">
                 <p>You're a regular good guy!</p>
@@ -14,7 +15,8 @@
 
         <div v-if="isBad">
             <div class="card-image">
-                <img src="@/assets/badGuyBig.png">
+                <img class="cardBackground" src="@/assets/assassinCardBig.png">
+                <img class="cardPicture" src="@/assets/badGuyBig.png">
             </div>
             <div class="info">
                 <p>You're a regular bad guy!</p>
@@ -27,12 +29,9 @@
         <div v-if="isMerlin">
             <div class="card-image">
                 <img class="cardBackground" src="@/assets/merlinCardBig.png">
-                <img class="cardRole" src="@/assets/merlinBig.png">
+                <img class="cardPicture" src="@/assets/merlinBig.png">
             </div>
-            <div class="info">
-                <p>You're Merlin!</p>
-            </div>
-            <p>The bad guys are: </p>
+            <p>Allies: </p>
             <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
             <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
