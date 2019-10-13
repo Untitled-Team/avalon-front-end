@@ -93,7 +93,8 @@
 
 
     input[type=text] {
-        border: floralwhite 5px solid;
+        border: white 5px solid;
         font-family: inherit;
+        font-size: 16px;
     }
 </style>
