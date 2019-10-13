@@ -1,8 +1,8 @@
 <template>
     <div id="playerInfo">
-        <div class="card good" v-if="isGood">
+        <div v-if="isGood">
             <div class="card-image">
-                <img src="@/assets/goodGuy.jpg">
+                <img src="@/assets/goodGuyBig.png">
             </div>
             <div class="info">
                 <p>You're a regular good guy!</p>
@@ -12,9 +12,9 @@
             <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
-        <div class="card bad" v-if="isBad">
+        <div v-if="isBad">
             <div class="card-image">
-                <img src="@/assets/badGuy.jpg">
+                <img src="@/assets/badGuyBig.png">
             </div>
             <div class="info">
                 <p>You're a regular bad guy!</p>
@@ -24,9 +24,10 @@
             <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
-        <div class="card merlin" v-if="isMerlin">
+        <div v-if="isMerlin">
             <div class="card-image">
-                <img src="@/assets/merlin.jpg">
+                <img class="cardBackground" src="@/assets/merlinCardBig.png">
+                <img class="cardRole" src="@/assets/merlinBig.png">
             </div>
             <div class="info">
                 <p>You're Merlin!</p>
@@ -36,16 +37,17 @@
             <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
-        <div class="card assassin" v-if="isAssassin">
+        <div v-if="isAssassin">
             <div class="card-image">
-                <img src="@/assets/assassin.jpg">
+                <img class="cardBackground" src="@/assets/assassinCardBig.png">
+                <img class="cardText" src="@/assets/assassinTextBig.png">
+                <img class="cardPicture" src="@/assets/assassinBig.png">
             </div>
-            <div class="info">
-                <p>You're the assassin!</p>
+            <div class="badGuysText">
+                <p>Allies: </p>
+                <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
             </div>
-            <p>The bad guys are: </p>
-            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
         <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
@@ -98,38 +100,8 @@
 </script>
 
 <style scoped>
-    p {
-        padding: 1em;
-    }
-
     #playerInfo {
         text-align: center;
-        padding: 3%;
-    }
-
-    .card {
-        color: white;
-        margin: auto;
-        padding: 35px;
-        display: inline-block;
-        width: 100%;
-    }
-
-    .good {
-        background: lightblue;
-        color: black;
-    }
-
-    .bad {
-        background: tomato;
-    }
-
-    .merlin {
-        background: mediumblue;
-    }
-
-    .assassin {
-        background: darkred;
     }
 
     .ready {
@@ -137,5 +109,31 @@
         background-color: seagreen;
         color: sandybrown;
         padding: 35px;
+    }
+
+    .cardText {
+        width: 65%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        left: 17.5%;
+        right: 17.5%;
+        top: 15%;
+    }
+
+    .cardPicture {
+        width: 95%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        left: 1.5%;
+        right: 3.5%;
+        top: -4%;
+    }
+
+    .cardBackground {
+        width: 100%;
+        height: auto;
+        margin: auto;
     }
 </style>
