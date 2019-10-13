@@ -30,10 +30,9 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.find('.info')
+        const infoWrapper = wrapper.findAll('.good')
 
-        expect(infoWrapper.text()).to.contain('You\'re a regular good guy!')
-    });
+        expect(infoWrapper.length).to.equal(1)    });
 
     it('should display bad guy info when character is NormalBadGuy', () => {
         wrapper = shallowMount(
@@ -44,10 +43,9 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.find('.info')
+        const infoWrapper = wrapper.findAll('.bad')
 
-        expect(infoWrapper.text()).to.contain('You\'re a regular bad guy!')
-    });
+        expect(infoWrapper.length).to.equal(1)    });
 
     it('should display merlin info when character is Merlin', () => {
         wrapper = shallowMount(
@@ -58,9 +56,9 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.find('.info')
+        const infoWrapper = wrapper.findAll('.merlin')
 
-        expect(infoWrapper.text()).to.contain('You\'re Merlin!')
+        expect(infoWrapper.length).to.equal(1)
     })
 
     it('should display assassin info when character is Assassin', () => {
@@ -72,10 +70,9 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.find('.info')
+        const infoWrapper = wrapper.findAll('.assassin')
 
-        expect(infoWrapper.text()).to.contain('You\'re the assassin')
-    });
+        expect(infoWrapper.length).to.equal(1)    });
 
     it('should not display other character cards when character is NormalGoodGuy', () => {
         wrapper = shallowMount(
@@ -86,7 +83,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.info')
+        const infoWrapper = wrapper.findAll('.card')
 
         expect(infoWrapper.length).to.equal(1)
     });
@@ -100,7 +97,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.info')
+        const infoWrapper = wrapper.findAll('.card')
 
         expect(infoWrapper.length).to.equal(1)
     });
@@ -114,7 +111,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.info')
+        const infoWrapper = wrapper.findAll('.card')
 
         expect(infoWrapper.length).to.equal(1)
     });
@@ -128,7 +125,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.info')
+        const infoWrapper = wrapper.findAll('.card')
 
         expect(infoWrapper.length).to.equal(1)
     });

@@ -1,43 +1,34 @@
 <template>
     <div id="playerInfo">
-        <div v-if="isGood">
-            <div class="card-image">
-                <img src="@/assets/goodGuyBig.png">
-            </div>
-            <div class="info">
-                <p>You're a regular good guy!</p>
-                <p>Keep reading this for a second so it's not obvious.</p>
-                <p>More text</p>
-            </div>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
-        </div>
-
-        <div v-if="isBad">
-            <div class="card-image">
-                <img src="@/assets/badGuyBig.png">
-            </div>
-            <div class="info">
-                <p>You're a regular bad guy!</p>
-            </div>
-            <p>The bad guys are: </p>
-            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
-        </div>
-
-        <div v-if="isMerlin">
+        <div class="card good" v-if="isGood">
             <div class="card-image">
                 <img class="cardBackground" src="@/assets/merlinCardBig.png">
-                <img class="cardRole" src="@/assets/merlinBig.png">
+                <img class="cardPicture" src="@/assets/goodGuyBig.png">
             </div>
-            <div class="info">
-                <p>You're Merlin!</p>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+        </div>
+
+        <div class="card bad" v-if="isBad">
+            <div class="card-image">
+                <img class="cardBackground" src="@/assets/assassinCardBig.png">
+                <img class="cardPicture" src="@/assets/badGuyBig.png">
             </div>
             <p>The bad guys are: </p>
             <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
             <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
-        <div v-if="isAssassin">
+        <div class="card merlin" v-if="isMerlin">
+            <div class="card-image">
+                <img class="cardBackground" src="@/assets/merlinCardBig.png">
+                <img class="cardPicture" src="@/assets/merlinBig.png">
+            </div>
+            <p>Allies: </p>
+            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+        </div>
+
+        <div class="card assassin" v-if="isAssassin">
             <div class="card-image">
                 <img class="cardBackground" src="@/assets/assassinCardBig.png">
                 <img class="cardText" src="@/assets/assassinTextBig.png">
