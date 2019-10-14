@@ -1,5 +1,5 @@
 <template>
-    <div id="lobby" class="container is-paddingless">
+    <div id="lobby">
 
         <img src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
@@ -50,7 +50,10 @@
     #lobby {
         background: $water;
         height: 100%;
-      color: whitesmoke;
+        color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
     }
 
     .field {

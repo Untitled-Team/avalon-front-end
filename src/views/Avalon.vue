@@ -9,7 +9,7 @@
             <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
-                <div v-show="!activeMissionNotCurrent" id="currentMissionScreens">
+                <div v-show="!activeMissionNotCurrent" id="currentMissionScreens" class="currentMissions">
                     <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
                                         :currentMissionPartySize="currentMissionPartySize"/>
                     <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"
@@ -197,12 +197,16 @@
     }
 
     .main {
-        height: 100vh;
+        display: flex;
+        flex-flow: column;
+        height: 100%;
         text-align: center
     }
 
-    #currentMissionScreens {
-        height: 100%;
+    .currentMissions {
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
         background: $current;
     }
 </style>

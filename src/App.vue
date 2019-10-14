@@ -1,20 +1,24 @@
 <template>
     <div id="app">
-        <head>
-            <!DOCTYPE html>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-        </head>
-        <Avalon/>
+        <vue100vh :css="{display: 'flex',flexDirection: 'column',height: '100rvh'}">
+            <head>
+                <!DOCTYPE html>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            </head>
+            <Avalon/>
+        </vue100vh>
     </div>
 </template>
 
 <script>
+    import vue100vh from "./vue100vh/vue100vh"
     import Avalon from "./views/Avalon"
 
     export default {
         name: "App",
         components: {
-            Avalon
+            Avalon,
+            vue100vh
         },
         actions: {
             connect: function () {
@@ -30,7 +34,6 @@
 }
 
 #app {
-    height: 100vh;
     background-color: #5B585F;
     font: bold 8px Fairfax, Fairfax;
         -webkit-font-smoothing: antialiased;
