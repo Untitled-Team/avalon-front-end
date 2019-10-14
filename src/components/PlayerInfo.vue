@@ -2,7 +2,7 @@
     <div id="playerInfo">
         <div class="card good" v-if="isGood">
             <div class="card-image">
-                <img class="cardBackground" src="@/assets/merlinCardBig.png">
+                <img class="cardBackground" src="@/assets/goodGuyCardBig.png">
                 <img class="cardPicture" src="@/assets/goodGuyBig.png">
             </div>
             <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
@@ -10,7 +10,7 @@
 
         <div class="card bad" v-if="isBad">
             <div class="card-image">
-                <img class="cardBackground" src="@/assets/assassinCardBig.png">
+                <img class="cardBackground" src="@/assets/badGuyCardBig.png">
                 <img class="cardPicture" src="@/assets/badGuyBig.png">
             </div>
             <div class="badGuysText">
