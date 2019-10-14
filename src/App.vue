@@ -33,6 +33,12 @@
     src: url("./assets/Fairfax.ttf");
 }
 
+html,
+body {
+    position: fixed;
+    overflow: hidden;
+}
+
 #app {
     background-color: #5B585F;
     font: bold 8px Fairfax, Fairfax;
