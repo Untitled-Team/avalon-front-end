@@ -1,35 +1,33 @@
 <template>
     <div class="intro">
-        <div class="columns is-mobile">
-            <div class="column is-full">
-                <img src="@/assets/castleBigger.png">
-                <img class="title" src="@/assets/titleBig.png">
-                <form id="joinGameForm" @submit.prevent="joinGame">
-                    <div class="field">
-                        <input id="joinGameNickname" v-model="nickname" type="text"
-                               placeholder="Player Nickname..." required/>
-                    </div>
-                    <div class="field">
-                        <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
-                               required/>
-                    </div>
-                    <div class="field">
-                        <input id="joinGameSubmit" type="submit" class="buttonInput button is-small"
-                               value="Join Existing Game"/>
-                    </div>
-                </form>
-                <br>
-                <form id="createGameForm" @submit.prevent="createGame">
-                    <div class="field">
-                        <input id="createGameNickname" v-model="nickname" type="text"
-                               placeholder="Player Nickname..." required/>
-                    </div>
-                    <div class="field">
-                        <input id="createGameSubmit" type="submit" class="buttonInput button is-small"
-                               value="Create a New Game"/>
-                    </div>
-                </form>
-            </div>
+        <div >
+            <img src="@/assets/castleBigger.png">
+            <img class="title" src="@/assets/titleBig.png">
+            <form id="joinGameForm" @submit.prevent="joinGame">
+                <div class="field">
+                    <input id="joinGameNickname" v-model="nickname" type="text"
+                           placeholder="Player Nickname..." required/>
+                </div>
+                <div class="field">
+                    <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
+                           required/>
+                </div>
+                <div class="field">
+                    <input id="joinGameSubmit" type="submit" class="buttonInput button is-small"
+                           value="Join Existing Game"/>
+                </div>
+            </form>
+            <br>
+            <form id="createGameForm" @submit.prevent="createGame">
+                <div class="field">
+                    <input id="createGameNickname" v-model="nickname" type="text"
+                           placeholder="Player Nickname..." required/>
+                </div>
+                <div class="field">
+                    <input id="createGameSubmit" type="submit" class="buttonInput button is-small"
+                           value="Create a New Game"/>
+                </div>
+            </form>
         </div>
     </div>
 </template>
@@ -73,6 +71,9 @@
     .intro {
         background: $water;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
     }
 
     .field {
