@@ -13,8 +13,12 @@
                 <img class="cardBackground" src="@/assets/assassinCardBig.png">
                 <img class="cardPicture" src="@/assets/badGuyBig.png">
             </div>
-            <p>The bad guys are: </p>
-            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <div class="badGuysText">
+                <p class="allies">Allies</p>
+                <div class="flexTest">
+                    <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                </div>
+            </div>
             <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
@@ -23,8 +27,12 @@
                 <img class="cardBackground" src="@/assets/merlinCardBig.png">
                 <img class="cardPicture" src="@/assets/merlinBig.png">
             </div>
-            <p>Allies: </p>
-            <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <div class="badGuysText">
+                <p class="allies">Enemies</p>
+                <div class="flexTest">
+                    <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                </div>
+            </div>
             <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
@@ -35,10 +43,12 @@
                 <img class="cardPicture" src="@/assets/assassinBig.png">
             </div>
             <div class="badGuysText">
-                <p>Allies: </p>
-                <p :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
-                <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+                <p class="allies">Allies</p>
+                <div class="flexTest">
+                    <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                </div>
             </div>
+            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
         <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
@@ -126,5 +136,31 @@
         width: 100%;
         height: auto;
         margin: auto;
+    }
+
+    .badGuysText {
+        color: white;
+        position: absolute;
+        top: 73%;
+        font-size: 3em;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        width: 35%;
+    }
+
+    .flexTest {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .badGuyName {
+        flex: 0 50%;
+    }
+
+    .allies {
+        text-decoration: underline;
     }
 </style>
