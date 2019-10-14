@@ -5,9 +5,9 @@
         <img class="title" src="@/assets/titleBig.png">
 
         <div class="lobbyData">
-            <p class="roomId">{{ roomId }} - Lobby</p>
-            <h3 id="totalPlayers">Total Players: {{ players.length }}</h3>
-            <div class="lobbyPlayer" :key="index" v-for="(player, index) in players">
+            <p class="roomId is-size-3-mobile">{{ roomId }} - Lobby</p>
+            <h3 id="totalPlayers" class="is-size-4-mobile">Total Players: {{ players.length }}</h3>
+            <div class="lobbyPlayer is-size-5-mobile" :key="index" v-for="(player, index) in players">
                 {{ player }}
             </div>
 
@@ -15,7 +15,7 @@
                 <input type="submit" class="button is-small" value="Everyone's in!"/>
             </form>
 
-            <div id="warning" v-if="!correctPlayerNumbers">
+            <div id="warning" class="is-size-6-mobile" v-if="!correctPlayerNumbers">
                 Avalon requires between 5 and 10 players.
             </div>
         </div>

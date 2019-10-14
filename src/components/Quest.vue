@@ -101,6 +101,11 @@ export default {
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .questWrapper {
+        -webkit-tap-highlight-color:transparent;
+        outline-style:none;
+    }
+
     .currentMissionActive {
         background: $current;
     }

@@ -62,7 +62,9 @@
 
     #notCurrentMissionData {
         padding: 20px;
-        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
     }
 
     .partyVote {
