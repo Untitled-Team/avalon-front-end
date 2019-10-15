@@ -17,7 +17,6 @@
                            value="Join Existing Game"/>
                 </div>
             </form>
-<!--            <br>-->
             <form id="createGameForm" @submit.prevent="createGame">
                 <div class="field">
                     <input id="createGameNickname" v-model="nickname" type="text"
