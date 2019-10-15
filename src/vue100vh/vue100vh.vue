@@ -18,6 +18,9 @@ export default {
 
     window.addEventListener('resize', this.updateStyle);
 
+    document.addEventListener('touchmove', function (event) {
+      event.preventDefault();
+    }, false);
     // window.addEventListener('scroll', function()  {
     //   // this.updateStyle();
     //
@@ -31,14 +34,23 @@ export default {
     //   //   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     //   // }
     // });
+    // document.addEventListener('touchmove', function(event) {
+    //   event = event.originalEvent || event;
+    //   if (event.scale !== 1) {
+    //     event.preventDefault();
+    //   }
+    // }, false);
 
     document.addEventListener('gesturestart', function (e) {
       e.preventDefault();
-    });
+    }, {passive: false});
   },
   destroyed () {
     window.removeEventListener('resize', this.updateStyle);
     window.removeEventListener('gesturestart', function (event) {
+      event.preventDefault();
+    }, false);
+    window.removeEventListener('touchmove', function (event) {
       event.preventDefault();
     }, false);
   },
