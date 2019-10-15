@@ -17,7 +17,7 @@
                            value="Join Existing Game"/>
                 </div>
             </form>
-            <br>
+<!--            <br>-->
             <form id="createGameForm" @submit.prevent="createGame">
                 <div class="field">
                     <input id="createGameNickname" v-model="nickname" type="text"
@@ -92,10 +92,16 @@
         right: 20%;
     }
 
+    #joinGameForm {
+        margin-bottom: 40px;
+    }
 
     input[type=text] {
-        border: white 5px solid;
+        border-radius: 0;
+        -webkit-appearance: none;
+        padding-top: 6px;
+        border: white 1px solid;
         font-family: inherit;
-        font-size: 16px;
+        font-size: 18px;
     }
 </style>
