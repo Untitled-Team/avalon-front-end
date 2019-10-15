@@ -16,16 +16,26 @@ export default {
   mounted () {
     this.updateStyle();
 
-    // window.addEventListener('resize', function() {
-    //   console.log(window.innerHeight);
-    //   this.updateStyle
-    // });
+    window.addEventListener('resize', this.updateStyle);
+
+    document.addEventListener('touchmove', function (event) {
+      event.preventDefault();
+    }, false);
+    // window.addEventListener('scroll', function()  {
+    //   // this.updateStyle();
+// >>>>>>> 98f4af1db9ea2fef279bfe1e471b6781167ff3aa
     //
     //
     // document.addEventListener('resize', function() {
     //   console.log(window.innerHeight);
     //   this.updateStyle
     // });
+    // document.addEventListener('touchmove', function(event) {
+    //   event = event.originalEvent || event;
+    //   if (event.scale !== 1) {
+    //     event.preventDefault();
+    //   }
+    // }, false);
 
     // document.addEventListener('gesturestart', function (e) {
     //   e.preventDefault();
@@ -38,6 +48,7 @@ export default {
     document.addEventListener('touchmove', _.debounce(function(e) {
       console.log("TOUCHMOVE");
       e.preventDefault();
+// <<<<<<< HEAD
     }, 200, {leading: false, trailing: true}));
 
 
@@ -71,10 +82,16 @@ export default {
     //   console.log("GESTUREEND");
     //   e.preventDefault();
     // }, false);
+// =======
+//     }, {passive: false});
+// >>>>>>> 98f4af1db9ea2fef279bfe1e471b6781167ff3aa
   },
   destroyed () {
     window.removeEventListener('resize', this.updateStyle);
     window.removeEventListener('gesturestart', function (event) {
+      event.preventDefault();
+    }, false);
+    window.removeEventListener('touchmove', function (event) {
       event.preventDefault();
     }, false);
   },
