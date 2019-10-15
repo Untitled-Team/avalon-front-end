@@ -12,6 +12,7 @@
     "buefy": "^0.8.3",
     "core-js": "^2.6.5",
     "jest-get-type": "^22.4.3",
+    "lodash": "^4.17.15",
     "sinon": "^7.4.2",
     "vue": "^2.6.10",
     "vue-native-websocket": "^2.0.11",

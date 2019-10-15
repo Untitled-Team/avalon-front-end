@@ -16,25 +16,61 @@ export default {
   mounted () {
     this.updateStyle();
 
-    window.addEventListener('resize', this.updateStyle);
-
-    // window.addEventListener('scroll', function()  {
-    //   // this.updateStyle();
+    // window.addEventListener('resize', function() {
+    //   console.log(window.innerHeight);
+    //   this.updateStyle
+    // });
     //
-    //   if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight - 2) {
-    //     document.body.scrollTop = 0; // For Safari
-    //     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    //   }
     //
-    //   // if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-    //   //   document.body.scrollTop = 0; // For Safari
-    //   //   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    //   // }
+    // document.addEventListener('resize', function() {
+    //   console.log(window.innerHeight);
+    //   this.updateStyle
     // });
 
-    document.addEventListener('gesturestart', function (e) {
+    // document.addEventListener('gesturestart', function (e) {
+    //   e.preventDefault();
+    // });
+    //
+    // var drawDebouncedEvent = _.debounce(function(div){
+    //   debounceColor = globalColor;
+    // }, frequency*4, {leading:false, trailing:true});
+
+    document.addEventListener('touchmove', _.debounce(function(e) {
+      console.log("TOUCHMOVE");
       e.preventDefault();
-    });
+    }, 200, {leading: false, trailing: true}));
+
+
+    // document.addEventListener('touchmove', function(event) {
+    //   event = event.originalEvent || event;
+    //   if (event.scale !== 1) {
+    //     console.log("HERE");
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //   }
+    //   console.log("HERE - " + event.isDefaultPrevented);
+    // }, { passive: false });
+    //
+    // document.addEventListener('gesturestart', function (e) {
+    //   console.log("GESTURE");
+    //   if(e.preventDefault){
+    //     e.preventDefault();
+    //   }else{
+    //     e.returnValue = false;
+    //   }
+    //   // e.stopPropagation();
+    //   return false;
+    // }, false);
+
+    // document.addEventListener('gesturemove', function (e) {
+    //   console.log("GESTURE MOVE");
+    //   e.preventDefault();
+    // }, false);
+    //
+    // document.addEventListener('gestureend', function (e) {
+    //   console.log("GESTUREEND");
+    //   e.preventDefault();
+    // }, false);
   },
   destroyed () {
     window.removeEventListener('resize', this.updateStyle);
