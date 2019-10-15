@@ -5,18 +5,23 @@
         <img class="title" src="@/assets/titleBig.png">
 
         <div class="lobbyData">
-            <p class="roomId is-size-3-mobile">{{ roomId }} - Lobby</p>
-            <h3 id="totalPlayers" class="is-size-4-mobile">Total Players: {{ players.length }}</h3>
-            <div class="lobbyPlayer is-size-5-mobile" :key="index" v-for="(player, index) in players">
-                {{ player }}
+            <div>
+                <p class="roomId is-size-4-mobile">Waiting for players...</p>
+                <p class="roomId is-size-5-mobile">Access code: {{ roomId }}</p>
+            </div>
+<!--            <h3 id="totalPlayers" class="is-size-4-mobile">Total Players: {{ players.length }}</h3>-->
+            <div class="players">
+                <div class="lobbyPlayer is-size-5-mobile is-size-6-desktop" :key="index" v-for="(player, index) in players">
+                    {{ player }}
+                </div>
             </div>
 
             <form id="lobbyReadyForm" @submit.prevent="startGame">
-                <input type="submit" class="button is-small" value="Everyone's in!"/>
+                <input type="submit" class="startButton button is-small" value="Start Game"/>
             </form>
 
-            <div id="warning" class="is-size-6-mobile" v-if="!correctPlayerNumbers">
-                Avalon requires between 5 and 10 players.
+            <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
+                5 - 10 players required
             </div>
         </div>
     </div>
@@ -47,6 +52,24 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .players {
+        /*border-right: whitesmoke solid 4px;*/
+        padding-top: 5px;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        flex-grow : 1;
+        width: 58%;
+    }
+
+    .lobbyPlayer {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        margin-top: 3px;
+        background: rgba(black, 0.1);
+    }
+
     #lobby {
         background: $water;
         height: 100%;
@@ -54,6 +77,18 @@
         display: flex;
         flex-direction: column;
         flex-grow : 1;
+    }
+
+    input[type=submit] {
+        font-family: inherit;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border-radius: 0;
+        border: whitesmoke solid 1px;
+        appearance: none;
+        font-size: 2em;
+        font-weight: bold;
+        /*font-size: 50px;*/
     }
 
     .field {
@@ -77,7 +112,9 @@
     }
 
     .lobbyData {
-        top: -10%;
+        flex-direction: column;
+        display: flex;
+        /*top: -10%;*/
     }
 
     .roomId {
