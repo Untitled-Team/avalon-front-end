@@ -6,9 +6,7 @@ import ProposedPartyVoteMenu from "../../src/components/ProposedPartyVoteMenu";
 import VueNativeSock from "vue-native-websocket";
 import Vue from "vue";
 
-import {WebSocket} from 'mock-socket';
-
-global.WebSocket = WebSocket;
+global.WebSocket = require('ws');
 
 let wrapper
 

@@ -1,11 +1,10 @@
 <template>
     <div class="main">
-
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
 
-        <div v-show="!teamHasWon && !lobbyStep && !stepOne" class="containedWidth">
+        <div v-show="!teamHasWon && !lobbyStep && !stepOne && !stepTwo" class="containedWidth">
             <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
@@ -177,6 +176,16 @@
                     }
                 }
             }
+        },
+        mounted () {
+            document.addEventListener('touchmove', function(event) {
+                event.preventDefault();
+            }, {passive: false});
+        },
+        destroyed () {
+            window.removeEventListener('touchmove', function (event) {
+                event.preventDefault();
+            }, false);
         }
     }
 </script>
@@ -198,9 +207,14 @@
 
     .main {
         display: flex;
-        flex-flow: column;
-        height: 100%;
-        text-align: center
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        text-align: center;
     }
 
     .currentMissions {

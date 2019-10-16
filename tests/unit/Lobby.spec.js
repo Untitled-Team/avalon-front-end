@@ -27,7 +27,7 @@ describe('Lobby.vue', () => {
 
         expect(totalPlayersWrapper.text()).to.contain(`${expectedRoomId}`)
     })
-
+    
     // No longer displaying the # of players in the room - might change so leaving this here
     // it('displays the number of players in the lobby', () => {
     //     let expectedPlayers = ["", ""];

@@ -1,6 +1,5 @@
 <template>
     <div id="lobby">
-
         <img src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
 
@@ -9,7 +8,6 @@
                 <p class="is-size-4-mobile">Waiting for players...</p>
                 <p class="roomId is-size-5-mobile">Access code: {{ roomId }}</p>
             </div>
-<!--            <h3 id="totalPlayers" class="is-size-4-mobile">Total Players: {{ players.length }}</h3>-->
             <div class="players">
                 <div class="lobbyPlayer is-size-5-mobile is-size-6-desktop" :key="index" v-for="(player, index) in players">
                     {{ player }}
