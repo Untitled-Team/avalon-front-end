@@ -69,7 +69,7 @@
         padding-top: 1px;
         padding-bottom: 1px;
         margin-top: 3px;
-        background: rgba(black, 0.1);
+        background: rgba(black, 0.11);
     }
 
     #lobby {
