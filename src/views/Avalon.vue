@@ -5,7 +5,7 @@
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
 
-        <div v-show="!teamHasWon && !lobbyStep && !stepOne" class="containedWidth">
+        <div v-show="!teamHasWon && !lobbyStep && !stepOne && !stepTwo" class="containedWidth">
             <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">

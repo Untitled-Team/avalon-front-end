@@ -100,16 +100,27 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    .card {
+        background-color: inherit;
+        box-shadow: none;
+        color: inherit;
+        max-width: inherit;
+    }
+
     #playerInfo {
         text-align: center;
+        background: #123;
+        height: 100vh;
     }
 
     .ready {
-        height: 40px;
+        position: absolute;
+        bottom: 0;
         background-color: seagreen;
         color: sandybrown;
-        padding: 35px;
+        font-size: 3em;
+        width: 100%;
     }
 
     .cardText {
@@ -127,8 +138,8 @@
         height: auto;
         margin: auto;
         position: absolute;
-        left: 1.5%;
-        right: 3.5%;
+        left: 2.5%;
+        right: 2.5%;
         top: -4%;
     }
 
@@ -140,10 +151,9 @@
 
     .badGuysText {
         color: white;
-        position: absolute;
-        top: 73%;
+        position: fixed;
+        top: 65%;
         font-size: 3em;
-        position: absolute;
         margin-left: auto;
         margin-right: auto;
         left: 0;
