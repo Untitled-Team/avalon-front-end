@@ -6,11 +6,9 @@ import Vue from "vue";
 import PlayerInfo from "../../src/components/PlayerInfo";
 import VueNativeSock from "vue-native-websocket";
 
-import {WebSocket} from 'mock-socket';
-
-global.WebSocket = WebSocket;
-
 let wrapper
+
+const WebSocket = require('ws');
 
 Vue.use(VueNativeSock, 'ws://localhost:8080', {});
 
