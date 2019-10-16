@@ -1,4 +1,5 @@
 <template>
+    f
     <div id="lobby">
 
         <img src="@/assets/castleBigger.png">
