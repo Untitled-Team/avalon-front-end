@@ -66,7 +66,7 @@ body {
     .mediumText {
         font-size: 1.7em;
     }
-    
+
     /*.button::-moz-focus-inner {*/
     /*    border: 0;*/
     /*    padding: 0;*/
