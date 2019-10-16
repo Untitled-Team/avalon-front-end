@@ -8,7 +8,7 @@ import VueNativeSock from "vue-native-websocket";
 
 let wrapper
 
-const WebSocket = require('ws');
+global.WebSocket = require('ws');
 
 Vue.use(VueNativeSock, 'ws://localhost:8080', {});
 
