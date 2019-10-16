@@ -1,24 +1,20 @@
 <template>
     <div id="app">
-        <vue100vh :css="{display: 'flex',flexDirection: 'column',height: '100rvh'}">
-            <head>
-                <!DOCTYPE html>
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-            </head>
-            <Avalon/>
-        </vue100vh>
+        <head>
+            <!DOCTYPE html>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        </head>
+        <Avalon/>
     </div>
 </template>
 
 <script>
-    import vue100vh from "./vue100vh/vue100vh"
     import Avalon from "./views/Avalon"
 
     export default {
         name: "App",
         components: {
             Avalon,
-            vue100vh
         },
         actions: {
             connect: function () {
@@ -35,8 +31,18 @@
 
 html,
 body {
-    position: fixed;
-    overflow: hidden;
+    height: 100%;
+    overflow: auto;
+}
+body {
+    position: relative;
+    margin: 0 auto;
+    padding: 2rem;
+    max-width: 1200px;
+    box-sizing: border-box;
+    background: #31A2F2;
+    color: #fff;
+    overscroll-behavior-y: none;
 }
 
 #app {
@@ -60,8 +66,7 @@ body {
     .mediumText {
         font-size: 1.7em;
     }
-
-
+    
     /*.button::-moz-focus-inner {*/
     /*    border: 0;*/
     /*    padding: 0;*/
