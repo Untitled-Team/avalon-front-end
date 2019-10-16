@@ -1,7 +1,5 @@
 <template>
     <div id="lobby">
-
-        f
         <img src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
 
