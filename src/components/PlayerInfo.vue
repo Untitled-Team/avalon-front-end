@@ -101,8 +101,17 @@
 </script>
 
 <style scoped>
+    .card {
+        background-color: inherit;
+        box-shadow: none;
+        color: inherit;
+        max-width: inherit;
+    }
+
     #playerInfo {
         text-align: center;
+        background: #123;
+        height: 100vh;
     }
 
     .ready {
@@ -127,8 +136,8 @@
         height: auto;
         margin: auto;
         position: absolute;
-        left: 1.5%;
-        right: 3.5%;
+        left: 2.5%;
+        right: 2.5%;
         top: -4%;
     }
 
