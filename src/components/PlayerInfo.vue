@@ -100,7 +100,7 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .card {
         background-color: inherit;
         box-shadow: none;
@@ -115,10 +115,12 @@
     }
 
     .ready {
-        height: 40px;
+        position: absolute;
+        bottom: 0;
         background-color: seagreen;
         color: sandybrown;
-        padding: 35px;
+        font-size: 3em;
+        width: 100%;
     }
 
     .cardText {
@@ -149,10 +151,9 @@
 
     .badGuysText {
         color: white;
-        position: absolute;
-        top: 73%;
+        position: fixed;
+        top: 65%;
         font-size: 3em;
-        position: absolute;
         margin-left: auto;
         margin-right: auto;
         left: 0;
