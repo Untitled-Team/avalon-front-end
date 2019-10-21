@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div id="toggleModalButton" v-on:click="toggleModalActive">Toggle Player Information</div>
+        <div id="toggleModalButton" v-on:click="toggleModalActive"><p class="is-size-5-mobile is-size-5-desktop">Toggle Player Information</p></div>
     </div>
 </template>
 
