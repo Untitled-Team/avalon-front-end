@@ -1,8 +1,8 @@
 <template>
     <div id="proposedPartyVoteMenu">
         <div id="vote" v-show="!playerHasVoted">
-            <div class="bigText">{{ missionLeader }} has proposed the following party for the quest:</div>
-            <div :key="index" v-for="(player, index) in proposedParty" class="mediumText">
+            <div class="is-size-4-mobile is-size-4-desktop">{{ missionLeader }}'s team</div>
+            <div :key="index" v-for="(player, index) in proposedParty" class="teamMember">
                 {{ player }}
             </div>
             <div class="someMargin">
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div id="WaitingOnOthers" v-show="playerHasVoted">
-            Thanks for your vote! The game will proceed once all players have voted to approve or deny!
+            Waiting for others...
         </div>
     </div>
 </template>
@@ -61,9 +61,29 @@
     @import "../styles/variables";
 
     #proposedPartyVoteMenu {
-        padding: 15px;
         height: 100%;
+        color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
+        padding-top: 20px;
+        color: whitesmoke;
         background: $current;
+    }
+
+    .teamMember {
+        width: 67%;
+        cursor: pointer;
+        font-size: 2.5em;
+        display: inline-block;
+        margin-top: 3px;
+        padding: 1px;
+        background: rgba(black, 0.11);
+    }
+
+    #WaitingOnOthers {
+        padding-top: 40px;
+        font-size: 3em;
     }
 
     .someMargin {

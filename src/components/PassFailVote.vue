@@ -1,11 +1,11 @@
 <template>
     <div id="passFailVote">
-        <div class="bigText">
-            Mission Party:
+        <div class="questingMessage is-size-4-mobile is-size-4-desktop">
+
             <span :key="index" v-for="(player, index) in missionParty">
                 <span v-if="index == missionParty.length-1"> and </span>{{player}}<span
                     v-if="!(index == missionParty.length-1 || index == missionParty.length-2)">, </span>
-            </span>.
+            </span> are questing
         </div>
 
         <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
@@ -15,8 +15,8 @@
             <img class="failButton" src="@/assets/failButtonShadowBig.png" v-on:click="voteToFail"/>
         </div>
 
-        <div id="WaitingOnOthers" v-show="playerHasVoted || !playerVoting">
-            The game will continue once all players in the mission have voted.
+        <div id="WaitingOnOthers" class="is-size-4-mobile is-size-4-desktop" v-show="playerHasVoted || !playerVoting">
+            Waiting on others...
         </div>
     </div>
 </template>
@@ -70,21 +70,38 @@
         margin: .5em 0px;
     }
 
+    .questingMessage {
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+
+    #passFailVote {
+        height: 100%;
+        color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
+        color: whitesmoke;
+
+    }
+
     .crossedSwords {
-        width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 90%;
+        margin-top: -20px;
     }
 
     .passButton {
-        top: -70%;
-        width: 25%;
-        margin-right: 10%;
+        max-width: 30%;
+        margin-right: 20%;
         cursor: pointer;
     }
 
     .failButton {
-        top: -70%;
-        width: 25%;
-        margin-left: 10%;
+        width: 30%;
         cursor: pointer;
     }
 </style>
