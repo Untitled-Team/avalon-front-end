@@ -26,7 +26,6 @@
                 event: "QuestVotesDisplayed",
             }
             sleep(5000).then(() => {
-                console.log('NOTTTT~!')
                 WebsocketService.sendObj(this.$socket, votesDisplayedMessage)
             })
         }
