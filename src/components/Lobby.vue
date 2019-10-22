@@ -5,8 +5,8 @@
 
         <div class="lobbyData">
             <div>
-                <p class="is-size-4-mobile">Waiting for players...</p>
-                <p class="roomId is-size-5-mobile">Access code: {{ roomId }}</p>
+                <p class="is-size-4-mobile is-size-4-desktop">Waiting for players...</p>
+                <p class="roomId is-size-5-mobile is-size-6-desktop">Access code: {{ roomId }}</p>
             </div>
             <div class="players">
                 <div class="lobbyPlayer is-size-5-mobile is-size-6-desktop" :key="index" v-for="(player, index) in players">

@@ -1,19 +1,23 @@
 <template>
     <div id="proposeMissionMenu">
-        <div id="missionLeader" class="bigText">Mission Leader: {{ missionLeader }}</div>
-        <div id="partySize" class="mediumText">Party Size: {{ currentMissionPartySize }}</div>
-        <form @submit.prevent="proposeParty">
-            <div :key="index" v-for="(player, index) in players">
-                <label @click="e => addSelectedClass(e)">
-                    <input type="checkbox" :id="player" :value="player" v-model="selectedPlayers"/>
-                    {{ player }}
-                </label>
-            </div>
-            <input type="submit" class="button is-small" value="Propose Party" v-show="playerIsMissionLeader">
-            <div id="partySizeWarning" v-show="!proposedPartyIsCorrectSize && playerIsMissionLeader">
-                Please submit exactly {{ currentMissionPartySize }} players for the quest.
-            </div>
-        </form>
+
+        <div class="teamSelection" v-show="playerIsMissionLeader">
+            <p class="chooseTeam is-size-3-mobile is-size-3-desktop">Choose a team</p>
+            <form class="proposal" @submit.prevent="proposeParty">
+                <div :key="index" v-for="(player, index) in players" class="playerDiv" :class="{selected: selectedPlayers.includes(player)}">
+                    <label @click="e => addSelectedClass(e)">
+                        <p class="is-size-4-mobile is-size-4-desktop">{{ player }}</p>
+                    </label>
+                </div>
+                <input type="submit" class="button is-small submission" value="Propose Party">
+            </form>
+        </div>
+
+        <div class="notLeader is-size-4-mobile is-size-4-desktop" v-show="!playerIsMissionLeader">
+            <p class="choosing">{{ missionLeader }} is choosing a team...</p>
+            <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
+        </div>
+
     </div>
 </template>
 
@@ -41,7 +45,16 @@
             },
             addSelectedClass: function (event) {
                 if (this.playerIsMissionLeader) {
-                    event.target.classList.toggle('selected')
+                    var playerChosen = event.target.textContent
+
+                    if (this.selectedPlayers.includes(playerChosen)) {
+                        // eslint-disable-next-line no-unused-vars
+                        this.selectedPlayers = this.selectedPlayers.filter(function(value, index, arr){
+                            return value !== playerChosen;
+                        });
+                    } else if (this.selectedPlayers.length < this.currentMissionPartySize) {
+                        this.selectedPlayers.push(playerChosen)
+                    }
                 }
             }
         },
@@ -61,22 +74,62 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    label {
-        width: 20rem;
+    .chooseTeam {
+        margin-bottom: 15px;
+    }
+
+    .choosing {
+        margin-top: 20px;
+        margin-bottom: 60px;
+    }
+
+    #missionLeader {
+        margin-bottom: 40px;
+    }
+
+    .proposal {
+        margin-bottom: 100px;
+    }
+
+    #proposeMissionMenu {
+        height: 100%;
+        color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
+    }
+
+    .teamSelection {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-grow : 1;
+    }
+
+    .notLeader {
+        display: flex;
+        flex-direction: column;
+        flex-grow : 1;
+    }
+
+    .playerDiv {
+        width: 67%;
         cursor: pointer;
         font-size: 1.5em;
         display: inline-block;
-        margin: auto .2em;
-        border: .5px ridge #3d3c5c;
-        border-radius: 12px;
+        margin-top: 3px;
+        padding: 1px;
+        background: rgba(black, 0.11);
+    }
+
+    .submission {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
     }
 
     .selected {
-        background: #b0912a;
-    }
-
-    div {
-        padding: 7px;
+        background: rgba(whitesmoke, 0.35);
     }
 
     input[type=checkbox] {
