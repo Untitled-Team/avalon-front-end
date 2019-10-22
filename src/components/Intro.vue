@@ -23,8 +23,7 @@
                            placeholder="Player Nickname..." required/>
                 </div>
                 <div class="field">
-                    <input id="createGameSubmit" type="submit" class="buttonInput button is-small"
-                           value="Create a New Game"/>
+                    <input id="createGameSubmit" type="submit" class="buttonInput button is-small" value="Create a New Game"/>
                 </div>
             </form>
         </div>

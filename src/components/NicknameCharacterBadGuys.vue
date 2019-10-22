@@ -60,18 +60,19 @@
     }
 
     .modal {
+        position: absolute;
         width: 25%;
         top: initial;
     }
 
     .is-active {
-        position: fixed;
+        /*position: fixed;*/
         bottom: 40px;
         width: 100%;
     }
 
     #toggleModalButton {
-        position: fixed;
+        /*position: fixed;*/
         bottom: 0;
         left: 0;
         height: 40px;
@@ -87,7 +88,7 @@
         }
 
         .is-active {
-            position: fixed;
+            /*position: fixed;*/
             bottom: 40px;
             width: 85%;
             left: 7.5%;

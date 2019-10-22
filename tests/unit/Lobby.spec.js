@@ -28,21 +28,22 @@ describe('Lobby.vue', () => {
         expect(totalPlayersWrapper.text()).to.contain(`${expectedRoomId}`)
     })
 
-    it('displays the number of players in the lobby', () => {
-        let expectedPlayers = ["", ""];
-        wrapper = shallowMount(
-            Lobby,
-            {
-                propsData:
-                    {
-                        players: expectedPlayers
-                    }
-            },
-        )
-        let totalPlayersWrapper = wrapper.find('#totalPlayers')
-
-        expect(totalPlayersWrapper.text()).to.equal(`Total Players: ${expectedPlayers.length}`)
-    })
+    // No longer displaying the # of players in the room - might change so leaving this here
+    // it('displays the number of players in the lobby', () => {
+    //     let expectedPlayers = ["", ""];
+    //     wrapper = shallowMount(
+    //         Lobby,
+    //         {
+    //             propsData:
+    //                 {
+    //                     players: expectedPlayers
+    //                 }
+    //         },
+    //     )
+    //     let totalPlayersWrapper = wrapper.find('#totalPlayers')
+    //
+    //     expect(totalPlayersWrapper.text()).to.equal(`Total Players: ${expectedPlayers.length}`)
+    // })
 
     it('displays each player in the players prop', () => {
         let expectedPlayers = ["steve johannesberg", "ronald blump"];

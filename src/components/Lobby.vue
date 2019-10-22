@@ -1,23 +1,21 @@
 <template>
     <div id="lobby">
-
         <img src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
 
         <div class="lobbyData">
             <div>
-                <p class="roomId is-size-4-mobile">Waiting for players...</p>
+                <p class="is-size-4-mobile">Waiting for players...</p>
                 <p class="roomId is-size-5-mobile">Access code: {{ roomId }}</p>
             </div>
-<!--            <h3 id="totalPlayers" class="is-size-4-mobile">Total Players: {{ players.length }}</h3>-->
             <div class="players">
                 <div class="lobbyPlayer is-size-5-mobile is-size-6-desktop" :key="index" v-for="(player, index) in players">
                     {{ player }}
                 </div>
             </div>
 
-            <form id="lobbyReadyForm" @submit.prevent="startGame">
-                <input type="submit" class="startButton button is-small" value="Start Game"/>
+            <form id="lobbyReadyForm" @submit.prevent="startGame" v-show="correctPlayerNumbers">
+                <input type="submit" class="startButton button is-small" value="Begin"/>
             </form>
 
             <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
@@ -52,6 +50,10 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .gameRequirement {
+        margin-top: 5px;
+    }
+
     .players {
         /*border-right: whitesmoke solid 4px;*/
         padding-top: 5px;
@@ -67,7 +69,7 @@
         padding-top: 1px;
         padding-bottom: 1px;
         margin-top: 3px;
-        background: rgba(black, 0.1);
+        background: rgba(black, 0.11);
     }
 
     #lobby {
@@ -84,10 +86,14 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         border-radius: 0;
-        border: whitesmoke solid 1px;
+        border: $successful solid 1px;
         appearance: none;
-        font-size: 2em;
+        padding-right: 23px;
+        padding-left: 25px;
+        font-size: 2.3em;
         font-weight: bold;
+        background: $successful;
+        color: whitesmoke;
         /*font-size: 50px;*/
     }
 
