@@ -95,17 +95,13 @@
     }
 
     .passButton {
-        /*top: -70%;*/
-        /*margin-top: px;*/
         max-width: 30%;
         margin-right: 20%;
         cursor: pointer;
     }
 
     .failButton {
-        /*top: -70%;*/
         width: 30%;
-        /*margin-left: 10%;*/
         cursor: pointer;
     }
 </style>
