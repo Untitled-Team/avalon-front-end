@@ -70,7 +70,6 @@
 
 </script>
 
-
 <style lang="scss" scoped>
     @import "../styles/variables";
 
@@ -80,7 +79,6 @@
 
     .choosing {
         margin-top: 20px;
-        margin-bottom: 60px;
     }
 
     #missionLeader {
@@ -89,6 +87,11 @@
 
     .proposal {
         margin-bottom: 100px;
+    }
+
+    .crossedSwords {
+        display: flex;
+        flex-direction: column;
     }
 
     #proposeMissionMenu {
