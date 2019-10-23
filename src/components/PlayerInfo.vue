@@ -26,7 +26,7 @@
                     <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
                 </div>
             </div>
-            <img class="readyButton" v-show="!ready" v-on:click="confirmReady" src="@/assets/readyButtonBig.png">
+            <button class="readyButton" v-show="!ready" v-on:click="confirmReady">MERLIN READY BUTTON</button>
         </div>
 
         <div v-if="isAssassin">
@@ -38,7 +38,7 @@
                     <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
                 </div>
             </div>
-            <img class="readyButton" v-show="!ready" v-on:click="confirmReady" src="@/assets/readyButtonBig.png">
+            <button class="readyButton" v-show="!ready" v-on:click.prevent="confirmReady"><img src="@/assets/readyButtonBig.png"></button>
             <div class="readyButtonText">Ready</div>
         </div>
 
@@ -95,15 +95,17 @@
     @import "../styles/variables";
 
     .cardText {
+        margin-top: 3%;
         width: 75%;
     }
 
     .cardPicture {
-        margin-top: -40%;
+        margin-top: -30%;
         margin-bottom: -10%;
     }
 
     .badGuysText {
+        margin-top: -5%;
         color: white;
         font-size: 3em;
         margin-left: auto;
@@ -111,20 +113,28 @@
     }
 
     .readyButton {
+        margin-top: 5%;
     }
 
     .readyButtonText {
+        top: 25%;
+        left: 15%;
     }
 
 
     #playerInfo {
         position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
         background: #123;
         height: 100vh;
         border: 10px solid $insideBorder;
     }
+    /*THIS IS FUCKING with my button!!!  it's sitting on top of it for some reason...*/
+    #playerInfo:before {pointer-events:none;
 
-    #playerInfo:before {
         position: absolute;
         display: block;
         content: '';
