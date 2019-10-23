@@ -187,17 +187,27 @@ export default {
         margin: 0 auto;
     }
 
+    .active > .bannerContainer > .firstRow {
+        width: 100%;
+        height: 4px;
+        padding: 0px 5%;
+        margin: 0 auto;
+        box-shadow: -2px 0px rgba(black, 0.3), 2px 0px rgba(black, 0.3);
+    }
+
     .inactive > .bannerContainer > .firstRow {
         width: 100%;
         height: 4px;
         padding: 0px 5%;
         background: $bannerOutline;
         margin: 0 auto;
+        box-shadow: 0px 4px rgba(black, 0.3), -2px 0px rgba(black, 0.3), 2px 0px rgba(black, 0.3);
     }
 
     .inactive > .bannerContainer > .secondRow {
         width: 90%;
         height: 4px;
+        box-shadow: 0px 4px rgba(black, 0.3);
         padding: 0px 5%;
         background: $bannerOutline;
         margin: 0 auto;
@@ -206,6 +216,7 @@ export default {
     .inactive > .bannerContainer > .thirdRow {
         width: 80%;
         height: 4px;
+        box-shadow: 0px 4px rgba(black, 0.3);
         padding: 0px 10%;
         background: $bannerOutline;
         margin: 0 auto;
@@ -214,6 +225,7 @@ export default {
     .inactive > .bannerContainer > .fourthRow {
         width: 60%;
         height: 4px;
+        box-shadow: 0px 4px rgba(black, 0.3);
         padding: 0px 10%;
         background: $bannerOutline;
         margin: 0 auto;
@@ -222,6 +234,7 @@ export default {
     .inactive > .bannerContainer > .fifthRow {
         width: 40%;
         height: 4px;
+        box-shadow: 0px 4px rgba(black, 0.3);
         padding: 0px 17.5%;
         background: $bannerOutline;
         margin: 0 auto;
@@ -230,6 +243,7 @@ export default {
     .inactive > .bannerContainer > .sixthRow {
         width: 5%;
         height: 4px;
+        box-shadow: 0px 4px rgba(black, 0.3);
         padding: 0px 3%;
         background: $bannerOutline;
         margin: 0 auto;
