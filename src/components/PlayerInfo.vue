@@ -1,6 +1,6 @@
 <template>
-    <div id="playerInfo" :class="{good: isGood, bad: isBad, assassin: isAssassin, merlin: isMerlin}">
-        <div class="good" v-if="isGood">
+    <div id="playerInfo" :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
+        <div class="good card" v-if="isGood">
             <div class="rolePreText">You are a...</div>
             <img class="roleText" src="@/assets/goodGuyTextBig.png">
             <img class="rolePicture" src="@/assets/goodGuyBig.png">
@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <div class="bad" v-if="isBad">
+        <div class="bad card" v-if="isBad">
             <div class="rolePreText">You are a...</div>
             <img class="rolePicture" src="@/assets/badGuyBig.png">
             <div class="badGuysText">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="merlin" v-if="isMerlin">
+        <div class="merlin card" v-if="isMerlin">
             <div class="rolePreText">You are...</div>
             <img class="roleText" src="@/assets/merlinTextBig.png">
             <img class="rolePicture" src="@/assets/merlinBig.png">
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="assassin" v-if="isAssassin">
+        <div class="assassin card" v-if="isAssassin">
             <div class="rolePreText">You are the...</div>
             <img class="roleText" src="@/assets/assassinTextBig.png">
             <img class="rolePicture" src="@/assets/assassinBig.png">
@@ -203,15 +203,15 @@
         text-decoration: underline;
     }
 
-    .good {
+    .backgroundGood {
         background-color: #35966E;
     }
 
-    .merlin {
+    .backgroundMerlin {
         background-color: #669AFD;
     }
 
-    .assassin {
+    .backgroundAssassin {
         background-color: #C7383E;
     }
 
