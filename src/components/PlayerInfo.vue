@@ -121,13 +121,13 @@
     }
 
     .rolePicture {
-        margin-top: -30%;
+        margin-top: -36%;
         margin-bottom: -10%;
         max-height: 40%;
     }
 
     .readyButtonWrapper {
-        margin-top: 15vh;
+        margin-top: 10vh;
         position: relative;
         display: inline-block;
     }
@@ -146,7 +146,7 @@
     }
 
     .badGuysText {
-        margin-top: -5%;
+        margin-top: -15%;
         color: antiquewhite;
         font-size: 3em;
         margin-left: auto;
