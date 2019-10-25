@@ -110,25 +110,48 @@
     @import "../styles/variables";
 
     .rolePreText {
-        margin-top: 5%;
+        position: absolute;
+        top: 2%;
+        width: 100%;
+        left: 0;
+        right: 0;
         font-size: 4em;
         color: white;
     }
 
     .roleText {
-        margin-top: 3%;
+        position: absolute;
+        top: 7%;
+        left: 12.5%;
+        right: 12.5%;
         width: 75%;
     }
 
     .rolePicture {
-        margin-top: -36%;
+        position: absolute;
+        margin-top: 15%;
         margin-bottom: -10%;
-        max-height: 40%;
+        width: 100%;
+        right: 0;
+        left: 0;
+        max-height: 60%;
+    }
+
+    .badGuysText {
+        position: relative;
+        color: antiquewhite;
+        font-size: 3em;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .readyButtonWrapper {
-        margin-top: 10vh;
-        position: relative;
+        position: absolute;
+        bottom: 5%;
+        top: 75%;
+        left: 15%;
+        right: 15%;
+        width: 70%;
         display: inline-block;
     }
 
@@ -138,20 +161,14 @@
         margin: 0 auto;
         left: 0;
         right: 0;
-        top: 35%; /* Adjust this value to move the positioned div up and down */
+        top: 45%; /* Adjust this value to move the positioned div up and down */
         text-align: center;
         width: 60%; /* Set the width of the positioned div */
         font-size: 4em;
         color: antiquewhite;
     }
 
-    .badGuysText {
-        margin-top: -15%;
-        color: antiquewhite;
-        font-size: 3em;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    /*below line not changing*/
 
     #playerInfo {
         position: absolute;
