@@ -127,7 +127,7 @@
     }
 
     .readyButtonWrapper {
-        margin-top: 5vh;
+        margin-top: 15vh;
         position: relative;
         display: inline-block;
     }
@@ -188,6 +188,44 @@
         color: sandybrown;
         font-size: 3em;
         width: 100%;
+    }
+
+    .cardText {
+        width: 65%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        left: 17.5%;
+        right: 17.5%;
+        top: 15%;
+    }
+
+    .cardPicture {
+        width: 95%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        left: 2.5%;
+        right: 2.5%;
+        top: -4%;
+    }
+
+    .cardBackground {
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+
+    .badGuysText {
+        color: white;
+        position: fixed;
+        top: 65%;
+        font-size: 3em;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        width: 35%;
     }
 
     .flexTest {

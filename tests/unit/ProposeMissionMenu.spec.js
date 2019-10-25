@@ -22,7 +22,7 @@ describe('ProposeMissionMenu.vue', () => {
         stub(WebsocketService, 'sendObj')
     })
 
-    it('should show the current mission leader', () => {
+    it('should show the current mission leader is choosing a party when were not leader', () => {
         const expectedMissionLeader = "glorbon"
         wrapper = shallowMount(
             ProposeMissionMenu,
@@ -33,32 +33,21 @@ describe('ProposeMissionMenu.vue', () => {
                 store
             })
 
-        const leaderWrapper = wrapper.find('#missionLeader')
+        const leaderWrapper = wrapper.find('.choosing')
 
         expect(leaderWrapper.text()).to.include(expectedMissionLeader)
     })
 
-    it('should show the current mission party size', () => {
-        const expectedPartysize = 48294
+    it('should have a form that shows a label for each player when player is mission leader', () => {
+        const expectedPlayers = ["john", "steve", "sally sue peterson"]
+        const expectedMissionLeader = "steve"
         wrapper = shallowMount(
             ProposeMissionMenu,
+
             {
                 propsData: {
-                    currentMissionPartySize: expectedPartysize
+                    missionLeader: expectedMissionLeader
                 },
-                store
-            })
-
-        const leaderWrapper = wrapper.find('#partySize')
-
-        expect(leaderWrapper.text()).to.include(expectedPartysize)
-    })
-
-    it('should have a form that shows a checkbox for each player', () => {
-        const expectedPlayers = ["john", "steve", "sally sue peterson"]
-        wrapper = shallowMount(
-            ProposeMissionMenu,
-            {
                 data: function () {
                     return {
                         players: expectedPlayers
@@ -100,28 +89,5 @@ describe('ProposeMissionMenu.vue', () => {
             WebsocketService.sendObj,
             match.any,
             expectedMessage)
-    })
-
-    it('should display warning if player is missionLeader and incorrect party size', () => {
-        wrapper = shallowMount(
-            ProposeMissionMenu,
-            {
-                data: function () {
-                    return {
-                        selectedPlayers: ["", "", ""]
-                    }
-                },
-                propsData: {
-                    missionLeader: 'steve',
-                    currentMissionPartySize: 2
-                },
-                store
-            })
-
-        const partySizeWrapper = wrapper.find('#partySizeWarning')
-        expect(partySizeWrapper.isVisible()).to.be.true
-
-        wrapper.setData({selectedPlayers: ["", ""]})
-        expect(partySizeWrapper.isVisible()).to.be.false
     })
 })
