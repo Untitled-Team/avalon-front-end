@@ -84,7 +84,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.card')
+        const infoWrapper = wrapper.findAll('.character')
 
         expect(infoWrapper.length).to.equal(1)
     });
@@ -98,7 +98,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.card')
+        const infoWrapper = wrapper.findAll('.character')
 
         expect(infoWrapper.length).to.equal(1)
     });
@@ -112,7 +112,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.card')
+        const infoWrapper = wrapper.findAll('.character')
 
         expect(infoWrapper.length).to.equal(1)
     });
@@ -126,7 +126,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.card')
+        const infoWrapper = wrapper.findAll('.character')
 
         expect(infoWrapper.length).to.equal(1)
     });

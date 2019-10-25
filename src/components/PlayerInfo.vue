@@ -1,6 +1,6 @@
 <template>
     <div id="playerInfo" :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
-        <div class="good card" v-if="isGood">
+        <div class="good character" v-if="isGood">
             <div class="rolePreText">You are a...</div>
             <img class="roleText" src="@/assets/goodGuyTextBig.png">
             <img class="rolePicture" src="@/assets/goodGuyBig.png">
@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <div class="bad card" v-if="isBad">
+        <div class="bad character" v-if="isBad">
             <div class="rolePreText">You are a...</div>
             <img class="rolePicture" src="@/assets/badGuyBig.png">
             <div class="badGuysText">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="merlin card" v-if="isMerlin">
+        <div class="merlin character" v-if="isMerlin">
             <div class="rolePreText">You are...</div>
             <img class="roleText" src="@/assets/merlinTextBig.png">
             <img class="rolePicture" src="@/assets/merlinBig.png">
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="assassin card" v-if="isAssassin">
+        <div class="assassin character" v-if="isAssassin">
             <div class="rolePreText">You are the...</div>
             <img class="roleText" src="@/assets/assassinTextBig.png">
             <img class="rolePicture" src="@/assets/assassinBig.png">
@@ -127,7 +127,7 @@
     }
 
     .readyButtonWrapper {
-        margin-top: 5vh;
+        margin-top: 15vh;
         position: relative;
         display: inline-block;
     }
@@ -190,6 +190,44 @@
         width: 100%;
     }
 
+    .cardText {
+        width: 65%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        left: 17.5%;
+        right: 17.5%;
+        top: 15%;
+    }
+
+    .cardPicture {
+        width: 95%;
+        height: auto;
+        margin: auto;
+        position: absolute;
+        left: 2.5%;
+        right: 2.5%;
+        top: -4%;
+    }
+
+    .cardBackground {
+        width: 100%;
+        height: auto;
+        margin: auto;
+    }
+
+    .badGuysText {
+        color: white;
+        position: fixed;
+        top: 65%;
+        font-size: 3em;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        width: 35%;
+    }
+
     .flexTest {
         display: flex;
         flex-wrap: wrap;
@@ -215,4 +253,7 @@
         background-color: #C7383E;
     }
 
+    .character {
+        background: inherit;
+    }
 </style>
