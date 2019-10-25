@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import WebsocketService from '../../src/services/WebsocketService.js'
-import { assert, stub, restore, match} from "sinon";
+import {assert, stub, restore, match} from "sinon";
 import Vue from "vue";
 import PlayerInfo from "../../src/components/PlayerInfo";
 import VueNativeSock from "vue-native-websocket";
@@ -30,7 +30,8 @@ describe('PlayerInfo.vue', () => {
 
         const infoWrapper = wrapper.findAll('.good')
 
-        expect(infoWrapper.length).to.equal(1)    });
+        expect(infoWrapper.length).to.equal(1)
+    });
 
     it('should display bad guy info when character is NormalBadGuy', () => {
         wrapper = shallowMount(
@@ -43,7 +44,8 @@ describe('PlayerInfo.vue', () => {
 
         const infoWrapper = wrapper.findAll('.bad')
 
-        expect(infoWrapper.length).to.equal(1)    });
+        expect(infoWrapper.length).to.equal(1)
+    });
 
     it('should display merlin info when character is Merlin', () => {
         wrapper = shallowMount(
@@ -70,7 +72,8 @@ describe('PlayerInfo.vue', () => {
 
         const infoWrapper = wrapper.findAll('.assassin')
 
-        expect(infoWrapper.length).to.equal(1)    });
+        expect(infoWrapper.length).to.equal(1)
+    });
 
     it('should not display other character cards when character is NormalGoodGuy', () => {
         wrapper = shallowMount(
@@ -170,8 +173,8 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        wrapper.find('.button').trigger('click')
+        wrapper.find('.readyButton').trigger('click')
 
-        assert.calledWith(WebsocketService.sendObj, match.any,{event: 'PlayerReady'})
+        assert.calledWith(WebsocketService.sendObj, match.any, {event: 'PlayerReady'})
     });
 })

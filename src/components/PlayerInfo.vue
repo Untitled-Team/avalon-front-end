@@ -1,54 +1,60 @@
 <template>
-    <div id="playerInfo">
-        <div class="card good" v-if="isGood">
-            <div class="card-image">
-                <img class="cardBackground" src="@/assets/goodGuyCardBig.png">
-                <img class="cardPicture" src="@/assets/goodGuyBig.png">
+    <div id="playerInfo" :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
+        <div class="good card" v-if="isGood">
+            <div class="rolePreText">You are a...</div>
+            <img class="roleText" src="@/assets/goodGuyTextBig.png">
+            <img class="rolePicture" src="@/assets/goodGuyBig.png">
+            <div class="readyButtonWrapper">
+                <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+                <div class="readyButtonText">Ready</div>
             </div>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
         </div>
 
-        <div class="card bad" v-if="isBad">
-            <div class="card-image">
-                <img class="cardBackground" src="@/assets/badGuyCardBig.png">
-                <img class="cardPicture" src="@/assets/badGuyBig.png">
-            </div>
+        <div class="bad card" v-if="isBad">
+            <div class="rolePreText">You are a...</div>
+            <img class="rolePicture" src="@/assets/badGuyBig.png">
             <div class="badGuysText">
                 <p class="allies">Allies</p>
                 <div class="flexTest">
                     <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
                 </div>
             </div>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+            <div class="readyButtonWrapper">
+                <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+                <div class="readyButtonText">Ready</div>
+            </div>
         </div>
 
-        <div class="card merlin" v-if="isMerlin">
-            <div class="card-image">
-                <img class="cardBackground" src="@/assets/merlinCardBig.png">
-                <img class="cardPicture" src="@/assets/merlinBig.png">
-            </div>
+        <div class="merlin card" v-if="isMerlin">
+            <div class="rolePreText">You are...</div>
+            <img class="roleText" src="@/assets/merlinTextBig.png">
+            <img class="rolePicture" src="@/assets/merlinBig.png">
             <div class="badGuysText">
                 <p class="allies">Enemies</p>
                 <div class="flexTest">
                     <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
                 </div>
             </div>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+            <div class="readyButtonWrapper">
+                <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+                <div class="readyButtonText">Ready</div>
+            </div>
         </div>
 
-        <div class="card assassin" v-if="isAssassin">
-            <div class="card-image">
-                <img class="cardBackground" src="@/assets/assassinCardBig.png">
-                <img class="cardText" src="@/assets/assassinTextBig.png">
-                <img class="cardPicture" src="@/assets/assassinBig.png">
-            </div>
+        <div class="assassin card" v-if="isAssassin">
+            <div class="rolePreText">You are the...</div>
+            <img class="roleText" src="@/assets/assassinTextBig.png">
+            <img class="rolePicture" src="@/assets/assassinBig.png">
             <div class="badGuysText">
                 <p class="allies">Allies</p>
                 <div class="flexTest">
                     <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
                 </div>
             </div>
-            <button class="button is-small" v-show="!ready" v-on:click="confirmReady">Ready</button>
+            <div class="readyButtonWrapper">
+                <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+                <div class="readyButtonText">Ready</div>
+            </div>
         </div>
 
         <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
@@ -101,17 +107,78 @@
 </script>
 
 <style lang="scss" scoped>
-    .card {
-        background-color: inherit;
-        box-shadow: none;
-        color: inherit;
-        max-width: inherit;
+    @import "../styles/variables";
+
+    .rolePreText {
+        margin-top: 5%;
+        font-size: 4em;
+        color: white;
+    }
+
+    .roleText {
+        margin-top: 3%;
+        width: 75%;
+    }
+
+    .rolePicture {
+        margin-top: -30%;
+        margin-bottom: -10%;
+        max-height: 40%;
+    }
+
+    .readyButtonWrapper {
+        margin-top: 5vh;
+        position: relative;
+        display: inline-block;
+    }
+
+    .readyButtonWrapper .readyButtonText {
+        position: absolute;
+        z-index: 999;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 35%; /* Adjust this value to move the positioned div up and down */
+        text-align: center;
+        width: 60%; /* Set the width of the positioned div */
+        font-size: 4em;
+        color: antiquewhite;
+    }
+
+    .badGuysText {
+        margin-top: -5%;
+        color: antiquewhite;
+        font-size: 3em;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #playerInfo {
-        text-align: center;
-        background: #123;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
         height: 100vh;
+        border: 10px solid $insideBorder;
+    }
+
+    /*THIS IS FUCKING with my button!!!  it's sitting on top of it for some reason...*/
+    #playerInfo:before {
+        pointer-events: none;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        display: block;
+        content: '';
+        border: 8px solid $outsideBorder;
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
     }
 
     .ready {
@@ -121,44 +188,6 @@
         color: sandybrown;
         font-size: 3em;
         width: 100%;
-    }
-
-    .cardText {
-        width: 65%;
-        height: auto;
-        margin: auto;
-        position: absolute;
-        left: 17.5%;
-        right: 17.5%;
-        top: 15%;
-    }
-
-    .cardPicture {
-        width: 95%;
-        height: auto;
-        margin: auto;
-        position: absolute;
-        left: 2.5%;
-        right: 2.5%;
-        top: -4%;
-    }
-
-    .cardBackground {
-        width: 100%;
-        height: auto;
-        margin: auto;
-    }
-
-    .badGuysText {
-        color: white;
-        position: fixed;
-        top: 65%;
-        font-size: 3em;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        width: 35%;
     }
 
     .flexTest {
@@ -173,4 +202,17 @@
     .allies {
         text-decoration: underline;
     }
+
+    .backgroundGood {
+        background-color: #35966E;
+    }
+
+    .backgroundMerlin {
+        background-color: #669AFD;
+    }
+
+    .backgroundAssassin {
+        background-color: #C7383E;
+    }
+
 </style>
