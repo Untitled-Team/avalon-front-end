@@ -1,6 +1,6 @@
 <template>
     <div id="playerInfo" :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
-        <div class="good card" v-if="isGood">
+        <div class="good character" v-if="isGood">
             <div class="rolePreText">You are a...</div>
             <img class="roleText" src="@/assets/goodGuyTextBig.png">
             <img class="rolePicture" src="@/assets/goodGuyBig.png">
@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <div class="bad card" v-if="isBad">
+        <div class="bad character" v-if="isBad">
             <div class="rolePreText">You are a...</div>
             <img class="rolePicture" src="@/assets/badGuyBig.png">
             <div class="badGuysText">
@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <div class="merlin card" v-if="isMerlin">
+        <div class="merlin character" v-if="isMerlin">
             <div class="rolePreText">You are...</div>
             <img class="roleText" src="@/assets/merlinTextBig.png">
             <img class="rolePicture" src="@/assets/merlinBig.png">
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <div class="assassin card" v-if="isAssassin">
+        <div class="assassin character" v-if="isAssassin">
             <div class="rolePreText">You are the...</div>
             <img class="roleText" src="@/assets/assassinTextBig.png">
             <img class="rolePicture" src="@/assets/assassinBig.png">
@@ -215,4 +215,7 @@
         background-color: #C7383E;
     }
 
+    .character {
+        background: inherit;
+    }
 </style>
