@@ -25,6 +25,7 @@ export default new Vuex.Store({
         character: "",
         activeMission: 1,
         currentMission: 1,
+        lastEventId: null,
     },
     getters: {
         getStepOne: state => {
@@ -121,13 +122,17 @@ export default new Vuex.Store({
         setActiveMission: (state, activeMission) => {
             state.activeMission = activeMission
         },
+        setLastEventId: (state, event) => {
+            state.lastEventId = event.id
+        },
         SOCKET_ONMESSAGE: state => {state},
         SOCKET_ONOPEN: state => {
             if (state.nickname && state.roomId) {
                 Vue.prototype.$socket.sendObj({
                     event: "Reconnect",
                     nickname: state.nickname,
-                    roomId: state.roomId
+                    roomId: state.roomId,
+                    lastMessageId: state.lastEventId
                 });                
             }
             console.log("ON OPEN")
@@ -140,7 +145,8 @@ export default new Vuex.Store({
             Vue.prototype.$socket.sendObj({
                 event: "Reconnect",
                 nickname: state.nickname,
-                roomId: state.roomId
+                roomId: state.roomId,
+                lastMessageId: state.lastEventId
             });
         }
     },
