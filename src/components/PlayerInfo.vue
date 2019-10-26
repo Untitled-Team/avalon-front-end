@@ -1,59 +1,85 @@
 <template>
-    <div id="playerInfo" :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
+    <div id="playerInfo"
+         :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
         <div class="good character" v-if="isGood">
-            <div class="rolePreText">You are a...</div>
-            <img class="roleText" src="@/assets/goodGuyTextBig.png">
-            <img class="rolePicture" src="@/assets/goodGuyBig.png">
+            <div class="rolePreTextWrapper">
+                <div class="rolePreText">You are a...</div>
+            </div>
+            <div class="roleTextWrapper">
+                <img class="roleText" src="@/assets/goodGuyTextBig.png">
+            </div>
+            <div class="rolePictureWrapper">
+                <img class="rolePicture" src="@/assets/goodGuyBig.png">
+            </div>
+            <div class="badGuysTextWrapper"></div>
             <div class="readyButtonWrapper">
                 <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
-                <div class="readyButtonText">Ready</div>
             </div>
         </div>
 
         <div class="bad character" v-if="isBad">
-            <div class="rolePreText">You are a...</div>
-            <img class="rolePicture" src="@/assets/badGuyBig.png">
-            <div class="badGuysText">
-                <p class="allies">Allies</p>
-                <div class="flexTest">
-                    <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <div class="rolePreTextWrapper">
+                <div class="rolePreText">You are a...</div>
+            </div>
+            <div class="rolePictureWrapper">
+                <img class="rolePicture" src="@/assets/badGuyBig.png">
+            </div>
+            <div class="badGuysTextWrapper">
+                <div class="badGuysText">
+                    <p class="allies">Allies</p>
+                    <div class="flexTest">
+                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                    </div>
                 </div>
             </div>
             <div class="readyButtonWrapper">
                 <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
-                <div class="readyButtonText">Ready</div>
             </div>
         </div>
 
         <div class="merlin character" v-if="isMerlin">
-            <div class="rolePreText">You are...</div>
-            <img class="roleText" src="@/assets/merlinTextBig.png">
-            <img class="rolePicture" src="@/assets/merlinBig.png">
-            <div class="badGuysText">
-                <p class="allies">Enemies</p>
-                <div class="flexTest">
-                    <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <div class="rolePreTextWrapper">
+                <div class="rolePreText">You are...</div>
+            </div>
+            <div class="roleTextWrapper">
+                <img class="roleText" src="@/assets/merlinTextBig.png">
+            </div>
+            <div class="rolePictureWrapper">
+                <img class="rolePicture" src="@/assets/merlinBig.png">
+            </div>
+            <div class="badGuysTextWrapper">
+                <div class="badGuysText">
+                    <p class="allies">Enemies</p>
+                    <div class="flexTest">
+                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                    </div>
                 </div>
             </div>
             <div class="readyButtonWrapper">
                 <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
-                <div class="readyButtonText">Ready</div>
             </div>
         </div>
 
         <div class="assassin character" v-if="isAssassin">
-            <div class="rolePreText">You are the...</div>
-            <img class="roleText" src="@/assets/assassinTextBig.png">
-            <img class="rolePicture" src="@/assets/assassinBig.png">
-            <div class="badGuysText">
-                <p class="allies">Allies</p>
-                <div class="flexTest">
-                    <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <div class="rolePreTextWrapper">
+                <div class="rolePreText">You are the...</div>
+            </div>
+            <div class="roleTextWrapper">
+                <img class="roleText" src="@/assets/assassinTextBig.png">
+            </div>
+            <div class="rolePictureWrapper">
+                <img class="rolePicture" src="@/assets/assassinBig.png">
+            </div>
+            <div class="badGuysTextWrapper">
+                <div class="badGuysText">
+                    <p class="allies">Allies</p>
+                    <div class="flexTest">
+                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                    </div>
                 </div>
             </div>
             <div class="readyButtonWrapper">
                 <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
-                <div class="readyButtonText">Ready</div>
             </div>
         </div>
 
@@ -109,66 +135,57 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    .rolePreText {
-        position: absolute;
-        top: 2%;
-        width: 100%;
-        left: 0;
-        right: 0;
-        font-size: 4em;
-        color: white;
+    .rolePreTextWrapper {
+        height: 4vh;
+
+        .rolePreText {
+            margin-top: 3%;
+            font-size: 5vh;
+            font-size: 4vh;
+            color: white;
+            height: 100%;
+            width: auto;
+        }
     }
 
-    .roleText {
-        position: absolute;
-        top: 7%;
-        left: 12.5%;
-        right: 12.5%;
-        width: 75%;
+    .roleTextWrapper {
+        height: 15vh;
+
+        .roleText {
+            height: 100%;
+            width: auto;
+        }
     }
 
-    .rolePicture {
-        position: absolute;
-        margin-top: 15%;
-        margin-bottom: -10%;
-        width: 100%;
-        right: 0;
-        left: 0;
-        max-height: 60%;
+    .rolePictureWrapper {
+        height: 55vh;
+        margin-top: -25%;
+
+        .rolePicture {
+            height: 100%;
+            width: auto;
+        }
     }
 
-    .badGuysText {
-        position: relative;
-        color: antiquewhite;
-        font-size: 3em;
-        margin-left: auto;
-        margin-right: auto;
+    .badGuysTextWrapper {
+        height: 10vh;
+
+        .badGuysText {
+            height: 100%;
+            width: auto;
+            color: whitesmoke;
+            font-size: 3.5vh;
+        }
     }
 
     .readyButtonWrapper {
-        position: absolute;
-        bottom: 5%;
-        top: 75%;
-        left: 15%;
-        right: 15%;
-        width: 70%;
-        display: inline-block;
-    }
+        height: 20vh;
 
-    .readyButtonWrapper .readyButtonText {
-        position: absolute;
-        z-index: 999;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        top: 45%; /* Adjust this value to move the positioned div up and down */
-        text-align: center;
-        width: 60%; /* Set the width of the positioned div */
-        font-size: 4em;
-        color: antiquewhite;
+        .readyButton {
+            height: 100%;
+            width: auto;
+        }
     }
-
-    /*below line not changing*/
 
     #playerInfo {
         position: absolute;
