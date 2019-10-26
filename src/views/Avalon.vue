@@ -175,6 +175,8 @@
                         store.dispatch("assassinVoteToGoodGuysWin")
                     }
                 }
+
+                store.commit('setLastEventId', msgJSON.id)
             }
         },
         mounted () {
