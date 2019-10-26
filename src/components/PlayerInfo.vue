@@ -194,7 +194,6 @@
         right: 0;
         top: 0;
         bottom: 0;
-        height: 100vh;
         border: 10px solid $insideBorder;
     }
 
@@ -209,8 +208,6 @@
         display: block;
         content: '';
         border: 8px solid $outsideBorder;
-        height: 100%;
-        width: 100%;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
