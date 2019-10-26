@@ -158,7 +158,7 @@
     }
 
     .rolePictureWrapper {
-        height: 55vh;
+        height: 50vh;
         margin-top: -25%;
 
         .rolePicture {
@@ -168,7 +168,8 @@
     }
 
     .badGuysTextWrapper {
-        height: 10vh;
+        height: 8vh;
+        margin-top: -10%;
 
         .badGuysText {
             height: 100%;
@@ -248,18 +249,6 @@
         width: 100%;
         height: auto;
         margin: auto;
-    }
-
-    .badGuysText {
-        color: white;
-        position: fixed;
-        top: 65%;
-        font-size: 3em;
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        right: 0;
-        width: 35%;
     }
 
     .flexTest {
