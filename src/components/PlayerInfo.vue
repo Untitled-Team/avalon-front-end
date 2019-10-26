@@ -169,6 +169,7 @@
 
     .badGuysTextWrapper {
         height: 8vh;
+        margin-top: -10%;
 
         .badGuysText {
             height: 100%;
@@ -179,7 +180,7 @@
     }
 
     .readyButtonWrapper {
-        height: 15vh;
+        height: 20vh;
 
         .readyButton {
             height: 100%;
