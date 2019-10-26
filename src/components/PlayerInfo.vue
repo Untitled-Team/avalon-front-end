@@ -147,7 +147,7 @@
     }
 
     .roleTextWrapper {
-        height: 15vh;
+        height: 12vh;
 
         .roleText {
             height: 100%;
@@ -156,7 +156,7 @@
     }
 
     .rolePictureWrapper {
-        height: 50vh;
+        height: 45vh;
         margin-top: -25%;
 
         .rolePicture {
@@ -177,7 +177,7 @@
     }
 
     .readyButtonWrapper {
-        height: 20vh;
+        height: 15vh;
         margin-top: 5%;
 
         .readyButton {
