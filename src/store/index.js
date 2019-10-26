@@ -123,7 +123,7 @@ export default new Vuex.Store({
             state.activeMission = activeMission
         },
         setLastEventId: (state, event) => {
-            state.lastEventId = event.id
+            state.lastEventId = event
         },
         SOCKET_ONMESSAGE: state => {state},
         SOCKET_ONOPEN: state => {
