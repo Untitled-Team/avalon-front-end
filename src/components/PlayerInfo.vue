@@ -136,11 +136,9 @@
     @import "../styles/variables";
 
     .rolePreTextWrapper {
-        height: 4vh;
+        margin-top: 4%;
 
         .rolePreText {
-            margin-top: 3%;
-            font-size: 5vh;
             font-size: 4vh;
             color: white;
             height: 100%;
@@ -168,7 +166,6 @@
     }
 
     .badGuysTextWrapper {
-        height: 8vh;
         margin-top: -10%;
 
         .badGuysText {
@@ -181,6 +178,7 @@
 
     .readyButtonWrapper {
         height: 20vh;
+        margin-top: 5%;
 
         .readyButton {
             height: 100%;
@@ -189,6 +187,9 @@
     }
 
     #playerInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         position: absolute;
         left: 0;
         right: 0;
@@ -274,6 +275,7 @@
     }
 
     .character {
+        flex-basis: c;
         background: inherit;
     }
 </style>
