@@ -71,7 +71,7 @@
                 <img class="roleText" src="@/assets/assassinTextBig.png">
             </div>
             <div class="rolePictureWrapper">
-                <img class="rolePicture" src="@/assets/assassinBig.png">
+                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
             </div>
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
@@ -139,6 +139,7 @@
     @import "../styles/variables";
 
     .rolePreTextWrapper {
+        height: 5%;
         margin-top: 4%;
 
         .rolePreText {
@@ -150,7 +151,7 @@
     }
 
     .roleTextWrapper {
-        height: 12vh;
+        height: 10%;
 
         .roleText {
             height: 100%;
@@ -159,17 +160,24 @@
     }
 
     .rolePictureWrapper {
-        height: 45vh;
-        margin-top: -25%;
+        height: 35%;
+        margin-top: 5%;
 
         .rolePicture {
             height: 100%;
             width: auto;
         }
+
+        .rolePictureAssassin {
+            height: 70%;
+            width: auto;
+            margin-top: 10%;
+        }
     }
 
     .badGuysTextWrapper {
-        margin-top: -10%;
+        height: 10%;
+        margin-top: 5%;
 
         .badGuysText {
             height: 100%;
@@ -180,7 +188,7 @@
     }
 
     .readyButtonWrapper {
-        height: 15vh;
+        height: 15%;
         margin-top: 5%;
 
         .readyButton {
@@ -201,7 +209,6 @@
         border: 10px solid $insideBorder;
     }
 
-    /*THIS IS FUCKING with my button!!!  it's sitting on top of it for some reason...*/
     #playerInfo:before {
         pointer-events: none;
         left: 0;
@@ -226,35 +233,9 @@
         width: 100%;
     }
 
-    .cardText {
-        width: 65%;
-        height: auto;
-        margin: auto;
-        position: absolute;
-        left: 17.5%;
-        right: 17.5%;
-        top: 15%;
-    }
-
-    .cardPicture {
-        width: 95%;
-        height: auto;
-        margin: auto;
-        position: absolute;
-        left: 2.5%;
-        right: 2.5%;
-        top: -4%;
-    }
-
-    .cardBackground {
-        width: 100%;
-        height: auto;
-        margin: auto;
-    }
-
     .flexTest {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
     }
 
     .badGuyName {
@@ -278,7 +259,7 @@
     }
 
     .character {
-        flex-basis: c;
+        height: 100%;
         background: inherit;
     }
 </style>
