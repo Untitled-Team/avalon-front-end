@@ -11,8 +11,8 @@
         <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
 
         <div v-show="!playerHasVoted && playerVoting">
-            <img class="passButton" src="@/assets/passButtonShadowBig.png" v-on:click="voteToPass"/>
-            <img class="failButton" src="@/assets/failButtonShadowBig.png" v-on:click="voteToFail"/>
+            <img class="passButton" src="@/assets/passButtonBig.png" v-on:click="voteToPass"/>
+            <img class="failButton" src="@/assets/failButtonBig.png" v-on:click="voteToFail"/>
         </div>
 
         <div id="WaitingOnOthers" class="is-size-4-mobile is-size-4-desktop" v-show="playerHasVoted || !playerVoting">

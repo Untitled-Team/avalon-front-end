@@ -21,6 +21,9 @@
             <div class="rolePreTextWrapper">
                 <div class="rolePreText">You are a...</div>
             </div>
+            <div class="roleTextWrapper">
+                <img class="roleText" src="@/assets/badGuyTextBig.png">
+            </div>
             <div class="rolePictureWrapper">
                 <img class="rolePicture" src="@/assets/badGuyBig.png">
             </div>
