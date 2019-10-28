@@ -6,7 +6,7 @@
                 <form id="joinGameForm" @submit.prevent="joinGame">
                     <div class="field">
                         <input id="joinGameNickname" v-model="nickname" type="text"
-                               placeholder="Player Nickname..." required/>
+                               placeholder="Player Nickname..." maxlength="12" required/>
                     </div>
                     <div class="field">
                         <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
@@ -20,7 +20,7 @@
                 <form id="createGameForm" @submit.prevent="createGame">
                     <div class="field">
                         <input id="createGameNickname" v-model="nickname" type="text"
-                               placeholder="Player Nickname..." required/>
+                               placeholder="Player Nickname..." maxlength="12" required/>
                     </div>
                     <div class="field">
                         <input id="createGameSubmit" type="submit" class="buttonInput button is-small" value="Create a New Game"/>
