@@ -6,7 +6,7 @@
         <div class="lobbyData">
             <div class="lobbyText">
                 <p class="waitingForPlayers is-size-4-mobile is-size-4-desktop" v-if="!correctPlayerNumbers">Waiting for players...</p>
-                <p class="accessCodeText">Access code: {{ roomId }}</p>
+                <p class="roomId">Access code: {{ roomId }}</p>
             </div>
             <div class="players">
                 <div class="lobbyPlayer" :key="index" v-for="(player, index) in players">
@@ -50,7 +50,7 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    .accessCodeText {
+    .roomId {
         font-size: 2em;
     }
 
@@ -124,7 +124,7 @@
             font-size: 2.7em;
         }
 
-        .accessCodeText {
+        .roomId {
             font-size: 2.7em;
         }
     }
@@ -135,7 +135,7 @@
             font-size: 2.1em;
         }
 
-        .accessCodeText {
+        .roomId {
             font-size: 2.1em;
         }
     }
@@ -146,7 +146,7 @@
             font-size: 2em;
         }
 
-        .accessCodeText {
+        .roomId {
             font-size: 2em;
         }
 
