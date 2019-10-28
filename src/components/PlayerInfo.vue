@@ -6,7 +6,7 @@
                 <div class="rolePreText">You are a...</div>
             </div>
             <div class="roleTextWrapper">
-                <img class="roleText" src="@/assets/goodGuyTextBig.png">
+                <img class="roleTextGoodGuys" src="@/assets/goodGuyTextBig.png">
             </div>
             <div class="rolePictureWrapper">
                 <img class="rolePicture" src="@/assets/goodGuyBig.png">
@@ -22,7 +22,7 @@
                 <div class="rolePreText">You are a...</div>
             </div>
             <div class="roleTextWrapper">
-                <img class="roleText" src="@/assets/badGuyTextBig.png">
+                <img class="roleTextBadGuys" src="@/assets/badGuyTextBig.png">
             </div>
             <div class="rolePictureWrapper">
                 <img class="rolePicture" src="@/assets/badGuyBig.png">
@@ -45,7 +45,7 @@
                 <div class="rolePreText">You are...</div>
             </div>
             <div class="roleTextWrapper">
-                <img class="roleText" src="@/assets/merlinTextBig.png">
+                <img class="roleTextGoodGuys" src="@/assets/merlinTextBig.png">
             </div>
             <div class="rolePictureWrapper">
                 <img class="rolePicture" src="@/assets/merlinBig.png">
@@ -68,7 +68,7 @@
                 <div class="rolePreText">You are the...</div>
             </div>
             <div class="roleTextWrapper">
-                <img class="roleText" src="@/assets/assassinTextBig.png">
+                <img class="roleTextBadGuys" src="@/assets/assassinTextBig.png">
             </div>
             <div class="rolePictureWrapper">
                 <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
@@ -139,11 +139,11 @@
     @import "../styles/variables";
 
     .rolePreTextWrapper {
-        height: 5%;
+        height: 3.5%;
         margin-top: 4%;
 
         .rolePreText {
-            font-size: 4vh;
+            font-size: 3vh;
             color: white;
             height: 100%;
             width: auto;
@@ -151,16 +151,21 @@
     }
 
     .roleTextWrapper {
-        height: 10%;
+        height: 15%;
 
-        .roleText {
+        .roleTextGoodGuys {
             height: 100%;
+            width: auto;
+        }
+
+        .roleTextBadGuys {
+            height: 75%;
             width: auto;
         }
     }
 
     .rolePictureWrapper {
-        height: 35%;
+        height: 45%;
         margin-top: 5%;
 
         .rolePicture {
@@ -183,7 +188,16 @@
             height: 100%;
             width: auto;
             color: whitesmoke;
-            font-size: 3.5vh;
+            font-size: 3vh;
+
+            .flexTest {
+                display: flex;
+                flex-wrap: nowrap;
+
+                .badGuyName {
+                    flex: 0 50%;
+                }
+            }
         }
     }
 
@@ -231,15 +245,6 @@
         color: sandybrown;
         font-size: 3em;
         width: 100%;
-    }
-
-    .flexTest {
-        display: flex;
-        flex-wrap: nowrap;
-    }
-
-    .badGuyName {
-        flex: 0 50%;
     }
 
     .allies {
