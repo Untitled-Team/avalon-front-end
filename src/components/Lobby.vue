@@ -5,7 +5,8 @@
 
         <div class="lobbyData">
             <div class="lobbyText">
-                <p class="waitingForPlayers is-size-4-mobile is-size-4-desktop" v-if="!correctPlayerNumbers">Waiting for players...</p>
+                <p class="waitingForPlayers is-size-4-mobile is-size-4-desktop" v-if="!correctPlayerNumbers">Waiting for
+                    players...</p>
                 <p class="roomId">Access code: {{ roomId }}</p>
             </div>
             <div class="players">
@@ -83,7 +84,7 @@
         color: whitesmoke;
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
     }
 
     input[type=submit] {
@@ -140,7 +141,7 @@
         }
     }
 
-    @media (max-height : 472px) {
+    @media (max-height: 472px) {
 
         .lobbyPlayer {
             font-size: 2em;

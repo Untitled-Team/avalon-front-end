@@ -202,8 +202,8 @@
     }
 
     .readyButtonWrapper {
-        height: 15%;
-        margin-top: 5%;
+        height: 13%;
+        margin-top: 3%;
 
         .readyButton {
             height: 100%;
@@ -266,5 +266,49 @@
     .character {
         height: 100%;
         background: inherit;
+    }
+
+    @media (max-height: 553px) {
+        .rolePreTextWrapper {
+            height: 3.5%;
+        }
+
+        .rolePreTextWrapper {
+            height: 13%;
+        }
+
+        .rolePictureWrapper {
+            height: 40%;
+        }
+
+        .badGuysTextWrapper {
+            height: 10%;
+        }
+
+        .readyButtonWrapper {
+            height: 10%;
+        }
+    }
+
+    @media (max-height: 472px) {
+        .rolePreTextWrapper {
+            height: 2.5%;
+        }
+
+        .rolePreTextWrapper {
+            height: 13%;
+        }
+
+        .rolePictureWrapper {
+            height: 40%;
+        }
+
+        .badGuysTextWrapper {
+            height: 8%;
+        }
+
+        .readyButtonWrapper {
+            height: 10%;
+        }
     }
 </style>
