@@ -1,15 +1,15 @@
 <template>
     <div id="lobby">
-        <img src="@/assets/castleBigger.png">
+        <img class="castle" src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
 
         <div class="lobbyData">
-            <div>
-                <p class="is-size-4-mobile is-size-4-desktop">Waiting for players...</p>
-                <p class="roomId is-size-5-mobile is-size-6-desktop">Access code: {{ roomId }}</p>
+            <div class="lobbyText">
+                <p class="waitingForPlayers is-size-4-mobile is-size-4-desktop" v-if="!correctPlayerNumbers">Waiting for players...</p>
+                <p class="roomId">Access code: {{ roomId }}</p>
             </div>
             <div class="players">
-                <div class="lobbyPlayer is-size-5-mobile is-size-6-desktop" :key="index" v-for="(player, index) in players">
+                <div class="lobbyPlayer" :key="index" v-for="(player, index) in players">
                     {{ player }}
                 </div>
             </div>
@@ -50,18 +50,22 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    .gameRequirement {
-        margin-top: 5px;
+    .roomId {
+        font-size: 2em;
+    }
+
+    .lobbyText {
+        margin-top: -15px;
     }
 
     .players {
         /*border-right: whitesmoke solid 4px;*/
-        padding-top: 5px;
-        padding-bottom: 10px;
+        /*padding-top: 5px;*/
+        padding-bottom: 5px;
         display: flex;
         flex-direction: column;
         margin: 0 auto;
-        flex-grow : 1;
+        /*flex-grow : 1;*/
         width: 58%;
     }
 
@@ -70,6 +74,7 @@
         padding-bottom: 1px;
         margin-top: 3px;
         background: rgba(black, 0.11);
+        font-size: 2em;
     }
 
     #lobby {
@@ -94,20 +99,11 @@
         font-weight: bold;
         background: $successful;
         color: whitesmoke;
-        /*font-size: 50px;*/
-    }
-
-    .field {
-        padding: 3px;
-    }
-
-    .bigText {
-        font-size: 4em;
     }
 
     .title {
         position: absolute;
-        top: 7%;
+        top: 6.5%;
         width: 60%;
         left: 20%;
         right: 20%;
@@ -123,7 +119,51 @@
         /*top: -10%;*/
     }
 
-    .roomId {
-      font-size: 1.3em;
+    @media (max-height: 1000px) {
+        .lobbyPlayer {
+            font-size: 2.7em;
+        }
+
+        .roomId {
+            font-size: 2.7em;
+        }
+    }
+
+    @media (max-height: 553px) {
+
+        .lobbyPlayer {
+            font-size: 2.1em;
+        }
+
+        .roomId {
+            font-size: 2.1em;
+        }
+    }
+
+    @media (max-height : 472px) {
+
+        .lobbyPlayer {
+            font-size: 2em;
+        }
+
+        .roomId {
+            font-size: 2em;
+        }
+
+        .castle {
+            margin-top: -30px;
+        }
+
+        .title {
+            top: 3%;
+        }
+
+        .players {
+            padding-bottom: 4px;
+        }
+
+        input[type=submit] {
+            font-size: 2em;
+        }
     }
 </style>

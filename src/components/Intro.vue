@@ -1,32 +1,32 @@
 <template>
     <div class="intro">
-        <div >
-            <img src="@/assets/castleBigger.png">
+            <img class="castle" src="@/assets/castleBigger.png">
             <img class="title" src="@/assets/titleBig.png">
-            <form id="joinGameForm" @submit.prevent="joinGame">
-                <div class="field">
-                    <input id="joinGameNickname" v-model="nickname" type="text"
-                           placeholder="Player Nickname..." required/>
-                </div>
-                <div class="field">
-                    <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
-                           required/>
-                </div>
-                <div class="field">
-                    <input id="joinGameSubmit" type="submit" class="buttonInput button is-small"
-                           value="Join Existing Game"/>
-                </div>
-            </form>
-            <form id="createGameForm" @submit.prevent="createGame">
-                <div class="field">
-                    <input id="createGameNickname" v-model="nickname" type="text"
-                           placeholder="Player Nickname..." required/>
-                </div>
-                <div class="field">
-                    <input id="createGameSubmit" type="submit" class="buttonInput button is-small" value="Create a New Game"/>
-                </div>
-            </form>
-        </div>
+            <div class="menuContent">
+                <form id="joinGameForm" @submit.prevent="joinGame">
+                    <div class="field">
+                        <input id="joinGameNickname" v-model="nickname" type="text"
+                               placeholder="Player Nickname..." required/>
+                    </div>
+                    <div class="field">
+                        <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
+                               required/>
+                    </div>
+                    <div class="field">
+                        <input id="joinGameSubmit" type="submit" class="buttonInput button is-small"
+                               value="Join Existing Game"/>
+                    </div>
+                </form>
+                <form id="createGameForm" @submit.prevent="createGame">
+                    <div class="field">
+                        <input id="createGameNickname" v-model="nickname" type="text"
+                               placeholder="Player Nickname..." required/>
+                    </div>
+                    <div class="field">
+                        <input id="createGameSubmit" type="submit" class="buttonInput button is-small" value="Create a New Game"/>
+                    </div>
+                </form>
+            </div>
     </div>
 </template>
 
@@ -66,6 +66,13 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .menuContent {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        justify-content: center;
+    }
+
     .intro {
         background: $water;
         height: 100%;
@@ -78,20 +85,11 @@
         padding: 3px;
     }
 
-    .bigText {
-        font-size: 4em;
-    }
-
     .title {
         position: absolute;
-        top: 7%;
         width: 60%;
         left: 20%;
         right: 20%;
-    }
-
-    #joinGameForm {
-        margin-bottom: 40px;
     }
 
     input[type=text] {
@@ -100,6 +98,66 @@
         padding-top: 6px;
         border: white 1px solid;
         font-family: inherit;
-        font-size: 18px;
+        font-size: 16px;
     }
+
+    @media /*(max-width: 414px) and */ (max-height: 1000px) {
+        .menuContent {
+            margin-top: -45px;
+        }
+
+        .title {
+            top: 6.5%;
+        }
+
+        #joinGameForm {
+            margin-bottom: 50px;
+        }
+
+        input[type=text] {
+            font-size: 20px;
+        }
+    }
+
+    @media /*(max-width: 375px) and*/ (max-height: 553px) {
+        /*.menuContent {*/
+            /*margin-top: -40px;*/
+        /*}*/
+
+        .title {
+            top: 6.5%;
+        }
+
+        #joinGameForm {
+            margin-bottom: 35px;
+        }
+
+        input[type=text] {
+            font-size: 17px;
+        }
+    }
+
+    @media (max-height : 472px) /*and (max-width : 320px)*/ {
+
+        .menuContent {
+            display: flex;
+            flex: 1 1 0;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: -20px;
+        }
+
+        .castle {
+            margin-top: -30px;
+        }
+
+        .title {
+            top: 3%;
+        }
+
+        #joinGameForm {
+            margin-bottom: 20px;
+        }
+    }
+
 </style>
