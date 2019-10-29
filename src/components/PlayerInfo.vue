@@ -1,7 +1,7 @@
 <template>
     <div id="playerInfo"
          :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
-        <div class="good character" v-if="isGood">
+        <div class="knight character" v-if="isGood">
             <div class="rolePreTextWrapper">
                 <div class="rolePreText">You are a...</div>
             </div>
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="bad character" v-if="isBad">
+        <div class="warlock character" v-if="isBad">
             <div class="rolePreTextWrapper">
                 <div class="rolePreText">You are a...</div>
             </div>
@@ -138,78 +138,211 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    .rolePreTextWrapper {
-        height: 3.5%;
-        margin-top: 4%;
+    .knight {
+        .rolePreTextWrapper {
+            margin-top: 13px;
 
-        .rolePreText {
-            font-size: 3vh;
-            color: white;
-            height: 100%;
-            width: auto;
-        }
-    }
 
-    .roleTextWrapper {
-        height: 15%;
-
-        .roleTextGoodGuys {
-            height: 100%;
-            width: auto;
+            .rolePreText {
+                font-size: 2.5vh;
+                color: white;
+                height: 100%;
+                width: auto;
+                margin-right: 12px;
+            }
         }
 
-        .roleTextBadGuys {
-            height: 75%;
-            width: auto;
-        }
-    }
-
-    .rolePictureWrapper {
-        height: 45%;
-        margin-top: 5%;
-
-        .rolePicture {
-            height: 100%;
-            width: auto;
+        .badGuysTextWrapper {
+            display: none;
         }
 
-        .rolePictureAssassin {
-            height: 70%;
-            width: auto;
-            margin-top: 10%;
+        .roleTextWrapper {
+            height: 23%;
+            margin-top: -15px;
+            margin-bottom: 4px;
+
+            .roleTextGoodGuys {
+                height: 100%;
+                width: auto;
+            }
         }
-    }
 
-    .badGuysTextWrapper {
-        height: 10%;
-        margin-top: 5%;
+        .rolePictureWrapper {
+            height: 55%;
+            margin-left: 7%;
+            /*margin-top: 5%;*/
 
-        .badGuysText {
-            height: 100%;
-            width: auto;
-            color: whitesmoke;
-            font-size: 3vh;
+            .rolePicture {
+                height: 100%;
+                width: auto;
+            }
+        }
 
-            .flexTest {
-                display: flex;
-                flex-wrap: nowrap;
+        .readyButtonWrapper {
+            height: 14%;
+            margin-top: 3%;
 
-                .badGuyName {
-                    flex: 0 50%;
-                }
+            .readyButton {
+                height: 100%;
+                width: auto;
             }
         }
     }
 
-    .readyButtonWrapper {
-        height: 13%;
-        margin-top: 3%;
+    .warlock {
+        .rolePreTextWrapper {
+            margin-top: 13px;
 
-        .readyButton {
-            height: 100%;
-            width: auto;
+            .rolePreText {
+                font-size: 2.5vh;
+                color: white;
+                height: 100%;
+                width: auto;
+                margin-right: 12px;
+            }
+        }
+
+        .roleTextWrapper {
+            height: 17%;
+            margin-top: -10px;
+            margin-bottom: 4px;
+
+            .roleTextGoodGuys {
+                height: 100%;
+                width: auto;
+            }
+
+            .roleTextBadGuys {
+                height: 100%;
+                width: auto;
+            }
+        }
+
+        .rolePictureWrapper {
+            height: 40%;
+            margin-left: 7%;
+            /*margin-top: 5%;*/
+
+            .rolePicture {
+                height: 100%;
+                width: auto;
+            }
+        }
+
+        .badGuysTextWrapper {
+            /*height: 10%;*/
+            margin-top: 3px;
+            /*margin-top: 5%;*/
+
+            .badGuysText {
+                height: 100%;
+                width: auto;
+                color: whitesmoke;
+                font-size: 3vh;
+
+                .flexTest {
+                    display: flex;
+                    flex-direction: column;
+
+                    .badGuyName {
+                        display: flex;
+                        flex-direction: column;
+                        background: rgba(black, 0.11);
+                        width: 50%;
+                        margin: 0 auto;
+                        margin-bottom: 3px;
+                        /*flex-basis: 100%;*/
+                        /*width: 200px;*/
+                    }
+                }
+            }
+        }
+
+        .readyButtonWrapper {
+            height: 13%;
+            margin-top: 1%;
+
+            .readyButton {
+                height: 100%;
+                width: auto;
+            }
         }
     }
+
+
+    /*.rolePreTextWrapper {*/
+    /*    height: 3.5%;*/
+    /*    margin-top: 4%;*/
+
+    /*    .rolePreText {*/
+    /*        font-size: 3vh;*/
+    /*        color: white;*/
+    /*        height: 100%;*/
+    /*        width: auto;*/
+    /*    }*/
+    /*}*/
+
+    /*.roleTextWrapper {*/
+    /*    height: 15%;*/
+
+    /*    .roleTextGoodGuys {*/
+    /*        height: 100%;*/
+    /*        width: auto;*/
+    /*    }*/
+
+    /*    .roleTextBadGuys {*/
+    /*        height: 75%;*/
+    /*        width: auto;*/
+    /*    }*/
+    /*}*/
+
+    /*.rolePictureWrapper {*/
+    /*    height: 45%;*/
+    /*    !*margin-top: 5%;*!*/
+
+    /*    .rolePicture {*/
+    /*        height: 100%;*/
+    /*        width: auto;*/
+    /*    }*/
+
+    /*    .rolePictureAssassin {*/
+    /*        height: 70%;*/
+    /*        width: auto;*/
+    /*        margin-top: 10%;*/
+    /*    }*/
+    /*}*/
+
+    /*.badGuysTextWrapper {*/
+    /*    height: 10%;*/
+    /*    margin-top: 7px;*/
+    /*    !*margin-top: 5%;*!*/
+
+    /*    .badGuysText {*/
+    /*        height: 100%;*/
+    /*        width: auto;*/
+    /*        color: whitesmoke;*/
+    /*        font-size: 3vh;*/
+
+    /*        .flexTest {*/
+    /*            display: flex;*/
+    /*            flex-wrap: nowrap;*/
+
+    /*            .badGuyName {*/
+    /*                flex: 0 50%;*/
+    /*            }*/
+    /*        }*/
+    /*    }*/
+    /*}*/
+
+    /*.readyButtonWrapper {*/
+    /*    height: 13%;*/
+    /*    margin-top: 3%;*/
+
+    /*    .readyButton {*/
+    /*        height: 100%;*/
+    /*        width: auto;*/
+    /*    }*/
+    /*}*/
 
     #playerInfo {
         display: flex;
@@ -245,6 +378,7 @@
         color: sandybrown;
         font-size: 3em;
         width: 100%;
+        height: 15%;
     }
 
     .allies {
@@ -268,47 +402,59 @@
         background: inherit;
     }
 
-    @media (max-height: 553px) {
-        .rolePreTextWrapper {
-            height: 3.5%;
-        }
-
-        .rolePreTextWrapper {
-            height: 13%;
-        }
-
-        .rolePictureWrapper {
-            height: 40%;
-        }
-
-        .badGuysTextWrapper {
-            height: 10%;
-        }
-
-        .readyButtonWrapper {
-            height: 10%;
+    @media (max-height: 1000px) {
+        .knight {
+            .roleTextWrapper {
+                height: 22%;
+            }
         }
     }
 
+    @media (max-height: 700px) {
+        .knight {
+            .roleTextWrapper {
+                height: 22%;
+            }
+        }
+    }
+
+    @media (max-height: 553px) {
+        /*.rolePreTextWrapper {*/
+        /*    height: 3.5%;*/
+        /*}*/
+
+        /*.rolePictureWrapper {*/
+        /*    height: 40%;*/
+        /*}*/
+
+        /*.badGuysTextWrapper {*/
+        /*    height: 10%;*/
+        /*}*/
+
+        /*.readyButtonWrapper {*/
+        /*    height: 10%;*/
+        /*}*/
+    }
+
     @media (max-height: 472px) {
-        .rolePreTextWrapper {
-            height: 2.5%;
-        }
+        /*.rolePreTextWrapper {*/
+        /*    height: 2.5%;*/
+        /*}*/
 
-        .rolePreTextWrapper {
-            height: 13%;
-        }
+        /*.roleTextWrapper {*/
+        /*    height: 20%;*/
+        /*}*/
 
-        .rolePictureWrapper {
-            height: 40%;
-        }
+        /*.rolePictureWrapper {*/
+        /*    height: 40%;*/
+        /*}*/
 
-        .badGuysTextWrapper {
-            height: 8%;
-        }
+        /*.badGuysTextWrapper {*/
+        /*    height: 8%;*/
+        /*}*/
 
-        .readyButtonWrapper {
-            height: 10%;
-        }
+        /*.readyButtonWrapper {*/
+        /*    height: 13%;*/
+        /*}*/
     }
 </style>
