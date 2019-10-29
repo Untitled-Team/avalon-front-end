@@ -3,34 +3,41 @@
          v-on:click="makeActive"
          v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed}">
         <div class="hapticfeedback" v-bind:class="{active: isActive}">
-        <div class="partySize biggerText is-size-1-mobile" v-bind:class="{current: isCurrent, first: isFirst, middle: isMiddle, last: isLast, active: isActive}">
-            <p class="numberOfPlayers" v-bind:class="{active: isActive}">{{ quest.numberOfAdventurers }}</p>
-        </div>
+            <div class="partySize biggerText is-size-1-mobile"
+                 v-bind:class="{current: isCurrent, first: isFirst, middle: isMiddle, last: isLast, active: isActive}">
+                <p class="numberOfPlayers" v-bind:class="{active: isActive}">{{ quest.numberOfAdventurers }}</p>
+            </div>
         </div>
         <div class="bannerContainer"
              v-bind:class="{currentMissionActive: currentMissionIsActive, activeMissionPassing: activeMissionPassing, activeMissionFailing: activeMissionFailing, last: isLast, first: isFirst}">
             <div class="firstRow">
-                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
+                <div class="overwrite"
+                     v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
                 </div>
             </div>
             <div class="secondRow">
-                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
+                <div class="overwrite"
+                     v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
                 </div>
             </div>
             <div class="thirdRow">
-                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
+                <div class="overwrite"
+                     v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
                 </div>
             </div>
             <div class="fourthRow">
-                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
+                <div class="overwrite"
+                     v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
                 </div>
             </div>
             <div class="fifthRow">
-                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
+                <div class="overwrite"
+                     v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
                 </div>
             </div>
             <div class="sixthRow">
-                <div class="overwrite" v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
+                <div class="overwrite"
+                     v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
                 </div>
             </div>
         </div>
@@ -38,72 +45,71 @@
 </template>
 
 <script>
-export default {
-    name: 'Quest',
-    props: ["quest", "missionNumber", "quests"],
-    methods: {
-        makeActive: function () {
-            if (this.quest.pass !== null || (this.$store.state.currentMission === this.missionNumber))
+    export default {
+        name: 'Quest',
+        props: ["quest", "missionNumber", "quests"],
+        methods: {
+            makeActive: function () {
                 this.$store.state.activeMission = this.missionNumber
-        }
-    },
-    computed: {
-        didPass: function () {
-            return this.quest.pass === true
+            }
         },
-        didFail: function () {
-            return this.quest.pass === false
-        },
-        completed: function() {
-            return this.quest.pass !== null
-        },
-        isActive: function () {
-            return this.missionNumber === this.$store.state.activeMission
-        },
-        isCurrent: function () {
-            return this.missionNumber === this.$store.state.currentMission
-        },
-        currentMissionIsActive: function () {
-            return this.$store.state.activeMission === this.$store.state.currentMission
-        },
-        isFirst: function () {
-            return this.missionNumber === 1
-        },
-        isMiddle: function () {
-            return this.missionNumber !== 1 && this.missionNumber !== 5
-        },
-        isLast: function () {
-            return this.missionNumber === 5
-        },
-        activeMissionPassing: function() {
-            return this.quests[this.$store.state.activeMission - 1].pass === true
-        },
-        activeMissionFailing: function() {
-            return this.quests[this.$store.state.activeMission - 1].pass === false
-        },
-        activeMissionIncomplete: function() {
-            return this.quests[this.$store.state.activeMission - 1].pass === null
-        },
+        computed: {
+            didPass: function () {
+                return this.quest.pass === true
+            },
+            didFail: function () {
+                return this.quest.pass === false
+            },
+            completed: function () {
+                return this.quest.pass !== null
+            },
+            isActive: function () {
+                return this.missionNumber === this.$store.state.activeMission
+            },
+            isCurrent: function () {
+                return this.missionNumber === this.$store.state.currentMission
+            },
+            currentMissionIsActive: function () {
+                return this.$store.state.activeMission === this.$store.state.currentMission
+            },
+            isFirst: function () {
+                return this.missionNumber === 1
+            },
+            isMiddle: function () {
+                return this.missionNumber !== 1 && this.missionNumber !== 5
+            },
+            isLast: function () {
+                return this.missionNumber === 5
+            },
+            activeMissionPassing: function () {
+                return this.quests[this.$store.state.activeMission - 1].pass === true
+            },
+            activeMissionFailing: function () {
+                return this.quests[this.$store.state.activeMission - 1].pass === false
+            },
+            activeMissionIncomplete: function () {
+                return this.quests[this.$store.state.activeMission - 1].pass === null
+            },
 
-        // focusedMission: function() {
-        //     return {
-        //         active: isActive,
-        //         inactive: !isActive,
-        //         passing: didPass,
-        //         failing: didFail,
-        //         notCompleted: !completed
-        //     }
-        // },
+            // focusedMission: function() {
+            //     return {
+            //         active: isActive,
+            //         inactive: !isActive,
+            //         passing: didPass,
+            //         failing: didFail,
+            //         notCompleted: !completed
+            //     }
+            // },
+        }
     }
-}
 </script>
 
 <style lang="scss" scoped>
     @import "../styles/variables";
 
     .questWrapper {
-        -webkit-tap-highlight-color:transparent;
-        outline-style:none;
+        -webkit-tap-highlight-color: transparent;
+        outline-style: none;
     }
 
     .currentMissionActive {
@@ -266,7 +272,7 @@ export default {
         height: 20px;
         width: 20px;
     }
-  
+
     .partySize {
         color: whitesmoke;
     }
@@ -291,5 +297,5 @@ export default {
     .failing.active {
         background: $failed;
     }
-  
+
 </style>
