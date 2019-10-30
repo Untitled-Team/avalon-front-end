@@ -7,4 +7,33 @@ $current: #306DB2;
 $bannerOutline: #F7E26B;
 $water: #31A2F2;
 $insideBorder: #F7E26B;
-$outsideBorder: #FAAE4B
+$outsideBorder: #FAAE4B;
+
+$smallHeight: 472px; //iphone5s
+$mediumHeight: 553px;
+$largeHeight: 1000px;
+$xlargeHeight: 1500px;
+
+@mixin short {
+  @media (max-height: #{smallHeight}) {
+    @content;
+  }
+}
+
+@mixin mediumTall {
+  @media (max-height: #{mediumHeight}) {
+    @content;
+  }
+}
+
+@mixin tall {
+  @media (max-height: #{largeHeight}) {
+    @content;
+  }
+}
+
+@mixin extraTall {
+  @media (max-height: #{xlargeHeight}) {
+    @content;
+  }
+}
