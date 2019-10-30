@@ -142,7 +142,6 @@
         .rolePreTextWrapper {
             margin-top: 13px;
 
-
             .rolePreText {
                 font-size: 2.5vh;
                 color: white;
@@ -190,8 +189,17 @@
     }
 
     .warlock {
+        /*display: flex;*/
+        /*flex-direction: column;*/
+        /*align-items: center;*/
+        padding: 18px;
+
         .rolePreTextWrapper {
-            margin-top: 13px;
+            display: flex;
+            flex: 1em 1 0;
+            margin: 0 auto;
+            /*flex-grow: 1;*/
+            /*justify-content: center;*/
 
             .rolePreText {
                 font-size: 2.5vh;
@@ -203,40 +211,45 @@
         }
 
         .roleTextWrapper {
-            height: 17%;
-            margin-top: -10px;
-            margin-bottom: 4px;
+            display: flex;
+            flex: 20 1 0;
+            margin-top: -20px;
 
-            .roleTextGoodGuys {
-                height: 100%;
-                width: auto;
+            img {
+                object-fit: contain;
             }
 
             .roleTextBadGuys {
-                height: 100%;
-                width: auto;
             }
         }
 
         .rolePictureWrapper {
-            height: 40%;
-            margin-left: 7%;
-            /*margin-top: 5%;*/
+            display: flex;
+            flex: 40 1 0;
+            justify-content: center;
+            /*margin: 0 auto;*/
+            margin-left: 4%;
+            /*margin-left: 4%;*/
+
+            img {
+                object-fit: contain;
+            }
 
             .rolePicture {
-                height: 100%;
-                width: auto;
             }
         }
 
         .badGuysTextWrapper {
-            /*height: 10%;*/
-            margin-top: 3px;
-            /*margin-top: 5%;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 6px;
 
             .badGuysText {
                 height: 100%;
-                width: auto;
+                width: 100%;
                 color: whitesmoke;
                 font-size: 3vh;
 
@@ -248,11 +261,9 @@
                         display: flex;
                         flex-direction: column;
                         background: rgba(black, 0.11);
-                        width: 50%;
+                        width: 100%;
                         margin: 0 auto;
                         margin-bottom: 3px;
-                        /*flex-basis: 100%;*/
-                        /*width: 200px;*/
                     }
                 }
             }
@@ -347,13 +358,18 @@
     #playerInfo {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
+        flex: 1 1 0;
+        /*justify-content: flex-start;*/
+        /*position: absolute;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        /*top: 0;*/
+        /*bottom: 0;*/
+        /*padding: 10px;*/
+        box-shadow: 1 0 0 20px $outsideBorder;
         border: 10px solid $insideBorder;
+        /*<!--border: 10px solid $outsideBorder;-->*/
+
     }
 
     #playerInfo:before {
@@ -365,7 +381,8 @@
         position: absolute;
         display: block;
         content: '';
-        border: 8px solid $outsideBorder;
+        margin: 10px;
+        border: 10px solid $outsideBorder;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
@@ -398,7 +415,10 @@
     }
 
     .character {
-        height: 100%;
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        /*height: 100%;*/
         background: inherit;
     }
 
