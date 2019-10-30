@@ -64,7 +64,7 @@
         padding: 20px;
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
     }
 
     .partyVote {
@@ -80,5 +80,10 @@
     .failed {
         background: $failed;
         color: #F6F3FA;
+    }
+
+    .notCompleted {
+        font-size: 5em;
+        background: $incomplete;
     }
 </style>
