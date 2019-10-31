@@ -102,4 +102,8 @@
         color: #F6F3FA;
     }
 
+    .notCompleted {
+        font-size: 5em;
+        background: $incomplete;
+    }
 </style>

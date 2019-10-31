@@ -8,8 +8,12 @@
                 <p class="numberOfPlayers" v-bind:class="{active: isActive}">{{ quest.numberOfAdventurers }}</p>
             </div>
         </div>
-        <div class="bannerContainer"
-             v-bind:class="{currentMissionActive: currentMissionIsActive, activeMissionPassing: activeMissionPassing, activeMissionFailing: activeMissionFailing, last: isLast, first: isFirst}">
+        <div class="bannerContainer" :class="{
+             activeIsIncompleteAndActiveNotCurrent: activeIsIncompleteAndActiveNotCurrent,
+             activeIsIncompleteAndActiveIsCurrent: activeIsIncompleteAndActiveIsCurrent,
+             activeMissionPassing: activeMissionPassing,
+             activeMissionFailing: activeMissionFailing,
+         }">
             <div class="firstRow">
                 <div class="overwrite"
                      v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
@@ -54,6 +58,12 @@
             }
         },
         computed: {
+            activeIsIncompleteAndActiveNotCurrent: function () {
+                return this.quests[this.$store.state.activeMission - 1].pass === null && this.$store.state.activeMission !== this.$store.state.currentMission
+            },
+            activeIsIncompleteAndActiveIsCurrent: function () {
+                return this.quests[this.$store.state.activeMission - 1].pass === null && this.$store.state.activeMission === this.$store.state.currentMission
+            },
             didPass: function () {
                 return this.quest.pass === true
             },
@@ -68,9 +78,6 @@
             },
             isCurrent: function () {
                 return this.missionNumber === this.$store.state.currentMission
-            },
-            currentMissionIsActive: function () {
-                return this.$store.state.activeMission === this.$store.state.currentMission
             },
             isFirst: function () {
                 return this.missionNumber === 1
@@ -87,19 +94,6 @@
             activeMissionFailing: function () {
                 return this.quests[this.$store.state.activeMission - 1].pass === false
             },
-            activeMissionIncomplete: function () {
-                return this.quests[this.$store.state.activeMission - 1].pass === null
-            },
-
-            // focusedMission: function() {
-            //     return {
-            //         active: isActive,
-            //         inactive: !isActive,
-            //         passing: didPass,
-            //         failing: didFail,
-            //         notCompleted: !completed
-            //     }
-            // },
         }
     }
 </script>
@@ -107,13 +101,17 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .activeIsIncompleteAndActiveNotCurrent {
+        background: $incomplete
+    }
+
+    .activeIsIncompleteAndActiveIsCurrent {
+        background: $current;
+    }
+
     .questWrapper {
         -webkit-tap-highlight-color: transparent;
         outline-style: none;
-    }
-
-    .currentMissionActive {
-        background: $current;
     }
 
     .numberOfPlayers {
@@ -138,7 +136,6 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        /*margin: 0 auto;*/
     }
 
     .questWrapper.active.notCompleted {
@@ -278,7 +275,6 @@
     }
 
     .current {
-        /*color: #EDC430;*/
         background: $current;
     }
 
