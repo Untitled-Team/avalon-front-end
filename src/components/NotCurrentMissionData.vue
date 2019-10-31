@@ -1,33 +1,26 @@
 <template>
-    <div id="notCurrentMissionData" class="section"
-         v-bind:class="{passed: isPassed, failed: isFailed, notCompleted: !questHasData}">
-        <div id="missionHistory" v-if="questHasData">
-            <div class="bigText">Mission History:</div>
-            <div id="numberOfAdventurers" class="mediumText">These {{ activeQuestData.numberOfAdventurers }} went on the
-                mission:
+    <div id="notCurrentMissionData" v-bind:class="{passed: isPassed, failed: isFailed, notCompleted: !questHasData}">
+        <div class="missionHistory" v-if="questHasData">
+
+            <div class="success" v-if="activeQuestData.pass">
+                <img class="victoryText" src="@/assets/victoryTextBig.png"/>
+                <img class="flag" src="@/assets/flagBig.png"/>
             </div>
-            <div v-for="(player, index) in activeQuestData.players" :key="index">
-                <p>
-                    {{player}}
-                </p>
+
+            <div class="failure" v-else>
+                <img class="defeatText" src="@/assets/defeatTextBig.png"/>
+                <img class="dagger" src="@/assets/daggerBig.png"/>
             </div>
-            <div id="success" class="bigText" v-if="activeQuestData.pass">
-                The quest was a success!
-            </div>
-            <h1 id="failure" class="bigText" v-else>
-                The quest was a failure!
-            </h1>
-            <div class="columns is-mobile">
-                <div class="column is-one-fifth"></div>
-                <div class="column is-three-fifths">
-                    <div class="partyVote somePadding" :key="index" v-for="(partyVote, index) in votesData">
-                        <div>Party vote {{ index+1 }} of {{ votesData.length }}:</div>
-                        <div>There were {{ partyVote.successVotes.length }} votes to approve the party</div>
-                        <div>There were {{ partyVote.failVotes.length }} votes to deny the party</div>
-                    </div>
+
+            <div class="missionParty">
+                Mission Party:
+                <div v-for="(player, index) in activeQuestData.players" :key="index">
+                    <p>
+                        {{player}}
+                    </p>
                 </div>
-                <div class="column is-one-fifth"></div>
             </div>
+
         </div>
         <div id="NoQuestData" v-if="!questHasData">
             This quest hasn't happened yet!
@@ -49,9 +42,6 @@
             questHasData: function () {
                 return this.activeQuestData.pass !== null
             },
-            votesData: function () {
-                return this.activeQuestData.votes
-            }
         }
     }
 </script>
@@ -61,15 +51,45 @@
     @import "../styles/variables";
 
     #notCurrentMissionData {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        flex-grow : 1;
+        height: 100%;
     }
 
-    .partyVote {
-        border: 1px solid #bbb;
-        margin-top: .4em;
+    .missionHistory {
+        height: 100%;
+    }
+
+    .failure {
+        height: 55%;
+
+        .defeatText {
+            height: 25%;
+            width: auto;
+        }
+
+        .dagger {
+            width: 75%;
+            margin-left: 22%;
+            margin-top: 5%;
+        }
+    }
+
+    .success {
+        height: 55%;
+
+        .victoryText {
+            height: 25%;
+            width: auto;
+        }
+
+        .flag {
+            margin-top: 5%;
+        }
+    }
+
+    .missionParty {
+        margin-top: 5%;
+        height: 25%;
+        font-size: 3vh;
     }
 
     .passed {
@@ -81,4 +101,5 @@
         background: $failed;
         color: #F6F3FA;
     }
+
 </style>
