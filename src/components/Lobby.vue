@@ -60,13 +60,10 @@
     }
 
     .players {
-        /*border-right: whitesmoke solid 4px;*/
-        /*padding-top: 5px;*/
         padding-bottom: 5px;
         display: flex;
         flex-direction: column;
         margin: 0 auto;
-        /*flex-grow : 1;*/
         width: 58%;
     }
 
@@ -104,7 +101,7 @@
 
     .title {
         position: absolute;
-        top: 6.5%;
+        top: 5.5%;
         width: 60%;
         left: 20%;
         right: 20%;
@@ -120,9 +117,30 @@
         /*top: -10%;*/
     }
 
+    @media (max-height: 1500px) {
+        .lobbyPlayer {
+            font-size: 4em;
+        }
+
+        .roomId {
+            font-size: 4em;
+        }
+
+    }
+
     @media (max-height: 1000px) {
         .lobbyPlayer {
             font-size: 2.7em;
+        }
+
+        .roomId {
+            font-size: 3em;
+        }
+    }
+
+    @media (max-height: 700px) {
+        .lobbyPlayer {
+            font-size: 2.5em;
         }
 
         .roomId {
@@ -139,6 +157,14 @@
         .roomId {
             font-size: 2.1em;
         }
+
+        .title {
+            top: 2.5%;
+        }
+
+        .castle {
+            margin-top: -25px;
+        }
     }
 
     @media (max-height: 472px) {
@@ -152,11 +178,11 @@
         }
 
         .castle {
-            margin-top: -30px;
+            margin-top: -35px;
         }
 
         .title {
-            top: 3%;
+            top: 2%;
         }
 
         .players {
