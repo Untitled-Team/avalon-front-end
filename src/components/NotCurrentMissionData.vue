@@ -5,19 +5,28 @@
             <div class="success" v-if="activeQuestData.pass">
                 <img class="victoryText" src="@/assets/victoryTextBig.png"/>
                 <img class="flag" src="@/assets/flagBig.png"/>
+
+                <div class="missionParty">
+                    Mission Party:
+                    <div v-for="(player, index) in activeQuestData.players" :key="index">
+                        <p>
+                            {{player}}
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div class="failure" v-else>
                 <img class="defeatText" src="@/assets/defeatTextBig.png"/>
                 <img class="dagger" src="@/assets/daggerBig.png"/>
-            </div>
 
-            <div class="missionParty">
-                Mission Party:
-                <div v-for="(player, index) in activeQuestData.players" :key="index">
-                    <p>
-                        {{player}}
-                    </p>
+                <div class="missionParty">
+                    Mission Party:
+                    <div v-for="(player, index) in activeQuestData.players" :key="index">
+                        <p>
+                            {{player}}
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -46,7 +55,6 @@
     }
 </script>
 
-
 <style lang="scss" scoped>
     @import "../styles/variables";
 
@@ -55,41 +63,67 @@
     }
 
     .missionHistory {
-        height: 100%;
+        height: calc(100% - 40px);
     }
 
     .failure {
-        height: 55%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .defeatText {
-            height: 25%;
-            width: auto;
+            flex-shrink: 1;
+            flex-grow: 1;
+            min-height: 0;
+            min-width: 0;
+            max-width: 60%;
         }
 
         .dagger {
-            width: 75%;
-            margin-left: 22%;
+            flex-shrink: 1;
+            flex-grow: 1;
+            min-width: 0;
+            min-height: 0;
+            max-width: 70%;
+            margin-left: 30%;
             margin-top: 5%;
+        }
+
+        .missionParty {
+            margin-top: 5%;
+            flex-shrink: 1;
+            flex-grow: 1;
+            font-size: 2em;
         }
     }
 
     .success {
-        height: 55%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .victoryText {
-            height: 25%;
-            width: auto;
+            flex-shrink: 1;
+            flex-grow: 1;
+            min-height: 0;
+            min-width: 0;
+            max-width: 60%;
         }
 
         .flag {
-            margin-top: 5%;
+            flex-shrink: 1;
+            flex-grow: 1;
+            min-width: 0;
+            min-height: 0;
+            max-width: 60%;
         }
-    }
 
-    .missionParty {
-        margin-top: 5%;
-        height: 25%;
-        font-size: 3vh;
+        .missionParty {
+            margin-top: 5%;
+            flex-shrink: 1;
+            flex-grow: 1;
+            font-size: 2em;
+        }
     }
 
     .passed {
