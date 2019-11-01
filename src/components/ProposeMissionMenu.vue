@@ -4,13 +4,20 @@
         <div class="teamSelection" v-show="playerIsMissionLeader">
             <p class="chooseTeam is-size-3-mobile is-size-3-desktop">Choose a team</p>
             <form class="proposal" @submit.prevent="proposeParty">
-                <div :key="index" v-for="(player, index) in players" class="playerDiv" :class="{selected: selectedPlayers.includes(player)}">
+                <div :key="index" v-for="(player, index) in players" class="playerDiv"
+                     :class="{selected: selectedPlayers.includes(player)}">
                     <label @click="e => addSelectedClass(e)">
                         <p class="is-size-4-mobile is-size-4-desktop">{{ player }}</p>
                     </label>
                 </div>
                 <input type="submit" class="button is-small submission" value="Propose Party">
             </form>
+
+            <div class="partySizeWarning">
+                <div :style="{visibility: !proposedPartyIsCorrectSize ? 'visible' : 'hidden'}">
+                    Choose {{currentMissionPartySize}} players
+                </div>
+            </div>
         </div>
 
         <div class="notLeader is-size-4-mobile is-size-4-desktop" v-show="!playerIsMissionLeader">
@@ -49,7 +56,7 @@
 
                     if (this.selectedPlayers.includes(playerChosen)) {
                         // eslint-disable-next-line no-unused-vars
-                        this.selectedPlayers = this.selectedPlayers.filter(function(value, index, arr){
+                        this.selectedPlayers = this.selectedPlayers.filter(function (value, index, arr) {
                             return value !== playerChosen;
                         });
                     } else if (this.selectedPlayers.length < this.currentMissionPartySize) {
@@ -86,7 +93,7 @@
     }
 
     .proposal {
-        margin-bottom: 100px;
+        margin-bottom: 25px;
     }
 
     .crossedSwords {
@@ -99,20 +106,20 @@
         color: whitesmoke;
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
     }
 
     .teamSelection {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
     }
 
     .notLeader {
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
     }
 
     .playerDiv {
@@ -141,5 +148,9 @@
 
     .button {
         margin-top: 1em;
+    }
+
+    .partySizeWarning {
+        font-size: 3em;
     }
 </style>
