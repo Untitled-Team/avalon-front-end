@@ -1,7 +1,7 @@
 <template>
     <div id="playerInfo"
          :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
-        <div class="good character" v-if="isGood">
+        <div class="knight character" v-if="isGood">
             <div class="rolePreTextWrapper">
                 <div class="rolePreText">You are a...</div>
             </div>
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="bad character" v-if="isBad">
+        <div class="warlock character" v-if="isBad">
             <div class="rolePreTextWrapper">
                 <div class="rolePreText">You are a...</div>
             </div>
@@ -138,88 +138,317 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    .rolePreTextWrapper {
-        height: 3.5%;
-        margin-top: 4%;
+    .knight {
+        .rolePreTextWrapper {
+            margin-top: 13px;
 
-        .rolePreText {
-            font-size: 3vh;
-            color: white;
-            height: 100%;
-            width: auto;
-        }
-    }
-
-    .roleTextWrapper {
-        height: 15%;
-
-        .roleTextGoodGuys {
-            height: 100%;
-            width: auto;
+            .rolePreText {
+                font-size: 2.5vh;
+                color: white;
+                height: 100%;
+                width: auto;
+                margin-right: 12px;
+            }
         }
 
-        .roleTextBadGuys {
-            height: 75%;
-            width: auto;
-        }
-    }
-
-    .rolePictureWrapper {
-        height: 45%;
-        margin-top: 5%;
-
-        .rolePicture {
-            height: 100%;
-            width: auto;
+        .badGuysTextWrapper {
+            display: none;
         }
 
-        .rolePictureAssassin {
-            height: 70%;
-            width: auto;
-            margin-top: 10%;
+        .roleTextWrapper {
+            height: 23%;
+            margin-top: -15px;
+            margin-bottom: 4px;
+
+            .roleTextGoodGuys {
+                height: 100%;
+                width: auto;
+            }
         }
-    }
 
-    .badGuysTextWrapper {
-        height: 10%;
-        margin-top: 5%;
+        .rolePictureWrapper {
+            height: 55%;
+            margin-left: 7%;
+            /*margin-top: 5%;*/
 
-        .badGuysText {
-            height: 100%;
-            width: auto;
-            color: whitesmoke;
-            font-size: 3vh;
+            .rolePicture {
+                height: 100%;
+                width: auto;
+            }
+        }
 
-            .flexTest {
-                display: flex;
-                flex-wrap: nowrap;
+        .readyButtonWrapper {
+            height: 14%;
+            margin-top: 3%;
 
-                .badGuyName {
-                    flex: 0 50%;
-                }
+            .readyButton {
+                height: 100%;
+                width: auto;
             }
         }
     }
 
-    .readyButtonWrapper {
-        height: 13%;
-        margin-top: 3%;
+    .warlock {
+        padding: 18px;
 
-        .readyButton {
-            height: 100%;
-            width: auto;
+        .rolePreTextWrapper {
+            display: flex;
+            flex: 1em 1 0;
+            margin: 0 auto;
+
+            .rolePreText {
+                font-size: 2.5vh;
+                color: white;
+                height: 100%;
+                width: auto;
+                margin-right: 12px;
+            }
+        }
+
+        .roleTextWrapper {
+            display: flex;
+            flex: 20 1 0;
+            margin-top: -20px;
+
+            img {
+                object-fit: contain;
+            }
+
+            .roleTextBadGuys {
+            }
+        }
+
+        .rolePictureWrapper {
+            display: flex;
+            flex: 40 1 0;
+            justify-content: center;
+            margin-left: 4%;
+
+            img {
+                object-fit: contain;
+            }
+
+            .rolePicture {
+            }
+        }
+
+        .badGuysTextWrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 6px;
+
+            .badGuysText {
+                height: 100%;
+                width: 100%;
+                color: whitesmoke;
+                font-size: 3vh;
+
+                .flexTest {
+                    display: flex;
+                    flex-direction: column;
+
+                    .badGuyName {
+                        display: flex;
+                        flex-direction: column;
+                        background: rgba(black, 0.11);
+                        width: 100%;
+                        margin: 0 auto;
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+        }
+
+        .readyButtonWrapper {
+            height: 13%;
+            margin-top: 1%;
+
+            .readyButton {
+                height: 100%;
+                width: auto;
+            }
+        }
+    }
+
+    .assassin {
+        padding: 18px;
+
+        .rolePreTextWrapper {
+            display: flex;
+            flex: 1em 1 0;
+            margin: 0 auto;
+
+            .rolePreText {
+                font-size: 2.5vh;
+                color: white;
+                height: 100%;
+                width: auto;
+                margin-right: 12px;
+            }
+        }
+
+        .roleTextWrapper {
+            display: flex;
+            flex: 20 1 0;
+            margin-top: -20px;
+
+            img {
+                object-fit: contain;
+            }
+
+            .roleTextBadGuys {
+            }
+        }
+
+        .rolePictureWrapper {
+            display: flex;
+            flex: 40 1 0;
+            justify-content: center;
+            margin-left: 4%;
+
+            img {
+                object-fit: contain;
+            }
+
+            .rolePicture {
+            }
+        }
+
+        .badGuysTextWrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 6px;
+
+            .badGuysText {
+                height: 100%;
+                width: 100%;
+                color: whitesmoke;
+                font-size: 3vh;
+
+                .flexTest {
+                    display: flex;
+                    flex-direction: column;
+
+                    .badGuyName {
+                        display: flex;
+                        flex-direction: column;
+                        background: rgba(black, 0.11);
+                        width: 100%;
+                        margin: 0 auto;
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+        }
+
+        .readyButtonWrapper {
+            height: 13%;
+            margin-top: 1%;
+
+            .readyButton {
+                height: 100%;
+                width: auto;
+            }
+        }
+    }
+
+
+    .merlin {
+        padding: 18px;
+
+        .rolePreTextWrapper {
+            display: flex;
+            flex: 1em 1 0;
+            margin: 0 auto;
+
+            .rolePreText {
+                font-size: 2.5vh;
+                color: white;
+                height: 100%;
+                width: auto;
+                margin-right: 12px;
+            }
+        }
+
+        .roleTextWrapper {
+            display: flex;
+            flex: 20 1 0;
+            margin-top: -20px;
+
+            img {
+                object-fit: contain;
+            }
+
+            .roleTextBadGuys {
+            }
+        }
+
+        .rolePictureWrapper {
+            display: flex;
+            flex: 40 1 0;
+            justify-content: center;
+            margin-left: 4%;
+
+            img {
+                object-fit: contain;
+            }
+
+            .rolePicture {
+            }
+        }
+
+        .badGuysTextWrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 6px;
+
+            .badGuysText {
+                height: 100%;
+                width: 100%;
+                color: whitesmoke;
+                font-size: 3vh;
+
+                .flexTest {
+                    display: flex;
+                    flex-direction: column;
+
+                    .badGuyName {
+                        display: flex;
+                        flex-direction: column;
+                        background: rgba(black, 0.11);
+                        width: 100%;
+                        margin: 0 auto;
+                        margin-bottom: 3px;
+                    }
+                }
+            }
+        }
+
+        .readyButtonWrapper {
+            height: 13%;
+            margin-top: 1%;
+
+            .readyButton {
+                height: 100%;
+                width: auto;
+            }
         }
     }
 
     #playerInfo {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
+        flex: 1 1 0;
+        box-shadow: 1 0 0 20px $outsideBorder;
         border: 10px solid $insideBorder;
     }
 
@@ -232,7 +461,8 @@
         position: absolute;
         display: block;
         content: '';
-        border: 8px solid $outsideBorder;
+        margin: 10px;
+        border: 10px solid $outsideBorder;
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
@@ -245,6 +475,7 @@
         color: sandybrown;
         font-size: 3em;
         width: 100%;
+        height: 15%;
     }
 
     .allies {
@@ -263,52 +494,36 @@
         background-color: #C7383E;
     }
 
+    .backgroundBad {
+        background-color: #C7383E;
+    }
+
     .character {
-        height: 100%;
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
         background: inherit;
     }
 
-    @media (max-height: 553px) {
-        .rolePreTextWrapper {
-            height: 3.5%;
-        }
-
-        .rolePreTextWrapper {
-            height: 13%;
-        }
-
-        .rolePictureWrapper {
-            height: 40%;
-        }
-
-        .badGuysTextWrapper {
-            height: 10%;
-        }
-
-        .readyButtonWrapper {
-            height: 10%;
+    @media (max-height: 1000px) {
+        .knight {
+            .roleTextWrapper {
+                height: 22%;
+            }
         }
     }
 
+    @media (max-height: 700px) {
+        .knight {
+            .roleTextWrapper {
+                height: 22%;
+            }
+        }
+    }
+
+    @media (max-height: 553px) {
+    }
+
     @media (max-height: 472px) {
-        .rolePreTextWrapper {
-            height: 2.5%;
-        }
-
-        .rolePreTextWrapper {
-            height: 13%;
-        }
-
-        .rolePictureWrapper {
-            height: 40%;
-        }
-
-        .badGuysTextWrapper {
-            height: 8%;
-        }
-
-        .readyButtonWrapper {
-            height: 10%;
-        }
     }
 </style>

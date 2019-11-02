@@ -28,7 +28,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.good')
+        const infoWrapper = wrapper.findAll('.knight')
 
         expect(infoWrapper.length).to.equal(1)
     });
@@ -42,7 +42,7 @@ describe('PlayerInfo.vue', () => {
                 }
             })
 
-        const infoWrapper = wrapper.findAll('.bad')
+        const infoWrapper = wrapper.findAll('.warlock')
 
         expect(infoWrapper.length).to.equal(1)
     });
