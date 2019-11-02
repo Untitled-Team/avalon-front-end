@@ -516,7 +516,7 @@
     @media (max-height: 1000px) {
         .knight {
             .roleTextWrapper {
-                height: 22%;
+                height: 18%;
             }
         }
     }
@@ -524,7 +524,7 @@
     @media (max-height: 700px) {
         .knight {
             .roleTextWrapper {
-                height: 22%;
+                height: 18%;
             }
         }
     }
