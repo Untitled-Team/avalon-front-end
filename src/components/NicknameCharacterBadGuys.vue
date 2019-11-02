@@ -47,7 +47,7 @@
 
 <style scoped>
     .permanentPlayerInfo {
-        font-size: 1em;
+        font-size: 2em;
     }
 
     .fontSizing {

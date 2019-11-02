@@ -1,13 +1,7 @@
 <template>
     <div id="displayPassFailVotes">
-        <div class="modal is-active">
-            <div class="modal-background"></div>
-            <div class="modal-content container is-centered">
-                <div class="bigText">Quest votes:</div>
-                <div v-for="(passVote, index) in passVotes" :key="'pass' + index" class="vote pass is-centered"></div>
-                <div v-for="(failVote, index) in failVotes" :key="'fail' + index" class="vote fail is-centered"></div>
-            </div>
-        </div>
+        <div v-for="(passVote, index) in passVotes" :key="'pass' + index" class="vote pass is-centered"></div>
+        <div v-for="(failVote, index) in failVotes" :key="'fail' + index" class="vote fail is-centered"></div>
     </div>
 </template>
 
@@ -34,9 +28,9 @@
 
 <style scoped>
     .vote {
-        height: 12%;
-        width: 50%;
-        margin: 2em auto;
+        display: flex;
+        flex: 1 1 0;
+        border-top: 5px solid #2f3026;
     }
 
     .pass {
@@ -63,5 +57,17 @@
     modal-background {
         background: black;
         opacity: 1 !important;
+    }
+    #displayPassFailVotes {
+        background-color: #2f3026;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        text-align: center;
     }
 </style>

@@ -8,9 +8,11 @@
             </span> are questing
         </div>
 
-        <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
+        <div class="swordWrapper">
+            <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
+        </div>
 
-        <div v-show="!playerHasVoted && playerVoting">
+        <div v-show="!playerHasVoted && playerVoting" class="theButtons">
             <img class="passButton" src="@/assets/passButtonBig.png" v-on:click="voteToPass"/>
             <img class="failButton" src="@/assets/failButtonBig.png" v-on:click="voteToFail"/>
         </div>
@@ -86,12 +88,31 @@
 
     }
 
+    .swordWrapper {
+        display: flex;
+        flex: 1 1 0;
+        padding-bottom: 20px;
+        padding-top: 10px;
+
+
+    }
     .crossedSwords {
         display: flex;
-        flex-direction: column;
+        flex: 1 1 0;
+        object-fit: contain;
+    }
+
+    /*.crossedSwords {*/
+    /*    display: flex;*/
+    /*    flex-direction: column;*/
+    /*    margin: 0 auto;*/
+    /*    width: 90%;*/
+    /*    margin-top: -20px;*/
+    /*}*/
+
+    .theButtons {
         margin: 0 auto;
-        width: 90%;
-        margin-top: -20px;
+        padding-bottom: 5px;
     }
 
     .passButton {

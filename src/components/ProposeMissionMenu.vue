@@ -22,7 +22,9 @@
 
         <div class="notLeader is-size-4-mobile is-size-4-desktop" v-show="!playerIsMissionLeader">
             <p class="choosing">{{ missionLeader }} is choosing a team...</p>
-            <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
+            <div class="swordWrapper">
+                <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
+            </div>
         </div>
 
     </div>
@@ -120,6 +122,22 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+        /*padding-bottom: 40px;*/
+
+        .swordWrapper {
+            display: flex;
+            flex: 1 1 0;
+            padding-bottom: 20px;
+            padding-top: 10px;
+
+            img {
+                display: flex;
+                flex: 1 1 0;
+                /*height: 100%;*/
+                object-fit: contain;
+            }
+        }
+
     }
 
     .playerDiv {
