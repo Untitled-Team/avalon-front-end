@@ -59,7 +59,10 @@
     @import "../styles/variables";
 
     #notCurrentMissionData {
-        height: 100%;
+        /*height: 100%;*/
+        color: whitesmoke;
+        display: flex;
+        flex: 1 1 0;
     }
 
     .missionHistory {
