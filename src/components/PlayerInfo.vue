@@ -448,13 +448,15 @@
     .wrapper {
         display: flex;
         flex-direction: column;
-        flex: 1 1 0;
+        /*flex: 1 1 0;*/
+        height: 100%;
     }
 
     #playerInfo {
         display: flex;
         flex-direction: column;
-        flex: 1 1 0;
+        /*flex: 1 1 0;*/
+        height: 100%;
         box-shadow: 1 0 0 20px $outsideBorder;
         border: 10px solid $insideBorder;
     }
@@ -507,8 +509,9 @@
     }
 
     .character {
+        height: 100%;
         display: flex;
-        flex: 1 1 0;
+        /*flex: 1 1 0;*/
         flex-direction: column;
         background: inherit;
     }
