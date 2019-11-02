@@ -1,5 +1,6 @@
 <template>
-    <div id="playerInfo"
+    <div class="wrapper" >
+    <div id="playerInfo" v-if="!ready"
          :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
         <div class="knight character" v-if="isGood">
             <div class="rolePreTextWrapper">
@@ -85,8 +86,9 @@
                 <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
             </div>
         </div>
+    </div>
 
-        <div class="ready" v-show="ready">Great! Once everybody is ready the first mission will begin.</div>
+      <div class="ready" v-if="ready">Waiting on others to ready up...</div>
     </div>
 </template>
 
@@ -169,7 +171,6 @@
         .rolePictureWrapper {
             height: 55%;
             margin-left: 7%;
-            /*margin-top: 5%;*/
 
             .rolePicture {
                 height: 100%;
@@ -444,6 +445,12 @@
         }
     }
 
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0;
+    }
+
     #playerInfo {
         display: flex;
         flex-direction: column;
@@ -469,13 +476,14 @@
     }
 
     .ready {
-        position: absolute;
-        bottom: 0;
-        background-color: seagreen;
-        color: sandybrown;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0;
+        padding: 20px;
+        padding-bottom: 0px;
+        background-color: $incomplete;
+        color: whitesmoke;
         font-size: 3em;
-        width: 100%;
-        height: 15%;
     }
 
     .allies {
