@@ -10,7 +10,7 @@
                 <img class="roleTextGoodGuys" src="@/assets/goodGuyTextBig.png">
             </div>
             <div class="rolePictureWrapper">
-                <img class="rolePicture" src="@/assets/goodGuyBig.png">
+<!--                <img class="rolePicture" src="@/assets/goodGuyBig.png">-->
             </div>
             <div class="badGuysTextWrapper"></div>
             <div class="readyButtonWrapper">
@@ -26,7 +26,7 @@
                 <img class="roleTextBadGuys" src="@/assets/badGuyTextBig.png">
             </div>
             <div class="rolePictureWrapper">
-                <img class="rolePicture" src="@/assets/badGuyBig.png">
+<!--                <img class="rolePicture" src="@/assets/badGuyBig.png">-->
             </div>
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
@@ -49,7 +49,7 @@
                 <img class="roleTextGoodGuys" src="@/assets/merlinTextBig.png">
             </div>
             <div class="rolePictureWrapper">
-                <img class="rolePicture" src="@/assets/merlinBig.png">
+<!--                <img class="rolePicture" src="@/assets/merlinBig.png">-->
             </div>
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
@@ -72,7 +72,7 @@
                 <img class="roleTextBadGuys" src="@/assets/assassinTextBig.png">
             </div>
             <div class="rolePictureWrapper">
-                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
+<!--                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">-->
             </div>
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
