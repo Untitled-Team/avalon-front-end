@@ -141,8 +141,12 @@
     @import "../styles/variables";
 
     .knight {
+        padding: 18px;
+
         .rolePreTextWrapper {
-            margin-top: 13px;
+            display: flex;
+            flex: 1em 1 0;
+            margin: 0 auto;
 
             .rolePreText {
                 font-size: 2.5vh;
@@ -153,28 +157,31 @@
             }
         }
 
-        .badGuysTextWrapper {
-            display: none;
-        }
-
         .roleTextWrapper {
-            height: 23%;
-            margin-top: -15px;
-            margin-bottom: 4px;
+            display: flex;
+            flex: 20 1 0;
+            margin-top: -20px;
+            height: 0;
+            justify-content: center;
 
-            .roleTextGoodGuys {
-                height: 100%;
-                width: auto;
+            img {
+                object-fit: contain;
+            }
+
+            .roleTextBadGuys {
             }
         }
 
         .rolePictureWrapper {
-            height: 55%;
-            margin-left: 7%;
+            display: flex;
+            flex: 50 1 0;
+            justify-content: center;
+            margin-left: 6%;
+            height: 0;
+            margin-bottom: 15px;
 
             img {
                 object-fit: contain;
-                width: auto;
             }
 
             .rolePicture {
@@ -182,8 +189,8 @@
         }
 
         .readyButtonWrapper {
-            height: 14%;
-            margin-top: 3%;
+            height: 13%;
+            margin-top: 1%;
 
             .readyButton {
                 height: 100%;
@@ -526,19 +533,9 @@
     }
 
     @media (max-height: 1000px) {
-        .knight {
-            .roleTextWrapper {
-                height: 18%;
-            }
-        }
     }
 
     @media (max-height: 700px) {
-        .knight {
-            .roleTextWrapper {
-                height: 18%;
-            }
-        }
     }
 
     @media (max-height: 553px) {
