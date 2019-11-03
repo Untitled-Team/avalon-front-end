@@ -9,9 +9,9 @@
             <div class="roleTextWrapper">
                 <img class="roleTextGoodGuys" src="@/assets/goodGuyTextBig.png">
             </div>
-            <div class="rolePictureWrapper">
+<!--            <div class="rolePictureWrapper">-->
 <!--                <img class="rolePicture" src="@/assets/goodGuyBig.png">-->
-            </div>
+<!--            </div>-->
             <div class="badGuysTextWrapper"></div>
             <div class="readyButtonWrapper">
                 <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
@@ -25,9 +25,9 @@
             <div class="roleTextWrapper">
                 <img class="roleTextBadGuys" src="@/assets/badGuyTextBig.png">
             </div>
-            <div class="rolePictureWrapper">
+<!--            <div class="rolePictureWrapper">-->
 <!--                <img class="rolePicture" src="@/assets/badGuyBig.png">-->
-            </div>
+<!--            </div>-->
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
                     <p class="allies">Allies</p>
@@ -48,9 +48,9 @@
             <div class="roleTextWrapper">
                 <img class="roleTextGoodGuys" src="@/assets/merlinTextBig.png">
             </div>
-            <div class="rolePictureWrapper">
+<!--            <div class="rolePictureWrapper">-->
 <!--                <img class="rolePicture" src="@/assets/merlinBig.png">-->
-            </div>
+<!--            </div>-->
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
                     <p class="allies">Enemies</p>
@@ -71,9 +71,9 @@
             <div class="roleTextWrapper">
                 <img class="roleTextBadGuys" src="@/assets/assassinTextBig.png">
             </div>
-            <div class="rolePictureWrapper">
+<!--            <div class="rolePictureWrapper">-->
 <!--                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">-->
-            </div>
+<!--            </div>-->
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
                     <p class="allies">Allies</p>
