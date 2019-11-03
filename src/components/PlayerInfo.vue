@@ -9,9 +9,9 @@
             <div class="roleTextWrapper">
                 <img class="roleTextGoodGuys" src="@/assets/goodGuyTextBig.png">
             </div>
-<!--            <div class="rolePictureWrapper">-->
-<!--                <img class="rolePicture" src="@/assets/goodGuyBig.png">-->
-<!--            </div>-->
+            <div class="rolePictureWrapper">
+                <img class="rolePicture" src="@/assets/goodGuyBig.png">
+            </div>
             <div class="badGuysTextWrapper"></div>
             <div class="readyButtonWrapper">
                 <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
@@ -25,9 +25,9 @@
             <div class="roleTextWrapper">
                 <img class="roleTextBadGuys" src="@/assets/badGuyTextBig.png">
             </div>
-<!--            <div class="rolePictureWrapper">-->
-<!--                <img class="rolePicture" src="@/assets/badGuyBig.png">-->
-<!--            </div>-->
+            <div class="rolePictureWrapper">
+                <img class="rolePicture" src="@/assets/badGuyBig.png">
+            </div>
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
                     <p class="allies">Allies</p>
@@ -48,9 +48,9 @@
             <div class="roleTextWrapper">
                 <img class="roleTextGoodGuys" src="@/assets/merlinTextBig.png">
             </div>
-<!--            <div class="rolePictureWrapper">-->
-<!--                <img class="rolePicture" src="@/assets/merlinBig.png">-->
-<!--            </div>-->
+            <div class="rolePictureWrapper">
+                <img class="rolePicture" src="@/assets/merlinBig.png">
+            </div>
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
                     <p class="allies">Enemies</p>
@@ -71,9 +71,9 @@
             <div class="roleTextWrapper">
                 <img class="roleTextBadGuys" src="@/assets/assassinTextBig.png">
             </div>
-<!--            <div class="rolePictureWrapper">-->
-<!--                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">-->
-<!--            </div>-->
+            <div class="rolePictureWrapper">
+                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
+            </div>
             <div class="badGuysTextWrapper">
                 <div class="badGuysText">
                     <p class="allies">Allies</p>
@@ -172,9 +172,12 @@
             height: 55%;
             margin-left: 7%;
 
-            .rolePicture {
-                height: 100%;
+            img {
+                object-fit: contain;
                 width: auto;
+            }
+
+            .rolePicture {
             }
         }
 
@@ -210,6 +213,7 @@
             display: flex;
             flex: 20 1 0;
             margin-top: -20px;
+            height: 0;
 
             img {
                 object-fit: contain;
@@ -224,6 +228,7 @@
             flex: 40 1 0;
             justify-content: center;
             margin-left: 4%;
+            height: 0;
 
             img {
                 object-fit: contain;
@@ -295,6 +300,7 @@
             display: flex;
             flex: 20 1 0;
             margin-top: -20px;
+            height: 0;
 
             img {
                 object-fit: contain;
@@ -309,6 +315,7 @@
             flex: 40 1 0;
             justify-content: center;
             margin-left: 4%;
+            height: 0;
 
             img {
                 object-fit: contain;
@@ -381,6 +388,7 @@
             display: flex;
             flex: 20 1 0;
             margin-top: -20px;
+            height: 0;
 
             img {
                 object-fit: contain;
@@ -395,6 +403,7 @@
             flex: 40 1 0;
             justify-content: center;
             margin-left: 4%;
+            height: 0;
 
             img {
                 object-fit: contain;
@@ -448,15 +457,15 @@
     .wrapper {
         display: flex;
         flex-direction: column;
-        /*flex: 1 1 0;*/
-        height: 100%;
+        flex: 1 1 0;
+        /*height: 100%;*/
     }
 
     #playerInfo {
         display: flex;
         flex-direction: column;
-        /*flex: 1 1 0;*/
-        height: 100%;
+        flex: 1 1 0;
+        /*height: 100%;*/
         box-shadow: 1 0 0 20px $outsideBorder;
         border: 10px solid $insideBorder;
     }
@@ -509,9 +518,9 @@
     }
 
     .character {
-        height: 100%;
+        /*height: 100%;*/
         display: flex;
-        /*flex: 1 1 0;*/
+        flex: 1 1 0;
         flex-direction: column;
         background: inherit;
     }
