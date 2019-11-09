@@ -6,6 +6,10 @@
                 <img class="victoryText" src="@/assets/victoryTextBig.png"/>
                 <img class="flag" src="@/assets/flagBig.png"/>
 
+                <div class="missionLeader">
+                    Mission Leader: {{ activeQuestData.votes[0].missionLeader }}
+                </div>
+
                 <div class="missionParty">
                     Mission Party:
                     <div v-for="(player, index) in activeQuestData.players" :key="index">
@@ -19,6 +23,10 @@
             <div class="failure" v-else>
                 <img class="defeatText" src="@/assets/defeatTextBig.png"/>
                 <img class="dagger" src="@/assets/daggerBig.png"/>
+
+                <div class="missionLeader">
+                    Mission Leader: {{ activeQuestData.votes[0].missionLeader }}
+                </div>
 
                 <div class="missionParty">
                     Mission Party:
@@ -92,6 +100,11 @@
             margin-top: 5%;
         }
 
+        .missionLeader {
+            padding-top: 5px;
+            font-size: 3em;
+        }
+
         .missionParty {
             margin-top: 5%;
             flex-shrink: 1;
@@ -119,6 +132,11 @@
             min-width: 0;
             min-height: 0;
             max-width: 60%;
+        }
+
+        .missionLeader {
+            padding-top: 5px;
+            font-size: 3em;
         }
 
         .missionParty {
