@@ -3,8 +3,12 @@
         <div class="missionHistory" v-if="questHasData">
 
             <div class="success" v-if="activeQuestData.pass">
-                <img class="victoryText" src="@/assets/victoryTextBig.png"/>
-                <img class="flag" src="@/assets/flagBig.png"/>
+                <div class="victory">
+                    <img class="victoryText" src="@/assets/victoryTextBig.png"/>
+                </div>
+                <div class="flagWrapper">
+                    <img class="flag" src="@/assets/flagBig.png"/>
+                </div>
 
                 <div class="missionLeader">
                     Mission Leader: {{ activeQuestData.votes[0].missionLeader }}
@@ -21,8 +25,13 @@
             </div>
 
             <div class="failure" v-else>
-                <img class="defeatText" src="@/assets/defeatTextBig.png"/>
-                <img class="dagger" src="@/assets/daggerBig.png"/>
+                <div class="defeat">
+                    <img class="defeatText" src="@/assets/defeatTextBig.png"/>
+                </div>
+
+                <div class="daggerWrapper">
+                    <img class="dagger" src="@/assets/daggerBig.png"/>
+                </div>
 
                 <div class="missionLeader">
                     Mission Leader: {{ activeQuestData.votes[0].missionLeader }}
@@ -74,30 +83,38 @@
     }
 
     .missionHistory {
-        height: calc(100% - 40px);
+        /*height: calc(100% - 40px);*/
+        display: flex;
+        flex: 1 1 0;
     }
 
     .failure {
         display: flex;
+        flex: 1 1 0;
         flex-direction: column;
         align-items: center;
 
-        .defeatText {
-            flex-shrink: 1;
-            flex-grow: 1;
-            min-height: 0;
-            min-width: 0;
-            max-width: 60%;
+        .defeat {
+            display: flex;
+            flex: 1 1 0;
+            margin-left: 5px;
+            margin-right: 5px;
+
+            .defeatText {
+                object-fit: contain;
+            }
         }
 
-        .dagger {
-            flex-shrink: 1;
-            flex-grow: 1;
-            min-width: 0;
-            min-height: 0;
-            max-width: 70%;
-            margin-left: 30%;
-            margin-top: 5%;
+        .daggerWrapper {
+            margin-top: 5px;
+            display: flex;
+            flex: 2 1 0;
+            margin-left: 40%;
+            margin-right: 5px;
+
+            .dagger {
+                object-fit: contain;
+            }
         }
 
         .missionLeader {
@@ -106,9 +123,9 @@
         }
 
         .missionParty {
-            margin-top: 5%;
+            margin-top: 2px;
+            margin-bottom: 5px;
             flex-shrink: 1;
-            flex-grow: 1;
             font-size: 2em;
         }
     }
@@ -118,32 +135,38 @@
         flex-direction: column;
         align-items: center;
 
-        .victoryText {
-            flex-shrink: 1;
-            flex-grow: 1;
-            min-height: 0;
-            min-width: 0;
-            max-width: 60%;
+        .victory {
+            margin-top: 4px;
+            display: flex;
+            flex: 1 1 0;
+            margin-left: 5px;
+            margin-right: 5px;
+
+            .victoryText {
+                object-fit: contain;
+            }
         }
 
-        .flag {
-            flex-shrink: 1;
-            flex-grow: 1;
-            min-width: 0;
-            min-height: 0;
-            max-width: 60%;
+        .flagWrapper {
+            display: flex;
+            flex: 2 1 0;
+            margin-left: 20%;
+            margin-right: 5%;
+
+            .flag {
+                object-fit: contain;
+            }
         }
 
         .missionLeader {
             padding-top: 5px;
-            font-size: 3em;
+            font-size: 2.5em;
         }
 
         .missionParty {
-            margin-top: 5%;
-            flex-shrink: 1;
-            flex-grow: 1;
-            font-size: 2em;
+            margin-top: 2px;
+            margin-bottom: 5px;
+            font-size: 2.2em;
         }
     }
 

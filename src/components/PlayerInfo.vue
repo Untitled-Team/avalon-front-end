@@ -235,13 +235,13 @@
 
     .knight {
         .roleTextWrapper {
+            margin-top: 3px;
             margin-bottom: 3px;
         }
 
         .rolePictureWrapper {
             flex: 50 1 0;
-            margin-left: 6%;
-            margin-bottom: 5px;
+            margin-left: 8%;
         }
     }
 
