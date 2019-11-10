@@ -32,7 +32,7 @@
                 <div class="badGuysText">
                     <p class="allies">Allies</p>
                     <div class="flexTest">
-                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <div class="badGuysText">
                     <p class="allies">Allies</p>
                     <div class="flexTest">
-                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
                     </div>
                 </div>
             </div>
@@ -93,6 +93,7 @@
 </template>
 
 <script>
+    import store from "../store/index.js"
     import WebsocketService from "../services/WebsocketService";
 
     export default {
@@ -111,6 +112,10 @@
             }
         },
         computed: {
+            otherBadGuys: function () {
+                console.log(this.badGuys);
+                return this.badGuys.filter(bg => bg != store.state.nickname);
+            },
             isGood: function () {
                 return this.character === "NormalGoodGuy"
             },
@@ -140,341 +145,134 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    .knight {
-        padding: 18px;
+    .character {
+        padding: 13px;
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        background: inherit;
+        height: 0;
+    }
 
-        .rolePreTextWrapper {
-            display: flex;
-            flex: 1em 1 0;
-            margin: 0 auto;
+    .rolePreTextWrapper {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
 
-            .rolePreText {
-                font-size: 2.5vh;
-                color: white;
-                height: 100%;
-                width: auto;
-                margin-right: 12px;
+        .rolePreText {
+            font-size: 2.5vh;
+            color: whitesmoke;
+            height: 100%;
+            width: auto;
+            margin-right: 12px;
+        }
+    }
+
+    .roleTextWrapper {
+        display: flex;
+        flex: 20 1 0;
+        margin: 0 auto;
+        height: 0;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    .rolePictureWrapper {
+        display: flex;
+        flex: 40 1 0;
+        justify-content: center;
+        height: 0;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    .badGuysTextWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60%;
+        margin: 0 auto;
+        margin-top: 6px;
+
+        .badGuysText {
+            height: 100%;
+            width: 100%;
+            color: whitesmoke;
+            font-size: 3vh;
+
+            .flexTest {
+                display: flex;
+                flex-direction: column;
+
+                .badGuyName {
+                    display: flex;
+                    flex-direction: column;
+                    background: rgba(black, 0.11);
+                    width: 100%;
+                    margin: 0 auto;
+                    margin-bottom: 3px;
+                }
             }
         }
+    }
 
+    .readyButtonWrapper {
+        height: 13%;
+        margin-top: 1%;
+
+        .readyButton {
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    .knight {
         .roleTextWrapper {
-            display: flex;
-            flex: 20 1 0;
-            margin-top: -20px;
-            height: 0;
-            justify-content: center;
-
-            img {
-                object-fit: contain;
-            }
-
-            .roleTextBadGuys {
-            }
+            margin-bottom: 3px;
         }
 
         .rolePictureWrapper {
-            display: flex;
             flex: 50 1 0;
-            justify-content: center;
             margin-left: 6%;
-            height: 0;
             margin-bottom: 15px;
-
-            img {
-                object-fit: contain;
-            }
-
-            .rolePicture {
-            }
-        }
-
-        .readyButtonWrapper {
-            height: 13%;
-            margin-top: 1%;
-
-            .readyButton {
-                height: 100%;
-                width: auto;
-            }
         }
     }
 
     .warlock {
-        padding: 18px;
-
-        .rolePreTextWrapper {
-            display: flex;
-            flex: 1em 1 0;
-            margin: 0 auto;
-
-            .rolePreText {
-                font-size: 2.5vh;
-                color: white;
-                height: 100%;
-                width: auto;
-                margin-right: 12px;
-            }
-        }
-
-        .roleTextWrapper {
-            display: flex;
-            flex: 20 1 0;
-            margin-top: -20px;
-            height: 0;
-
-            img {
-                object-fit: contain;
-            }
-
-            .roleTextBadGuys {
-            }
-        }
-
         .rolePictureWrapper {
-            display: flex;
-            flex: 40 1 0;
-            justify-content: center;
             margin-left: 4%;
-            height: 0;
-
-            img {
-                object-fit: contain;
-            }
-
-            .rolePicture {
-            }
-        }
-
-        .badGuysTextWrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 60%;
-            margin: 0 auto;
-            margin-top: 6px;
-
-            .badGuysText {
-                height: 100%;
-                width: 100%;
-                color: whitesmoke;
-                font-size: 3vh;
-
-                .flexTest {
-                    display: flex;
-                    flex-direction: column;
-
-                    .badGuyName {
-                        display: flex;
-                        flex-direction: column;
-                        background: rgba(black, 0.11);
-                        width: 100%;
-                        margin: 0 auto;
-                        margin-bottom: 3px;
-                    }
-                }
-            }
-        }
-
-        .readyButtonWrapper {
-            height: 13%;
-            margin-top: 1%;
-
-            .readyButton {
-                height: 100%;
-                width: auto;
-            }
         }
     }
 
     .assassin {
-        padding: 18px;
-
-        .rolePreTextWrapper {
-            display: flex;
-            flex: 1em 1 0;
-            margin: 0 auto;
-
-            .rolePreText {
-                font-size: 2.5vh;
-                color: white;
-                height: 100%;
-                width: auto;
-                margin-right: 12px;
-            }
-        }
-
-        .roleTextWrapper {
-            display: flex;
-            flex: 20 1 0;
-            margin-top: -20px;
-            height: 0;
-
-            img {
-                object-fit: contain;
-            }
-
-            .roleTextBadGuys {
-            }
-        }
-
         .rolePictureWrapper {
-            display: flex;
-            flex: 40 1 0;
-            justify-content: center;
             margin-left: 4%;
-            height: 0;
-
-            img {
-                object-fit: contain;
-            }
-
-            .rolePicture {
-            }
-        }
-
-        .badGuysTextWrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 60%;
-            margin: 0 auto;
-            margin-top: 6px;
-
-            .badGuysText {
-                height: 100%;
-                width: 100%;
-                color: whitesmoke;
-                font-size: 3vh;
-
-                .flexTest {
-                    display: flex;
-                    flex-direction: column;
-
-                    .badGuyName {
-                        display: flex;
-                        flex-direction: column;
-                        background: rgba(black, 0.11);
-                        width: 100%;
-                        margin: 0 auto;
-                        margin-bottom: 3px;
-                    }
-                }
-            }
-        }
-
-        .readyButtonWrapper {
-            height: 13%;
-            margin-top: 1%;
-
-            .readyButton {
-                height: 100%;
-                width: auto;
-            }
         }
     }
 
 
     .merlin {
-        padding: 18px;
-
-        .rolePreTextWrapper {
-            display: flex;
-            flex: 1em 1 0;
-            margin: 0 auto;
-
-            .rolePreText {
-                font-size: 2.5vh;
-                color: white;
-                height: 100%;
-                width: auto;
-                margin-right: 12px;
-            }
-        }
-
-        .roleTextWrapper {
-            display: flex;
-            flex: 20 1 0;
-            margin-top: -20px;
-            height: 0;
-
-            img {
-                object-fit: contain;
-            }
-
-            .roleTextBadGuys {
-            }
-        }
-
-        .rolePictureWrapper {
-            display: flex;
-            flex: 40 1 0;
-            justify-content: center;
-            margin-left: 4%;
-            height: 0;
-
-            img {
-                object-fit: contain;
-            }
-
-            .rolePicture {
-            }
-        }
-
-        .badGuysTextWrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 60%;
-            margin: 0 auto;
-            margin-top: 6px;
-
-            .badGuysText {
-                height: 100%;
-                width: 100%;
-                color: whitesmoke;
-                font-size: 3vh;
-
-                .flexTest {
-                    display: flex;
-                    flex-direction: column;
-
-                    .badGuyName {
-                        display: flex;
-                        flex-direction: column;
-                        background: rgba(black, 0.11);
-                        width: 100%;
-                        margin: 0 auto;
-                        margin-bottom: 3px;
-                    }
-                }
-            }
-        }
-
-        .readyButtonWrapper {
-            height: 13%;
-            margin-top: 1%;
-
-            .readyButton {
-                height: 100%;
-                width: auto;
-            }
-        }
     }
 
     .wrapper {
         display: flex;
         flex-direction: column;
         flex: 1 1 0;
-        /*height: 100%;*/
     }
 
     #playerInfo {
         display: flex;
         flex-direction: column;
         flex: 1 1 0;
-        /*height: 100%;*/
         box-shadow: 1 0 0 20px $outsideBorder;
         border: 10px solid $insideBorder;
+        height: 0;
     }
 
     #playerInfo:before {
@@ -505,7 +303,6 @@
     }
 
     .allies {
-        text-decoration: underline;
     }
 
     .backgroundGood {
@@ -522,14 +319,6 @@
 
     .backgroundBad {
         background-color: #C7383E;
-    }
-
-    .character {
-        /*height: 100%;*/
-        display: flex;
-        flex: 1 1 0;
-        flex-direction: column;
-        background: inherit;
     }
 
     @media (max-height: 1000px) {
