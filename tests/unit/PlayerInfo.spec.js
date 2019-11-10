@@ -24,7 +24,8 @@ describe('PlayerInfo.vue', () => {
             PlayerInfo,
             {
                 propsData: {
-                    character: 'NormalGoodGuy'
+                    character: 'NormalGoodGuy',
+                    badGuys: []
                 }
             })
 
@@ -38,7 +39,8 @@ describe('PlayerInfo.vue', () => {
             PlayerInfo,
             {
                 propsData: {
-                    character: 'NormalBadGuy'
+                    character: 'NormalBadGuy',
+                    badGuys: []
                 }
             })
 
@@ -52,7 +54,8 @@ describe('PlayerInfo.vue', () => {
             PlayerInfo,
             {
                 propsData: {
-                    character: 'Merlin'
+                    character: 'Merlin',
+                    badGuys: []
                 }
             })
 
@@ -66,7 +69,8 @@ describe('PlayerInfo.vue', () => {
             PlayerInfo,
             {
                 propsData: {
-                    character: 'Assassin'
+                    character: 'Assassin',
+                    badGuys: []
                 }
             })
 
@@ -94,7 +98,8 @@ describe('PlayerInfo.vue', () => {
             PlayerInfo,
             {
                 propsData: {
-                    character: 'NormalBadGuy'
+                    character: 'NormalBadGuy',
+                    badGuys: []
                 }
             })
 
@@ -122,7 +127,8 @@ describe('PlayerInfo.vue', () => {
             PlayerInfo,
             {
                 propsData: {
-                    character: 'Assassin'
+                    character: 'Assassin',
+                    badGuys: []
                 }
             })
 
