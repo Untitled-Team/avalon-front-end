@@ -10,6 +10,10 @@
                     <img class="flag" src="@/assets/flagBig.png"/>
                 </div>
 
+                <div class="missionLeader">
+                    Mission Leader: {{ activeQuestData.votes[0].missionLeader }}
+                </div>
+
                 <div class="missionParty">
                     Mission Party:
                     <div v-for="(player, index) in activeQuestData.players" :key="index">
@@ -27,6 +31,10 @@
 
                 <div class="daggerWrapper">
                     <img class="dagger" src="@/assets/daggerBig.png"/>
+                </div>
+
+                <div class="missionLeader">
+                    Mission Leader: {{ activeQuestData.votes[0].missionLeader }}
                 </div>
 
                 <div class="missionParty">
@@ -109,6 +117,10 @@
             }
         }
 
+        .missionLeader {
+            padding-top: 5px;
+            font-size: 3em;
+        }
 
         .missionParty {
             margin-top: 2px;
@@ -132,11 +144,6 @@
 
             .victoryText {
                 object-fit: contain;
-                /*flex-shrink: 1;*/
-                /*flex-grow: 1;*/
-                /*min-height: 0;*/
-                /*min-width: 0;*/
-                /*max-width: 60%;*/
             }
         }
 
@@ -148,21 +155,18 @@
 
             .flag {
                 object-fit: contain;
-                /*flex-shrink: 1;*/
-                /*flex-grow: 1;*/
-                /*min-width: 0;*/
-                /*min-height: 0;*/
-                /*max-width: 60%;*/
             }
         }
 
+        .missionLeader {
+            padding-top: 5px;
+            font-size: 2.5em;
+        }
+
         .missionParty {
-            margin-top: 5px;
+            margin-top: 2px;
             margin-bottom: 5px;
-            /*margin-top: 5%;*/
-            /*flex-shrink: 1;*/
-            /*flex-grow: 1;*/
-            font-size: 2em;
+            font-size: 2.2em;
         }
     }
 
