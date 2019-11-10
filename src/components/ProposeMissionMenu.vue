@@ -87,7 +87,9 @@
     }
 
     .choosing {
-        margin-top: 20px;
+        margin-left: 7px;
+        margin-right: 7px;
+        margin-top: 7px;
     }
 
     #missionLeader {
@@ -122,18 +124,15 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        /*padding-bottom: 40px;*/
 
         .swordWrapper {
             display: flex;
             flex: 1 1 0;
-            padding-bottom: 20px;
-            padding-top: 10px;
+            height: 0;
+            width: 65%;
+            margin: 0 auto;
 
             img {
-                display: flex;
-                flex: 1 1 0;
-                /*height: 100%;*/
                 object-fit: contain;
             }
         }
