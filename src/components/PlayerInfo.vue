@@ -199,6 +199,7 @@
         width: 60%;
         margin: 0 auto;
         margin-top: 6px;
+        margin-bottom: 5px;
 
         .badGuysText {
             height: 100%;
@@ -240,7 +241,7 @@
         .rolePictureWrapper {
             flex: 50 1 0;
             margin-left: 6%;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
     }
 
@@ -289,6 +290,10 @@
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
+    }
+
+    .readyButtonWrapper {
+        margin-bottom: 5px;
     }
 
     .ready {

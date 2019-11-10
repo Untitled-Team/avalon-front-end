@@ -90,15 +90,15 @@
 
     .swordWrapper {
         display: flex;
-        flex: 1 1 0;
-        padding-bottom: 20px;
-        padding-top: 10px;
-
-
+        flex: 10 1 0;
+        /*padding-bottom: 20px;*/
+        /*padding-top: 10px;*/
+        margin: 0 auto;
+        width: 65%;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
     .crossedSwords {
-        display: flex;
-        flex: 1 1 0;
         object-fit: contain;
     }
 
@@ -112,17 +112,21 @@
 
     .theButtons {
         margin: 0 auto;
-        padding-bottom: 5px;
+        padding-bottom: 10px;
     }
 
     .passButton {
-        max-width: 30%;
-        margin-right: 20%;
+        max-width: 35%;
+        margin-right: 10%;
         cursor: pointer;
     }
 
     .failButton {
-        width: 30%;
+        width: 35%;
         cursor: pointer;
+    }
+
+    #WaitingOnOthers {
+        padding-bottom: 5px;
     }
 </style>
