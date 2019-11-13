@@ -1,11 +1,12 @@
 <template>
     <div id="assassinVote">
 
-        <div class="modal is-active"><!-- :class="{'is-active': modalActive === true}">-->
+        <div class="modal" :class="{'is-active': modalActive === true}">
             <div class="modal-background"></div>
             <div class="modal-content">
-                <div class="mediumText">The good guys have passed 3 missions, but it's not over yet!</div>
-                <div id="assassin" class="bigText">{{ assassinVoteData.assassin }}, Guess Merlin</div>
+                <button @click="toggleModalActive">View Mission History</button>
+
+                <div id="assassin">{{ assassinVoteData.assassin }}, guess Merlin</div>
 
                 <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
                     <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
@@ -22,6 +23,10 @@
             </div>
         </div>
 
+        <div v-if="!modalActive">
+            <button @click="toggleModalActive">assassin vote</button>
+        </div>
+
     </div>
 </template>
 
@@ -32,7 +37,8 @@
         name: 'AssassinVote',
         data: function () {
             return {
-                guess: ""
+                guess: "",
+                modalActive: true
             }
         },
         props: ["assassinVoteData"],
@@ -43,7 +49,10 @@
                     guess: this.guess
                 }
                 WebsocketService.sendObj(this.$socket, assassinVoteMessage)
-            }
+            },
+            toggleModalActive: function () {
+              this.modalActive = !this.modalActive
+            },
         },
         computed: {
             playerIsAssassin: function () {
@@ -57,9 +66,10 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "../styles/variables";
 
-    #assassinVoteForm {
-        color:white;
+    .modal {
+        color: #C7383E;
     }
 
     input[type=radio] {
@@ -73,11 +83,16 @@
         display: inline-block;
         margin-top: 3px;
         padding: 1px;
-        background: grey;
+        background: #C7383E;
+        color: lightgray;
     }
 
     .selected {
-        background: rgba(whitesmoke, 0.35);
+        background: darkred;
+    }
+
+    #assassin {
+        font-size: 5em;
     }
 
     .somePadding {
