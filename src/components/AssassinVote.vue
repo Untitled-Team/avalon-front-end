@@ -6,24 +6,30 @@
             <div class="modal-content">
                 <button @click="toggleModalActive">View Mission History</button>
 
-                <div id="assassin">{{ assassinVoteData.assassin }}, guess Merlin</div>
+                <div class="bigText" v-if="!playerIsAssassin">
+                    u aint the assassin!!!
+                </div>
 
-                <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
-                    <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
-                        <label :class="{ selected: goodGuy === guess }">
-                            <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess"
-                                   :disabled="!playerIsAssassin"/>{{ goodGuy }}
-                        </label>
-                    </div>
+                <div v-if="playerIsAssassin">
+                    <div id="assassin">{{ assassinVoteData.assassin }}, guess Merlin</div>
 
-                    <div v-show="playerIsAssassin && !noGuessSelected" class="somePadding">
-                        <input type="submit" class="button is-small" value="Submit Guess">
-                    </div>
-                </form>
+                    <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
+                        <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
+                            <label :class="{ selected: goodGuy === guess }">
+                                <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess"
+                                       :disabled="!playerIsAssassin"/>{{ goodGuy }}
+                            </label>
+                        </div>
+
+                        <div v-show="playerIsAssassin && !noGuessSelected" class="somePadding">
+                            <input type="submit" class="button is-small" value="Submit Guess">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <div v-if="!modalActive">
+        <div v-if="!modalActive && playerIsAssassin">
             <button @click="toggleModalActive">assassin vote</button>
         </div>
 
@@ -53,7 +59,7 @@
                 WebsocketService.sendObj(this.$socket, assassinVoteMessage)
             },
             toggleModalActive: function () {
-              this.modalActive = !this.modalActive
+                this.modalActive = !this.modalActive
             },
         },
         computed: {
@@ -63,7 +69,7 @@
             noGuessSelected: function () {
                 return this.guess === ""
             },
-        }
+        },
     }
 </script>
 
