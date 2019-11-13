@@ -1,19 +1,37 @@
 <template>
     <div id="assassinVote">
-        <div class="mediumText">The good guys have passed 3 missions, but it's not over yet!</div>
-        <div id="assassin" class="bigText">{{ assassinVoteData.assassin }}, Guess Merlin</div>
 
-        <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
-            <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
-                <label :class="{ selected: goodGuy === guess }">
-                    <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess" :disabled="!playerIsAssassin"/>{{ goodGuy }}
-                </label>
-            </div>
+        <div class="modal" :class="{'is-active': modalActive === true}">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <button @click="toggleModalActive">View Mission History</button>
 
-            <div v-show="playerIsAssassin && !noGuessSelected" class="somePadding">
-                <input type="submit" class="button is-small" value="Submit Guess">
+                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
+
+                <div id="everyoneElse" v-if="!playerIsAssassin">
+                    {{ assassinVoteData.assassin }} is attempting to assassinate Merlin.
+                </div>
+
+                <div v-if="playerIsAssassin">
+                    <div id="assassin">{{ assassinVoteData.assassin }}, assassinate Merlin</div>
+
+                    <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
+                        <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
+                            <label :class="{ selected: goodGuy === guess }">
+                                <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess"
+                                       :disabled="!playerIsAssassin"/>{{ goodGuy }}
+                            </label>
+                        </div>
+
+                        <input type="submit" class="button is-small" value="Submit Guess">
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
+
+        <div v-if="!modalActive && playerIsAssassin">
+            <button @click="toggleModalActive">assassin vote</button>
+        </div>
 
     </div>
 </template>
@@ -25,18 +43,24 @@
         name: 'AssassinVote',
         data: function () {
             return {
-                guess: ""
+                guess: "",
+                modalActive: true
             }
         },
         props: ["assassinVoteData"],
         methods: {
             submitAssassinGuess: function () {
+                console.log(this.guess)
+                this.modalActive = !this.modalActive
                 let assassinVoteMessage = {
                     event: 'AssassinVote',
                     guess: this.guess
                 }
                 WebsocketService.sendObj(this.$socket, assassinVoteMessage)
-            }
+            },
+            toggleModalActive: function () {
+                this.modalActive = !this.modalActive
+            },
         },
         computed: {
             playerIsAssassin: function () {
@@ -45,28 +69,42 @@
             noGuessSelected: function () {
                 return this.guess === ""
             },
-        }
+        },
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../styles/variables";
+
+    .modal {
+        color: #C7383E;
+    }
+
     input[type=radio] {
         display: none;
     }
 
     label {
-        width: 20rem;
+        width: 67%;
         cursor: pointer;
         font-size: 1.5em;
         display: inline-block;
-        margin: auto .2em;
-        border: .5px ridge #3d3c5c;
-        border-radius: 12px;
-        box-shadow: 3px 3px #3d3c5c;
+        margin-top: 3px;
+        padding: 1px;
+        background: #C7383E;
+        color: lightgray;
     }
 
     .selected {
-        background: #b0912a;
+        background: darkred;
+    }
+
+    #assassin {
+        font-size: 5em;
+    }
+
+    #everyoneElse {
+        font-size: 5em;
     }
 
     .somePadding {
@@ -75,5 +113,13 @@
 
     .lessPadding {
         padding: 1em;
+    }
+
+    img {
+        padding: 3%;
+    }
+
+    button {
+        margin-bottom: 5%;
     }
 </style>

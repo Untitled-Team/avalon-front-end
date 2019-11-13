@@ -26,7 +26,7 @@ describe('AssassinVote.vue', () => {
     })
 
     it('displays the assassin', () => {
-        let expectedAssassin = 'quernt';
+        let expectedAssassin = 'me';
         wrapper = shallowMount(
             AssassinVote,
             {
@@ -54,7 +54,7 @@ describe('AssassinVote.vue', () => {
             {
                 propsData: {
                     assassinVoteData: {
-                        assassin: 'assassin/doesnt matter'
+                        assassin: 'me'
                     }
                 },
                 data: function () {
@@ -78,7 +78,7 @@ describe('AssassinVote.vue', () => {
             {
                 propsData: {
                     assassinVoteData: {
-                        assassin: 'assassin/doesnt matter',
+                        assassin: 'me',
                         goodGuys: expectedGoodGuys
                     }
                 },
