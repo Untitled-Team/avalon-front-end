@@ -8,7 +8,7 @@
 
                 <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
 
-                <div id="assassin" v-if="!playerIsAssassin">
+                <div id="everyoneElse" v-if="!playerIsAssassin">
                     {{ assassinVoteData.assassin }} is attempting to assassinate Merlin.
                 </div>
 
@@ -100,6 +100,10 @@
     }
 
     #assassin {
+        font-size: 5em;
+    }
+
+    #everyoneElse {
         font-size: 5em;
     }
 
