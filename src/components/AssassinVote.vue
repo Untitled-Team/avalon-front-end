@@ -6,12 +6,14 @@
             <div class="modal-content">
                 <button @click="toggleModalActive">View Mission History</button>
 
-                <div class="bigText" v-if="!playerIsAssassin">
-                    u aint the assassin!!!
+                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
+
+                <div id="assassin" v-if="!playerIsAssassin">
+                    {{ assassinVoteData.assassin }} is attempting to assassinate Merlin.
                 </div>
 
                 <div v-if="playerIsAssassin">
-                    <div id="assassin">{{ assassinVoteData.assassin }}, guess Merlin</div>
+                    <div id="assassin">{{ assassinVoteData.assassin }}, assassinate Merlin</div>
 
                     <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
                         <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
@@ -21,9 +23,7 @@
                             </label>
                         </div>
 
-                        <div v-show="playerIsAssassin && !noGuessSelected" class="somePadding">
-                            <input type="submit" class="button is-small" value="Submit Guess">
-                        </div>
+                        <input type="submit" class="button is-small" value="Submit Guess">
                     </form>
                 </div>
             </div>
@@ -109,5 +109,13 @@
 
     .lessPadding {
         padding: 1em;
+    }
+
+    img {
+        padding: 3%;
+    }
+
+    button {
+        margin-bottom: 5%;
     }
 </style>
