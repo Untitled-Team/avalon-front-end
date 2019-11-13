@@ -1,19 +1,26 @@
 <template>
     <div id="assassinVote">
-        <div class="mediumText">The good guys have passed 3 missions, but it's not over yet!</div>
-        <div id="assassin" class="bigText">{{ assassinVoteData.assassin }}, Guess Merlin</div>
 
-        <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
-            <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
-                <label :class="{ selected: goodGuy === guess }">
-                    <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess" :disabled="!playerIsAssassin"/>{{ goodGuy }}
-                </label>
-            </div>
+        <div class="modal is-active"><!-- :class="{'is-active': modalActive === true}">-->
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="mediumText">The good guys have passed 3 missions, but it's not over yet!</div>
+                <div id="assassin" class="bigText">{{ assassinVoteData.assassin }}, Guess Merlin</div>
 
-            <div v-show="playerIsAssassin && !noGuessSelected" class="somePadding">
-                <input type="submit" class="button is-small" value="Submit Guess">
+                <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
+                    <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
+                        <label :class="{ selected: goodGuy === guess }">
+                            <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess"
+                                   :disabled="!playerIsAssassin"/>{{ goodGuy }}
+                        </label>
+                    </div>
+
+                    <div v-show="playerIsAssassin && !noGuessSelected" class="somePadding">
+                        <input type="submit" class="button is-small" value="Submit Guess">
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
 
     </div>
 </template>
@@ -49,24 +56,28 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+    #assassinVoteForm {
+        color:white;
+    }
+
     input[type=radio] {
         display: none;
     }
 
     label {
-        width: 20rem;
+        width: 67%;
         cursor: pointer;
         font-size: 1.5em;
         display: inline-block;
-        margin: auto .2em;
-        border: .5px ridge #3d3c5c;
-        border-radius: 12px;
-        box-shadow: 3px 3px #3d3c5c;
+        margin-top: 3px;
+        padding: 1px;
+        background: grey;
     }
 
     .selected {
-        background: #b0912a;
+        background: rgba(whitesmoke, 0.35);
     }
 
     .somePadding {
