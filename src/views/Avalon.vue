@@ -8,6 +8,8 @@
             <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
+                <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData" :activeQuestData="activeQuestData"></AssassinVote>
+
                 <div v-show="!activeMissionNotCurrent" id="currentMissionScreens" class="currentMissions">
                     <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
                                         :currentMissionPartySize="currentMissionPartySize"/>
@@ -16,7 +18,6 @@
                     <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
                     <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
                                                 :failVotes="failVotes"/>
-                    <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"></AssassinVote>
                 </div>
 
                 <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
@@ -179,12 +180,12 @@
                 store.commit('setLastEventId', msgJSON.id)
             }
         },
-        mounted () {
-            document.addEventListener('touchmove', function(event) {
+        mounted() {
+            document.addEventListener('touchmove', function (event) {
                 event.preventDefault();
             }, {passive: false});
         },
-        destroyed () {
+        destroyed() {
             window.removeEventListener('touchmove', function (event) {
                 event.preventDefault();
             }, false);
@@ -194,10 +195,11 @@
 
 <style lang="scss">
     @import "../styles/variables";
+
     .cssWrapper {
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
         background: #848484;
     }
 
@@ -222,7 +224,7 @@
     .currentMissions {
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
         background: $current;
     }
 </style>
