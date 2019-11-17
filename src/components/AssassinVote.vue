@@ -29,10 +29,9 @@
             </div>
         </div>
 
-        <div v-if="!modalActive && playerIsAssassin">
-            <button @click="toggleModalActive">assassin vote</button>
+        <div v-if="!modalActive && playerIsAssassin" :class="{successful: activeIsPassed, failed: activeIsFailed, incomplete: !activeQuestHasData}">
+            <button @click="toggleModalActive">replace me w/ a cool new pixel button</button>
         </div>
-
     </div>
 </template>
 
@@ -47,7 +46,7 @@
                 modalActive: true
             }
         },
-        props: ["assassinVoteData"],
+        props: ["assassinVoteData", "activeQuestData"],
         methods: {
             submitAssassinGuess: function () {
                 console.log(this.guess)
@@ -69,17 +68,20 @@
             noGuessSelected: function () {
                 return this.guess === ""
             },
+            activeIsPassed: function () {
+                return this.activeQuestData.pass === true
+            },
+            activeIsFailed: function () {
+                return this.activeQuestData.pass === false
+            },
+            activeQuestHasData: function () {
+                return this.activeQuestData.pass !== null
+            },
         },
     }
 </script>
 
-<style lang="scss" scoped>
-    @import "../styles/variables";
-
-    .modal {
-        color: #C7383E;
-    }
-
+<style scoped>
     input[type=radio] {
         display: none;
     }
@@ -121,5 +123,21 @@
 
     button {
         margin-bottom: 5%;
+    }
+
+    .successful {
+        background: $successful;
+    }
+
+    .failed {
+        background: $failed;
+    }
+
+    .incomplete {
+        background: $incomplete;
+    }
+
+    .current {
+        background: $current;
     }
 </style>
