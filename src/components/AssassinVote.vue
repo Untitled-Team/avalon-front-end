@@ -81,13 +81,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
-    @import "../styles/variables";
-
-    .modal {
-        color: #C7383E;
-    }
-
+<style scoped>
     input[type=radio] {
         display: none;
     }
