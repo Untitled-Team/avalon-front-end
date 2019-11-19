@@ -85,6 +85,7 @@
     @import "../styles/variables";
 
     .modal {
+        position: absolute;
         color: #C7383E;
     }
 
