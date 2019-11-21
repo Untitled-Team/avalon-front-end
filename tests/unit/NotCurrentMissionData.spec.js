@@ -14,7 +14,10 @@ describe('NotCurrentMissionData.vue', () => {
             {
                 propsData: {
                     activeQuestData: {
-                        pass: null
+                        pass: null,
+                        votes: [{
+                            missionLeader: 'idk'
+                        }]
                     }
                 }
             })
@@ -30,7 +33,10 @@ describe('NotCurrentMissionData.vue', () => {
             {
                 propsData: {
                     activeQuestData: {
-                        pass: true
+                        pass: true,
+                        votes: [{
+                            missionLeader: 'idk'
+                        }]
                     }
                 }
             })
@@ -46,7 +52,10 @@ describe('NotCurrentMissionData.vue', () => {
             {
                 propsData: {
                     activeQuestData: {
-                        pass: null
+                        pass: null,
+                        votes: [{
+                            missionLeader: 'idk'
+                        }]
                     }
                 }
             })
@@ -62,34 +71,20 @@ describe('NotCurrentMissionData.vue', () => {
             {
                 propsData: {
                     activeQuestData: {
-                        pass: true
+                        pass: true,
+                        votes: [{
+                            missionLeader: 'idk'
+                        }]
                     }
                 }
             })
 
-        const noDataWrapper = wrapper.find('#missionHistory')
+        const noDataWrapper = wrapper.find('.missionHistory')
 
         expect(noDataWrapper.exists()).to.be.true
     })
 
     describe('mission history data', () => {
-        it('should display number of adventurers', () => {
-            const expectedNumberOfAdventurers = 45324
-            wrapper = shallowMount(
-                NotCurrentMissionData,
-                {
-                    propsData: {
-                        activeQuestData: {
-                            pass: true,
-                            numberOfAdventurers: expectedNumberOfAdventurers
-                        }
-                    }
-                })
-
-            const numAdventurersWrapper = wrapper.find('#numberOfAdventurers');
-
-            expect(numAdventurersWrapper.text()).to.include(expectedNumberOfAdventurers)
-        })
 
         it('should display each player', () => {
             const expectedPlayers = ['john', 'barb', 'karen']
@@ -99,7 +94,10 @@ describe('NotCurrentMissionData.vue', () => {
                     propsData: {
                         activeQuestData: {
                             pass: true,
-                            players: expectedPlayers
+                            players: expectedPlayers,
+                            votes: [{
+                                missionLeader: 'idk'
+                            }]
                         }
                     }
                 })
@@ -116,14 +114,17 @@ describe('NotCurrentMissionData.vue', () => {
                     propsData: {
                         activeQuestData: {
                             pass: true,
+                            votes: [{
+                                missionLeader: 'idk'
+                            }]
                         }
                     }
                 })
 
-            const sucessWrapper = wrapper.find('#success')
+            const sucessWrapper = wrapper.find('.success')
 
             expect(sucessWrapper.exists()).to.be.true
-            expect(wrapper.find('#failure').exists()).to.be.false
+            expect(wrapper.find('.failure').exists()).to.be.false
         })
 
         it('should display correct message on mission failure', () => {
@@ -133,36 +134,17 @@ describe('NotCurrentMissionData.vue', () => {
                     propsData: {
                         activeQuestData: {
                             pass: false,
+                            votes: [{
+                                missionLeader: 'idk'
+                            }]
                         }
                     }
                 })
 
-            const failureWrapper = wrapper.find('#failure')
+            const failureWrapper = wrapper.find('.failure')
 
             expect(failureWrapper.exists()).to.be.true
-            expect(wrapper.find('#success').exists()).to.be.false
-        })
-
-        it('should display a party vote div for each party vote in the data', () => {
-            wrapper = shallowMount(
-                NotCurrentMissionData,
-                {
-                    propsData: {
-                        activeQuestData: {
-                            pass: false,
-                            votes: [
-                                {successVotes: 1, failVotes: 1},
-                                {successVotes: 1, failVotes: 1},
-                                {successVotes: 1, failVotes: 1},
-                                {successVotes: 1, failVotes: 1},
-                            ]
-                        }
-                    }
-                })
-
-            const partyVoteWrapper = wrapper.findAll('.partyVote')
-
-            expect(partyVoteWrapper.length).to.equal(4)
+            expect(wrapper.find('.success').exists()).to.be.false
         })
     })
 })
