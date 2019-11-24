@@ -8,8 +8,8 @@ describe('Winner.vue', () => {
     it('should display the winner correctly when good guys win', () => {
         wrapper = shallowMount(Winner, {propsData: {gameOverData: {winningTeam: "GoodGuys",goodGuys: [],badGuys: []}}})
 
-        const goodGuysWrapper = wrapper.find('#goodGuysWin')
-        const badGuysWrapper = wrapper.find('#badGuysWin')
+        const goodGuysWrapper = wrapper.find('.goodGuysWin')
+        const badGuysWrapper = wrapper.find('.badGuysWin')
 
         expect(goodGuysWrapper.isVisible()).to.be.true
         expect(badGuysWrapper.isVisible()).to.be.false
@@ -18,8 +18,8 @@ describe('Winner.vue', () => {
     it('should display the winner correctly when bad guys win', () => {
         wrapper = shallowMount(Winner, {propsData: {gameOverData: {winningTeam: 'BadGuys', goodGuys: [], badGuys: []}}})
 
-        const badGuysWrapper = wrapper.find('#badGuysWin')
-        const goodGuysWrapper = wrapper.find('#goodGuysWin')
+        const badGuysWrapper = wrapper.find('.badGuysWin')
+        const goodGuysWrapper = wrapper.find('.goodGuysWin')
 
         expect(badGuysWrapper.isVisible()).to.be.true
         expect(goodGuysWrapper.isVisible()).to.be.false
@@ -29,7 +29,7 @@ describe('Winner.vue', () => {
         const expectedMerlin = 'jk rowling'
         wrapper = shallowMount(Winner, {propsData: {gameOverData: {merlin: expectedMerlin, goodGuys: [], badGuys: []}}})
 
-        const merlinWrapper = wrapper.find('#merlin')
+        const merlinWrapper = wrapper.find('.merlin')
 
         expect(merlinWrapper.text()).to.contain(expectedMerlin)
     })
@@ -38,7 +38,7 @@ describe('Winner.vue', () => {
         const expectedAssassin = 'harry smooter'
         wrapper = shallowMount(Winner, {propsData: {gameOverData: {assassin: expectedAssassin, goodGuys: [], badGuys: []}}})
 
-        const assassinWrapper = wrapper.find('#assassin')
+        const assassinWrapper = wrapper.find('.assassin')
 
         expect(assassinWrapper.text()).to.contain(expectedAssassin)
     })
@@ -48,7 +48,7 @@ describe('Winner.vue', () => {
         const unexpectedMerlin = 'merbling'
         wrapper = shallowMount(Winner, {propsData: {gameOverData: {merlin: unexpectedMerlin, goodGuys: [unexpectedMerlin, ...expectedGoodGuys], badGuys: []}}})
 
-        const goodGuysWrapper = wrapper.find('#goodGuys')
+        const goodGuysWrapper = wrapper.find('.goodGuys')
 
         expectedGoodGuys.forEach((goodGuy) => {
             expect(goodGuysWrapper.text()).to.contain(goodGuy)
@@ -62,7 +62,7 @@ describe('Winner.vue', () => {
         const unexpectedAssassin = 'ASS ASS in LOL!!!!! :p'
         wrapper = shallowMount(Winner, {propsData: {gameOverData: {assassin: unexpectedAssassin, badGuys: [unexpectedAssassin, ...expectedBadGuys], goodGuys: []}}})
 
-        const badGuysWrapper = wrapper.find('#badGuys')
+        const badGuysWrapper = wrapper.find('.badGuys')
 
         expectedBadGuys.forEach((badGuy) => {
             expect(badGuysWrapper.text()).to.contain(badGuy)
