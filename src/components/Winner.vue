@@ -10,7 +10,7 @@
                 <img class="victoryScreen" src="@/assets/victoryScreen.png">
             </div>
         </div>
-        <div>
+        <div class="infoWrapper">
             <div class="merlin">Merlin: {{ gameOverData.merlin }}</div>
             <div class="goodGuys">Good Guys:
                 <div :key="index" v-for="(goodGuy, index) in goodGuysSansMerlin">
@@ -58,5 +58,50 @@
 
     .victory {
         background-color: $successful;
+    }
+
+    #winner {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .badGuysWin {
+        display: flex;
+        flex: 0 1 0;
+        justify-content: center;
+
+        .defeatScreenWrapper {
+            flex: 1 1 0;
+            max-width: 70%;
+
+            img {
+                object-fit: contain;
+            }
+        }
+    }
+
+    .goodGuysWin {
+        display: flex;
+        flex: 0 1 0;
+        justify-content: center;
+
+        .victoryScreenWrapper {
+            flex: 1 1 0;
+            max-width: 100%;
+
+            img {
+                object-fit: contain;
+            }
+        }
+    }
+
+    .infoWrapper {
+        display: flex;
+        flex: 1 1 0;
+        font-size: 3em;
+        color: floralwhite;
+        flex-direction: column;
     }
 </style>
