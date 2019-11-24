@@ -16,10 +16,6 @@
         components: {
             Avalon,
         },
-        actions: {
-            connect: function () {
-            },
-        }
     }
 </script>
 
