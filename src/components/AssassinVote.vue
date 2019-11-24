@@ -49,7 +49,6 @@
         props: ["assassinVoteData", "activeQuestData"],
         methods: {
             submitAssassinGuess: function () {
-                console.log(this.guess)
                 this.modalActive = !this.modalActive
                 let assassinVoteMessage = {
                     event: 'AssassinVote',

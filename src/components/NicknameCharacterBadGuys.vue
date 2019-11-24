@@ -31,10 +31,10 @@
                 return this.$store.getters.getNickname
             },
             character: function () {
-                return this.$store.getters.getCharacter
+                return this.$store.getters.getCharacterFormatted
             },
             isRegularGoodGuy: function () {
-                return this.$store.getters.getCharacter === 'Good Guy'
+                return this.$store.getters.getCharacterFormatted === 'Good Guy'
             },
         },
         methods: {

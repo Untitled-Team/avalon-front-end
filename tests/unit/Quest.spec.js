@@ -23,8 +23,6 @@ describe('Quest.vue', () => {
 
         const questWrapper = wrapper.find('.questWrapper')
 
-        // console.log(wrapper.vm.$props.quests)
-
         expect(questWrapper.classes()).to.contain(expectedClass)
         unexpectedClasses.forEach((unexpectedClass) => {
             expect(wrapper.classes()).not.to.contain(unexpectedClass, `${unexpectedClass} should not be a class on the quest!`)

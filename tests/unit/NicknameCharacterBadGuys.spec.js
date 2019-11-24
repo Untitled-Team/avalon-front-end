@@ -15,7 +15,7 @@ describe('NicknameCharacterBadGuys.vue', () => {
     beforeEach(() => {
         getters = {
             getNickname: stub().returns('steve'),
-            getCharacter: stub().returns('Merlin')
+            getCharacterFormatted: stub().returns('Merlin')
         }
         store = new Vuex.Store({
             state: {},

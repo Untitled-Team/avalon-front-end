@@ -10,7 +10,7 @@ const vuexLocal = new VuexPersistence({
 
 export default new Vuex.Store({
     state: {
-        //Game Phase
+        //Game Phase/CurrentScreen
         stepOne: true, //intro
         lobbyStep: false,
         stepTwo: false, //playerInfo
@@ -23,7 +23,7 @@ export default new Vuex.Store({
         badGuysWin: false,
         goodGuysWin: false,
 
-        //Other State
+        //General State
         players: [],
         nickname: "",
         roomId: "",
@@ -31,6 +31,11 @@ export default new Vuex.Store({
         activeMission: 1,
         currentMission: 1,
         lastEventId: null,
+        badGuys: [],
+
+        playerInfo: {
+            ready: false
+        },
     },
     getters: {
         getStepOne: state => {
@@ -72,7 +77,7 @@ export default new Vuex.Store({
         getNickname: state => {
             return state.nickname
         },
-        getCharacter: state => {
+        getCharacterFormatted: state => {
             if (state.character == "NormalGoodGuy") {
                 return "Good Guy"
             } else if (state.character == "NormalBadGuy") {
@@ -140,13 +145,10 @@ export default new Vuex.Store({
                     lastMessageId: state.lastEventId
                 });                
             }
-            console.log("ON OPEN")
-            state
         },
         SOCKET_ONCLOSE: state => {state},
         SOCKET_ONERROR: state => {state},
         SOCKET_RECONNECT: state => {
-            console.log("TRYING TO RECONNECT");
             Vue.prototype.$socket.sendObj({
                 event: "Reconnect",
                 nickname: state.nickname,

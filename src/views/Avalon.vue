@@ -2,13 +2,14 @@
     <div class="main">
         <Intro v-if="stepOne"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
-        <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
+        <PlayerInfo v-if="stepTwo"/>
 
         <div v-show="!teamHasWon && !lobbyStep && !stepOne && !stepTwo" class="containedWidth">
             <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
-                <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData" :activeQuestData="activeQuestData"></AssassinVote>
+                <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData"
+                              :activeQuestData="activeQuestData"></AssassinVote>
 
                 <div v-show="!activeMissionNotCurrent" id="currentMissionScreens" class="currentMissions">
                     <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
@@ -63,7 +64,6 @@
             return {
                 players: [],
                 roomId: null,
-                badGuys: [],
                 missionLeader: "",
                 missionNumber: 1,
                 numberInParty: 0,
@@ -76,6 +76,9 @@
             }
         },
         computed: {
+            badGuys: function () {
+                return store.state.badGuys
+            },
             stepOne: function () {
                 return store.getters.getStepOne
             },
@@ -118,9 +121,6 @@
             activeQuestData: function () {
                 return this.quests[store.state.activeMission - 1]
             },
-            character: function () {
-                return store.state.character
-            }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
@@ -137,7 +137,7 @@
                 } else if (msgJSON.event === 'PlayerInfo') {
                     store.commit('setPlayers', this.players)
                     store.state.character = msgJSON.character
-                    this.badGuys = msgJSON.badGuys
+                    store.state.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
                     store.state.activeMission = msgJSON.missionNumber
