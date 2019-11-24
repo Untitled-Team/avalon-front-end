@@ -1,8 +1,8 @@
 <template>
     <div id="questInfo">
-        <div class="columns is-mobile is-paddingless is-marginless quests">
-            <div class="column is-one-fifth is-marginless is-paddingless quest" :key="index" v-for="(quest, index) in quests">
-                <Quest :quest="quest" :missionNumber="index+1" :quests="quests" class="index"/>
+        <div class="columns is-mobile is-paddingless is-marginless missions">
+            <div class="column is-one-fifth is-marginless is-paddingless quest" :key="index" v-for="(quest, index) in missions">
+                <Quest :quest="quest" :missionNumber="index+1" :quests="missions" class="index"/>
             </div>
         </div>
     </div>
@@ -10,13 +10,18 @@
 
 <script>
     import Quest from "./Quest";
+    import store from "../store/index.js"
 
     export default {
         name: 'QuestInfo',
         components: {
             Quest,
         },
-        props: ["quests"],
+        computed: {
+            missions: function () {
+                return store.state.missions
+            }
+        }
     }
 </script>
 
@@ -31,7 +36,7 @@
         padding: 0;
     }
 
-    .quests {
+    .missions {
         height: 100%;
     }
 

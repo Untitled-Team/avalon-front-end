@@ -11,7 +11,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
     state: {
         //Game Phase/CurrentScreen
-        stepOne: true, //intro
+        Intro: true, //intro
         lobbyStep: false,
         stepTwo: false, //playerInfo
         questInfoDisplay: false,
@@ -32,15 +32,14 @@ export default new Vuex.Store({
         currentMission: 1,
         lastEventId: null,
         badGuys: [],
+        currentMissionLeader: "",
+        missions: [],
 
         playerInfo: {
             ready: false
         },
     },
     getters: {
-        getStepOne: state => {
-            return state.stepOne
-        },
         getLobbyStep: state => {
             return state.lobbyStep
         },
