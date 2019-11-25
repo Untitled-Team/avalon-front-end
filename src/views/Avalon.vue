@@ -1,10 +1,10 @@
 <template>
     <div class="main">
         <Intro v-if="intro"/>
-        <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
+        <Lobby v-if="lobby" :players="players" :roomId="roomId"/>
         <PlayerInfo v-if="playerInfo"/>
 
-        <div v-show="!teamHasWon && !lobbyStep && !intro && !playerInfo" class="containedWidth">
+        <div v-show="!teamHasWon && !lobby && !intro && !playerInfo" class="containedWidth">
             <QuestInfo v-if="questInfoDisplay"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
@@ -78,7 +78,7 @@
             intro: function () {
                 return store.state.gameState.intro
             },
-            lobbyStep: function () {
+            lobby: function () {
                 return store.state.gameState.lobby
             },
             playerInfo: function () {
@@ -125,14 +125,14 @@
                 console.log(msgJSON)
 
                 if (msgJSON.event === 'MoveToLobby') {
-                    store.dispatch('stepOneToLobbyStep')
+                    store.dispatch('introToLobbyStep')
                     this.players = msgJSON.players
                     this.roomId = msgJSON.roomId
-                    store.commit("setRoomId", this.roomId);
+                    store.roomId = this.roomId
                 } else if (msgJSON.event === 'ChangeInLobby') {
                     this.players = msgJSON.players
                 } else if (msgJSON.event === 'PlayerInfo') {
-                    store.commit('setPlayers', this.players)
+                    this.store.players = this.players
                     store.state.character = msgJSON.character
                     store.state.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")

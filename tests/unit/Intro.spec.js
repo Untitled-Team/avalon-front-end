@@ -20,7 +20,9 @@ describe('Intro.vue', () => {
             setNickname: stub(),
         }
         store = new Vuex.Store({
-            state: {},
+            state: {
+                nickname: "",
+            },
             mutations
         })
         restore()

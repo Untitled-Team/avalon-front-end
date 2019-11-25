@@ -37,6 +37,7 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService"
+    import store from "../store/index.js"
 
     export default {
         name: 'AssassinVote',
@@ -62,7 +63,7 @@
         },
         computed: {
             playerIsAssassin: function () {
-                return this.$store.getters.getNickname === this.assassinVoteData.assassin
+                return store.getters.getNickname === this.assassinVoteData.assassin
             },
             noGuessSelected: function () {
                 return this.guess === ""

@@ -25,6 +25,7 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService"
+    import store from "../store/index.js"
 
     export default {
         name: 'PassFailVote',
@@ -52,7 +53,7 @@
         },
         computed: {
             playerVoting: function () {
-                return this.missionParty.includes(this.$store.getters.getNickname)
+                return this.missionParty.includes(store.getters.getNickname)
             }
         },
         created() {

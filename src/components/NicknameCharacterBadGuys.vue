@@ -13,11 +13,15 @@
                 </div>
             </div>
         </div>
-        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">Toggle Player Information</div>
+        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">Toggle
+            Player Information
+        </div>
     </div>
 </template>
 
 <script>
+    import store from "../store/index.js"
+
     export default {
         name: 'NicknameCharacterBadGuys',
         props: ['badGuys'],
@@ -28,13 +32,13 @@
         },
         computed: {
             nickname: function () {
-                return this.$store.getters.getNickname
+                return store.state.getNickname
             },
             character: function () {
-                return this.$store.getters.getCharacterFormatted
+                return store.getters.getCharacterFormatted
             },
             isRegularGoodGuy: function () {
-                return this.$store.getters.getCharacterFormatted === 'Good Guy'
+                return store.getters.getCharacterFormatted === 'Good Guy'
             },
         },
         methods: {

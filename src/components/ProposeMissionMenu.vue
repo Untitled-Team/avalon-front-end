@@ -38,7 +38,7 @@
         name: 'ProposeMissionMenu',
         data: function () {
             return {
-                players: this.$store.state.players,
+                players: store.state.players,
                 selectedPlayers: [],
             }
         },
