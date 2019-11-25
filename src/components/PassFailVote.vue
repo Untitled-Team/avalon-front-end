@@ -29,7 +29,6 @@
 
     export default {
         name: 'PassFailVote',
-        props: ["missionParty"],
         data: function () {
             return {
                 playerHasVoted: false,
@@ -54,7 +53,10 @@
         computed: {
             playerVoting: function () {
                 return this.missionParty.includes(store.getters.getNickname)
-            }
+            },
+            missionParty: function () {
+                return store.state.ProposedPartyVoteMenu.proposedParty
+            },
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
@@ -84,7 +86,7 @@
         color: whitesmoke;
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
         color: whitesmoke;
 
     }
@@ -99,6 +101,7 @@
         padding-top: 5px;
         padding-bottom: 5px;
     }
+
     .crossedSwords {
         object-fit: contain;
     }

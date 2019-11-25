@@ -10,16 +10,16 @@ const vuexLocal = new VuexPersistence({
 
 export default new Vuex.Store({
     state: {
-        players: [],
-        nickname: "",
-        roomId: "",
-        character: "",
         activeMission: 1,
-        currentMission: 1,
-        lastEventId: null,
         badGuys: [],
+        character: "",
+        currentMission: 1,
         currentMissionLeader: "",
+        lastEventId: null,
         missions: [],
+        nickname: "",
+        players: [],
+        roomId: "",
 
         gameState: {
             intro: true,
@@ -34,9 +34,21 @@ export default new Vuex.Store({
             badGuysWin: false,
             goodGuysWin: false,
         },
-
         playerInfo: {
-            ready: false
+            ready: false,
+        },
+        assassinVote: {
+            assassinVoteData: {},
+        },
+        ProposedPartyVoteMenu: {
+            proposedParty: [],
+        },
+        DisplayPassFailVoteResults: {
+            passVotes: 0,
+            failVotes: 0,
+        },
+        Winner: {
+            gameOverData: {},
         },
     },
     getters: {
@@ -44,9 +56,9 @@ export default new Vuex.Store({
             return state.nickname
         },
         getCharacterFormatted: state => {
-            if (state.character == "NormalGoodGuy") {
+            if (state.character === "NormalGoodGuy") {
                 return "Good Guy"
-            } else if (state.character == "NormalBadGuy") {
+            } else if (state.character === "NormalBadGuy") {
                 return "Bad Guy"
             }
             return state.character

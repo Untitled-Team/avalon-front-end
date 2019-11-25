@@ -28,14 +28,20 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService";
+    import store from "../store/index.js"
 
     export default {
         name: 'Lobby',
-        props: ['players', 'roomId'],
         computed: {
+            players: function () {
+                return store.state.players
+            },
             correctPlayerNumbers: function () {
                 return this.players.length >= 5 && this.players.length <= 10
-            }
+            },
+            roomId: function () {
+                return store.state.roomId
+            },
         },
         methods: {
             startGame: function () {

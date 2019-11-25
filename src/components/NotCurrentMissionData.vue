@@ -55,9 +55,10 @@
 </template>
 
 <script>
+    import store from "../store/index.js"
+
     export default {
         name: 'NotCurrentMissionData',
-        props: ["activeQuestData"],
         computed: {
             isPassed: function () {
                 return this.activeQuestData.pass === true
@@ -67,6 +68,9 @@
             },
             questHasData: function () {
                 return this.activeQuestData.pass !== null
+            },
+            activeQuestData: function () {
+                return store.state.missions[store.state.activeMission - 1]
             },
         }
     }

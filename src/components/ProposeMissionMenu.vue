@@ -38,11 +38,9 @@
         name: 'ProposeMissionMenu',
         data: function () {
             return {
-                players: store.state.players,
                 selectedPlayers: [],
             }
         },
-        props: ["currentMissionPartySize"],
         methods: {
             proposeParty: function () {
                 if (this.proposedPartyIsCorrectSize) {
@@ -78,6 +76,12 @@
             currentMissionLeader: function () {
                 return store.state.currentMissionLeader
             },
+            currentMissionPartySize: function () {
+                return store.state.missions[store.state.currentMission - 1].numberOfAdventurers
+            },
+            players: function () {
+                return store.state.players
+            }
         }
     }
 

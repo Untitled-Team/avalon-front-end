@@ -29,7 +29,8 @@
             </div>
         </div>
 
-        <div v-if="!modalActive && playerIsAssassin" :class="{successful: activeIsPassed, failed: activeIsFailed, incomplete: !activeQuestHasData}">
+        <div v-if="!modalActive && playerIsAssassin"
+             :class="{successful: activeIsPassed, failed: activeIsFailed, incomplete: !activeQuestHasData}">
             <button @click="toggleModalActive">replace me w/ a cool new pixel button</button>
         </div>
     </div>
@@ -47,7 +48,6 @@
                 modalActive: true
             }
         },
-        props: ["assassinVoteData", "activeQuestData"],
         methods: {
             submitAssassinGuess: function () {
                 this.modalActive = !this.modalActive
@@ -65,9 +65,6 @@
             playerIsAssassin: function () {
                 return store.getters.getNickname === this.assassinVoteData.assassin
             },
-            noGuessSelected: function () {
-                return this.guess === ""
-            },
             activeIsPassed: function () {
                 return this.activeQuestData.pass === true
             },
@@ -77,6 +74,12 @@
             activeQuestHasData: function () {
                 return this.activeQuestData.pass !== null
             },
+            activeQuestData: function () {
+                return store.state.missions[store.state.activeMission - 1]
+            },
+            assassinVoteData: function () {
+                return store.state.assassinVote.assassinVoteData
+            }
         },
     }
 </script>

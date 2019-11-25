@@ -25,7 +25,6 @@
 
     export default {
         name: 'ProposedPartyVoteMenu',
-        props: ["proposedParty"],
         data: function () {
             return {
                 playerHasVoted: false,
@@ -50,6 +49,9 @@
         computed: {
             currentMissionLeader: function () {
                 return store.state.currentMissionLeader
+            },
+            proposedParty: function () {
+                return store.state.ProposedPartyVoteMenu.proposedParty
             }
         }
         , created() {

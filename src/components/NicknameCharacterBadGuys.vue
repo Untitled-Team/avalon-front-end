@@ -24,7 +24,6 @@
 
     export default {
         name: 'NicknameCharacterBadGuys',
-        props: ['badGuys'],
         data: () => {
             return {
                 modalActive: false
@@ -32,7 +31,7 @@
         },
         computed: {
             nickname: function () {
-                return store.state.getNickname
+                return store.state.nickname
             },
             character: function () {
                 return store.getters.getCharacterFormatted
@@ -40,6 +39,9 @@
             isRegularGoodGuy: function () {
                 return store.getters.getCharacterFormatted === 'Good Guy'
             },
+            badGuys: function () {
+                return store.state.badGuys
+            }
         },
         methods: {
             toggleModalActive: function () {
