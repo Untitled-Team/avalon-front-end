@@ -132,7 +132,6 @@
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
-                console.log(msgJSON)
 
                 if (msgJSON.event === 'PlayerReadyAcknowledgement') {
                     store.state.playerInfo.ready = true

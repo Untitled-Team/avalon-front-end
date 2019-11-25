@@ -1,10 +1,10 @@
 <template>
     <div class="main">
-        <Intro v-if="stepOne"/>
+        <Intro v-if="intro"/>
         <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
-        <PlayerInfo v-if="stepTwo"/>
+        <PlayerInfo v-if="playerInfo"/>
 
-        <div v-show="!teamHasWon && !lobbyStep && !stepOne && !stepTwo" class="containedWidth">
+        <div v-show="!teamHasWon && !lobbyStep && !intro && !playerInfo" class="containedWidth">
             <QuestInfo v-if="questInfoDisplay"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
@@ -75,35 +75,35 @@
             badGuys: function () {
                 return store.state.badGuys
             },
-            stepOne: function () {
-                return store.getters.IntroPhase
+            intro: function () {
+                return store.state.gameState.intro
             },
             lobbyStep: function () {
-                return store.getters.getLobbyStep
+                return store.state.gameState.lobby
             },
-            stepTwo: function () {
-                return store.getters.getStepTwo
+            playerInfo: function () {
+                return store.state.gameState.playerInfo
             },
             questInfoDisplay: function () {
-                return store.getters.getQuestInfoDisplay
+                return store.state.gameState.questInfoDisplay
             },
             proposeMissionParty: function () {
-                return store.getters.getProposeMissionParty
+                return store.state.gameState.proposeMissionParty
             },
             proposedPartyVote: function () {
-                return store.getters.getProposedPartyVote
+                return store.state.gameState.proposedPartyVote
             },
             passFailVote: function () {
-                return store.getters.getPassFailVote
+                return store.state.gameState.passFailVote
             },
             displayPassFailVoteResults: function () {
-                return store.getters.getDisplayPassFailVoteResults
+                return store.state.gameState.displayPassFailVoteResults
             },
             assassinVote: function () {
-                return store.getters.getAssassinVote
+                return store.state.gameState.assassinVote
             },
             teamHasWon: function () {
-                return store.getters.getBadGuysWin || store.getters.getGoodGuysWin
+                return store.state.gameState.badGuysWin || store.state.gameState.goodGuysWin
             },
             currentMissionPartySize: function () {
                 return store.state.missions[this.missionNumber - 1].numberOfAdventurers
@@ -112,6 +112,7 @@
                 return store.getters.getNickname
             },
             activeMissionNotCurrent: function () {
+                //todo!!!
                 return store.state.activeMission !== this.missionNumber
             },
             activeQuestData: function () {
@@ -137,8 +138,8 @@
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
                     store.state.activeMission = msgJSON.missionNumber
-                    store.state.currentMissionLeader = msgJSON.missionLeader
                     this.missionNumber = msgJSON.missionNumber
+                    store.state.currentMissionLeader = msgJSON.missionLeader
                     store.state.missions = msgJSON.missions
                     store.state.currentMission = msgJSON.missionNumber
                     if (this.proposedPartyVote) {

@@ -49,20 +49,22 @@
 </template>
 
 <script>
+    import store from "../store/index.js"
+
     export default {
         name: 'Quest',
         props: ["quest", "missionNumber", "quests"],
         methods: {
             makeActive: function () {
-                this.$store.state.activeMission = this.missionNumber
+                store.state.activeMission = this.missionNumber
             }
         },
         computed: {
             activeIsIncompleteAndActiveNotCurrent: function () {
-                return this.quests[this.$store.state.activeMission - 1].pass === null && this.$store.state.activeMission !== this.$store.state.currentMission
+                return this.quests[store.state.activeMission - 1].pass === null && store.state.activeMission !== store.state.currentMission
             },
             activeIsIncompleteAndActiveIsCurrent: function () {
-                return this.quests[this.$store.state.activeMission - 1].pass === null && this.$store.state.activeMission === this.$store.state.currentMission
+                return this.quests[store.state.activeMission - 1].pass === null && store.state.activeMission === store.state.currentMission
             },
             didPass: function () {
                 return this.quest.pass === true
@@ -74,10 +76,10 @@
                 return this.quest.pass !== null
             },
             isActive: function () {
-                return this.missionNumber === this.$store.state.activeMission
+                return this.missionNumber === store.state.activeMission
             },
             isCurrent: function () {
-                return this.missionNumber === this.$store.state.currentMission
+                return this.missionNumber === store.state.currentMission
             },
             isFirst: function () {
                 return this.missionNumber === 1
@@ -89,10 +91,10 @@
                 return this.missionNumber === 5
             },
             activeMissionPassing: function () {
-                return this.quests[this.$store.state.activeMission - 1].pass === true
+                return this.quests[store.state.activeMission - 1].pass === true
             },
             activeMissionFailing: function () {
-                return this.quests[this.$store.state.activeMission - 1].pass === false
+                return this.quests[store.state.activeMission - 1].pass === false
             },
         }
     }

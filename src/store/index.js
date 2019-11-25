@@ -11,17 +11,19 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
     state: {
         //Game Phase/CurrentScreen
-        Intro: true, //intro
-        lobbyStep: false,
-        stepTwo: false, //playerInfo
-        questInfoDisplay: false,
-        proposeMissionParty: false,
-        proposedPartyVote: false,
-        passFailVote: false,
-        displayPassFailVoteResults: false,
-        assassinVote: false,
-        badGuysWin: false,
-        goodGuysWin: false,
+        gameState: {
+            intro: true,
+            lobby: false,
+            playerInfo: false,
+            questInfoDisplay: false,
+            proposeMissionParty: false,
+            proposedPartyVote: false,
+            passFailVote: false,
+            displayPassFailVoteResults: false,
+            assassinVote: false,
+            badGuysWin: false,
+            goodGuysWin: false,
+        },
 
         //General State
         players: [],
@@ -40,36 +42,6 @@ export default new Vuex.Store({
         },
     },
     getters: {
-        getLobbyStep: state => {
-            return state.lobbyStep
-        },
-        getStepTwo: state => {
-            return state.stepTwo
-        },
-        getQuestInfoDisplay: state => {
-            return state.questInfoDisplay
-        },
-        getProposeMissionParty: state => {
-            return state.proposeMissionParty
-        },
-        getProposedPartyVote: state => {
-            return state.proposedPartyVote
-        },
-        getPassFailVote: state => {
-            return state.passFailVote
-        },
-        getDisplayPassFailVoteResults: state => {
-            return state.displayPassFailVoteResults
-        },
-        getAssassinVote: state => {
-            return state.assassinVote
-        },
-        getBadGuysWin: state => {
-            return state.badGuysWin
-        },
-        getGoodGuysWin: state => {
-            return state.goodGuysWin
-        },
         getPlayers: state => {
             return state.players
         },
@@ -87,37 +59,39 @@ export default new Vuex.Store({
     },
     mutations: {
         toggleStepOne: state => {
-            state.stepOne = !state.stepOne
+            state.gameState.intro = !state.gameState.intro
         },
         toggleLobbyStep: state => {
-            state.lobbyStep = !state.lobbyStep
+            state.gameState.lobby = !state.gameState.lobby
         },
         toggleStepTwo: state => {
-            state.stepTwo = !state.stepTwo
+            state.gameState.playerInfo = !state.gameState.playerInfo
         },
         toggleQuestInfoDisplay: state => {
-            state.questInfoDisplay = !state.questInfoDisplay
+            state.gameState.questInfoDisplay = !state.gameState.questInfoDisplay
         },
         toggleProposeMissionParty: state => {
-            state.proposeMissionParty = !state.proposeMissionParty
+            state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty
         },
         toggleProposedPartyVote: state => {
-            state.proposedPartyVote = !state.proposedPartyVote
+            state.gameState.proposedPartyVote = !state.gameState.proposedPartyVote
         },
         togglePassFailVote: state => {
-            state.passFailVote = !state.passFailVote
+            state.gameState.passFailVote = !state.gameState.passFailVote
         },
         toggleDisplayPassFailVoteResults: state => {
-            state.displayPassFailVoteResults = !state.displayPassFailVoteResults
+            state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
         },
         toggleAssassinVote: state => {
-            state.assassinVote = !state.assassinVote
+            state.gameState.assassinVote = !state.gameState.assassinVote
         },
         toggleBadGuysWin: state => {
-            state.badGuysWin = !state.badGuysWin
+            console.log('should be printed BAD')
+            state.gameState.badGuysWin = !state.gameState.badGuysWin
         },
         toggleGoodGuysWin: state => {
-            state.goodGuysWin = !state.goodGuysWin
+            console.log('should be printed GOOD')
+            state.gameState.goodGuysWin = !state.gameState.goodGuysWin
         },
         setPlayers: (state, players) => {
             state.players = players
@@ -134,7 +108,9 @@ export default new Vuex.Store({
         setLastEventId: (state, event) => {
             state.lastEventId = event
         },
-        SOCKET_ONMESSAGE: state => {state},
+        SOCKET_ONMESSAGE: state => {
+            state
+        },
         SOCKET_ONOPEN: state => {
             if (state.nickname && state.roomId) {
                 Vue.prototype.$socket.sendObj({
@@ -142,11 +118,15 @@ export default new Vuex.Store({
                     nickname: state.nickname,
                     roomId: state.roomId,
                     lastMessageId: state.lastEventId
-                });                
+                });
             }
         },
-        SOCKET_ONCLOSE: state => {state},
-        SOCKET_ONERROR: state => {state},
+        SOCKET_ONCLOSE: state => {
+            state
+        },
+        SOCKET_ONERROR: state => {
+            state
+        },
         SOCKET_RECONNECT: state => {
             Vue.prototype.$socket.sendObj({
                 event: "Reconnect",
