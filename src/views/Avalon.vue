@@ -10,14 +10,14 @@
             <div v-show="questInfoDisplay" class="cssWrapper">
                 <AssassinVote v-if="assassinVote"/>
 
-                <div v-show="!activeMissionNotCurrent" id="currentMissionScreens" class="currentMissions">
+                <div v-show="activeMissionAlsoCurrent" id="currentMissionScreens" class="currentMissions">
                     <ProposeMissionMenu v-if="proposeMissionParty"/>
                     <ProposedPartyVoteMenu v-if="proposedPartyVote"/>
                     <PassFailVote v-if="passFailVote"/>
                     <DisplayPassFailVoteResults v-if="displayPassFailVoteResults"/>
                 </div>
 
-                <NotCurrentMissionData v-if="activeMissionNotCurrent"/>
+                <NotCurrentMissionData v-if="!activeMissionAlsoCurrent"/>
                 <NicknameCharacterBadGuys v-if="questInfoDisplay"/>
             </div>
         </div>
@@ -56,11 +56,6 @@
             Intro,
             Lobby,
         },
-        data: function () {
-            return {
-                missionNumber: 1,
-            }
-        },
         computed: {
             intro: function () {
                 return store.state.gameState.intro
@@ -92,8 +87,8 @@
             teamHasWon: function () {
                 return store.state.gameState.badGuysWin || store.state.gameState.goodGuysWin
             },
-            activeMissionNotCurrent: function () {
-                return store.state.activeMission !== this.missionNumber
+            activeMissionAlsoCurrent: function () {
+                return store.state.activeMission === store.state.currentMission
             },
         },
         created() {
@@ -113,7 +108,6 @@
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
                     store.state.activeMission = msgJSON.missionNumber
-                    this.missionNumber = msgJSON.missionNumber
                     store.state.currentMissionLeader = msgJSON.missionLeader
                     store.state.missions = msgJSON.missions
                     store.state.currentMission = msgJSON.missionNumber
