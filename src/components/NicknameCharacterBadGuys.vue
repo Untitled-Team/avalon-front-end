@@ -3,6 +3,8 @@
         <div class="modal" :class="{'is-active': modalActive === true}">
             <div class="modal-background is-centered"></div>
             <div class="modal-content permanentPlayerInfo is-centered">
+                <button @click="resetToLobby" class="leaveGame">👉😎👉 zoop - 👏 LEAVE 👏 THE 👏 GAME 👏</button>
+
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
                 <div id="badGuys" v-if="!isRegularGoodGuy" class="fontSizing">
@@ -46,12 +48,22 @@
         methods: {
             toggleModalActive: function () {
                 this.modalActive = !this.modalActive
+            },
+            resetToLobby: function () {
+                window.localStorage.removeItem("vuex")
+                window.localStorage.clear()
+                location.reload()
             }
         }
     }
 </script>
 
 <style scoped>
+    .leaveGame {
+        color: red;
+        font-size: 25px;
+    }
+
     .permanentPlayerInfo {
         font-size: 2em;
     }
