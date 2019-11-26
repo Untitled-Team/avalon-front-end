@@ -32,7 +32,6 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService"
-    import store from "../store/index.js"
 
     export default {
         name: 'ProposeMissionMenu',
@@ -68,19 +67,19 @@
         },
         computed: {
             playerIsMissionLeader: function () {
-                return store.state.nickname === this.currentMissionLeader
+                return this.$store.state.nickname === this.currentMissionLeader
             },
             proposedPartyIsCorrectSize: function () {
                 return this.selectedPlayers.length === this.currentMissionPartySize
             },
             currentMissionLeader: function () {
-                return store.state.currentMissionLeader
+                return this.$store.state.currentMissionLeader
             },
             currentMissionPartySize: function () {
-                return store.state.missions[store.state.currentMission - 1].numberOfAdventurers
+                return this.$store.state.missions[this.$store.state.currentMission - 1].numberOfAdventurers
             },
             players: function () {
-                return store.state.players
+                return this.$store.state.players
             }
         }
     }

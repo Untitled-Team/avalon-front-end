@@ -22,8 +22,6 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
-
     export default {
         name: 'NicknameCharacterBadGuys',
         data: () => {
@@ -33,16 +31,16 @@
         },
         computed: {
             nickname: function () {
-                return store.state.nickname
+                return this.$store.state.nickname
             },
             character: function () {
-                return store.getters.getCharacterFormatted
+                return this.$store.getters.getCharacterFormatted
             },
             isRegularGoodGuy: function () {
-                return store.getters.getCharacterFormatted === 'Good Guy'
+                return this.$store.getters.getCharacterFormatted === 'Good Guy'
             },
             badGuys: function () {
-                return store.state.badGuys
+                return this.$store.state.badGuys
             }
         },
         methods: {

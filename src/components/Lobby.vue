@@ -28,19 +28,18 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService";
-    import store from "../store/index.js"
 
     export default {
         name: 'Lobby',
         computed: {
             players: function () {
-                return store.state.players
+                return this.$store.state.players
             },
             correctPlayerNumbers: function () {
                 return this.players.length >= 5 && this.players.length <= 10
             },
             roomId: function () {
-                return store.state.roomId
+                return this.$store.state.roomId
             },
         },
         methods: {

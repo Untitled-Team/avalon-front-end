@@ -7,16 +7,15 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService";
-    import store from "../store/index.js"
 
     export default {
         name: 'DisplayPassFailVotes',
         computed: {
             passVotes: function () {
-                return store.state.DisplayPassFailVoteResults.passVotes
+                return this.$store.state.DisplayPassFailVoteResults.passVotes
             },
             failVotes: function () {
-                return store.state.DisplayPassFailVoteResults.failVotes
+                return this.$store.state.DisplayPassFailVoteResults.failVotes
             },
         },
         created() {

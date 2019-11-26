@@ -1,7 +1,8 @@
 <template>
     <div id="questInfo">
         <div class="columns is-mobile is-paddingless is-marginless missions">
-            <div class="column is-one-fifth is-marginless is-paddingless quest" :key="index" v-for="(quest, index) in missions">
+            <div class="column is-one-fifth is-marginless is-paddingless quest" :key="index"
+                 v-for="(quest, index) in missions">
                 <Quest :quest="quest" :missionNumber="index+1" :quests="missions" class="index"/>
             </div>
         </div>
@@ -10,7 +11,6 @@
 
 <script>
     import Quest from "./Quest";
-    import store from "../store/index.js"
 
     export default {
         name: 'QuestInfo',
@@ -19,7 +19,7 @@
         },
         computed: {
             missions: function () {
-                return store.state.missions
+                return this.$store.state.missions
             }
         }
     }

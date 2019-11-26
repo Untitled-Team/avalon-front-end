@@ -38,7 +38,6 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService"
-    import store from "../store/index.js"
 
     export default {
         name: 'AssassinVote',
@@ -63,7 +62,7 @@
         },
         computed: {
             playerIsAssassin: function () {
-                return store.getters.getNickname === this.assassinVoteData.assassin
+                return this.$store.getters.getNickname === this.assassinVoteData.assassin
             },
             activeIsPassed: function () {
                 return this.activeQuestData.pass === true
@@ -75,10 +74,10 @@
                 return this.activeQuestData.pass !== null
             },
             activeQuestData: function () {
-                return store.state.missions[store.state.activeMission - 1]
+                return this.$store.state.missions[this.$store.state.activeMission - 1]
             },
             assassinVoteData: function () {
-                return store.state.assassinVote.assassinVoteData
+                return this.$store.state.assassinVote.assassinVoteData
             }
         },
     }

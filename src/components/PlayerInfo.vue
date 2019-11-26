@@ -95,7 +95,6 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
     import WebsocketService from "../services/WebsocketService";
 
     export default {
@@ -108,25 +107,25 @@
         },
         computed: {
             badGuys: function () {
-                return store.state.badGuys
+                return this.$store.state.badGuys
             },
             otherBadGuys: function () {
-                return this.badGuys.filter(bg => bg !== store.state.nickname);
+                return this.badGuys.filter(bg => bg !== this.$store.state.nickname);
             },
             isGood: function () {
-                return store.state.character === "NormalGoodGuy"
+                return this.$store.state.character === "NormalGoodGuy"
             },
             isBad: function () {
-                return store.state.character === "NormalBadGuy"
+                return this.$store.state.character === "NormalBadGuy"
             },
             isMerlin: function () {
-                return store.state.character === "Merlin"
+                return this.$store.state.character === "Merlin"
             },
             isAssassin: function () {
-                return store.state.character === "Assassin"
+                return this.$store.state.character === "Assassin"
             },
             ready: function () {
-                return store.state.playerInfo.ready
+                return this.$store.state.playerInfo.ready
             }
         },
         created() {
@@ -134,7 +133,7 @@
                 let msgJSON = JSON.parse(msg.data)
 
                 if (msgJSON.event === 'PlayerReadyAcknowledgement') {
-                    store.state.playerInfo.ready = true
+                    this.$store.state.playerInfo.ready = true
                 }
             }
         }

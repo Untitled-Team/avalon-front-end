@@ -14,17 +14,20 @@ Vue.use(Vuex)
 describe('NicknameCharacterBadGuys.vue', () => {
     beforeEach(() => {
         getters = {
-            getNickname: stub().returns('steve'),
             getCharacterFormatted: stub().returns('Merlin')
         }
         store = new Vuex.Store({
-            state: {},
+            state: {
+                nickname: "",
+                badGuys: [],
+            },
             getters
         })
     })
 
     it('should display the nickname from the store', () => {
         const expectedNickname = 'steve'
+        store.state.nickname = 'steve'
         wrapper = shallowMount(NicknameCharacterBadGuys, {store})
         wrapper.find('#toggleModalButton').trigger('click')
 
@@ -46,7 +49,8 @@ describe('NicknameCharacterBadGuys.vue', () => {
 
     it('should display the badGuys passed in as a prop', () => {
         let expectedBadGuys = ["a", "b", "c"];
-        wrapper = shallowMount(NicknameCharacterBadGuys, {propsData: {badGuys: expectedBadGuys}, store})
+        store.state.badGuys = expectedBadGuys
+        wrapper = shallowMount(NicknameCharacterBadGuys, {store})
         wrapper.find('#toggleModalButton').trigger('click')
 
         const badGuysWrapper = wrapper.find('#badGuys')

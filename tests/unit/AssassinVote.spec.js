@@ -18,7 +18,15 @@ describe('AssassinVote.vue', () => {
             getNickname: stub().returns('me')
         }
         store = new Vuex.Store({
-            state: {},
+            state: {
+                missions: [{pass: null}],
+                currentMission: 1,
+                assassinVote: {
+                    assassinVoteData: {
+                        assassin: 'me',
+                    }
+                }
+            },
             getters
         })
         restore()
@@ -27,16 +35,7 @@ describe('AssassinVote.vue', () => {
 
     it('displays the assassin', () => {
         let expectedAssassin = 'me';
-        wrapper = shallowMount(
-            AssassinVote,
-            {
-                propsData: {
-                    assassinVoteData: {
-                        assassin: expectedAssassin
-                    }
-                },
-                store
-            })
+        wrapper = shallowMount(AssassinVote, {store})
 
         const assassinWrapper = wrapper.find('#assassin')
 
@@ -52,15 +51,9 @@ describe('AssassinVote.vue', () => {
         wrapper = shallowMount(
             AssassinVote,
             {
-                propsData: {
-                    assassinVoteData: {
-                        assassin: 'me'
-                    }
-                },
                 data: function () {
                     return {
                         guess: expectedGuess
-
                     }
                 },
                 store
@@ -73,17 +66,8 @@ describe('AssassinVote.vue', () => {
 
     it('should display each player', () => {
         let expectedGoodGuys = ['kate', 'anne', 'bobby']
-        wrapper = shallowMount(
-            AssassinVote,
-            {
-                propsData: {
-                    assassinVoteData: {
-                        assassin: 'me',
-                        goodGuys: expectedGoodGuys
-                    }
-                },
-                store
-            })
+        store.state.assassinVote.assassinVoteData.goodGuys = expectedGoodGuys
+        wrapper = shallowMount(AssassinVote, {store})
 
         const assassinFormWrapper = wrapper.find('#assassinVoteForm')
 
@@ -95,17 +79,8 @@ describe('AssassinVote.vue', () => {
     it('should set the guess to the selected player', () => {
         let expectedMerlin1 = 'kate';
         let expectedMerlin2 = 'anne';
-        wrapper = shallowMount(
-            AssassinVote,
-            {
-                propsData: {
-                    assassinVoteData: {
-                        assassin: 'me',
-                        goodGuys: [expectedMerlin1, expectedMerlin2]
-                    }
-                },
-                store
-            })
+        store.state.assassinVote.assassinVoteData.goodGuys = [expectedMerlin1, expectedMerlin2]
+        wrapper = shallowMount(AssassinVote, {store})
 
         const goodGuyInputs = wrapper.findAll('input[type=radio]')
 

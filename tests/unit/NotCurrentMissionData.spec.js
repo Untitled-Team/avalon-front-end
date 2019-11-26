@@ -3,24 +3,30 @@ import {shallowMount} from '@vue/test-utils'
 import Vuex from "vuex";
 import Vue from "vue";
 import NotCurrentMissionData from "../../src/components/NotCurrentMissionData";
+import {restore} from "sinon"
 
 let wrapper
+let store
+
 Vue.use(Vuex)
 
 describe('NotCurrentMissionData.vue', () => {
+    beforeEach(() => {
+        store = new Vuex.Store({
+            state: {
+                currentMissionLeader: "",
+                missions: [],
+                activeMission: 0,
+                players: []
+            }
+        })
+        restore()
+    })
+
     it('should display a message if there is no quest data available (future quest)', () => {
-        wrapper = shallowMount(
-            NotCurrentMissionData,
-            {
-                propsData: {
-                    activeQuestData: {
-                        pass: null,
-                        votes: [{
-                            missionLeader: 'idk'
-                        }]
-                    }
-                }
-            })
+        store.state.missions = [{pass: null}]
+        store.state.activeMission = 1
+        wrapper = shallowMount(NotCurrentMissionData, {store})
 
         const noDataWrapper = wrapper.find('#NoQuestData')
 
@@ -28,18 +34,9 @@ describe('NotCurrentMissionData.vue', () => {
     })
 
     it('should not display a no data message if there is quest data available (future quest)', () => {
-        wrapper = shallowMount(
-            NotCurrentMissionData,
-            {
-                propsData: {
-                    activeQuestData: {
-                        pass: true,
-                        votes: [{
-                            missionLeader: 'idk'
-                        }]
-                    }
-                }
-            })
+        store.state.missions = [{pass: true, votes: [{missionLeader: ""}]}]
+        store.state.activeMission = 1
+        wrapper = shallowMount(NotCurrentMissionData, {store})
 
         const noDataWrapper = wrapper.find('#NoQuestData')
 
@@ -47,18 +44,9 @@ describe('NotCurrentMissionData.vue', () => {
     })
 
     it('should not display mission history if there is no quest data available (future quest)', () => {
-        wrapper = shallowMount(
-            NotCurrentMissionData,
-            {
-                propsData: {
-                    activeQuestData: {
-                        pass: null,
-                        votes: [{
-                            missionLeader: 'idk'
-                        }]
-                    }
-                }
-            })
+        store.state.missions = [{pass: null}]
+        store.state.activeMission = 1
+        wrapper = shallowMount(NotCurrentMissionData, {store})
 
         const noDataWrapper = wrapper.find('#missionHistory')
 
@@ -66,18 +54,9 @@ describe('NotCurrentMissionData.vue', () => {
     })
 
     it('should display mission history if there is quest data available (future quest)', () => {
-        wrapper = shallowMount(
-            NotCurrentMissionData,
-            {
-                propsData: {
-                    activeQuestData: {
-                        pass: true,
-                        votes: [{
-                            missionLeader: 'idk'
-                        }]
-                    }
-                }
-            })
+        store.state.missions = [{pass: true, votes: [{missionLeader: ""}]}]
+        store.state.activeMission = 1
+        wrapper = shallowMount(NotCurrentMissionData, {store})
 
         const noDataWrapper = wrapper.find('.missionHistory')
 
@@ -85,22 +64,11 @@ describe('NotCurrentMissionData.vue', () => {
     })
 
     describe('mission history data', () => {
-
         it('should display each player', () => {
             const expectedPlayers = ['john', 'barb', 'karen']
-            wrapper = shallowMount(
-                NotCurrentMissionData,
-                {
-                    propsData: {
-                        activeQuestData: {
-                            pass: true,
-                            players: expectedPlayers,
-                            votes: [{
-                                missionLeader: 'idk'
-                            }]
-                        }
-                    }
-                })
+            store.state.missions = [{pass: true, players: expectedPlayers, votes: [{missionLeader: ""}]}]
+            store.state.activeMission = 1
+            wrapper = shallowMount(NotCurrentMissionData, {store})
 
             expectedPlayers.forEach((expectedPlayer) => {
                 expect(wrapper.text()).to.include(expectedPlayer, `${expectedPlayer} not in the form!`)
@@ -108,18 +76,9 @@ describe('NotCurrentMissionData.vue', () => {
         })
 
         it('should display correct message on mission success', () => {
-            wrapper = shallowMount(
-                NotCurrentMissionData,
-                {
-                    propsData: {
-                        activeQuestData: {
-                            pass: true,
-                            votes: [{
-                                missionLeader: 'idk'
-                            }]
-                        }
-                    }
-                })
+            store.state.missions = [{pass: true, votes: [{missionLeader: ""}]}]
+            store.state.activeMission = 1
+            wrapper = shallowMount(NotCurrentMissionData, {store})
 
             const sucessWrapper = wrapper.find('.success')
 
@@ -128,18 +87,9 @@ describe('NotCurrentMissionData.vue', () => {
         })
 
         it('should display correct message on mission failure', () => {
-            wrapper = shallowMount(
-                NotCurrentMissionData,
-                {
-                    propsData: {
-                        activeQuestData: {
-                            pass: false,
-                            votes: [{
-                                missionLeader: 'idk'
-                            }]
-                        }
-                    }
-                })
+            store.state.missions = [{pass: false, votes: [{missionLeader: ""}]}]
+            store.state.activeMission = 1
+            wrapper = shallowMount(NotCurrentMissionData, {store})
 
             const failureWrapper = wrapper.find('.failure')
 

@@ -55,8 +55,6 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
-
     export default {
         name: 'NotCurrentMissionData',
         computed: {
@@ -70,7 +68,7 @@
                 return this.activeQuestData.pass !== null
             },
             activeQuestData: function () {
-                return store.state.missions[store.state.activeMission - 1]
+                return this.$store.state.missions[this.$store.state.activeMission - 1]
             },
         }
     }
@@ -80,14 +78,12 @@
     @import "../styles/variables";
 
     #notCurrentMissionData {
-        /*height: 100%;*/
         color: whitesmoke;
         display: flex;
         flex: 1 1 0;
     }
 
     .missionHistory {
-        /*height: calc(100% - 40px);*/
         display: flex;
         flex: 1 1 0;
     }

@@ -20,7 +20,6 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
     import WebsocketService from "../services/WebsocketService";
 
     export default {
@@ -48,10 +47,10 @@
         },
         computed: {
             currentMissionLeader: function () {
-                return store.state.currentMissionLeader
+                return this.$store.state.currentMissionLeader
             },
             proposedParty: function () {
-                return store.state.ProposedPartyVoteMenu.proposedParty
+                return this.$store.state.ProposedPartyVoteMenu.proposedParty
             }
         }
         , created() {

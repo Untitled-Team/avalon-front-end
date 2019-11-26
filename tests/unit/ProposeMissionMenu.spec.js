@@ -15,23 +15,20 @@ describe('ProposeMissionMenu.vue', () => {
     beforeEach(() => {
         store = new Vuex.Store({
             state: {
-                nickname: 'steve'
+                nickname: 'steve',
+                currentMissionLeader: "",
+                missions: [{numberOfAdventurers: 0}],
+                currentMission: 1
             },
         })
         restore()
         stub(WebsocketService, 'sendObj')
     })
 
-    it('should show the current mission leader is choosing a party when were not leader', () => {
+    it('should show the current mission leader is choosing a party when we\'re not leader', () => {
         const expectedMissionLeader = "glorbon"
-        wrapper = shallowMount(
-            ProposeMissionMenu,
-            {
-                propsData: {
-                    missionLeader: expectedMissionLeader
-                },
-                store
-            })
+        store.state.currentMissionLeader = expectedMissionLeader
+        wrapper = shallowMount(ProposeMissionMenu, {store})
 
         const leaderWrapper = wrapper.find('.choosing')
 
@@ -41,20 +38,10 @@ describe('ProposeMissionMenu.vue', () => {
     it('should have a form that shows a label for each player when player is mission leader', () => {
         const expectedPlayers = ["john", "steve", "sally sue peterson"]
         const expectedMissionLeader = "steve"
-        wrapper = shallowMount(
-            ProposeMissionMenu,
+        store.state.currentMissionLeader = expectedMissionLeader
+        store.state.players = expectedPlayers
+        wrapper = shallowMount(ProposeMissionMenu, {store})
 
-            {
-                propsData: {
-                    missionLeader: expectedMissionLeader
-                },
-                data: function () {
-                    return {
-                        players: expectedPlayers
-                    }
-                },
-                store
-            })
 
         const formWrapper = wrapper.find('form')
 
@@ -65,6 +52,7 @@ describe('ProposeMissionMenu.vue', () => {
 
     it('should call sendObj correctly when player votes pass.', () => {
         const expectedPlayers = ["john", "steve", "sally sue peterson"]
+        store.state.missions = [{numberOfAdventurers: 3}]
         wrapper = shallowMount(
             ProposeMissionMenu,
             {
@@ -73,12 +61,9 @@ describe('ProposeMissionMenu.vue', () => {
                         selectedPlayers: expectedPlayers
                     }
                 },
-                propsData: {
-                    currentMissionPartySize: 3
-                },
                 store
             })
-        let expectedMessage = {
+        const expectedMessage = {
             event: 'ProposeParty',
             proposedParty: expectedPlayers,
         }

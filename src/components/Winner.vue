@@ -28,13 +28,11 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
-
     export default {
         name: 'Winner',
         computed: {
             gameOverData: function () {
-                return store.state.Winner.gameOverData
+                return this.$store.state.Winner.gameOverData
             },
             goodGuysWin: function () {
                 return this.gameOverData.winningTeam === 'GoodGuys'

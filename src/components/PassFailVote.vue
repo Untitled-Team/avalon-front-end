@@ -25,7 +25,6 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService"
-    import store from "../store/index.js"
 
     export default {
         name: 'PassFailVote',
@@ -52,10 +51,10 @@
         },
         computed: {
             playerVoting: function () {
-                return this.missionParty.includes(store.getters.getNickname)
+                return this.missionParty.includes(this.$store.state.nickname)
             },
             missionParty: function () {
-                return store.state.ProposedPartyVoteMenu.proposedParty
+                return this.$store.state.ProposedPartyVoteMenu.proposedParty
             },
         },
         created() {
@@ -71,10 +70,6 @@
 </script>
 
 <style scoped>
-    .someMargin {
-        margin: .5em 0px;
-    }
-
     .questingMessage {
         padding-right: 20px;
         padding-left: 20px;
