@@ -23,7 +23,8 @@
                            placeholder="Player Nickname..." maxlength="12" required/>
                 </div>
                 <div class="field">
-                    <input id="createGameSubmit" type="submit" class="buttonInput button is-small" value="Create a New Game"/>
+                    <input id="createGameSubmit" type="submit" class="buttonInput button is-small"
+                           value="Create a New Game"/>
                 </div>
             </form>
         </div>
@@ -32,6 +33,7 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService";
+    import store from "../store/index.js"
 
     export default {
         name: "Intro",
@@ -43,7 +45,7 @@
         },
         methods: {
             joinGame: function () {
-                this.$store.commit("setNickname", this.nickname);
+                store.commit("setNickname", this.nickname);
                 const joinGameMessage = {
                     event: "JoinGame",
                     nickname: this.nickname,
@@ -52,7 +54,7 @@
                 WebsocketService.sendObj(this.$socket, joinGameMessage)
             },
             createGame: function () {
-                this.$store.commit("setNickname", this.nickname);
+                store.commit("setNickname", this.nickname);
                 const createGameMessage = {
                     event: "CreateGame",
                     nickname: this.nickname
@@ -79,7 +81,7 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
     }
 
     .field {
@@ -163,7 +165,7 @@
         }
     }
 
-    @media (max-height : 472px) {
+    @media (max-height: 472px) {
 
         .menuContent {
             margin-top: -20px;

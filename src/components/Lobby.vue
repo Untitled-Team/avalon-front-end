@@ -31,11 +31,16 @@
 
     export default {
         name: 'Lobby',
-        props: ['players', 'roomId'],
         computed: {
+            players: function () {
+                return this.$store.state.players
+            },
             correctPlayerNumbers: function () {
                 return this.players.length >= 5 && this.players.length <= 10
-            }
+            },
+            roomId: function () {
+                return this.$store.state.roomId
+            },
         },
         methods: {
             startGame: function () {

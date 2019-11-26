@@ -10,15 +10,22 @@
 
     export default {
         name: 'DisplayPassFailVotes',
-        props: ["passVotes", "failVotes"],
+        computed: {
+            passVotes: function () {
+                return this.$store.state.DisplayPassFailVoteResults.passVotes
+            },
+            failVotes: function () {
+                return this.$store.state.DisplayPassFailVoteResults.failVotes
+            },
+        },
         created() {
             const sleep = (milliseconds) => {
                 return new Promise(resolve => setTimeout(resolve, milliseconds))
             }
-
             const votesDisplayedMessage = {
                 event: "QuestVotesDisplayed",
             }
+
             sleep(5000).then(() => {
                 WebsocketService.sendObj(this.$socket, votesDisplayedMessage)
             })
@@ -43,21 +50,11 @@
         opacity: 1;
     }
 
-    .modal-content {
-        height: 100%;
-        background: black;
-        opacity: .7;
-        text-align: center;
-    }
-
-    .bigText {
-        color: white;
-    }
-
     modal-background {
         background: black;
         opacity: 1 !important;
     }
+
     #displayPassFailVotes {
         background-color: #2f3026;
         display: flex;

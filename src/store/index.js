@@ -1,123 +1,72 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
 
 Vue.use(Vuex)
 
+const vuexLocal = new VuexPersistence({
+    storage: window.localStorage
+})
+
 export default new Vuex.Store({
     state: {
-        //Game Phase
-        stepOne: true, //intro
-        lobbyStep: false,
-        stepTwo: false, //playerInfo
-        questInfoDisplay: false,
-        proposeMissionParty: false,
-        proposedPartyVote: false,
-        passFailVote: false,
-        displayPassFailVoteResults: false,
-        assassinVote: false,
-        badGuysWin: false,
-        goodGuysWin: false,
-
-        //Other State
-        players: [],
-        nickname: "",
-        roomId: "",
-        character: "",
         activeMission: 1,
+        badGuys: [],
+        character: "",
         currentMission: 1,
+        currentMissionLeader: "",
         lastEventId: null,
+        missions: [],
+        nickname: "",
+        players: [],
+        roomId: "",
+
+        gameState: {
+            intro: true,
+            lobby: false,
+            playerInfo: false,
+            questInfoDisplay: false,
+            proposeMissionParty: false,
+            proposedPartyVote: false,
+            passFailVote: false,
+            displayPassFailVoteResults: false,
+            assassinVote: false,
+            badGuysWin: false,
+            goodGuysWin: false,
+        },
+        playerInfo: {
+            ready: false,
+        },
+        assassinVote: {
+            assassinVoteData: {},
+        },
+        ProposedPartyVoteMenu: {
+            proposedParty: [],
+        },
+        DisplayPassFailVoteResults: {
+            passVotes: 0,
+            failVotes: 0,
+        },
+        Winner: {
+            gameOverData: {},
+        },
     },
     getters: {
-        getStepOne: state => {
-            return state.stepOne
-        },
-        getLobbyStep: state => {
-            return state.lobbyStep
-        },
-        getStepTwo: state => {
-            return state.stepTwo
-        },
-        getQuestInfoDisplay: state => {
-            return state.questInfoDisplay
-        },
-        getProposeMissionParty: state => {
-            return state.proposeMissionParty
-        },
-        getProposedPartyVote: state => {
-            return state.proposedPartyVote
-        },
-        getPassFailVote: state => {
-            return state.passFailVote
-        },
-        getDisplayPassFailVoteResults: state => {
-            return state.displayPassFailVoteResults
-        },
-        getAssassinVote: state => {
-            return state.assassinVote
-        },
-        getBadGuysWin: state => {
-            return state.badGuysWin
-        },
-        getGoodGuysWin: state => {
-            return state.goodGuysWin
-        },
-        getPlayers: state => {
-            return state.players
-        },
         getNickname: state => {
             return state.nickname
         },
-        getCharacter: state => {
-            if (state.character == "NormalGoodGuy") {
+        getCharacterFormatted: state => {
+            if (state.character === "NormalGoodGuy") {
                 return "Good Guy"
-            } else if (state.character == "NormalBadGuy") {
+            } else if (state.character === "NormalBadGuy") {
                 return "Bad Guy"
             }
             return state.character
         },
     },
     mutations: {
-        toggleStepOne: state => {
-            state.stepOne = !state.stepOne
-        },
-        toggleLobbyStep: state => {
-            state.lobbyStep = !state.lobbyStep
-        },
-        toggleStepTwo: state => {
-            state.stepTwo = !state.stepTwo
-        },
-        toggleQuestInfoDisplay: state => {
-            state.questInfoDisplay = !state.questInfoDisplay
-        },
-        toggleProposeMissionParty: state => {
-            state.proposeMissionParty = !state.proposeMissionParty
-        },
-        toggleProposedPartyVote: state => {
-            state.proposedPartyVote = !state.proposedPartyVote
-        },
-        togglePassFailVote: state => {
-            state.passFailVote = !state.passFailVote
-        },
-        toggleDisplayPassFailVoteResults: state => {
-            state.displayPassFailVoteResults = !state.displayPassFailVoteResults
-        },
-        toggleAssassinVote: state => {
-            state.assassinVote = !state.assassinVote
-        },
-        toggleBadGuysWin: state => {
-            state.badGuysWin = !state.badGuysWin
-        },
-        toggleGoodGuysWin: state => {
-            state.goodGuysWin = !state.goodGuysWin
-        },
-        setPlayers: (state, players) => {
-            state.players = players
-        },
         setNickname: (state, nickname) => {
             state.nickname = nickname
-        },
-        setRoomId: (state, roomId) => {
-            state.roomId = roomId
         },
         setActiveMission: (state, activeMission) => {
             state.activeMission = activeMission
@@ -125,7 +74,9 @@ export default new Vuex.Store({
         setLastEventId: (state, event) => {
             state.lastEventId = event
         },
-        SOCKET_ONMESSAGE: state => {state},
+        SOCKET_ONMESSAGE: state => {
+            state
+        },
         SOCKET_ONOPEN: state => {
             if (state.nickname && state.roomId) {
                 Vue.prototype.$socket.sendObj({
@@ -133,15 +84,16 @@ export default new Vuex.Store({
                     nickname: state.nickname,
                     roomId: state.roomId,
                     lastMessageId: state.lastEventId
-                });                
+                });
             }
-            console.log("ON OPEN")
+        },
+        SOCKET_ONCLOSE: state => {
             state
         },
-        SOCKET_ONCLOSE: state => {state},
-        SOCKET_ONERROR: state => {state},
+        SOCKET_ONERROR: state => {
+            state
+        },
         SOCKET_RECONNECT: state => {
-            console.log("TRYING TO RECONNECT");
             Vue.prototype.$socket.sendObj({
                 event: "Reconnect",
                 nickname: state.nickname,
@@ -151,50 +103,51 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        stepOneToLobbyStep: ({commit}) => {
-            commit('toggleStepOne')
-            commit('toggleLobbyStep')
+        introToLobbyStep: ({state}) => {
+            state.gameState.intro = !state.gameState.intro
+            state.gameState.lobby = !state.gameState.lobby
         },
-        lobbyStepToStepTwo: ({commit}) => {
-            commit('toggleLobbyStep')
-            commit('toggleStepTwo')
+        lobbyStepToStepTwo: ({state}) => {
+            state.gameState.lobby = !state.gameState.lobby
+            state.gameState.playerInfo = !state.gameState.playerInfo
         },
-        stepTwoToQuestPhase: ({commit}) => {
-            commit('toggleStepTwo')
-            commit('toggleQuestInfoDisplay')
-            commit('toggleProposeMissionParty')
+        stepTwoToQuestPhase: ({state}) => {
+            state.gameState.playerInfo = !state.gameState.playerInfo
+            state.gameState.questInfoDisplay = !state.gameState.questInfoDisplay
+            state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty
         },
-        ToggleProposeMissionPartyAndProposedPartyVote: ({commit}) => {
-            commit('toggleProposeMissionParty')
-            commit('toggleProposedPartyVote')
+        ToggleProposeMissionPartyAndProposedPartyVote: ({state}) => {
+            state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty
+            state.gameState.proposedPartyVote = !state.gameState.proposedPartyVote
         },
-        ProposedPartyVoteToPassFailVote: ({commit}) => {
-            commit('toggleProposedPartyVote')
-            commit('togglePassFailVote')
+        ProposedPartyVoteToPassFailVote: ({state}) => {
+            state.gameState.proposedPartyVote = !state.gameState.proposedPartyVote
+            state.gameState.passFailVote = !state.gameState.passFailVote
         },
-        PassFailVoteToDisplayPassFailVoteResults: ({commit}) => {
-            commit('togglePassFailVote')
-            commit('toggleDisplayPassFailVoteResults')
+        PassFailVoteToDisplayPassFailVoteResults: ({state}) => {
+            state.gameState.passFailVote = !state.gameState.passFailVote
+            state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
         },
-        displayPassFailVoteResultsToProposeMissionParty: ({commit}) => {
-            commit('toggleDisplayPassFailVoteResults')
-            commit('toggleProposeMissionParty')
+        displayPassFailVoteResultsToProposeMissionParty: ({state}) => {
+            state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
+            state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty
         },
-        displayPassFailVoteResultsToAssassinVote: ({commit}) => {
-            commit('toggleDisplayPassFailVoteResults')
-            commit('toggleAssassinVote')
+        displayPassFailVoteResultsToAssassinVote: ({state}) => {
+            state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
+            state.gameState.assassinVote = !state.gameState.assassinVote
         },
-        displayPassFailVoteResultsToBadGuysWin: ({commit}) => {
-            commit('toggleDisplayPassFailVoteResults')
-            commit('toggleBadGuysWin')
+        displayPassFailVoteResultsToBadGuysWin: ({state}) => {
+            state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
+            state.gameState.badGuysWin = !state.gameState.badGuysWin
         },
-        assassinVoteToGoodGuysWin: ({commit}) => {
-            commit('toggleAssassinVote')
-            commit('toggleGoodGuysWin')
+        assassinVoteToGoodGuysWin: ({state}) => {
+            state.gameState.assassinVote = !state.gameState.assassinVote
+            state.gameState.goodGuysWin = !state.gameState.goodGuysWin
         },
-        assassinVoteToBadGuysWin: ({commit}) => {
-            commit('toggleAssassinVote')
-            commit('toggleBadGuysWin')
+        assassinVoteToBadGuysWin: ({state}) => {
+            state.gameState.assassinVote = !state.gameState.assassinVote
+            state.gameState.badGuysWin = !state.gameState.badGuysWin
         },
     },
+    plugins: [vuexLocal.plugin]
 });

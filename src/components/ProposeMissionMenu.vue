@@ -21,7 +21,7 @@
         </div>
 
         <div class="notLeader is-size-4-mobile is-size-4-desktop" v-show="!playerIsMissionLeader">
-            <p class="choosing">{{ missionLeader }} is choosing a team...</p>
+            <p class="choosing">{{ currentMissionLeader }} is choosing a team...</p>
             <div class="swordWrapper">
                 <img class="crossedSwords" src="@/assets/crossedSwordsBig.png"/>
             </div>
@@ -37,11 +37,9 @@
         name: 'ProposeMissionMenu',
         data: function () {
             return {
-                players: this.$store.state.players,
                 selectedPlayers: [],
             }
         },
-        props: ["missionLeader", "currentMissionPartySize"],
         methods: {
             proposeParty: function () {
                 if (this.proposedPartyIsCorrectSize) {
@@ -69,10 +67,19 @@
         },
         computed: {
             playerIsMissionLeader: function () {
-                return this.$store.state.nickname === this.missionLeader
+                return this.$store.state.nickname === this.currentMissionLeader
             },
             proposedPartyIsCorrectSize: function () {
                 return this.selectedPlayers.length === this.currentMissionPartySize
+            },
+            currentMissionLeader: function () {
+                return this.$store.state.currentMissionLeader
+            },
+            currentMissionPartySize: function () {
+                return this.$store.state.missions[this.$store.state.currentMission - 1].numberOfAdventurers
+            },
+            players: function () {
+                return this.$store.state.players
             }
         }
     }

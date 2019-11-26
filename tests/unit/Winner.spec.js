@@ -1,12 +1,36 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
 import Winner from "../../src/components/Winner";
+import Vuex from "vuex";
+import Vue from "vue";
+import {restore} from "sinon"
 
 let wrapper
+let store
+
+Vue.use(Vuex)
 
 describe('Winner.vue', () => {
+    beforeEach(() => {
+        store = new Vuex.Store({
+            state: {
+                Winner: {
+                    gameOverData: {
+                        winningTeam: "",
+                        goodGuys: [],
+                        badGuys: [],
+                        merlin: "",
+                        assassin: "",
+                    }
+                }
+            }
+        })
+        restore()
+    })
+
     it('should display the winner correctly when good guys win', () => {
-        wrapper = shallowMount(Winner, {propsData: {gameOverData: {winningTeam: "GoodGuys",goodGuys: [],badGuys: []}}})
+        store.state.Winner.gameOverData.winningTeam = "GoodGuys"
+        wrapper = shallowMount(Winner, {store})
 
         const goodGuysWrapper = wrapper.find('.goodGuysWin')
         const badGuysWrapper = wrapper.find('.badGuysWin')
@@ -16,7 +40,8 @@ describe('Winner.vue', () => {
     })
 
     it('should display the winner correctly when bad guys win', () => {
-        wrapper = shallowMount(Winner, {propsData: {gameOverData: {winningTeam: 'BadGuys', goodGuys: [], badGuys: []}}})
+        store.state.Winner.gameOverData.winningTeam = "BadGuys"
+        wrapper = shallowMount(Winner, {store})
 
         const badGuysWrapper = wrapper.find('.badGuysWin')
         const goodGuysWrapper = wrapper.find('.goodGuysWin')
@@ -27,7 +52,8 @@ describe('Winner.vue', () => {
 
     it('should display merlin', () => {
         const expectedMerlin = 'jk rowling'
-        wrapper = shallowMount(Winner, {propsData: {gameOverData: {merlin: expectedMerlin, goodGuys: [], badGuys: []}}})
+        store.state.Winner.gameOverData.merlin = expectedMerlin
+        wrapper = shallowMount(Winner, {store})
 
         const merlinWrapper = wrapper.find('.merlin')
 
@@ -36,7 +62,8 @@ describe('Winner.vue', () => {
 
     it('should display the assassin', () => {
         const expectedAssassin = 'harry smooter'
-        wrapper = shallowMount(Winner, {propsData: {gameOverData: {assassin: expectedAssassin, goodGuys: [], badGuys: []}}})
+        store.state.Winner.gameOverData.assassin = expectedAssassin
+        wrapper = shallowMount(Winner, {store})
 
         const assassinWrapper = wrapper.find('.assassin')
 
@@ -46,7 +73,9 @@ describe('Winner.vue', () => {
     it('should display all the good guys except merlin in a div', () => {
         const expectedGoodGuys = ['ron', 'hermane']
         const unexpectedMerlin = 'merbling'
-        wrapper = shallowMount(Winner, {propsData: {gameOverData: {merlin: unexpectedMerlin, goodGuys: [unexpectedMerlin, ...expectedGoodGuys], badGuys: []}}})
+        store.state.Winner.gameOverData.goodGuys = expectedGoodGuys
+        store.state.Winner.gameOverData.merlin = unexpectedMerlin
+        wrapper = shallowMount(Winner, {store})
 
         const goodGuysWrapper = wrapper.find('.goodGuys')
 
@@ -60,7 +89,9 @@ describe('Winner.vue', () => {
     it('should display all the bad guys except the assassin in a div', () => {
         const expectedBadGuys = ['jeorg', 'otherbrother']
         const unexpectedAssassin = 'ASS ASS in LOL!!!!! :p'
-        wrapper = shallowMount(Winner, {propsData: {gameOverData: {assassin: unexpectedAssassin, badGuys: [unexpectedAssassin, ...expectedBadGuys], goodGuys: []}}})
+        store.state.Winner.gameOverData.badGuys = expectedBadGuys
+        store.state.Winner.gameOverData.assassin = unexpectedAssassin
+        wrapper = shallowMount(Winner, {store})
 
         const badGuysWrapper = wrapper.find('.badGuys')
 

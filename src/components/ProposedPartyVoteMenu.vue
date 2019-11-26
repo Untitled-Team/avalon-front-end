@@ -1,12 +1,13 @@
 <template>
     <div id="proposedPartyVoteMenu">
         <div id="vote" v-show="!playerHasVoted">
-            <div class="is-size-4-mobile is-size-4-desktop">{{ missionLeader }}'s team</div>
+            <div class="is-size-4-mobile is-size-4-desktop">{{ currentMissionLeader }}'s team</div>
             <div :key="index" v-for="(player, index) in proposedParty" class="teamMember">
                 {{ player }}
             </div>
             <div class="someMargin">
-                <input id="approveButton" type="button" class="button is-small" v-on:click="voteToApprove" value="Approve">
+                <input id="approveButton" type="button" class="button is-small" v-on:click="voteToApprove"
+                       value="Approve">
             </div>
             <div class="someMargin">
                 <input id="denyButton" type="button" class="button is-small" v-on:click="voteToDeny" value="Deny">
@@ -23,7 +24,6 @@
 
     export default {
         name: 'ProposedPartyVoteMenu',
-        props: ["proposedParty", "missionLeader"],
         data: function () {
             return {
                 playerHasVoted: false,
@@ -44,10 +44,18 @@
                 }
                 WebsocketService.sendObj(this.$socket, partyDenyMessage)
             },
-        },created() {
+        },
+        computed: {
+            currentMissionLeader: function () {
+                return this.$store.state.currentMissionLeader
+            },
+            proposedParty: function () {
+                return this.$store.state.ProposedPartyVoteMenu.proposedParty
+            }
+        }
+        , created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
-                console.log(msgJSON)
 
                 if (msgJSON.event === 'PartyApprovalVoteAcknowledgement') {
                     this.playerHasVoted = true
@@ -65,7 +73,7 @@
         color: whitesmoke;
         display: flex;
         flex-direction: column;
-        flex-grow : 1;
+        flex-grow: 1;
         padding-top: 20px;
         color: whitesmoke;
         background: $current;
@@ -87,6 +95,6 @@
     }
 
     .someMargin {
-        margin: 1em 0px;
+        margin: 1em 0;
     }
 </style>

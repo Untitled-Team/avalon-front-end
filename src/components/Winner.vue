@@ -30,8 +30,10 @@
 <script>
     export default {
         name: 'Winner',
-        props: ['gameOverData'],
         computed: {
+            gameOverData: function () {
+                return this.$store.state.Winner.gameOverData
+            },
             goodGuysWin: function () {
                 return this.gameOverData.winningTeam === 'GoodGuys'
             },

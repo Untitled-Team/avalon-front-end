@@ -3,6 +3,8 @@
         <div class="modal" :class="{'is-active': modalActive === true}">
             <div class="modal-background is-centered"></div>
             <div class="modal-content permanentPlayerInfo is-centered">
+                <button @click="resetToLobby" class="leaveGame">👉😎👉 zoop - 👏 LEAVE 👏 THE 👏 GAME 👏</button>
+
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
                 <div id="badGuys" v-if="!isRegularGoodGuy" class="fontSizing">
@@ -13,14 +15,15 @@
                 </div>
             </div>
         </div>
-        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">Toggle Player Information</div>
+        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">Toggle
+            Player Information
+        </div>
     </div>
 </template>
 
 <script>
     export default {
         name: 'NicknameCharacterBadGuys',
-        props: ['badGuys'],
         data: () => {
             return {
                 modalActive: false
@@ -28,24 +31,37 @@
         },
         computed: {
             nickname: function () {
-                return this.$store.getters.getNickname
+                return this.$store.state.nickname
             },
             character: function () {
-                return this.$store.getters.getCharacter
+                return this.$store.getters.getCharacterFormatted
             },
             isRegularGoodGuy: function () {
-                return this.$store.getters.getCharacter === 'Good Guy'
+                return this.$store.getters.getCharacterFormatted === 'Good Guy'
             },
+            badGuys: function () {
+                return this.$store.state.badGuys
+            }
         },
         methods: {
             toggleModalActive: function () {
                 this.modalActive = !this.modalActive
+            },
+            resetToLobby: function () {
+                window.localStorage.removeItem("vuex")
+                window.localStorage.clear()
+                location.reload()
             }
         }
     }
 </script>
 
 <style scoped>
+    .leaveGame {
+        color: red;
+        font-size: 25px;
+    }
+
     .permanentPlayerInfo {
         font-size: 2em;
     }

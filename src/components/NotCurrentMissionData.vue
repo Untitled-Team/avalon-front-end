@@ -57,7 +57,6 @@
 <script>
     export default {
         name: 'NotCurrentMissionData',
-        props: ["activeQuestData"],
         computed: {
             isPassed: function () {
                 return this.activeQuestData.pass === true
@@ -68,6 +67,9 @@
             questHasData: function () {
                 return this.activeQuestData.pass !== null
             },
+            activeQuestData: function () {
+                return this.$store.state.missions[this.$store.state.activeMission - 1]
+            },
         }
     }
 </script>
@@ -76,14 +78,12 @@
     @import "../styles/variables";
 
     #notCurrentMissionData {
-        /*height: 100%;*/
         color: whitesmoke;
         display: flex;
         flex: 1 1 0;
     }
 
     .missionHistory {
-        /*height: calc(100% - 40px);*/
         display: flex;
         flex: 1 1 0;
     }

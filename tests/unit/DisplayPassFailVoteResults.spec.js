@@ -7,24 +7,21 @@ import {restore, stub,} from "sinon";
 import WebsocketService from "../../src/services/WebsocketService";
 
 let wrapper
+let store
 Vue.use(Vuex)
 
 describe('DisplayPassFailVoteResults.vue', () => {
     beforeEach(() => {
+        store = new Vuex.Store({state: {DisplayPassFailVoteResults: {passVotes: 0, failVotes: 0}}})
         restore()
         stub(WebsocketService, 'sendObj')
     })
 
     it('should display a pass vote for every pass', () => {
         const expectedPassVotes = 5
-        wrapper = shallowMount(
-            DisplayPassFailVoteResults,
-            {
-                propsData: {
-                    passVotes: expectedPassVotes,
-                    failVotes: 124
-                }
-            })
+        store.state.DisplayPassFailVoteResults.passVotes = expectedPassVotes
+        store.state.DisplayPassFailVoteResults.failVotes = 0
+        wrapper = shallowMount(DisplayPassFailVoteResults, {store})
 
         const passVotesWrapper = wrapper.findAll('.pass')
 
@@ -33,32 +30,12 @@ describe('DisplayPassFailVoteResults.vue', () => {
 
     it('should display a fail vote for every fail', () => {
         const expectedFailVotes = 5
-        wrapper = shallowMount(
-            DisplayPassFailVoteResults,
-            {
-                propsData: {
-                    passVotes: 'doesn\'t matter at all literally',
-                    failVotes: expectedFailVotes
-                }
-            })
+        store.state.DisplayPassFailVoteResults.passVotes = 'anything'
+        store.state.DisplayPassFailVoteResults.failVotes = expectedFailVotes
+        wrapper = shallowMount(DisplayPassFailVoteResults,{store})
 
         const passVotesWrapper = wrapper.findAll('.fail')
 
         expect(passVotesWrapper.length).to.equal(expectedFailVotes)
     })
-
-    // it('should call sendObj correctly (after 5 seconds)', () => {
-    //     wrapper = shallowMount(DisplayPassFailVoteResults)
-    //
-    //     const expectedMessage = {
-    //         event: "QuestVotesDisplayed",
-    //     }
-    //     const p = new Promise(function (resolve) {
-    //         setTimeout(resolve, 6000)
-    //     });
-    //
-    //     // clock.tick(6000);
-    //     console.log('test')
-    //     assert.calledWith(WebsocketService.sendObj, match.any, expectedMessage)
-    // })
 })

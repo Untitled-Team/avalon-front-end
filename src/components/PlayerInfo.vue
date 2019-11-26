@@ -1,141 +1,139 @@
 <template>
-    <div class="wrapper" >
-    <div id="playerInfo" v-if="!ready"
-         :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
-        <div class="knight character" v-if="isGood">
-            <div class="rolePreTextWrapper">
-                <div class="rolePreText">You are a...</div>
-            </div>
-            <div class="roleTextWrapper">
-                <img class="roleTextGoodGuys" src="@/assets/goodGuyTextBig.png">
-            </div>
-            <div class="rolePictureWrapper">
-                <img class="rolePicture" src="@/assets/goodGuyBig.png">
-            </div>
-            <div class="badGuysTextWrapper"></div>
-            <div class="readyButtonWrapper">
-                <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
-            </div>
-        </div>
-
-        <div class="warlock character" v-if="isBad">
-            <div class="rolePreTextWrapper">
-                <div class="rolePreText">You are a...</div>
-            </div>
-            <div class="roleTextWrapper">
-                <img class="roleTextBadGuys" src="@/assets/badGuyTextBig.png">
-            </div>
-            <div class="rolePictureWrapper">
-                <img class="rolePicture" src="@/assets/badGuyBig.png">
-            </div>
-            <div class="badGuysTextWrapper">
-                <div class="badGuysText">
-                    <p class="allies">Allies</p>
-                    <div class="flexTest">
-                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
-                    </div>
+    <div class="wrapper">
+        <div id="playerInfo" v-if="!ready"
+             :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
+            <div class="knight character" v-if="isGood">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are a...</div>
+                </div>
+                <div class="roleTextWrapper">
+                    <img class="roleTextGoodGuys" src="@/assets/goodGuyTextBig.png">
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/goodGuyBig.png">
+                </div>
+                <div class="badGuysTextWrapper"></div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
                 </div>
             </div>
-            <div class="readyButtonWrapper">
-                <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
-            </div>
-        </div>
 
-        <div class="merlin character" v-if="isMerlin">
-            <div class="rolePreTextWrapper">
-                <div class="rolePreText">You are...</div>
-            </div>
-            <div class="roleTextWrapper">
-                <img class="roleTextGoodGuys" src="@/assets/merlinTextBig.png">
-            </div>
-            <div class="rolePictureWrapper">
-                <img class="rolePicture" src="@/assets/merlinBig.png">
-            </div>
-            <div class="badGuysTextWrapper">
-                <div class="badGuysText">
-                    <p class="allies">Enemies</p>
-                    <div class="flexTest">
-                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+            <div class="warlock character" v-if="isBad">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are a...</div>
+                </div>
+                <div class="roleTextWrapper">
+                    <img class="roleTextBadGuys" src="@/assets/badGuyTextBig.png">
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/badGuyBig.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <div class="badGuysText">
+                        <p class="allies">Allies</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="readyButtonWrapper">
-                <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
-            </div>
-        </div>
-
-        <div class="assassin character" v-if="isAssassin">
-            <div class="rolePreTextWrapper">
-                <div class="rolePreText">You are the...</div>
-            </div>
-            <div class="roleTextWrapper">
-                <img class="roleTextBadGuys" src="@/assets/assassinTextBig.png">
-            </div>
-            <div class="rolePictureWrapper">
-                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
-            </div>
-            <div class="badGuysTextWrapper">
-                <div class="badGuysText">
-                    <p class="allies">Allies</p>
-                    <div class="flexTest">
-                        <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
-                    </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
                 </div>
             </div>
-            <div class="readyButtonWrapper">
-                <img class="readyButton" v-show="!ready" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+
+            <div class="merlin character" v-if="isMerlin">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are...</div>
+                </div>
+                <div class="roleTextWrapper">
+                    <img class="roleTextGoodGuys" src="@/assets/merlinTextBig.png">
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/merlinBig.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <div class="badGuysText">
+                        <p class="allies">Enemies</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in badGuys">{{badGuy}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png"
+                         v-on:click="confirmReady">
+                </div>
+            </div>
+
+            <div class="assassin character" v-if="isAssassin">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are the...</div>
+                </div>
+                <div class="roleTextWrapper">
+                    <img class="roleTextBadGuys" src="@/assets/assassinTextBig.png">
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <div class="badGuysText">
+                        <p class="allies">Allies</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png"
+                         v-on:click="confirmReady">
+                </div>
             </div>
         </div>
-    </div>
 
-      <div class="ready" v-if="ready">Waiting on others to ready up...</div>
+        <div class="ready" v-if="ready">Waiting on others to ready up...</div>
     </div>
 </template>
 
 <script>
-    import store from "../store/index.js"
     import WebsocketService from "../services/WebsocketService";
 
     export default {
         name: 'PlayerInfo',
-        data: function () {
-            return {
-                ready: false
-            }
-        },
-        props: ["character", "badGuys"],
         methods: {
             confirmReady: function () {
-                console.log('player ready clicked')
-                let confirmReadyObj = {event: 'PlayerReady'};
+                const confirmReadyObj = {event: 'PlayerReady'};
                 WebsocketService.sendObj(this.$socket, confirmReadyObj);
             }
         },
         computed: {
+            badGuys: function () {
+                return this.$store.state.badGuys
+            },
             otherBadGuys: function () {
-                console.log(this.badGuys);
-                return this.badGuys.filter(bg => bg != store.state.nickname);
+                return this.badGuys.filter(bg => bg !== this.$store.state.nickname);
             },
             isGood: function () {
-                return this.character === "NormalGoodGuy"
+                return this.$store.state.character === "NormalGoodGuy"
             },
             isBad: function () {
-                return this.character === "NormalBadGuy"
+                return this.$store.state.character === "NormalBadGuy"
             },
             isMerlin: function () {
-                return this.character === "Merlin"
+                return this.$store.state.character === "Merlin"
             },
             isAssassin: function () {
-                return this.character === "Assassin"
+                return this.$store.state.character === "Assassin"
+            },
+            ready: function () {
+                return this.$store.state.playerInfo.ready
             }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
-                console.log(msgJSON)
 
                 if (msgJSON.event === 'PlayerReadyAcknowledgement') {
-                    this.ready = true
+                    this.$store.state.playerInfo.ready = true
                 }
             }
         }
@@ -257,10 +255,6 @@
         }
     }
 
-
-    .merlin {
-    }
-
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -307,9 +301,6 @@
         font-size: 3em;
     }
 
-    .allies {
-    }
-
     .backgroundGood {
         background-color: #35966E;
     }
@@ -324,17 +315,5 @@
 
     .backgroundBad {
         background-color: #C7383E;
-    }
-
-    @media (max-height: 1000px) {
-    }
-
-    @media (max-height: 700px) {
-    }
-
-    @media (max-height: 553px) {
-    }
-
-    @media (max-height: 472px) {
     }
 </style>

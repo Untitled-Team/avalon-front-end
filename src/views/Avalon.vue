@@ -1,30 +1,27 @@
 <template>
     <div class="main">
-        <Intro v-if="stepOne"/>
-        <Lobby v-if="lobbyStep" :players="players" :roomId="roomId"/>
-        <PlayerInfo v-if="stepTwo" :character="character" :badGuys="badGuys"/>
+        <Intro v-if="intro"/>
+        <Lobby v-if="lobby"/>
+        <PlayerInfo v-if="playerInfo"/>
 
-        <div v-show="!teamHasWon && !lobbyStep && !stepOne && !stepTwo" class="containedWidth">
-            <QuestInfo v-if="questInfoDisplay" :quests="quests"/>
+        <div v-show="!teamHasWon && !lobby && !intro && !playerInfo" class="containedWidth">
+            <QuestInfo v-if="questInfoDisplay"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
-                <AssassinVote v-if="assassinVote" :assassinVoteData="assassinVoteData" :activeQuestData="activeQuestData"></AssassinVote>
+                <AssassinVote v-if="assassinVote"/>
 
-                <div v-show="!activeMissionNotCurrent" id="currentMissionScreens" class="currentMissions">
-                    <ProposeMissionMenu v-if="proposeMissionParty" :missionLeader="missionLeader"
-                                        :currentMissionPartySize="currentMissionPartySize"/>
-                    <ProposedPartyVoteMenu v-if="proposedPartyVote" :proposed-party="proposedParty"
-                                           :missionLeader="missionLeader"/>
-                    <PassFailVote v-if="passFailVote" :missionParty="proposedParty"/>
-                    <DisplayPassFailVoteResults v-if="displayPassFailVoteResults" :passVotes="passVotes"
-                                                :failVotes="failVotes"/>
+                <div v-show="activeMissionAlsoCurrent" id="currentMissionScreens" class="currentMissions">
+                    <ProposeMissionMenu v-if="proposeMissionParty"/>
+                    <ProposedPartyVoteMenu v-if="proposedPartyVote"/>
+                    <PassFailVote v-if="passFailVote"/>
+                    <DisplayPassFailVoteResults v-if="displayPassFailVoteResults"/>
                 </div>
 
-                <NotCurrentMissionData v-if="activeMissionNotCurrent" :activeQuestData="activeQuestData"/>
-                <NicknameCharacterBadGuys :bad-guys="badGuys" v-if="questInfoDisplay"/>
+                <NotCurrentMissionData v-if="!activeMissionAlsoCurrent"/>
+                <NicknameCharacterBadGuys v-if="questInfoDisplay"/>
             </div>
         </div>
-        <Winner v-if="teamHasWon" :gameOverData="gameOverData"/>
+        <Winner v-if="teamHasWon"/>
     </div>
 </template>
 
@@ -59,68 +56,40 @@
             Intro,
             Lobby,
         },
-        data: function () {
-            return {
-                players: [],
-                roomId: null,
-                badGuys: [],
-                missionLeader: "",
-                missionNumber: 1,
-                numberInParty: 0,
-                quests: [],
-                proposedParty: [],
-                passVotes: 0,
-                failVotes: 0,
-                assassinVoteData: {},
-                gameOverData: {},
-            }
-        },
         computed: {
-            stepOne: function () {
-                return store.getters.getStepOne
+            intro: function () {
+                return store.state.gameState.intro
             },
-            lobbyStep: function () {
-                return store.getters.getLobbyStep
+            lobby: function () {
+                return store.state.gameState.lobby
             },
-            stepTwo: function () {
-                return store.getters.getStepTwo
+            playerInfo: function () {
+                return store.state.gameState.playerInfo
             },
             questInfoDisplay: function () {
-                return store.getters.getQuestInfoDisplay
+                return store.state.gameState.questInfoDisplay
             },
             proposeMissionParty: function () {
-                return store.getters.getProposeMissionParty
+                return store.state.gameState.proposeMissionParty
             },
             proposedPartyVote: function () {
-                return store.getters.getProposedPartyVote
+                return store.state.gameState.proposedPartyVote
             },
             passFailVote: function () {
-                return store.getters.getPassFailVote
+                return store.state.gameState.passFailVote
             },
             displayPassFailVoteResults: function () {
-                return store.getters.getDisplayPassFailVoteResults
+                return store.state.gameState.displayPassFailVoteResults
             },
             assassinVote: function () {
-                return store.getters.getAssassinVote
+                return store.state.gameState.assassinVote
             },
             teamHasWon: function () {
-                return store.getters.getBadGuysWin || store.getters.getGoodGuysWin
+                return store.state.gameState.badGuysWin || store.state.gameState.goodGuysWin
             },
-            currentMissionPartySize: function () {
-                return this.quests[this.missionNumber - 1].numberOfAdventurers
+            activeMissionAlsoCurrent: function () {
+                return store.state.activeMission === store.state.currentMission
             },
-            nickname: function () {
-                return store.getters.getNickname
-            },
-            activeMissionNotCurrent: function () {
-                return store.state.activeMission !== this.missionNumber
-            },
-            activeQuestData: function () {
-                return this.quests[store.state.activeMission - 1]
-            },
-            character: function () {
-                return store.state.character
-            }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
@@ -128,22 +97,19 @@
                 console.log(msgJSON)
 
                 if (msgJSON.event === 'MoveToLobby') {
-                    store.dispatch('stepOneToLobbyStep')
-                    this.players = msgJSON.players
-                    this.roomId = msgJSON.roomId
-                    store.commit("setRoomId", this.roomId);
+                    store.dispatch('introToLobbyStep')
+                    store.state.players = msgJSON.players
+                    store.state.roomId = msgJSON.roomId
                 } else if (msgJSON.event === 'ChangeInLobby') {
-                    this.players = msgJSON.players
+                    store.state.players = msgJSON.players
                 } else if (msgJSON.event === 'PlayerInfo') {
-                    store.commit('setPlayers', this.players)
                     store.state.character = msgJSON.character
-                    this.badGuys = msgJSON.badGuys
+                    store.state.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
                     store.state.activeMission = msgJSON.missionNumber
-                    this.missionLeader = msgJSON.missionLeader
-                    this.missionNumber = msgJSON.missionNumber
-                    this.quests = msgJSON.missions
+                    store.state.currentMissionLeader = msgJSON.missionLeader
+                    store.state.missions = msgJSON.missions
                     store.state.currentMission = msgJSON.missionNumber
                     if (this.proposedPartyVote) {
                         store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
@@ -153,19 +119,19 @@
                         store.dispatch("stepTwoToQuestPhase")
                     }
                 } else if (msgJSON.event === 'ProposedParty') {
-                    this.proposedParty = msgJSON.proposedParty
+                    store.state.ProposedPartyVoteMenu.proposedParty = msgJSON.proposedParty
                     store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
                 } else if (msgJSON.event === 'PartyApproved') {
                     store.dispatch("ProposedPartyVoteToPassFailVote")
                 } else if (msgJSON.event === 'PassFailVoteResults') {
-                    this.passVotes = msgJSON.passVotes
-                    this.failVotes = msgJSON.failVotes
+                    store.state.DisplayPassFailVoteResults.passVotes = msgJSON.passVotes
+                    store.state.DisplayPassFailVoteResults.failVotes = msgJSON.failVotes
                     store.dispatch("PassFailVoteToDisplayPassFailVoteResults")
                 } else if (msgJSON.event === 'AssassinVote') {
-                    this.assassinVoteData = msgJSON.assassinVoteData
+                    store.state.assassinVote.assassinVoteData = msgJSON.assassinVoteData
                     store.dispatch("displayPassFailVoteResultsToAssassinVote")
                 } else if (msgJSON.event === 'GameOver') {
-                    this.gameOverData = msgJSON.gameOverData
+                    store.state.Winner.gameOverData = msgJSON.gameOverData
                     if (msgJSON.gameOverData.winningTeam === "BadGuys") {
                         if (this.assassinVote) {
                             store.dispatch("assassinVoteToBadGuysWin")
