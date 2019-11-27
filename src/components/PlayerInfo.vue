@@ -90,11 +90,14 @@
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
                          v-on:click="confirmReady">
                 </div>
-                <LeaveGame class="leaveGame"/>
+                <LeaveGame/>
             </div>
         </div>
 
-        <div class="ready" v-if="ready">Waiting on others to ready up...</div>
+        <div class="ready" v-if="ready">
+            Waiting on others to ready up...
+            <LeaveGame class="leaveGameWaiting"/>
+        </div>
     </div>
 </template>
 
@@ -156,6 +159,11 @@
         flex: 1 1 0;
         margin: 3% auto;
     }
+
+    .leaveGameWaiting {
+        margin-top: 10%;
+    }
+
     .character {
         padding: 13px;
         display: flex;
