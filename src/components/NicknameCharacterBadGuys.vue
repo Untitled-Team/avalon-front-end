@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">Toggle
+        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">
             Player Information
         </div>
     </div>
