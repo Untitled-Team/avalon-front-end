@@ -22,15 +22,20 @@
             <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
                 5 - 10 players required
             </div>
+            <LeaveGame class="leaveGame"/>
         </div>
     </div>
 </template>
 
 <script>
     import WebsocketService from "../services/WebsocketService";
+    import LeaveGame from "./LeaveGame"
 
     export default {
         name: 'Lobby',
+        components: {
+            LeaveGame
+        },
         computed: {
             players: function () {
                 return this.$store.state.players
@@ -55,6 +60,12 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .leaveGame {
+        display: flex;
+        flex: 1 1 0;
+        margin: 1% auto;
+    }
 
     .roomId {
         font-size: 2em;
@@ -119,7 +130,6 @@
     .lobbyData {
         flex-direction: column;
         display: flex;
-        /*top: -10%;*/
     }
 
     @media (max-height: 1500px) {

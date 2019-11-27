@@ -24,12 +24,18 @@
                 </div>
             </div>
         </div>
+        <LeaveGame class="leaveGame"/>
     </div>
 </template>
 
 <script>
+    import LeaveGame from "./LeaveGame"
+
     export default {
         name: 'Winner',
+        components: {
+            LeaveGame
+        },
         computed: {
             gameOverData: function () {
                 return this.$store.state.Winner.gameOverData
@@ -53,6 +59,10 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .leaveGame {
+        margin: 3% auto;
+    }
 
     .defeat {
         background-color: $failed;
