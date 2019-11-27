@@ -1,9 +1,9 @@
 <template>
-    <div id="displayPassFailVotes">
+    <div id="nicknameCharacterBadGuys">
         <div class="modal" :class="{'is-active': modalActive === true}">
             <div class="modal-background is-centered"></div>
             <div class="modal-content permanentPlayerInfo is-centered">
-                <button @click="resetToLobby" class="leaveGame">👉😎👉 zoop - 👏 LEAVE 👏 THE 👏 GAME 👏</button>
+                <LeaveGame class="leaveGame"/>
 
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
@@ -22,8 +22,13 @@
 </template>
 
 <script>
+    import LeaveGame from "./LeaveGame"
+
     export default {
         name: 'NicknameCharacterBadGuys',
+        components: {
+            LeaveGame
+        },
         data: () => {
             return {
                 modalActive: false
@@ -47,19 +52,13 @@
             toggleModalActive: function () {
                 this.modalActive = !this.modalActive
             },
-            resetToLobby: function () {
-                window.localStorage.removeItem("vuex")
-                window.localStorage.clear()
-                location.reload()
-            }
         }
     }
 </script>
 
 <style scoped>
-    .leaveGame {
-        color: red;
-        font-size: 25px;
+    /deep/ .leaveGame {
+        margin: 3%;
     }
 
     .permanentPlayerInfo {
@@ -82,13 +81,11 @@
     }
 
     .is-active {
-        /*position: fixed;*/
         bottom: 40px;
         width: 100%;
     }
 
     #toggleModalButton {
-        /*position: fixed;*/
         bottom: 0;
         left: 0;
         height: 40px;
@@ -104,7 +101,6 @@
         }
 
         .is-active {
-            /*position: fixed;*/
             bottom: 40px;
             width: 85%;
             left: 7.5%;

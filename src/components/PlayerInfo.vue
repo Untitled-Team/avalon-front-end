@@ -16,6 +16,7 @@
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
                 </div>
+                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="warlock character" v-if="isBad">
@@ -39,6 +40,7 @@
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
                 </div>
+                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="merlin character" v-if="isMerlin">
@@ -63,6 +65,7 @@
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
                          v-on:click="confirmReady">
                 </div>
+                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="assassin character" v-if="isAssassin">
@@ -87,6 +90,7 @@
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
                          v-on:click="confirmReady">
                 </div>
+                <LeaveGame class="leaveGame"/>
             </div>
         </div>
 
@@ -96,9 +100,13 @@
 
 <script>
     import WebsocketService from "../services/WebsocketService";
+    import LeaveGame from "./LeaveGame"
 
     export default {
         name: 'PlayerInfo',
+        components: {
+            LeaveGame
+        },
         methods: {
             confirmReady: function () {
                 const confirmReadyObj = {event: 'PlayerReady'};
@@ -143,6 +151,11 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .leaveGame {
+        display: flex;
+        flex: 1 1 0;
+        margin: 3% auto;
+    }
     .character {
         padding: 13px;
         display: flex;
