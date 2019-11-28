@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div id="playerInfo" v-if="!ready"
+        <div id="playerInfo"
              :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
             <div class="knight character" v-if="isGood">
                 <div class="rolePreTextWrapper">
@@ -16,7 +16,6 @@
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
                 </div>
-                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="warlock character" v-if="isBad">
@@ -40,7 +39,6 @@
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
                 </div>
-                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="merlin character" v-if="isMerlin">
@@ -65,7 +63,6 @@
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
                          v-on:click="confirmReady">
                 </div>
-                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="assassin character" v-if="isAssassin">
@@ -90,30 +87,20 @@
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
                          v-on:click="confirmReady">
                 </div>
-                <LeaveGame/>
             </div>
-        </div>
-
-        <div class="ready" v-if="ready">
-            Waiting on others to ready up...
-            <LeaveGame class="leaveGameWaiting"/>
         </div>
     </div>
 </template>
 
 <script>
-    import WebsocketService from "../services/WebsocketService";
-    import LeaveGame from "./LeaveGame"
+    import store from "../store/index.js"
 
     export default {
         name: 'PlayerInfo',
-        components: {
-            LeaveGame
-        },
+        components: {},
         methods: {
             confirmReady: function () {
-                const confirmReadyObj = {event: 'PlayerReady'};
-                WebsocketService.sendObj(this.$socket, confirmReadyObj);
+                store.dispatch("stepTwoToQuestPhase");
             }
         },
         computed: {
@@ -138,31 +125,12 @@
             ready: function () {
                 return this.$store.state.playerInfo.ready
             }
-        },
-        created() {
-            this.$options.sockets.onmessage = (msg) => {
-                let msgJSON = JSON.parse(msg.data)
-
-                if (msgJSON.event === 'PlayerReadyAcknowledgement') {
-                    this.$store.state.playerInfo.ready = true
-                }
-            }
         }
     }
 </script>
 
 <style lang="scss" scoped>
     @import "../styles/variables";
-
-    .leaveGame {
-        display: flex;
-        flex: 1 1 0;
-        margin: 3% auto;
-    }
-
-    .leaveGameWaiting {
-        margin-top: 10%;
-    }
 
     .character {
         padding: 13px;

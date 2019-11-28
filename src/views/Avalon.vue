@@ -115,8 +115,6 @@
                         store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
                     } else if (this.displayPassFailVoteResults) {
                         store.dispatch("displayPassFailVoteResultsToProposeMissionParty")
-                    } else {
-                        store.dispatch("stepTwoToQuestPhase")
                     }
                 } else if (msgJSON.event === 'ProposedParty') {
                     store.state.ProposedPartyVoteMenu.proposedParty = msgJSON.proposedParty
