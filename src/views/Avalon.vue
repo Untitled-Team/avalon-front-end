@@ -128,6 +128,8 @@
                     store.state.DisplayPassFailVoteResults.failVotes = msgJSON.failVotes
                     store.dispatch("PassFailVoteToDisplayPassFailVoteResults")
                 } else if (msgJSON.event === 'AssassinVote') {
+                    store.state.currentMission = null;
+                    // store.state.activeMission =
                     store.state.assassinVote.assassinVoteData = msgJSON.assassinVoteData
                     store.dispatch("displayPassFailVoteResultsToAssassinVote")
                 } else if (msgJSON.event === 'GameOver') {
