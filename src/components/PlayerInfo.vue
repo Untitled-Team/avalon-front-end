@@ -93,14 +93,12 @@
 </template>
 
 <script>
-    import store from "../store/index.js"
-
     export default {
         name: 'PlayerInfo',
         components: {},
         methods: {
             confirmReady: function () {
-                store.dispatch("stepTwoToQuestPhase");
+                this.$store.dispatch("stepTwoToQuestPhase");
             }
         },
         computed: {
