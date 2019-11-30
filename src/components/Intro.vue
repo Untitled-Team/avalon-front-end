@@ -13,7 +13,7 @@
                            required/>
                 </div>
                 <div class="field">
-                    <button type="submit">
+                    <button type="submit" id="joinGameSubmit">
                         <img src="@/assets/joinGameButton.png">
                     </button>
                 </div>
@@ -24,7 +24,7 @@
                            placeholder="Player Nickname..." maxlength="12" required/>
                 </div>
                 <div class="field">
-                    <button type="submit">
+                    <button type="submit" id="createGameSubmit">
                         <img src="@/assets/createGameButton.png">
                     </button>
                 </div>
