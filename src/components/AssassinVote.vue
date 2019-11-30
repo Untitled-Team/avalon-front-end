@@ -3,13 +3,18 @@
 
         <div class="modal" :class="{'is-active': modalActive === true}">
             <div class="modal-background"></div>
-            <div class="modal-content">
-                <button @click="toggleModalActive">View Mission History</button>
+            <div class="modal-content containAll">
+                <div class="viewMissionsButtonWrapper">
+                    <button class="viewMissionButton" @click="toggleModalActive">View Mission History</button>
+                </div>
 
-                <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
+                <div class="assassinImageWrapper">
+                    <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
+                </div>
+
 
                 <div id="everyoneElse" v-if="!playerIsAssassin">
-                    {{ assassinVoteData.assassin }} is attempting to assassinate Merlin.
+                    {{ assassinVoteData.assassin }} is trying to assassinate Merlin...
                 </div>
 
                 <div v-if="playerIsAssassin">
@@ -86,6 +91,42 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .modal-background {
+        background-color: rgba(10, 10, 10, 1);
+    }
+
+    .viewMissionsButtonWrapper {
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+
+    .containAll {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: center;
+    }
+
+    .assassinImageWrapper {
+        justify-content: center;
+        width: 75%;
+        margin: 0 auto;
+
+        img {
+            object-fit: contain;
+        }
+    }
+
+    .playerIsAssassin {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .viewMissionButton {
+        display: flex;
+    }
+
     .modal {
         position: absolute;
         color: #C7383E;
@@ -96,12 +137,13 @@
     }
 
     label {
-        width: 67%;
+        width: 58%;
+        max-width: 250px;
         cursor: pointer;
-        font-size: 1.5em;
+        font-size: 2.25em;
         display: inline-block;
-        margin-top: 3px;
-        padding: 1px;
+        margin-bottom: 5px;
+        padding: 2px;
         background: #C7383E;
         color: lightgray;
     }
@@ -111,27 +153,35 @@
     }
 
     #assassin {
-        font-size: 5em;
+        font-size: 4em;
+        padding-bottom: 5px;
     }
 
     #everyoneElse {
-        font-size: 5em;
+        font-size: 4em;
+        width: 90%;
+        margin: 0 auto;
     }
 
     .somePadding {
         padding: 3em;
     }
 
-    .lessPadding {
-        padding: 1em;
-    }
-
-    img {
-        padding: 3%;
-    }
-
-    button {
-        margin-bottom: 5%;
+    input[type=submit] {
+        font-family: inherit;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border-radius: 0;
+        border: whitesmoke solid 1px;
+        appearance: none;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 1.8em;
+        font-size: 2em;
+        background: whitesmoke;
+        color: #2f3026;
     }
 
     .successful {
@@ -148,5 +198,30 @@
 
     .current {
         background: $current;
+    }
+
+    @media (max-height: 1500px) {
+
+
+    }
+
+    @media (max-height: 1000px) {
+
+    }
+
+    @media (max-height: 700px) {
+
+    }
+
+    @media (max-height: 553px) {
+
+
+    }
+
+    @media (max-height: 472px) {
+        .assassinImageWrapper {
+            display: none;
+        }
+
     }
 </style>

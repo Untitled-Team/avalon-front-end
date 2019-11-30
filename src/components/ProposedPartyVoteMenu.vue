@@ -79,11 +79,20 @@
         background: $current;
     }
 
+    .vote {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
     .teamMember {
+        display: flex;
+        flex-direction: column;
         width: 67%;
+        max-width: 250px;
         cursor: pointer;
         font-size: 2.5em;
-        display: inline-block;
+        margin: 0 auto;
         margin-top: 3px;
         padding: 1px;
         background: rgba(black, 0.11);
