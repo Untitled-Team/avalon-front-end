@@ -91,6 +91,11 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .modal {
+        //puts this in front of the player info modal
+        z-index: 1000;
+    }
+
     .modal-background {
         background-color: rgba(10, 10, 10, 1);
     }
