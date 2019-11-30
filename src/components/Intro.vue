@@ -13,8 +13,9 @@
                            required/>
                 </div>
                 <div class="field">
-                    <input id="joinGameSubmit" type="submit" class="buttonInput button is-small"
-                           value="Join Existing Game"/>
+                    <button type="submit">
+                        <img src="@/assets/joinGameButton.png">
+                    </button>
                 </div>
             </form>
             <form id="createGameForm" @submit.prevent="createGame">
@@ -23,8 +24,9 @@
                            placeholder="Player Nickname..." maxlength="12" required/>
                 </div>
                 <div class="field">
-                    <input id="createGameSubmit" type="submit" class="buttonInput button is-small"
-                           value="Create a New Game"/>
+                    <button type="submit">
+                        <img src="@/assets/createGameButton.png">
+                    </button>
                 </div>
             </form>
         </div>
@@ -68,6 +70,12 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
     @import "../styles/mixins";
+
+    button {
+        background-color: inherit;
+        border: 0;
+        max-width: 60%;
+    }
 
     .menuContent {
         display: flex;
