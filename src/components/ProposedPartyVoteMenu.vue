@@ -24,11 +24,6 @@
 
     export default {
         name: 'ProposedPartyVoteMenu',
-        data: function () {
-            return {
-                playerHasVoted: false,
-            }
-        },
         methods: {
             voteToApprove: function () {
                 const partyApproveMessage = {
@@ -51,14 +46,17 @@
             },
             proposedParty: function () {
                 return this.$store.state.ProposedPartyVoteMenu.proposedParty
-            }
-        }
-        , created() {
+            },
+            playerHasVoted: function () {
+                return this.$store.state.ProposedPartyVoteMenu.playerHasVoted
+            },
+        },
+        created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
 
                 if (msgJSON.event === 'PartyApprovalVoteAcknowledgement') {
-                    this.playerHasVoted = true
+                    this.$store.state.ProposedPartyVoteMenu.playerHasVoted = true
                 }
             }
         }

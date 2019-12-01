@@ -42,6 +42,7 @@ export default new Vuex.Store({
         },
         ProposedPartyVoteMenu: {
             proposedParty: [],
+            playerHasVoted: false
         },
         DisplayPassFailVoteResults: {
             passVotes: 0,

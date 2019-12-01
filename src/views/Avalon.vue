@@ -107,6 +107,9 @@
                     store.state.badGuys = msgJSON.badGuys
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
+                    //reset the playerHasVoted property so players can approve or deny the next party.
+                    this.$store.state.ProposedPartyVoteMenu.playerHasVoted = false
+
                     store.state.activeMission = msgJSON.missionNumber
                     store.state.currentMissionLeader = msgJSON.missionLeader
                     store.state.missions = msgJSON.missions
