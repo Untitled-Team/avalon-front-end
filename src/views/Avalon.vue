@@ -118,7 +118,10 @@
                     }
                 } else if (msgJSON.event === 'ProposedParty') {
                     store.state.ProposedPartyVoteMenu.proposedParty = msgJSON.proposedParty
-                    store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
+                    if (!store.state.gameState.playerInfo) {
+                        store.dispatch("ToggleProposeMissionPartyAndProposedPartyVote")
+                    }
+
                 } else if (msgJSON.event === 'PartyApproved') {
                     store.dispatch("ProposedPartyVoteToPassFailVote")
                 } else if (msgJSON.event === 'PassFailVoteResults') {

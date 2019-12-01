@@ -121,11 +121,8 @@ export default new Vuex.Store({
             }
         },
         ToggleProposeMissionPartyAndProposedPartyVote: ({state}) => {
-            //If we are in PlayerInfo state we cannot move forward until the user has Ready'd up
-            if (!state.gameState.playerInfo) {
-                state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty
-                state.gameState.proposedPartyVote = !state.gameState.proposedPartyVote
-            }
+            state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty
+            state.gameState.proposedPartyVote = !state.gameState.proposedPartyVote
         },
         ProposedPartyVoteToPassFailVote: ({state}) => {
             state.gameState.proposedPartyVote = !state.gameState.proposedPartyVote
