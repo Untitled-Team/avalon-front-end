@@ -1,9 +1,8 @@
 <template>
     <div id="leaveGame">
 
-        <div class="modal" :class="{'is-active': modalActive === true}">
-            <div class="modal-background"></div>
-            <div class="modal-content">
+        <div class="leaveGameWrapper" v-if="modalActive">
+            <div class="innerWrapper">
                 <div>Are you sure you want to leave?</div>
 
                 <div>You cannot come back to this game.</div>
@@ -51,17 +50,23 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    .modal {
+    .leaveGameWrapper {
         position: fixed;
+        background-color: rgba(10, 10, 10, 1);
+        color: antiquewhite;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    .modal-content {
-        color: antiquewhite;
-        font-size: 20px;
+    .innerWrapper {
+        margin: 0 auto;
+        width: 90%;
+        font-size: 2em;
     }
 
     .leaveGameButtonModal {
@@ -73,11 +78,13 @@
         color: $successful;
         font-size: 25px;
         margin: 5% 3%;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .leaveGameButton {
         color: red;
         font-size: 25px;
         margin: 5% 3%;
+        -webkit-tap-highlight-color: transparent;
     }
 </style>
