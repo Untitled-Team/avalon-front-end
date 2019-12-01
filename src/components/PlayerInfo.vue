@@ -95,7 +95,6 @@
 <script>
     export default {
         name: 'PlayerInfo',
-        components: {},
         methods: {
             confirmReady: function () {
                 this.$store.dispatch("stepTwoToQuestPhase");
@@ -119,9 +118,6 @@
             },
             isAssassin: function () {
                 return this.$store.state.character === "Assassin"
-            },
-            ready: function () {
-                return this.$store.state.playerInfo.ready
             }
         }
     }
@@ -275,17 +271,6 @@
 
     .readyButtonWrapper {
         margin-bottom: 5px;
-    }
-
-    .ready {
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 0;
-        padding: 20px;
-        padding-bottom: 0px;
-        background-color: $incomplete;
-        color: whitesmoke;
-        font-size: 3em;
     }
 
     .backgroundGood {

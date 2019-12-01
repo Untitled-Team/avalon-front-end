@@ -34,9 +34,6 @@ export default new Vuex.Store({
             badGuysWin: false,
             goodGuysWin: false,
         },
-        playerInfo: {
-            ready: false,
-        },
         assassinVote: {
             assassinVoteData: {},
         },
