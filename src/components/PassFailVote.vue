@@ -28,11 +28,6 @@
 
     export default {
         name: 'PassFailVote',
-        data: function () {
-            return {
-                playerHasVoted: false,
-            }
-        },
         methods: {
             voteToPass: function () {
                 let QuestVotePassObj = {
@@ -56,13 +51,16 @@
             missionParty: function () {
                 return this.$store.state.ProposedPartyVoteMenu.proposedParty
             },
+            playerHasVoted: function () {
+                return this.$store.state.PassFailVote.playerHasVoted
+            }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
                 let msgJSON = JSON.parse(msg.data)
 
                 if (msgJSON.event === 'QuestVoteAcknowledgement') {
-                    this.playerHasVoted = true
+                    this.$store.state.PassFailVote.playerHasVoted = true
                 }
             }
         }

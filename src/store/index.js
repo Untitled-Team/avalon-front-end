@@ -51,6 +51,9 @@ export default new Vuex.Store({
         Winner: {
             gameOverData: {},
         },
+        PassFailVote: {
+            playerHasVoted: false
+        },
     },
     getters: {
         getNickname: state => {
