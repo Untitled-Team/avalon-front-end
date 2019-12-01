@@ -58,9 +58,9 @@ export default new Vuex.Store({
         },
         getCharacterFormatted: state => {
             if (state.character === "NormalGoodGuy") {
-                return "Good Guy"
+                return "Knight of Arthur"
             } else if (state.character === "NormalBadGuy") {
-                return "Bad Guy"
+                return "Warlock"
             }
             return state.character
         },
