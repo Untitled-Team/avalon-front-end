@@ -1,8 +1,8 @@
 <template>
     <div id="nicknameCharacterBadGuys">
-        <div class="modal" :class="{'is-active': modalActive === true}">
-            <div class="modal-background is-centered"></div>
-            <div class="modal-content permanentPlayerInfo is-centered">
+        <div class="playerInfoModal" v-if="modalActive">
+            <div class="is-centered"></div>
+            <div class="permanentPlayerInfo is-centered">
                 <LeaveGame class="leaveGame"/>
 
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
@@ -57,11 +57,16 @@
 </script>
 
 <style scoped>
+    #nicknameCharacterBadGuys {
+        overflow: visible;
+    }
+
     /deep/ .leaveGame {
         margin: 3%;
     }
 
     .permanentPlayerInfo {
+        background-color: lightgrey;
         font-size: 2em;
     }
 
@@ -74,13 +79,10 @@
         border-top: grey;
     }
 
-    .modal {
+    .playerInfoModal {
         position: absolute;
         width: 25%;
         top: initial;
-    }
-
-    .is-active {
         bottom: 40px;
         width: 100%;
     }
