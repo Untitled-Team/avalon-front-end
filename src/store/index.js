@@ -34,9 +34,6 @@ export default new Vuex.Store({
             badGuysWin: false,
             goodGuysWin: false,
         },
-        playerInfo: {
-            ready: false,
-        },
         assassinVote: {
             assassinVoteData: {},
         },
@@ -116,9 +113,16 @@ export default new Vuex.Store({
             state.gameState.playerInfo = !state.gameState.playerInfo
         },
         stepTwoToQuestPhase: ({state}) => {
-            state.gameState.playerInfo = !state.gameState.playerInfo
-            state.gameState.questInfoDisplay = !state.gameState.questInfoDisplay
-            state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty
+            //This means that we're already past the ProposeMissionParty state so we jump straight to ProposedPartyVote
+            if (state.ProposedPartyVoteMenu.proposedParty.length >= 1) {
+                state.gameState.playerInfo = false
+                state.gameState.questInfoDisplay = true
+                state.gameState.proposedPartyVote = true
+            } else {
+                state.gameState.playerInfo = false
+                state.gameState.questInfoDisplay = true
+                state.gameState.proposeMissionParty = true
+            }
         },
         ToggleProposeMissionPartyAndProposedPartyVote: ({state}) => {
             state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty

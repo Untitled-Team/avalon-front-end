@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div id="playerInfo" v-if="!ready"
+        <div id="playerInfo"
              :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
             <div class="knight character" v-if="isGood">
                 <div class="rolePreTextWrapper">
@@ -14,9 +14,8 @@
                 </div>
                 <div class="badGuysTextWrapper"></div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
                 </div>
-                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="warlock character" v-if="isBad">
@@ -38,9 +37,8 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
                 </div>
-                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="merlin character" v-if="isMerlin">
@@ -63,9 +61,8 @@
                 </div>
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
-                         v-on:click="confirmReady">
+                         v-on:click="moveToFirstMission">
                 </div>
-                <LeaveGame class="leaveGame"/>
             </div>
 
             <div class="assassin character" v-if="isAssassin">
@@ -88,32 +85,19 @@
                 </div>
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
-                         v-on:click="confirmReady">
+                         v-on:click="moveToFirstMission">
                 </div>
-                <LeaveGame/>
             </div>
-        </div>
-
-        <div class="ready" v-if="ready">
-            Waiting on others to ready up...
-            <LeaveGame class="leaveGameWaiting"/>
         </div>
     </div>
 </template>
 
 <script>
-    import WebsocketService from "../services/WebsocketService";
-    import LeaveGame from "./LeaveGame"
-
     export default {
         name: 'PlayerInfo',
-        components: {
-            LeaveGame
-        },
         methods: {
-            confirmReady: function () {
-                const confirmReadyObj = {event: 'PlayerReady'};
-                WebsocketService.sendObj(this.$socket, confirmReadyObj);
+            moveToFirstMission: function () {
+                this.$store.dispatch("stepTwoToQuestPhase");
             }
         },
         computed: {
@@ -134,18 +118,6 @@
             },
             isAssassin: function () {
                 return this.$store.state.character === "Assassin"
-            },
-            ready: function () {
-                return this.$store.state.playerInfo.ready
-            }
-        },
-        created() {
-            this.$options.sockets.onmessage = (msg) => {
-                let msgJSON = JSON.parse(msg.data)
-
-                if (msgJSON.event === 'PlayerReadyAcknowledgement') {
-                    this.$store.state.playerInfo.ready = true
-                }
             }
         }
     }
@@ -153,16 +125,6 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
-
-    .leaveGame {
-        display: flex;
-        flex: 1 1 0;
-        margin: 3% auto;
-    }
-
-    .leaveGameWaiting {
-        margin-top: 10%;
-    }
 
     .character {
         padding: 13px;
@@ -309,17 +271,6 @@
 
     .readyButtonWrapper {
         margin-bottom: 5px;
-    }
-
-    .ready {
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 0;
-        padding: 20px;
-        padding-bottom: 0px;
-        background-color: $incomplete;
-        color: whitesmoke;
-        font-size: 3em;
     }
 
     .backgroundGood {

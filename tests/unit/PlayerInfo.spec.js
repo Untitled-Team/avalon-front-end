@@ -1,7 +1,6 @@
 import {expect} from 'chai'
 import {shallowMount} from '@vue/test-utils'
-import WebsocketService from '../../src/services/WebsocketService.js'
-import {assert, stub, restore, match} from "sinon";
+import {restore} from "sinon";
 import PlayerInfo from "../../src/components/PlayerInfo";
 import VueNativeSock from "vue-native-websocket";
 import Vuex from "vuex";
@@ -25,11 +24,16 @@ describe('PlayerInfo.vue', () => {
                     ready: false
                 },
                 badGuys: [],
-                character: ""
+                character: "",
+                stateAdvanced: false
+            },
+            actions: {
+                stepTwoToQuestPhase: ({state}) => {
+                    state.stateAdvanced = true;
+                }
             }
         })
         restore()
-        stub(WebsocketService, 'sendObj')
     })
 
     it('should display good guy info when character is NormalGoodGuy', () => {
@@ -62,7 +66,6 @@ describe('PlayerInfo.vue', () => {
     it('should display assassin info when character is Assassin', () => {
         store.state.character = "Assassin"
         wrapper = shallowMount(PlayerInfo, {store})
-
 
         const infoWrapper = wrapper.findAll('.assassin')
 
@@ -105,12 +108,12 @@ describe('PlayerInfo.vue', () => {
         expect(infoWrapper.length).to.equal(1)
     });
 
-    it('should call sendObj correctly when submitted', () => {
-        store.state.character = "NormalBadGuy"
+    it('properly advance state when we havent received a party proposal', () => {
+        store.state.character = "NormalGoodGuy"
         wrapper = shallowMount(PlayerInfo, {store})
 
         wrapper.find('.readyButton').trigger('click')
 
-        assert.calledWith(WebsocketService.sendObj, match.any, {event: 'PlayerReady'})
-    });
+        expect(store.state.stateAdvanced).to.equal(true)
+    })
 })
