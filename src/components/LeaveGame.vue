@@ -57,6 +57,7 @@
     .innerWrapper {
         margin: 0 auto;
         width: 90%;
+        font-size: 2em;
     }
 
     .leaveGameButtonModal {
