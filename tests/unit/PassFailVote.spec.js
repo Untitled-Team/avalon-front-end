@@ -23,6 +23,9 @@ describe('PassFailVote.vue', () => {
                 nickname: "",
                 ProposedPartyVoteMenu: {
                     proposedParty: []
+                },
+                PassFailVote: {
+                    playerHasVoted: false
                 }
             },
         })
