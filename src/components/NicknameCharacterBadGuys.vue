@@ -8,10 +8,10 @@
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
                 <div id="badGuys" v-if="!isRegularGoodGuy" class="fontSizing">
-                    Bad guys:
-                    <span v-for="(badGuy, index) in badGuys" :key="index">
-                                {{badGuy}}
-                            </span>
+                    {{badGuysText}}
+                    <span v-for="(badGuy, index) in otherBadGuys" :key="index">
+                        {{badGuy}}
+                    </span>
                 </div>
             </div>
         </div>
@@ -42,10 +42,13 @@
                 return this.$store.getters.getCharacterFormatted
             },
             isRegularGoodGuy: function () {
-                return this.$store.getters.getCharacterFormatted === 'Good Guy'
+                return this.$store.getters.getCharacterFormatted === 'Knight of Arthur'
             },
-            badGuys: function () {
-                return this.$store.state.badGuys
+            otherBadGuys: function () {
+                return this.$store.state.badGuys.filter(bg => bg !== this.$store.state.nickname);
+            },
+            badGuysText: function () {
+                return this.$store.state.character === "Merlin" ? "Minions of Mordred:" : "Other Minions of Mordred:"
             }
         },
         methods: {
