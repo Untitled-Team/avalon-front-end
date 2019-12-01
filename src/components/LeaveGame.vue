@@ -36,6 +36,15 @@
                 this.modalActive = !this.modalActive
             },
         },
+        created() {
+            this.$options.sockets.onmessage = (msg) => {
+                let msgJSON = JSON.parse(msg.data)
+
+                if (msgJSON.event === 'GameNoLongerExists') {
+                    this.resetToLobby()
+                }
+            }
+        }
     }
 </script>
 
