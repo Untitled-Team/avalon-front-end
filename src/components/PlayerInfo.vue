@@ -14,7 +14,7 @@
                 </div>
                 <div class="badGuysTextWrapper"></div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="confirmReady">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -61,7 +61,7 @@
                 </div>
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
-                         v-on:click="confirmReady">
+                         v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -85,7 +85,7 @@
                 </div>
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png"
-                         v-on:click="confirmReady">
+                         v-on:click="moveToFirstMission">
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
     export default {
         name: 'PlayerInfo',
         methods: {
-            confirmReady: function () {
+            moveToFirstMission: function () {
                 this.$store.dispatch("stepTwoToQuestPhase");
             }
         },
