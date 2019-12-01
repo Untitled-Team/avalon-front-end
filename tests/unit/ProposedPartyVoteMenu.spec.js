@@ -23,6 +23,7 @@ describe('ProposedPartyVoteMenu.vue', () => {
             state: {
                 ProposedPartyVoteMenu: {
                     proposedParty: [],
+                    playerHasVoted: false
                 },
             }
         })
@@ -39,10 +40,10 @@ describe('ProposedPartyVoteMenu.vue', () => {
     })
 
     it('should not display the vote menu after the player has voted', () => {
+        store.state.ProposedPartyVoteMenu.playerHasVoted = true
         wrapper = shallowMount(ProposedPartyVoteMenu, {store})
 
         let voteWrapper = wrapper.find('#vote')
-        wrapper.setData({playerHasVoted: true})
 
         expect(voteWrapper.isVisible()).to.be.false
     })
@@ -56,10 +57,10 @@ describe('ProposedPartyVoteMenu.vue', () => {
     })
 
     it('should display the WaitingOnOthers div after the player has voted', () => {
+        store.state.ProposedPartyVoteMenu.playerHasVoted = true
         wrapper = shallowMount(ProposedPartyVoteMenu, {store})
 
         let waitingOnOthersWrapper = wrapper.find('#WaitingOnOthers')
-        wrapper.setData({playerHasVoted: true})
 
         expect(waitingOnOthersWrapper.isVisible()).to.be.true
     })
