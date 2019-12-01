@@ -1,7 +1,7 @@
 <template>
     <div id="displayPassFailVotes">
-        <div v-for="(passVote, index) in passVotes" :key="'pass' + index" class="vote pass is-centered"></div>
-        <div v-for="(failVote, index) in failVotes" :key="'fail' + index" class="vote fail is-centered"></div>
+        <div v-for="(passVote, index) in passVotes" :key="'pass' + index" class="vote pass"></div>
+        <div v-for="(failVote, index) in failVotes" :key="'fail' + index" class="vote fail"></div>
     </div>
 </template>
 
@@ -25,7 +25,6 @@
             const votesDisplayedMessage = {
                 event: "QuestVotesDisplayed",
             }
-
             sleep(5000).then(() => {
                 WebsocketService.sendObj(this.$socket, votesDisplayedMessage)
             })
@@ -33,23 +32,7 @@
     }
 </script>
 
-<style scoped>
-    .vote {
-        display: flex;
-        flex: 1 1 0;
-        border-top: 5px solid #2f3026;
-    }
-
-    .pass {
-        background: #04b004;
-        opacity: 1;
-    }
-
-    .fail {
-        background: #b00404;
-        opacity: 1;
-    }
-
+<style lang="scss" scoped>
     modal-background {
         background: black;
         opacity: 1 !important;
@@ -66,5 +49,23 @@
         right: 0;
         overflow: hidden;
         text-align: center;
+
+        .vote {
+            display: flex;
+            flex: 1 1 0;
+            border-top: 5px solid #2f3026;
+        }
+
+        .pass {
+            background: #04b004;
+        }
+
+        .fail {
+            background: #b00404;
+        }
+
+        :first-child {
+            border: 0;
+        }
     }
 </style>
