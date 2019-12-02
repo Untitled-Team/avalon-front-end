@@ -17,12 +17,12 @@
 
             <form id="lobbyReadyForm" @submit.prevent="startGame" v-show="correctPlayerNumbers">
                 <input type="submit" class="startButton button is-small" value="Begin"/>
+                <LeaveGame class="leaveGame"/>
             </form>
 
             <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
                 5 - 10 players required
             </div>
-            <LeaveGame class="leaveGame"/>
         </div>
     </div>
 </template>
@@ -61,10 +61,20 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    #lobbyReadyForm {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+    }
+
+    .startButton {
+        display: flex;
+    }
+
     .leaveGame {
         display: flex;
         flex: 1 1 0;
-        margin: 1% auto;
+        /*margin: 1% auto;*/
     }
 
     .roomId {
@@ -107,8 +117,9 @@
         border-radius: 0;
         border: $successful solid 1px;
         appearance: none;
-        padding-right: 23px;
-        padding-left: 25px;
+        margin-right: 3px;
+        padding-right: 20px;
+        padding-left: 20px;
         font-size: 2.3em;
         font-weight: bold;
         background: $successful;

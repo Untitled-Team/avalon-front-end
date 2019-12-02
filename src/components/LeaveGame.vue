@@ -12,8 +12,7 @@
             </div>
         </div>
 
-
-        <button @click="toggleModalActive" class="leaveGameButtonModal">Leave Game</button>
+        <input type="submit" @click="toggleModalActive" class="leaveGameButtonModal" value="Leave Game"/>
     </div>
 </template>
 
@@ -70,8 +69,19 @@
     }
 
     .leaveGameButtonModal {
-        color: red;
-        font-size: 25px;
+        font-family: inherit;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border-radius: 0;
+        border: $failed solid 1px;
+        appearance: none;
+        margin-right: 3px;
+        padding-right: 20px;
+        padding-left: 20px;
+        font-size: 2.3em;
+        font-weight: bold;
+        background: $failed;
+        color: whitesmoke;
     }
 
     .stayInGame {
