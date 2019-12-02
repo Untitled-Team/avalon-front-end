@@ -43,7 +43,6 @@ body {
 
 #app {
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch; /* enables “momentum” (smooth) scrolling */
     background-color: #5B585F;
     font: bold 8px Fairfax, Fairfax;
         -webkit-font-smoothing: antialiased;
