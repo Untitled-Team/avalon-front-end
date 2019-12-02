@@ -3,32 +3,28 @@
         <img class="castle" src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
         <div class="menuContent">
-            <form id="joinGameForm" @submit.prevent="joinGame">
-                <div class="field">
+            <div id="joinGameForm">
+                <div class="textBox">
                     <input id="joinGameNickname" v-model="nickname" type="text"
-                           placeholder="Player Nickname..." maxlength="12" required/>
+                           placeholder="Nickname..." maxlength="12" required/>
                 </div>
-                <div class="field">
-                    <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
+                <div class="textBox">
+                    <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Game ID..."
                            required/>
                 </div>
-                <div class="field">
-                    <button type="submit" id="joinGameSubmit">
-                        <img src="@/assets/joinGameButton.png">
-                    </button>
+                <div class="buttonImageWrapper">
+                    <img src="@/assets/joinGameButton.png" v-on:click="joinGame">
                 </div>
-            </form>
-            <form id="createGameForm" @submit.prevent="createGame">
-                <div class="field">
+            </div>
+            <div>
+                <div class="textBox">
                     <input id="createGameNickname" v-model="nickname" type="text"
-                           placeholder="Player Nickname..." maxlength="12" required/>
+                           placeholder="Nickname..." maxlength="12" required/>
                 </div>
-                <div class="field">
-                    <button type="submit" id="createGameSubmit">
-                        <img src="@/assets/createGameButton.png">
-                    </button>
+                <div class="buttonImageWrapper">
+                    <img src="@/assets/createGameButton.png" v-on:click="createGame">
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </template>
@@ -71,10 +67,19 @@
     @import "../styles/variables";
     @import "../styles/mixins";
 
-    button {
-        background-color: inherit;
-        border: 0;
-        max-width: 60%;
+    .buttonImageWrapper {
+        display: flex;
+        flex: 1 1 0;
+        height: 35px;
+    }
+
+    .textBox {
+        margin-bottom: 15px;
+    }
+
+    img {
+        display: flex;
+        object-fit: contain;
     }
 
     .menuContent {
@@ -133,7 +138,11 @@
         }
 
         #joinGameForm {
-            margin-bottom: 100px;
+            margin-bottom: 85px;
+        }
+
+        .buttonImageWrapper {
+            height: 50px;
         }
 
         input[type=text] {
@@ -146,8 +155,12 @@
             top: 6.5%;
         }
 
+        .buttonImageWrapper {
+            height: 40px;
+        }
+
         #joinGameForm {
-            margin-bottom: 45px;
+            margin-bottom: 60px;
         }
 
         input[type=text] {
