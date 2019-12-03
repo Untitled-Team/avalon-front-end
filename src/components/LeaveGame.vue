@@ -18,6 +18,8 @@
 </template>
 
 <script>
+    import WebsocketService from "../services/WebsocketService";
+
     export default {
         name: 'AssassinVote',
         data: function () {
@@ -27,6 +29,9 @@
         },
         methods: {
             resetToLobby: function () {
+                if (this.$store.state.gameState.lobby) {
+                    WebsocketService.sendObj(this.$socket, {"event": "LeaveGame"})
+                }
                 this.$store.commit("resetState");
             },
             toggleModalActive: function () {
