@@ -27,9 +27,7 @@
         },
         methods: {
             resetToLobby: function () {
-                window.localStorage.removeItem("vuex")
-                window.localStorage.clear()
-                location.reload()
+                this.$store.commit("resetState");
             },
             toggleModalActive: function () {
                 this.modalActive = !this.modalActive

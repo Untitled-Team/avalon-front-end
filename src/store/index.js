@@ -8,8 +8,8 @@ const vuexLocal = new VuexPersistence({
     storage: window.localStorage
 })
 
-export default new Vuex.Store({
-    state: {
+const getDefaultState = () => {
+    return {
         activeMission: 1,
         badGuys: [],
         character: "",
@@ -51,7 +51,11 @@ export default new Vuex.Store({
         PassFailVote: {
             playerHasVoted: false
         },
-    },
+    }
+}
+
+export default new Vuex.Store({
+    state: getDefaultState(),
     getters: {
         getNickname: state => {
             return state.nickname
@@ -66,6 +70,10 @@ export default new Vuex.Store({
         },
     },
     mutations: {
+        resetState: state => {
+            Object.assign(state, getDefaultState())
+            location.reload()
+        },
         setNickname: (state, nickname) => {
             state.nickname = nickname
         },
@@ -95,12 +103,14 @@ export default new Vuex.Store({
             state
         },
         SOCKET_RECONNECT: state => {
-            Vue.prototype.$socket.sendObj({
-                event: "Reconnect",
-                nickname: state.nickname,
-                roomId: state.roomId,
-                lastMessageId: state.lastEventId
-            });
+            if (state.nickname && state.roomId) {
+                Vue.prototype.$socket.sendObj({
+                    event: "Reconnect",
+                    nickname: state.nickname,
+                    roomId: state.roomId,
+                    lastMessageId: state.lastEventId
+                });
+            }
         }
     },
     actions: {
