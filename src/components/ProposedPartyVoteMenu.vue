@@ -87,7 +87,6 @@
         display: flex;
         flex-direction: column;
         width: 67%;
-        max-width: 250px;
         cursor: pointer;
         font-size: 2.5em;
         margin: 0 auto;

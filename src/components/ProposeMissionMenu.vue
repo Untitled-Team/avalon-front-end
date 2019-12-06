@@ -2,22 +2,16 @@
     <div id="proposeMissionMenu">
 
         <div class="teamSelection" v-show="playerIsMissionLeader">
-            <p class="chooseTeam is-size-3-mobile is-size-3-desktop">Choose a team</p>
+            <p class="chooseTeam">Choose a team</p>
             <form class="proposal" @submit.prevent="proposeParty">
                 <div :key="index" v-for="(player, index) in players" class="playerDiv"
                      :class="{selected: selectedPlayers.includes(player)}">
                     <label @click="e => addSelectedClass(e)">
-                        <p class="is-size-4-mobile is-size-4-desktop">{{ player }}</p>
+                        <p>{{ player }}</p>
                     </label>
                 </div>
                 <input type="submit" class="button is-small submission" value="Propose Party">
             </form>
-
-            <div class="partySizeWarning">
-                <div :style="{visibility: !proposedPartyIsCorrectSize ? 'visible' : 'hidden'}">
-                    Choose {{currentMissionPartySize}} players
-                </div>
-            </div>
         </div>
 
         <div class="notLeader is-size-4-mobile is-size-4-desktop" v-show="!playerIsMissionLeader">
@@ -89,8 +83,13 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .button {
+        margin-top: 5px;
+    }
+
     .chooseTeam {
-        margin-bottom: 15px;
+        margin-bottom: 5px;
+        font-size: 2.5em;
     }
 
     .choosing {
@@ -104,7 +103,10 @@
     }
 
     .proposal {
-        margin-bottom: 25px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 67%;
     }
 
     .crossedSwords {
@@ -143,14 +145,15 @@
                 object-fit: contain;
             }
         }
-
     }
 
     .playerDiv {
-        width: 67%;
+        width: 100%;
         cursor: pointer;
-        font-size: 1.5em;
-        display: inline-block;
+        font-size: 2em;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
         margin-top: 3px;
         padding: 1px;
         background: rgba(black, 0.11);
@@ -176,5 +179,53 @@
 
     .partySizeWarning {
         font-size: 3em;
+    }
+
+
+    @media (max-height: 1500px) {
+        .chooseTeam {
+            margin-bottom: 10px;
+            font-size: 4em;
+        }
+
+        .playerDiv {
+            font-size: 3.5em;
+        }
+    }
+
+    @media (max-height: 1000px) {
+        .chooseTeam {
+            margin-bottom: 10px;
+            font-size: 4em;
+        }
+
+        .playerDiv {
+            font-size: 3.5em;
+        }
+    }
+
+    @media (max-height: 700px) {
+    }
+
+    @media (max-height: 553px) {
+        .chooseTeam {
+            margin-bottom: 10px;
+            font-size: 3.5em;
+        }
+
+        .playerDiv {
+            font-size: 2.8em;
+        }
+    }
+
+    @media (max-height: 472px) {
+        .chooseTeam {
+            margin-bottom: 5px;
+            font-size: 2.75em;
+        }
+
+        .playerDiv {
+            font-size: 2em;
+        }
     }
 </style>
