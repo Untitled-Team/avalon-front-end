@@ -13,7 +13,9 @@
         </div>
 
 
-        <button @click="toggleModalActive" class="leaveGameButtonModal">Leave Game</button>
+        <img v-if="parentComponentIsLobby" src="@/assets/leaveButton.png" @click="toggleModalActive"
+             class="leaveGameButtonModal">
+        <img v-else src="@/assets/leaveGameButton.png" @click="toggleModalActive" class="leaveGameButtonModal">
     </div>
 </template>
 
@@ -21,7 +23,8 @@
     import WebsocketService from "../services/WebsocketService";
 
     export default {
-        name: 'AssassinVote',
+        name: 'leaveGame',
+        props: ["parent"],
         data: function () {
             return {
                 modalActive: false,
@@ -37,12 +40,22 @@
             toggleModalActive: function () {
                 this.modalActive = !this.modalActive
             },
+        },
+        computed: {
+            parentComponentIsLobby: function () {
+                return this.parent === "Lobby"
+            }
         }
     }
 </script>
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .leaveGameButtonModal {
+        padding-top: 5px;
+        margin: auto;
+    }
 
     .leaveGameWrapper {
         position: fixed;
@@ -61,11 +74,6 @@
         margin: 0 auto;
         width: 90%;
         font-size: 2em;
-    }
-
-    .leaveGameButtonModal {
-        color: red;
-        font-size: 25px;
     }
 
     .stayInGame {

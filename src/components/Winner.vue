@@ -62,6 +62,7 @@
 
     .leaveGame {
         margin: 3% auto;
+        max-width: 90%;
     }
 
     .defeat {
