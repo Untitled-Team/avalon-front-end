@@ -151,6 +151,8 @@
                     } else if (msgJSON.gameOverData.winningTeam === "GoodGuys") {
                         store.dispatch("assassinVoteToGoodGuysWin")
                     }
+                } else if (msgJSON.event === 'GameNoLongerExists') {
+                    this.$store.commit("resetState");
                 }
 
                 store.commit('setLastEventId', msgJSON.id)
