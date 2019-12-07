@@ -15,6 +15,7 @@
 
         <img v-if="parentComponentIsLobby" src="@/assets/leaveButton.png" @click="toggleModalActive"
              class="leaveGameButtonModal">
+
         <img v-else src="@/assets/leaveGameButton.png" @click="toggleModalActive" class="leaveGameButtonModal">
     </div>
 </template>
