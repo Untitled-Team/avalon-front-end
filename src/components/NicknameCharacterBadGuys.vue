@@ -3,7 +3,8 @@
         <div class="playerInfoModal" v-if="modalActive">
             <div class="is-centered"></div>
             <div class="permanentPlayerInfo is-centered">
-                <LeaveGame class="leaveGame"/>
+
+                <LeaveGame class="leaveGame" :parent="'NicknameCharacterBadGuys'"/>
 
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
@@ -65,7 +66,8 @@
     }
 
     /deep/ .leaveGame {
-        margin: 3%;
+        max-width: 40%;
+        margin: auto;
     }
 
     .permanentPlayerInfo {

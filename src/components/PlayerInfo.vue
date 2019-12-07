@@ -26,7 +26,7 @@
                     <img class="roleTextBadGuys" src="@/assets/badGuyTextBig.png">
                 </div>
                 <div class="rolePictureWrapper">
-                    <img class="rolePicture" src="@/assets/badGuyBig.png">
+                    <img class="rolePicture" src="@/assets/warlock.png">
                 </div>
                 <div class="badGuysTextWrapper">
                     <div class="badGuysText">

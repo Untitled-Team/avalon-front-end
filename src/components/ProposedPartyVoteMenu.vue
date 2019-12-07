@@ -6,11 +6,10 @@
                 {{ player }}
             </div>
             <div class="someMargin">
-                <input id="approveButton" type="button" class="button is-small" v-on:click="voteToApprove"
-                       value="Approve">
+                <img src="@/assets/approveButton.png" @click="voteToApprove" id="approveButton">
             </div>
             <div class="someMargin">
-                <input id="denyButton" type="button" class="button is-small" v-on:click="voteToDeny" value="Deny">
+                <img src="@/assets/denyButton.png" @click="voteToDeny" id="denyButton">
             </div>
         </div>
         <div id="WaitingOnOthers" v-show="playerHasVoted">
@@ -102,5 +101,14 @@
 
     .someMargin {
         margin: 1em 0;
+    }
+
+    #approveButton {
+        margin-top: 5%;
+        width: 45%;
+    }
+
+    #denyButton {
+        width: 33%;
     }
 </style>
