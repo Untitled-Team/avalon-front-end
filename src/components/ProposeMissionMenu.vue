@@ -1,5 +1,8 @@
 <template>
     <div id="proposeMissionMenu">
+        <div class="twoMustFail" v-if="twoMustFail">
+            A defeat here requires two fail votes
+        </div>
 
         <div class="teamSelection" v-show="playerIsMissionLeader">
             <p class="chooseTeam">Choose a team</p>
@@ -82,6 +85,11 @@
             },
             proposalsLeft: function () {
                 return this.$store.state.ProposeMissionMenu.proposalsLeft
+            },
+            twoMustFail: function () {
+                let fourthMission = this.$store.state.currentMission === 4
+                let sevenOrMorePlayers = this.$store.state.players.length >= 7
+                return fourthMission && sevenOrMorePlayers
             }
         }
     }
@@ -90,6 +98,12 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .twoMustFail {
+        font-size: 2.2em;
+        color: $failed;
+        margin-top: 1%;
+    }
 
     .proposePartyButton {
         display: flex;

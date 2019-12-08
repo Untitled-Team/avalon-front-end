@@ -1,6 +1,9 @@
 <template>
     <div id="passFailVote">
         <div class="questingMessage is-size-4-mobile is-size-4-desktop">
+            <div class="twoMustFail" v-if="twoMustFail">
+                A defeat here requires two fail votes
+            </div>
 
             <span :key="index" v-for="(player, index) in missionParty">
                 <span v-if="index == missionParty.length-1"> and </span>{{player}}<span
@@ -53,6 +56,11 @@
             },
             playerHasVoted: function () {
                 return this.$store.state.PassFailVote.playerHasVoted
+            },
+            twoMustFail: function () {
+                let fourthMission = this.$store.state.currentMission === 4
+                let sevenOrMorePlayers = this.$store.state.players.length >= 7
+                return fourthMission && sevenOrMorePlayers
             }
         },
         created() {
@@ -67,7 +75,16 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import "../styles/variables";
+
+    .twoMustFail {
+        font-size: .75em;
+        color: $failed;
+        margin-top: 1%;
+        margin-bottom: 5%;
+    }
+
     .questingMessage {
         padding-right: 20px;
         padding-left: 20px;
@@ -87,8 +104,6 @@
     .swordWrapper {
         display: flex;
         flex: 10 1 0;
-        /*padding-bottom: 20px;*/
-        /*padding-top: 10px;*/
         margin: 0 auto;
         width: 65%;
         padding-top: 5px;

@@ -1,5 +1,9 @@
 <template>
     <div id="proposedPartyVoteMenu">
+        <div class="twoMustFail" v-if="twoMustFail">
+            A defeat here requires two fail votes
+        </div>
+
         <div id="vote" v-show="!playerHasVoted">
             <div class="is-size-4-mobile is-size-4-desktop">{{ currentMissionLeader }}'s team</div>
             <div :key="index" v-for="(player, index) in proposedParty" class="teamMember">
@@ -55,6 +59,11 @@
             },
             proposalsLeft: function () {
                 return this.$store.state.ProposeMissionMenu.proposalsLeft
+            },
+            twoMustFail: function () {
+                let fourthMission = this.$store.state.currentMission === 4
+                let sevenOrMorePlayers = this.$store.state.players.length >= 7
+                return fourthMission && sevenOrMorePlayers
             }
         },
         created() {
@@ -71,6 +80,13 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .twoMustFail {
+        font-size: 2.2em;
+        color: $failed;
+        margin-top: 1%;
+        margin-bottom: 5%;
+    }
 
     .proposalsLeft {
         display: flex;
