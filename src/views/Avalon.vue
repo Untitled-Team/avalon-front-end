@@ -110,6 +110,7 @@
                     //reset the playerHasVoted property so players can approve or deny the next party.
                     this.$store.state.ProposedPartyVoteMenu.playerHasVoted = false
 
+                    this.$store.state.ProposeMissionMenu.proposalsLeft = msgJSON.proposalsLeft
                     store.state.activeMission = msgJSON.missionNumber
                     store.state.currentMissionLeader = msgJSON.missionLeader
                     store.state.missions = msgJSON.missions

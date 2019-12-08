@@ -51,6 +51,9 @@ const getDefaultState = () => {
         PassFailVote: {
             playerHasVoted: false
         },
+        ProposeMissionMenu: {
+            proposalsLeft: -1
+        }
     }
 }
 

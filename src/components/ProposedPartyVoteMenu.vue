@@ -15,6 +15,10 @@
         <div id="WaitingOnOthers" v-show="playerHasVoted">
             Waiting for others...
         </div>
+
+        <div class="proposalsLeft">
+            {{ proposalsLeft-1 }} party proposals remaining
+        </div>
     </div>
 </template>
 
@@ -49,6 +53,9 @@
             playerHasVoted: function () {
                 return this.$store.state.ProposedPartyVoteMenu.playerHasVoted
             },
+            proposalsLeft: function () {
+                return this.$store.state.ProposeMissionMenu.proposalsLeft
+            }
         },
         created() {
             this.$options.sockets.onmessage = (msg) => {
@@ -64,6 +71,13 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .proposalsLeft {
+        display: flex;
+        flex: 1 1 0;
+        font-size: 2em;
+        align-self: center;
+    }
 
     #proposedPartyVoteMenu {
         height: 100%;

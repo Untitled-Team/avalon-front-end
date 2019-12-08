@@ -18,7 +18,10 @@ describe('ProposeMissionMenu.vue', () => {
                 nickname: 'steve',
                 currentMissionLeader: "",
                 missions: [{numberOfAdventurers: 0}],
-                currentMission: 1
+                currentMission: 1,
+                ProposeMissionMenu: {
+                    proposalsLeft: 10
+                }
             },
         })
         restore()

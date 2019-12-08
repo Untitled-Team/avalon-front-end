@@ -21,6 +21,9 @@
             </div>
         </div>
 
+        <div class="proposalsLeft">
+            {{ proposalsLeft }} party proposals remaining
+        </div>
     </div>
 </template>
 
@@ -74,6 +77,9 @@
             },
             players: function () {
                 return this.$store.state.players
+            },
+            proposalsLeft: function () {
+                return this.$store.state.ProposeMissionMenu.proposalsLeft
             }
         }
     }
@@ -82,6 +88,13 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .proposalsLeft {
+        display: flex;
+        flex: 1 1 0;
+        font-size: 2em;
+        align-self: center;
+    }
 
     .button {
         margin-top: 5px;
