@@ -25,6 +25,9 @@ describe('ProposedPartyVoteMenu.vue', () => {
                     proposedParty: [],
                     playerHasVoted: false
                 },
+                ProposeMissionMenu: {
+                    proposalsLeft: 10
+                }
             }
         })
         restore()
