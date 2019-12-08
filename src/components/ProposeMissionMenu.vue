@@ -10,7 +10,9 @@
                         <p>{{ player }}</p>
                     </label>
                 </div>
-                <input type="submit" class="button is-small submission" value="Propose Party">
+                <button type="submit" class="proposePartyButton">
+                    <img src="@/assets/proposePartyButton.png">
+                </button>
             </form>
         </div>
 
@@ -88,6 +90,16 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .proposePartyButton {
+        display: flex;
+        flex: 1 1 0;
+        background-color: inherit;
+        margin-top: 5%;
+        border: 0;
+        max-width: 90%;
+        align-self: center;
+    }
 
     .proposalsLeft {
         display: flex;

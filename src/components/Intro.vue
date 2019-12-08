@@ -74,7 +74,14 @@
     button {
         background-color: inherit;
         border: 0;
+    }
+
+    #joinGameSubmit {
         max-width: 60%;
+    }
+
+    #createGameSubmit {
+        max-width: 70%;
     }
 
     .menuContent {
