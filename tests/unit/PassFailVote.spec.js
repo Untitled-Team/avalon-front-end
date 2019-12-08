@@ -20,6 +20,7 @@ describe('PassFailVote.vue', () => {
     beforeEach(() => {
         store = new Vuex.Store({
             state: {
+                players: [],
                 nickname: "",
                 ProposedPartyVoteMenu: {
                     proposedParty: []

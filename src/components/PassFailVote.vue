@@ -98,7 +98,6 @@
         flex-direction: column;
         flex-grow: 1;
         color: whitesmoke;
-
     }
 
     .swordWrapper {
@@ -114,13 +113,6 @@
         object-fit: contain;
     }
 
-    /*.crossedSwords {*/
-    /*    display: flex;*/
-    /*    flex-direction: column;*/
-    /*    margin: 0 auto;*/
-    /*    width: 90%;*/
-    /*    margin-top: -20px;*/
-    /*}*/
 
     .theButtons {
         margin: 0 auto;
