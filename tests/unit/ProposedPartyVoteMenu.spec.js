@@ -21,6 +21,7 @@ describe('ProposedPartyVoteMenu.vue', () => {
     beforeEach(() => {
         store = new Vuex.Store({
             state: {
+                players: [],
                 ProposedPartyVoteMenu: {
                     proposedParty: [],
                     playerHasVoted: false

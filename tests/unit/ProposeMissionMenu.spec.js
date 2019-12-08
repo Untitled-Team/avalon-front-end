@@ -15,6 +15,7 @@ describe('ProposeMissionMenu.vue', () => {
     beforeEach(() => {
         store = new Vuex.Store({
             state: {
+                players: [],
                 nickname: 'steve',
                 currentMissionLeader: "",
                 missions: [{numberOfAdventurers: 0}],
