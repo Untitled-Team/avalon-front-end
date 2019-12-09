@@ -209,7 +209,8 @@
         margin-top: 1%;
 
         .readyButton {
-            width: 75%;
+            height: 100%;
+            width: auto;
         }
     }
 
