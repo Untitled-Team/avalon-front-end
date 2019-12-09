@@ -70,22 +70,6 @@ describe('Winner.vue', () => {
         expect(assassinWrapper.text()).to.contain(expectedAssassin)
     })
 
-    it('should display all the good guys except merlin in a div', () => {
-        const expectedGoodGuys = ['ron', 'hermane']
-        const unexpectedMerlin = 'merbling'
-        store.state.Winner.gameOverData.goodGuys = expectedGoodGuys
-        store.state.Winner.gameOverData.merlin = unexpectedMerlin
-        wrapper = shallowMount(Winner, {store})
-
-        const goodGuysWrapper = wrapper.find('.goodGuys')
-
-        expectedGoodGuys.forEach((goodGuy) => {
-            expect(goodGuysWrapper.text()).to.contain(goodGuy)
-        })
-        expect(goodGuysWrapper.text()).not.to.contain(unexpectedMerlin)
-    })
-
-
     it('should display all the bad guys except the assassin in a div', () => {
         const expectedBadGuys = ['jeorg', 'otherbrother']
         const unexpectedAssassin = 'ASS ASS in LOL!!!!! :p'

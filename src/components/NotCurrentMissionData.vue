@@ -77,6 +77,12 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    #NoQuestData {
+        font-size: 2rem;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
     #notCurrentMissionData {
         color: whitesmoke;
         display: flex;

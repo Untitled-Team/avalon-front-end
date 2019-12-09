@@ -12,11 +12,6 @@
         </div>
         <div class="infoWrapper">
             <div class="merlin">Merlin: {{ gameOverData.merlin }}</div>
-            <div class="goodGuys">Good Guys:
-                <div :key="index" v-for="(goodGuy, index) in goodGuysSansMerlin">
-                    {{ goodGuy}}
-                </div>
-            </div>
             <div class="assassin">Assassin: {{ gameOverData.assassin }}</div>
             <div class="badGuys">Bad Guys:
                 <div :key="index" v-for="(badGuy, index) in badGuysSansAssassin">
@@ -46,9 +41,6 @@
             badGuysWin: function () {
                 return this.gameOverData.winningTeam === 'BadGuys'
             },
-            goodGuysSansMerlin: function () {
-                return this.gameOverData.goodGuys.filter(x => x !== this.gameOverData.merlin)
-            },
             badGuysSansAssassin: function () {
                 return this.gameOverData.badGuys.filter(x => x !== this.gameOverData.assassin)
             },
@@ -63,6 +55,7 @@
     .leaveGame {
         margin: 3% auto;
         max-width: 90%;
+        width: 60%;
     }
 
     .defeat {
@@ -77,12 +70,11 @@
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
-        justify-content: flex-start;
+        /*justify-content: flex-start;*/
     }
 
     .badGuysWin {
-        display: flex;
-        flex: 0 1 0;
+        margin-top: 10px;
         justify-content: center;
 
         .defeatScreenWrapper {
@@ -96,7 +88,7 @@
     }
 
     .goodGuysWin {
-        display: flex;
+        margin-top: 10px;
         flex: 0 1 0;
         justify-content: center;
 
@@ -111,10 +103,17 @@
     }
 
     .infoWrapper {
+        margin-top: 5px;
         display: flex;
         flex: 1 1 0;
         font-size: 3em;
         color: floralwhite;
         flex-direction: column;
+    }
+
+    @media (max-height: 472px) {
+        .infoWrapper {
+            font-size: 2em;
+        }
     }
 </style>

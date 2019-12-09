@@ -111,6 +111,7 @@
                     this.$store.state.ProposedPartyVoteMenu.playerHasVoted = false
 
                     this.$store.state.ProposeMissionMenu.proposalsLeft = msgJSON.proposalsLeft
+                    this.$store.state.nextMissionLeader = msgJSON.nextMissionLeader
                     store.state.activeMission = msgJSON.missionNumber
                     store.state.currentMissionLeader = msgJSON.missionLeader
                     store.state.missions = msgJSON.missions

@@ -1,11 +1,11 @@
 <template>
     <div id="proposeMissionMenu">
         <div class="twoMustFail" v-if="twoMustFail">
-            A defeat here requires two fail votes
+            Requires 2+ fail votes
         </div>
 
         <div class="teamSelection" v-show="playerIsMissionLeader">
-            <p class="chooseTeam">Choose a team</p>
+            <div class="chooseTeam">Choose a team</div>
             <form class="proposal" @submit.prevent="proposeParty">
                 <div :key="index" v-for="(player, index) in players" class="playerDiv"
                      :class="{selected: selectedPlayers.includes(player)}">
@@ -26,6 +26,9 @@
             </div>
         </div>
 
+        <div class="proposalsLeft">
+            <b class="nextMissionLeaderClass">{{ nextMissionLeader }}</b> is the next leader
+        </div>
         <div class="proposalsLeft">
             {{ proposalsLeft }} party proposals remaining
         </div>
@@ -86,6 +89,9 @@
             proposalsLeft: function () {
                 return this.$store.state.ProposeMissionMenu.proposalsLeft
             },
+            nextMissionLeader: function () {
+                return this.$store.state.nextMissionLeader
+            },
             twoMustFail: function () {
                 let fourthMission = this.$store.state.currentMission === 4
                 let sevenOrMorePlayers = this.$store.state.players.length >= 7
@@ -99,27 +105,30 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .nextMissionLeaderClass {
+        color: whitesmoke;
+    }
+
     .twoMustFail {
-        font-size: 2.2em;
-        color: $failed;
-        margin-top: 1%;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 1.8em;
+        color: $bannerOutline;
     }
 
     .proposePartyButton {
-        display: flex;
-        flex: 1 1 0;
         background-color: inherit;
-        margin-top: 5%;
+        margin-top: 5px;
         border: 0;
         max-width: 90%;
         align-self: center;
     }
 
     .proposalsLeft {
-        display: flex;
-        flex: 1 1 0;
-        font-size: 2em;
+        margin-bottom: 2px;
+        font-size: 2.2em;
         align-self: center;
+        color: $bannerOutline;
     }
 
     .button {
@@ -127,14 +136,14 @@
     }
 
     .chooseTeam {
-        margin-bottom: 5px;
-        font-size: 2.5em;
+        font-size: 2.25em;
+        margin-bottom: -5px;
+        margin-top: -5px;
     }
 
     .choosing {
         margin-left: 7px;
         margin-right: 7px;
-        margin-top: 7px;
     }
 
     #missionLeader {
@@ -159,6 +168,7 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+        font-size: 1.1em;
     }
 
     .teamSelection {
@@ -195,6 +205,7 @@
         margin: 0 auto;
         margin-top: 3px;
         padding: 1px;
+        max-width: 180px;
         background: rgba(black, 0.11);
     }
 
@@ -223,7 +234,6 @@
 
     @media (max-height: 1500px) {
         .chooseTeam {
-            margin-bottom: 10px;
             font-size: 4em;
         }
 
@@ -234,37 +244,52 @@
 
     @media (max-height: 1000px) {
         .chooseTeam {
-            margin-bottom: 10px;
             font-size: 4em;
         }
 
+        .proposalsLeft {
+            font-size: 2em;
+        }
+
         .playerDiv {
-            font-size: 3.5em;
+            font-size: 2.75em;
         }
     }
 
     @media (max-height: 700px) {
+        .proposalsLeft {
+            font-size: 1.7em;
+        }
     }
 
     @media (max-height: 553px) {
-        .chooseTeam {
-            margin-bottom: 10px;
-            font-size: 3.5em;
+        .proposalsLeft {
+            font-size: 1.7em;
         }
 
-        .playerDiv {
-            font-size: 2.8em;
-        }
-    }
-
-    @media (max-height: 472px) {
         .chooseTeam {
-            margin-bottom: 5px;
             font-size: 2.75em;
         }
 
         .playerDiv {
-            font-size: 2em;
+            font-size: 2.5em;
+        }
+    }
+
+    @media (max-height: 472px) {
+
+        .proposalsLeft {
+            font-size: 1.6em;
+        }
+
+        .chooseTeam {
+            margin-top: 0px;
+            font-size: 2.1em;
+        }
+
+        .playerDiv {
+            max-width: 180px;
+            font-size: 1.8em;
         }
     }
 </style>

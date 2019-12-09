@@ -15,6 +15,7 @@ const getDefaultState = () => {
         character: "",
         currentMission: 1,
         currentMissionLeader: "",
+        nextMissionLeader: "",
         lastEventId: null,
         missions: [],
         nickname: "",

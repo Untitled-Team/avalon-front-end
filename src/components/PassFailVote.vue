@@ -1,8 +1,8 @@
 <template>
     <div id="passFailVote">
-        <div class="questingMessage is-size-4-mobile is-size-4-desktop">
+        <div class="questingMessage">
             <div class="twoMustFail" v-if="twoMustFail">
-                A defeat here requires two fail votes
+                Requires 2+ fail votes
             </div>
 
             <span :key="index" v-for="(player, index) in missionParty">
@@ -20,7 +20,7 @@
             <img class="failButton" src="@/assets/failButtonBig.png" v-on:click="voteToFail"/>
         </div>
 
-        <div id="WaitingOnOthers" class="is-size-4-mobile is-size-4-desktop" v-show="playerHasVoted || !playerVoting">
+        <div id="WaitingOnOthers" v-show="playerHasVoted || !playerVoting">
             Waiting on others...
         </div>
     </div>
@@ -79,16 +79,14 @@
     @import "../styles/variables";
 
     .twoMustFail {
-        font-size: .75em;
-        color: $failed;
-        margin-top: 1%;
-        margin-bottom: 5%;
+        font-size: 1.25rem;
+        color: $bannerOutline;
     }
 
     .questingMessage {
-        padding-right: 20px;
-        padding-left: 20px;
-        padding-top: 10px;
+        margin-left: 7px;
+        margin-right: 7px;
+        font-size: 1.5rem;
     }
 
     #passFailVote {
@@ -131,6 +129,22 @@
     }
 
     #WaitingOnOthers {
-        padding-bottom: 5px;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+
+    @media (max-height: 472px) {
+        .questingMessage {
+            font-size: 1.25rem;
+        }
+
+        .twoMustFail {
+            font-size: 1rem;
+        }
+
+        #WaitingOnOthers {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
     }
 </style>
