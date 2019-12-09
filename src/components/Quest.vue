@@ -294,4 +294,9 @@
         background: $failed;
     }
 
+    @media (max-height: 472px) {
+        .hapticfeedback {
+            min-height: 70px;
+        }
+    }
 </style>

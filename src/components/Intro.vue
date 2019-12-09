@@ -77,11 +77,11 @@
     }
 
     #joinGameSubmit {
-        max-width: 60%;
+        max-width: 50%;
     }
 
     #createGameSubmit {
-        max-width: 70%;
+        max-width: 54%;
     }
 
     .menuContent {
