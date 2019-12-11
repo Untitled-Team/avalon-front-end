@@ -51,7 +51,7 @@
                 const joinGameMessage = {
                     event: "JoinGame",
                     nickname: this.nickname,
-                    roomId: this.roomId
+                    roomId: this.roomId.trim()
                 }
                 WebsocketService.sendObj(this.$socket, joinGameMessage)
             },
