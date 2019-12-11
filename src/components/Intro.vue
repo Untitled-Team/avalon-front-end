@@ -3,32 +3,52 @@
         <img class="castle" src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
         <div class="menuContent">
-            <form id="joinGameForm" @submit.prevent="joinGame">
-                <div class="field">
-                    <input id="joinGameNickname" v-model="nickname" type="text"
-                           placeholder="Player Nickname..." maxlength="12" required/>
-                </div>
-                <div class="field">
-                    <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
-                           required/>
-                </div>
-                <div class="field">
-                    <button type="submit" id="joinGameSubmit">
-                        <img src="@/assets/joinGameButton.png">
-                    </button>
-                </div>
-            </form>
-            <form id="createGameForm" @submit.prevent="createGame">
-                <div class="field">
-                    <input id="createGameNickname" v-model="nickname" type="text"
-                           placeholder="Player Nickname..." maxlength="12" required/>
-                </div>
-                <div class="field">
-                    <button type="submit" id="createGameSubmit">
-                        <img src="@/assets/createGameButton.png">
-                    </button>
-                </div>
-            </form>
+            <div class="createAndJoinGameForms" v-if="!createGameConfigure">
+                <form id="joinGameForm" @submit.prevent="joinGame" v-if="!createGameConfigure">
+                    <div class="field">
+                        <input id="joinGameNickname" v-model="nickname" type="text"
+                               placeholder="Player Nickname..." maxlength="12" required/>
+                    </div>
+                    <div class="field">
+                        <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
+                               required/>
+                    </div>
+                    <div class="field">
+                        <button type="submit" id="joinGameSubmit">
+                            <img src="@/assets/joinGameButton.png">
+                        </button>
+                    </div>
+                </form>
+                <form id="createGameForm" @submit.prevent="toggleConfigureScreen">
+                    <div class="field">
+                        <input id="createGameNickname" v-model="nickname" type="text"
+                               placeholder="Player Nickname..." maxlength="12" required/>
+                    </div>
+                    <div class="field">
+                        <button type="submit" id="createGameSubmit">
+                            <img src="@/assets/createGameButton.png">
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="configure" v-if="createGameConfigure">
+                <button @click="toggleConfigureScreen">back</button>
+                <div>CHARACTERS:</div>
+                <label><input type="checkbox" name="char1">optional char #1</label>
+                <label><input type="checkbox" name="char2">optional char #2</label>
+                <label><input type="checkbox" name="char3">optional char #3</label>
+                <label><input type="checkbox" name="char4">optional char #4</label>
+
+                <br/>
+                <br/>
+
+                <div>GAME MODE:</div>
+                <label><input type="radio" name="gameMode">easy</label>
+                <label><input type="radio" name="gameMode">hard</label>
+
+                <img @click="createGame" src="@/assets/createGameButton.png">
+            </div>
         </div>
     </div>
 </template>
@@ -42,7 +62,8 @@
         data: function () {
             return {
                 nickname: "",
-                roomId: ""
+                roomId: "",
+                createGameConfigure: false
             }
         },
         methods: {
@@ -54,6 +75,9 @@
                     roomId: this.roomId.trim()
                 }
                 WebsocketService.sendObj(this.$socket, joinGameMessage)
+            },
+            toggleConfigureScreen: function () {
+                this.createGameConfigure = !this.createGameConfigure
             },
             createGame: function () {
                 store.commit("setNickname", this.nickname);
@@ -70,6 +94,23 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
     @import "../styles/mixins";
+
+    .configure {
+        font-size: 3em;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            margin-top: 3%;
+            align-self: center;
+            max-width: 54%;
+        }
+
+        button {
+            border: 1px black solid;
+            background-color: grey;
+        }
+    }
 
     button {
         background-color: inherit;
