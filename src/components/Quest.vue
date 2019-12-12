@@ -13,6 +13,8 @@
              activeIsIncompleteAndActiveIsCurrent: activeIsIncompleteAndActiveIsCurrent,
              activeMissionPassing: activeMissionPassing,
              activeMissionFailing: activeMissionFailing,
+             isFirstQuest: isFirst,
+             isLastQuest: isLast,
          }">
             <div class="firstRow" :class="{first: isFirst, middle: isMiddle, last: isLast}">
                 <div class="overwrite"
@@ -149,6 +151,14 @@
         height: 32px;
     }
 
+    .isFirstQuest {
+        padding-left: 0px;
+    }
+
+    .isLastQuest {
+        padding-right: 0px;
+    }
+
     .bannerContainer.first {
         padding-left: 0px;
     }
@@ -200,6 +210,7 @@
     .bannerContainer {
         .first {
             box-shadow: 2px 0px rgba(black, 0.3);
+            /*padding-left: 0px;*/
         }
 
         .middle {

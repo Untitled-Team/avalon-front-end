@@ -170,13 +170,13 @@
     }
 
     #approveButton {
-        margin-top: 5%;
+        margin-top: 5px;
         height: 40px;
     }
 
     #denyButton {
         height: 40px;
-        margin-top: 3%;
+        margin-top: 5px;
     }
 
     .playersTeam {

@@ -14,6 +14,8 @@ $mediumHeight: 553px;
 $largeHeight: 1000px;
 $xlargeHeight: 1500px;
 
+$defaultLobbyButtonHeight: 30px;
+
 @mixin short {
   @media (max-height: #{smallHeight}) {
     @content;
