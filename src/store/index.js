@@ -29,6 +29,7 @@ const getDefaultState = () => {
             questInfoDisplay: false,
             proposeMissionParty: false,
             proposedPartyVote: false,
+            teamVotesDisplay: false,
             passFailVote: false,
             displayPassFailVoteResults: false,
             assassinVote: false,
@@ -41,6 +42,11 @@ const getDefaultState = () => {
         ProposedPartyVoteMenu: {
             proposedParty: [],
             playerHasVoted: false
+        },
+        TeamVotesData: {
+            missionLeader: "",
+            approved: [],
+            denied: []
         },
         DisplayPassFailVoteResults: {
             passVotes: 0,
