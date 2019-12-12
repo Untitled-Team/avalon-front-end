@@ -6,6 +6,7 @@
 
         <div v-show="!teamHasWon && !lobby && !intro && !playerInfo" class="containedWidth">
             <QuestInfo v-if="questInfoDisplay"/>
+            <TeamVotes v-if="teamVotesDisplay"/>
 
             <div v-show="questInfoDisplay" class="cssWrapper">
                 <AssassinVote v-if="assassinVote"/>
@@ -39,6 +40,7 @@
     import AssassinVote from "../components/AssassinVote"
     import NotCurrentMissionData from "../components/NotCurrentMissionData"
     import NicknameCharacterBadGuys from "../components/NicknameCharacterBadGuys";
+    import TeamVotes from "../components/TeamVotes";
 
     export default {
         name: 'home',
@@ -49,6 +51,7 @@
             Winner,
             DisplayPassFailVoteResults,
             PassFailVote,
+            TeamVotes,
             ProposedPartyVoteMenu,
             ProposeMissionMenu,
             QuestInfo,
@@ -74,6 +77,9 @@
             },
             proposedPartyVote: function () {
                 return store.state.gameState.proposedPartyVote
+            },
+            teamVotesDisplay: function () {
+                return store.state.gameState.teamVotesDisplay
             },
             passFailVote: function () {
                 return store.state.gameState.passFailVote
@@ -121,6 +127,12 @@
                     } else if (this.displayPassFailVoteResults) {
                         store.dispatch("displayPassFailVoteResultsToProposeMissionParty")
                     }
+                } else if (msgJSON.event === 'PartyVotes') {
+                    this.$store.state.gameState.teamVotesDisplay = true
+                    this.$store.state.TeamVotesData.approved = msgJSON.approvals
+                    this.$store.state.TeamVotesData.denied = msgJSON.denies
+                    this.$store.state.TeamVotesData.missionLeader = this.$store.state.currentMissionLeader
+
                 } else if (msgJSON.event === 'ProposedParty') {
                     store.state.ProposedPartyVoteMenu.proposedParty = msgJSON.proposedParty
                     if (!store.state.gameState.playerInfo) {
