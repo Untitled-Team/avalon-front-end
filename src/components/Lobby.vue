@@ -16,7 +16,7 @@
             </div>
 
             <div class="buttonContainer">
-                <img src="@/assets/beginButtonBig.png" v-on:click="startGame" class="beginButton">
+                <img src="@/assets/beginButtonBig.png" v-on:click="startGame" v-show="correctPlayerNumbers" class="beginButton">
                 <LeaveGame class="leaveGame" :parent="'Lobby'"/>
             </div>
 
