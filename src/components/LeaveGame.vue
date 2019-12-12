@@ -14,7 +14,7 @@
 
 
         <img v-if="parentComponentIsLobby" src="@/assets/leaveButton.png" @click="toggleModalActive"
-             class="leaveGameButtonModal">
+             class="lobbyLeave">
 
         <img v-else src="@/assets/leaveGameButton.png" @click="toggleModalActive" class="leaveGameButtonModal">
     </div>
@@ -53,9 +53,14 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .lobbyLeave {
+        height: $defaultLobbyButtonHeight;
+    }
+
     .leaveGameButtonModal {
         padding-top: 5px;
         margin: auto;
+        /*object-fit: contain;*/
     }
 
     .leaveGameWrapper {

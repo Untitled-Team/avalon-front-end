@@ -176,7 +176,7 @@
 
     #denyButton {
         height: 40px;
-        margin-top: 3%;
+        margin-top: 5%;
     }
 
     .playersTeam {
