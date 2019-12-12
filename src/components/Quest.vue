@@ -14,7 +14,7 @@
              activeMissionPassing: activeMissionPassing,
              activeMissionFailing: activeMissionFailing,
          }">
-            <div class="firstRow">
+            <div class="firstRow" :class="{first: isFirst, middle: isMiddle, last: isLast}">
                 <div class="overwrite"
                      v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
                 </div>
@@ -195,7 +195,20 @@
         height: 4px;
         padding: 0px 5%;
         margin: 0 auto;
-        box-shadow: -2px 0px rgba(black, 0.3), 2px 0px rgba(black, 0.3);
+    }
+
+    .bannerContainer {
+        .first {
+            box-shadow: 2px 0px rgba(black, 0.3);
+        }
+
+        .middle {
+            box-shadow: -2px 0px rgba(black, 0.3), 2px 0px rgba(black, 0.3);
+        }
+
+        .last {
+            box-shadow: -2px 0px rgba(black, 0.3);
+        }
     }
 
     .inactive > .bannerContainer > .firstRow {

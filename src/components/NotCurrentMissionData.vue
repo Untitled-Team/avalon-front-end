@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="missionLeader">
-                    Mission Leader: {{ activeQuestData.votes[0].missionLeader }}
+                    Mission Leader: {{ activeQuestMissionLeader }}
                 </div>
 
                 <div class="missionParty">
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="missionLeader">
-                    Mission Leader: {{ activeQuestData.votes[0].missionLeader }}
+                    Mission Leader: {{ activeQuestMissionLeader }}
                 </div>
 
                 <div class="missionParty">
@@ -70,6 +70,10 @@
             activeQuestData: function () {
                 return this.$store.state.missions[this.$store.state.activeMission - 1]
             },
+            activeQuestMissionLeader: function () {
+                let lastMissionIndex = this.activeQuestData.votes.length - 1
+                return this.activeQuestData.votes[lastMissionIndex].missionLeader
+            }
         }
     }
 </script>
