@@ -25,7 +25,6 @@
 
     export default {
         name: 'leaveGame',
-        props: ["parent"],
         data: function () {
             return {
                 modalActive: false,
@@ -39,13 +38,19 @@
                 this.$store.commit("resetState");
             },
             toggleModalActive: function () {
+                if (this.parentComponentIsWinner) {
+                    this.resetToLobby()
+                }
                 this.modalActive = !this.modalActive
             },
         },
         computed: {
             parentComponentIsLobby: function () {
-                return this.parent === "Lobby"
-            }
+                return this.$parent.$options.name === 'Lobby'
+            },
+            parentComponentIsWinner: function () {
+                return this.$parent.$options.name === 'Winner'
+            },
         }
     }
 </script>
