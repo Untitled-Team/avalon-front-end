@@ -14,7 +14,7 @@
                 </div>
                 <div class="field">
                     <button type="submit" id="joinGameSubmit">
-                        <img src="@/assets/joinGameButton.png">
+                        <img class="joinGameImg" src="@/assets/joinGameButton.png">
                     </button>
                 </div>
             </form>
@@ -25,7 +25,7 @@
                 </div>
                 <div class="field">
                     <button type="submit" id="createGameSubmit">
-                        <img src="@/assets/createGameButton.png">
+                        <img class="createGameImg" src="@/assets/createGameButton.png">
                     </button>
                 </div>
             </form>
@@ -71,17 +71,19 @@
     @import "../styles/variables";
     @import "../styles/mixins";
 
+    .joinGameImg {
+        max-height: 40px;
+        width: auto;
+    }
+
+    .createGameImg {
+        max-height: 40px;
+        width: auto;
+    }
+
     button {
         background-color: inherit;
         border: 0;
-    }
-
-    #joinGameSubmit {
-        max-width: 50%;
-    }
-
-    #createGameSubmit {
-        max-width: 54%;
     }
 
     .menuContent {
@@ -163,6 +165,14 @@
     }
 
     @media (max-height: 553px) {
+        .joinGameImg {
+            max-height: 34px;
+        }
+
+        .createGameImg {
+            max-height: 34px;
+        }
+
         .title {
             top: 2.5%;
         }
@@ -181,6 +191,14 @@
     }
 
     @media (max-height: 472px) {
+
+        .joinGameImg {
+            max-height: 34px;
+        }
+
+        .createGameImg {
+            max-height: 34px;
+        }
 
         .menuContent {
             margin-top: -20px;
