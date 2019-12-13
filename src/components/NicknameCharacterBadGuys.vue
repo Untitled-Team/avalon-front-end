@@ -8,11 +8,14 @@
 
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
-                <div id="badGuys" v-if="!isRegularGoodGuy" class="fontSizing">
+                <div id="badGuys" v-if="!isRegularGoodGuy && !isPercival" class="fontSizing">
                     {{badGuysText}}
                     <span v-for="(badGuy, index) in otherBadGuys" :key="index">
                         {{badGuy}}
                     </span>
+                </div>
+                <div id="merlin" v-if="isPercival" class="fontSizing">
+                    Merlin: {{merlin}}
                 </div>
             </div>
         </div>
@@ -42,6 +45,9 @@
             character: function () {
                 return this.$store.getters.getCharacterFormatted
             },
+            merlin: function () {
+                return this.$store.state.PlayerInfo.merlin
+            },
             isRegularGoodGuy: function () {
                 return this.$store.getters.getCharacterFormatted === 'Knight of Arthur'
             },
@@ -50,7 +56,10 @@
             },
             badGuysText: function () {
                 return this.$store.state.character === "Merlin" ? "Minions of Mordred:" : "Other Minions of Mordred:"
-            }
+            },
+            isPercival: function () {
+                return this.$store.state.character === "Percival"
+            },
         },
         methods: {
             toggleModalActive: function () {
