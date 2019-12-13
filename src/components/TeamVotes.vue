@@ -1,31 +1,42 @@
 <template>
     <div id="teamVotes">
         <div class="playerInfoModal" v-if="modalActive">
-            <div class="votesContainer">
-                <div class="votesHeader">
-                    <img class="voteImage" src="@/assets/voteUnderlinedBig.png">
+            <div class="scrollContainer">
+                <div class="scrollTop">
+                        <img class="leftHandScroll" src="@/assets/scrollEdgeBig.png">
+                        <div class="scrollyPart"></div>
+                        <img class="rightHandScroll" src="@/assets/scrollEdgeBig.png">
                 </div>
+                <div class="votesContainer">
+                    <div class="votesHeader">
+                        <img class="voteImage" src="@/assets/voteUnderlinedBig.png">
+                    </div>
 
-                <div class="bigText" v-if="approvedExist">
-                    <img class="voteImage" src="@/assets/yeaBig.png">
-                </div>
-                <div class="approval">
-                    <div class="approvers" :key="index" v-for="(player, index) in approved">
+                    <div class="bigText" v-if="approvedExist">
+                        <img class="voteImage" src="@/assets/yeaBig.png">
+                    </div>
+                    <div class="approval" v-if="approvedExist">
+                        <div class="approvers" :key="index" v-for="(player, index) in approved">
                         {{ player }}
+                        </div>
+                    </div>
+                    <div class="bigText" v-if="deniedExist">
+                        <img class="voteImage" src="@/assets/nayBig.png">
+                    </div>
+                    <div class="denied" v-if="deniedExist">
+                        <div class="deniers" :key="index" v-for="(player, index) in denied">
+                            {{ player }}
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="okButton" v-on:click="acknowledge">OK</button>
                     </div>
                 </div>
-
-                <div class="bigText" v-if="deniedExist">
-                    <img class="voteImage" src="@/assets/nayBig.png">
-                </div>
-                <div class="denied">
-                    <div class="deniers" :key="index" v-for="(player, index) in denied">
-                        {{ player }}
-                    </div>
-                </div>
-
-                <div>
-                    <button class="okButton" v-on:click="acknowledge">Ok</button>
+                <div class="scrollTop">
+                    <img class="leftHandScroll" src="@/assets/scrollEdgeBig.png">
+                    <div class="scrollyPartBottom"></div>
+                    <img class="rightHandScroll" src="@/assets/scrollEdgeBig.png">
                 </div>
             </div>
         </div>
@@ -70,6 +81,60 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .rightHandScroll {
+        transform: rotate(180deg);
+    }
+
+    .scrollContainer {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+    }
+
+    .scrollTop {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 40px;
+        justify-content: center;
+
+        img {
+            height: 40px;
+            width: auto;
+        }
+    }
+
+    .scrollyPartBottom {
+        height: 40px;
+        max-width: 400px;
+        width: 65%;
+        background: url(../assets/scrollRepeatBottomBig.png) repeat-x center center;
+        background-color: #e7c29f;
+        background-size: auto 100%;
+    }
+
+    .scrollyPart {
+        height: 40px;
+        max-width: 400px;
+        width: 65%;
+        background: url(../assets/scrollRepeatBig.png) repeat-x center center;
+        background-size: auto 100%;
+    }
+
+    .testContainer {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        align-items: center;
+        height: 40px;
+        justify-content: center;
+
+        img {
+            display: flex;
+        }
+    }
+
     .bigText {
         img {
             height: 38px;
@@ -83,7 +148,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         border-radius: 0;
-        border: $successful solid 1px;
+        border: white solid 1px;
         appearance: none;
         padding-right: 23px;
         padding-left: 25px;
@@ -127,7 +192,6 @@
         display: flex;
         flex-direction: column;
         color: whitesmoke;
-        /*height: 60%;*/
         width: 65%;
         background: #e7c29f;
         padding-left: 30px;
@@ -135,16 +199,15 @@
         padding-top: 5px;
         padding-bottom: 5px;
         max-width: 400px;
+
+        box-shadow: -5px 0 0 0 black, 5px 0 0 0 black;
     }
 
     .playerInfoModal {
         margin: auto;
         position: absolute;
-        background: rgba(black, 0.6);
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
+        background: rgba(black, 0.3);
+        top: 0; left: 0; bottom: 0; right: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -152,12 +215,9 @@
     }
 
     @media (max-height: 1500px) {
-
-
     }
 
     @media (max-height: 1000px) {
-
     }
 
     @media (max-height: 700px) {
