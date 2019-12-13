@@ -22,7 +22,7 @@
             <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
                 5 - 10 players required
             </div>
-            <LeaveGame class="leaveGame" :parent="'Lobby'"/>
+            <LeaveGame class="leaveGame"/>
         </div>
     </div>
 </template>

@@ -4,7 +4,7 @@
             <div class="is-centered"></div>
             <div class="permanentPlayerInfo is-centered">
 
-                <LeaveGame class="leaveGame" :parent="'NicknameCharacterBadGuys'"/>
+                <LeaveGame class="leaveGame"/>
 
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
