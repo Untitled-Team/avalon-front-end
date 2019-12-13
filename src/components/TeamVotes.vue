@@ -25,7 +25,7 @@
                     </div>
                     <div class="denied" v-if="deniedExist">
                         <div class="deniers" :key="index" v-for="(player, index) in denied">
-                        {{ player }}
+                            {{ player }}
                         </div>
                     </div>
 
