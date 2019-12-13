@@ -15,7 +15,7 @@
                     </span>
                 </div>
                 <div id="merlin" v-if="isPercival" class="fontSizing">
-                    Merlin: {{merlin}}
+                    Merlin: {{merlin}} {{morgana}}
                 </div>
             </div>
         </div>
@@ -47,6 +47,9 @@
             },
             merlin: function () {
                 return this.$store.state.PlayerInfo.merlin
+            },
+            morgana: function () {
+                return this.$store.state.PlayerInfo.morgana || " "
             },
             isRegularGoodGuy: function () {
                 return this.$store.getters.getCharacterFormatted === 'Knight of Arthur'
