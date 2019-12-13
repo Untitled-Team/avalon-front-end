@@ -7,7 +7,8 @@
                  backgroundAssassin: isAssassin,
                  backgroundMerlin: isMerlin,
                  backgroundPercival: isPercival,
-                 backgroundMordred: isMordred
+                 backgroundMordred: isMordred,
+                 backgroundOberon: isOberon
                 }"
         >
             <div class="knight character" v-if="isGood">
@@ -99,7 +100,7 @@
 
             <div class="percival character" v-if="isPercival">
                 <div class="rolePreTextWrapper">
-                    <div class="rolePreText">You are a...</div>
+                    <div class="rolePreText">You are</div>
                 </div>
                 <div class="roleTextWrapper">
                     PERCIVAL
@@ -120,7 +121,7 @@
 
             <div class="mordred character" v-if="isMordred">
                 <div class="rolePreTextWrapper">
-                    <div class="rolePreText">You are a...</div>
+                    <div class="rolePreText">You are</div>
                 </div>
                 <div class="roleTextWrapper">
                     MORDRED
@@ -136,6 +137,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
+                </div>
+            </div>
+
+            <div class="oberon character" v-if="isOberon">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are...</div>
+                </div>
+                <div class="roleTextWrapper">
+                    OBERON
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/oberon.jpeg">
+                </div>
+                <div class="badGuysTextWrapper"></div>
                 <div class="readyButtonWrapper">
                     <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
                 </div>
@@ -179,6 +196,9 @@
             },
             isMordred: function () {
                 return this.$store.state.character === "Mordred"
+            },
+            isOberon: function () {
+                return this.$store.state.character === "Oberon"
             }
         }
     }
@@ -355,6 +375,10 @@
     }
 
     .backgroundMordred {
+        background-color: #C7383E;
+    }
+
+    .backgroundOberon {
         background-color: #C7383E;
     }
 </style>
