@@ -19,7 +19,6 @@
                     <img class="voteImage" src="@/assets/nayBig.png">
                 </div>
                 <div class="denied">
-
                     <div class="deniers" :key="index" v-for="(player, index) in denied">
                         {{ player }}
                     </div>
@@ -142,7 +141,10 @@
         margin: auto;
         position: absolute;
         background: rgba(black, 0.6);
-        top: 0; left: 0; bottom: 0; right: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
         display: flex;
         align-items: center;
         justify-content: center;
