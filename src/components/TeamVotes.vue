@@ -20,19 +20,17 @@
                         {{ player }}
                         </div>
                     </div>
-
                     <div class="bigText" v-if="deniedExist">
                         <img class="voteImage" src="@/assets/nayBig.png">
                     </div>
                     <div class="denied" v-if="deniedExist">
-
                         <div class="deniers" :key="index" v-for="(player, index) in denied">
                         {{ player }}
                         </div>
                     </div>
 
                     <div>
-                        <button class="okButton" v-on:click="acknowledge">Ok</button>
+                        <button class="okButton" v-on:click="acknowledge">OK</button>
                     </div>
                 </div>
                 <div class="scrollTop">
@@ -150,7 +148,7 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         border-radius: 0;
-        border: $successful solid 1px;
+        border: white solid 1px;
         appearance: none;
         padding-right: 23px;
         padding-left: 25px;
@@ -217,12 +215,9 @@
     }
 
     @media (max-height: 1500px) {
-
-
     }
 
     @media (max-height: 1000px) {
-
     }
 
     @media (max-height: 700px) {

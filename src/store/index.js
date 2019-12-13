@@ -60,6 +60,10 @@ const getDefaultState = () => {
         },
         ProposeMissionMenu: {
             proposalsLeft: -1
+        },
+        PlayerInfo: {
+            merlin: "changemelater",
+            morgana: ""
         }
     }
 }

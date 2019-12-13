@@ -17,7 +17,7 @@
 
             <div class="buttonContainer">
                 <img src="@/assets/beginButtonBig.png" v-on:click="startGame" v-show="correctPlayerNumbers" class="beginButton">
-                <LeaveGame class="leaveGame" :parent="'Lobby'"/>
+                <LeaveGame class="leaveGame"/>
             </div>
 
             <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
