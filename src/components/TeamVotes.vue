@@ -3,18 +3,22 @@
         <div class="playerInfoModal" v-if="modalActive">
             <div class="votesContainer">
                 <div class="votesHeader">
-                    {{ missionLeader }}'s Team Proposal
+                    <img class="voteImage" src="@/assets/voteUnderlinedBig.png">
                 </div>
 
+                <div class="bigText" v-if="approvedExist">
+                    <img class="voteImage" src="@/assets/yeaBig.png">
+                </div>
                 <div class="approval">
-                    <div>Approve</div>
                     <div class="approvers" :key="index" v-for="(player, index) in approved">
                         {{ player }}
                     </div>
                 </div>
 
+                <div class="bigText" v-if="deniedExist">
+                    <img class="voteImage" src="@/assets/nayBig.png">
+                </div>
                 <div class="denied">
-                    <div>Deny</div>
                     <div class="deniers" :key="index" v-for="(player, index) in denied">
                         {{ player }}
                     </div>
@@ -41,6 +45,12 @@
             denied: function () {
                 return this.$store.state.TeamVotesData.denied
             },
+            deniedExist: function () {
+                return this.$store.state.TeamVotesData.denied.length !== 0
+            },
+            approvedExist: function () {
+                return this.$store.state.TeamVotesData.approved.length !== 0
+            },
             missionLeader: function () {
                 return this.$store.state.TeamVotesData.missionLeader
             }
@@ -59,6 +69,14 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .bigText {
+        img {
+            height: 38px;
+            width: auto;
+        }
+        color: black;
+    }
 
     .okButton {
         font-family: inherit;
@@ -80,20 +98,17 @@
     .approval {
         width: 80%;
         margin: 0 auto;
+        margin-top: 4px;
         font-size: 2.2em;
-        background-color: $successful;
-        margin-bottom: 5px;
+        color: #4d9276;
+        margin-bottom: 6%;
     }
 
     .denied {
         width: 80%;
         margin: 0 auto;
         font-size: 2.2em;
-        background-color: $failed;
-    }
-
-    .approvers {
-
+        color: $failed;
     }
 
     .votesHeader {
@@ -101,6 +116,10 @@
         display: flex;
         margin: 0 auto;
         margin-top: 10px;
+        margin-bottom: 5%;
+        img {
+            object-fit: contain;
+        }
     }
 
     .votesContainer {
@@ -108,9 +127,14 @@
         display: flex;
         flex-direction: column;
         color: whitesmoke;
-        width: 60%;
-        background: #2f3026;
-        border: 6px solid $insideBorder;
+        /*height: 60%;*/
+        width: 65%;
+        background: #e7c29f;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        max-width: 400px;
     }
 
     .playerInfoModal {
@@ -125,5 +149,72 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+    }
+
+    @media (max-height: 1500px) {
+
+
+    }
+
+    @media (max-height: 1000px) {
+
+    }
+
+    @media (max-height: 700px) {
+        .bigText {
+            img {
+                height: 24px;
+            }
+        }
+
+        .approval {
+            font-size: 2.4em;
+        }
+
+        .denied {
+            font-size: 2.4em;
+        }
+
+        .votesHeader {
+            img {
+                height: 100px;
+            }
+        }
+    }
+
+    @media (max-height: 553px) {
+        .bigText {
+            img {
+                height: 20px;
+            }
+        }
+
+        .votesHeader {
+            img {
+                height: 90px;
+            }
+        }
+    }
+
+    @media (max-height: 472px) {
+        .bigText {
+            img {
+                height: 15px;
+            }
+        }
+
+        .approval {
+            font-size: 2em;
+        }
+
+        .denied {
+            font-size: 2em;
+        }
+
+        .votesHeader {
+            img {
+                height: 80px;
+            }
+        }
     }
 </style>

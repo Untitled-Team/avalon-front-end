@@ -82,7 +82,7 @@
     @import "../styles/variables";
 
     #NoQuestData {
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-left: 5%;
         margin-right: 5%;
     }
