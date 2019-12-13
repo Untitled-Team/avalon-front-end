@@ -1,7 +1,15 @@
 <template>
     <div class="wrapper">
         <div id="playerInfo"
-             :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
+             :class="{
+                 backgroundGood: isGood,
+                 backgroundBad: isBad,
+                 backgroundAssassin: isAssassin,
+                 backgroundMerlin: isMerlin,
+                 backgroundPercival: isPercival,
+                 backgroundMordred: isMordred
+                }"
+        >
             <div class="knight character" v-if="isGood">
                 <div class="rolePreTextWrapper">
                     <div class="rolePreText">You are a...</div>
@@ -109,6 +117,29 @@
                     <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
+
+            <div class="mordred character" v-if="isMordred">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are a...</div>
+                </div>
+                <div class="roleTextWrapper">
+                    MORDRED
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/mordred.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <div class="badGuysText">
+                        <p class="allies">Allies</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -145,6 +176,9 @@
             },
             isPercival: function () {
                 return this.$store.state.character === "Percival"
+            },
+            isMordred: function () {
+                return this.$store.state.character === "Mordred"
             }
         }
     }
@@ -313,6 +347,14 @@
     }
 
     .backgroundBad {
+        background-color: #C7383E;
+    }
+
+    .backgroundPercival {
+        background-color: #35966E;
+    }
+
+    .backgroundMordred {
         background-color: #C7383E;
     }
 </style>
