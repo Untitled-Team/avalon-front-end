@@ -8,7 +8,7 @@
 
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
-                <div id="badGuys" v-if="!isRegularGoodGuy && !isPercival" class="fontSizing">
+                <div id="badGuys" v-if="shouldSeeBadGuys" class="fontSizing">
                     {{badGuysText}}
                     <span v-for="(badGuy, index) in otherBadGuys" :key="index">
                         {{badGuy}}
@@ -60,6 +60,12 @@
             isPercival: function () {
                 return this.$store.state.character === "Percival"
             },
+            isOberon: function () {
+                return this.$store.state.character === "Oberon"
+            },
+            shouldSeeBadGuys: function () {
+                return !this.isRegularGoodGuy && !this.isPercival && !this.isOberon
+            }
         },
         methods: {
             toggleModalActive: function () {
