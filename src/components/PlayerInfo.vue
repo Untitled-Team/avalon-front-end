@@ -8,7 +8,8 @@
                  backgroundMerlin: isMerlin,
                  backgroundPercival: isPercival,
                  backgroundMordred: isMordred,
-                 backgroundOberon: isOberon
+                 backgroundOberon: isOberon,
+                 backgroundMorgana: isMorgana
                 }"
         >
             <div class="knight character" v-if="isGood">
@@ -109,9 +110,12 @@
                     <img class="rolePicture" src="@/assets/percival.png">
                 </div>
                 <div class="badGuysTextWrapper">
-                    <p class="merlin">Merlin</p>
-                    <div class="flexTest">
-                        <p class="badGuyName">{{merlin}}</p>
+                    <div class="badGuysText">
+                        <p class="allies">Merlin</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in merlinAndMorgana">
+                                {{badGuy}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
@@ -157,6 +161,29 @@
                     <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
+
+            <div class="morgana character" v-if="isMorgana">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are</div>
+                </div>
+                <div class="roleTextWrapper">
+                    <div class="morganaBigText"> m0rG4n4</div>
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/morgana.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <div class="badGuysText">
+                        <p class="allies">Allies</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -173,8 +200,8 @@
             badGuys: function () {
                 return this.$store.state.badGuys
             },
-            merlin: function () {
-                return this.$store.state.PlayerInfo.merlin
+            merlinAndMorgana: function () {
+                return [this.$store.state.PlayerInfo.merlin, this.$store.state.PlayerInfo.morgana]
             },
             otherBadGuys: function () {
                 return this.badGuys.filter(bg => bg !== this.$store.state.nickname);
@@ -199,7 +226,10 @@
             },
             isOberon: function () {
                 return this.$store.state.character === "Oberon"
-            }
+            },
+            isMorgana: function () {
+                return this.$store.state.character === "Morgana"
+            },
         }
     }
 </script>
@@ -380,5 +410,14 @@
 
     .backgroundOberon {
         background-color: #C7383E;
+    }
+
+    .backgroundMorgana {
+        background-color: #C7383E;
+    }
+
+    .morganaBigText {
+        font-size: 35px;
+        margin-top: 10px;
     }
 </style>
