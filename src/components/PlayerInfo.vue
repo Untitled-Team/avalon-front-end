@@ -88,6 +88,27 @@
                          v-on:click="moveToFirstMission">
                 </div>
             </div>
+
+            <div class="percival character" v-if="isPercival">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are a...</div>
+                </div>
+                <div class="roleTextWrapper">
+                    PERCIVAL
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/percival.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <p class="merlin">Merlin</p>
+                    <div class="flexTest">
+                        <p class="badGuyName">{{merlin}}</p>
+                    </div>
+                </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -104,6 +125,9 @@
             badGuys: function () {
                 return this.$store.state.badGuys
             },
+            merlin: function () {
+                return this.$store.state.PlayerInfo.merlin
+            },
             otherBadGuys: function () {
                 return this.badGuys.filter(bg => bg !== this.$store.state.nickname);
             },
@@ -118,6 +142,9 @@
             },
             isAssassin: function () {
                 return this.$store.state.character === "Assassin"
+            },
+            isPercival: function () {
+                return this.$store.state.character === "Percival"
             }
         }
     }

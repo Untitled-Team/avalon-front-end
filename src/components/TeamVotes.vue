@@ -108,7 +108,6 @@
         display: flex;
         flex-direction: column;
         color: whitesmoke;
-        /*height: 60%;*/
         width: 60%;
         background: #2f3026;
         border: 6px solid $insideBorder;
