@@ -24,7 +24,7 @@
                 </div>
                 <div class="badGuysTextWrapper"></div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonWithTextBig.png" v-on:click="moveToFirstMission">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonWithTextBig.png" v-on:click="moveToFirstMission">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonWithTextBig.png"
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png"
                          v-on:click="moveToFirstMission">
                 </div>
             </div>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonWithTextBig.png"
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png"
                          v-on:click="moveToFirstMission">
                 </div>
             </div>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonWithTextBig.png" v-on:click="moveToFirstMission">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -142,7 +142,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonWithTextBig.png" v-on:click="moveToFirstMission">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -158,7 +158,7 @@
                 </div>
                 <div class="badGuysTextWrapper"></div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonWithTextBig.png" v-on:click="moveToFirstMission">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -181,7 +181,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonWithTextBig.png" v-on:click="moveToFirstMission">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
         </div>
