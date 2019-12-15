@@ -1,7 +1,9 @@
 <template>
     <div class="intro">
-        <img class="castle" src="@/assets/castleBigger.png">
+        <img class="castle" src="@/assets/castle.png">
         <img class="title" src="@/assets/titleBig.png">
+        <Cloud1 class="cloud1"/>
+        <Cloud2 class="cloud2"/>
         <div class="menuContent">
             <form id="joinGameForm" @submit.prevent="joinGame">
                 <div class="field">
@@ -36,9 +38,15 @@
 <script>
     import WebsocketService from "../services/WebsocketService";
     import store from "../store/index.js"
+    import Cloud1 from "./clouds/Cloud1"
+    import Cloud2 from "./clouds/Cloud2"
 
     export default {
         name: "Intro",
+        components: {
+            Cloud1,
+            Cloud2
+        },
         data: function () {
             return {
                 nickname: "",
@@ -70,6 +78,22 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
     @import "../styles/mixins";
+
+    .cloud1 {
+        position: absolute;
+        top: 5%;
+        right: 0;
+        width: 100%;
+        z-index: 3;
+    }
+
+    .cloud2 {
+        position: absolute;
+        top: 8%;
+        right: 0;
+        width: 100%;
+        z-index: 3;
+    }
 
     .joinGameImg {
         max-height: 40px;
@@ -111,6 +135,11 @@
         top: 6.5%;
         left: 20%;
         right: 20%;
+        z-index: 2;
+    }
+
+    .castle {
+        z-index: 1;
     }
 
     input[type=text] {
