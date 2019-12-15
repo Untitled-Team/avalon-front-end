@@ -1,7 +1,7 @@
 <template>
     <div class="clouds">
-        <div class="cloud2">
-            <img src="@/assets/cloud2.png">
+        <div class="cloud5">
+            <img src="@/assets/cloud5.png">
         </div>
     </div>
 </template>
@@ -9,32 +9,32 @@
 <script>
 
     export default {
-        name: 'Cloud2',
+        name: 'Cloud5',
     }
 </script>
 
 <style lang="scss" scoped>
     @import "../../styles/variables";
 
-    .cloud2 img {
-        animation: float 10s linear infinite;
-        width: 25%;
+    .cloud5 img {
+        animation: float 6s linear infinite;
+        width: 20%;
     }
 
     @-webkit-keyframes float {
         0% {
-            transform: translate(-100%);
+            transform: translate(-300%);
         }
 
         30% {
-            transform: translate(-280%);
+            transform: translate(-370%);
         }
         30.000001% {
-            transform: translate(350%);
+            transform: translate(370%);
         }
 
         100% {
-            transform: translate(-100%);
+            transform: translate(-300%);
         }
     }
 </style>

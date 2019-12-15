@@ -17,11 +17,11 @@
     @import "../../styles/variables";
 
     .cloud1 img {
-        animation: from-start1 8s linear infinite;
-        width: 30%;
+        animation: float 8s linear infinite;
+        width: 40%;
     }
 
-    @-webkit-keyframes from-start1 {
+    @-webkit-keyframes float {
         0% {
             transform: translate(-40%);
         }
@@ -31,28 +31,6 @@
         }
         30.000001% {
             transform: translate(350%);
-        }
-
-        100% {
-            transform: translate(-40%);
-        }
-    }
-
-    .cloud2 img {
-        animation: from-start2 6s linear infinite;
-    }
-
-    @-webkit-keyframes from-start2 {
-        0% {
-            transform: translate(-40%);
-        }
-
-        75% {
-            transform: translate(-280%);
-        }
-
-        75.000001% {
-            transform: translate(70%);
         }
 
         100% {
