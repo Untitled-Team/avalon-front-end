@@ -5,6 +5,8 @@
         <Cloud3 class="cloud3"/>
         <Cloud4 class="cloud4"/>
         <Cloud5 class="cloud5"/>
+        <Cloud6 class="cloud6"/>
+        <Cloud7 class="cloud7"/>
     </div>
 </template>
 
@@ -14,6 +16,8 @@
     import Cloud3 from "./Cloud3"
     import Cloud4 from "./Cloud4"
     import Cloud5 from "./Cloud5"
+    import Cloud6 from "./Cloud6"
+    import Cloud7 from "./Cloud7"
 
     export default {
         name: 'Clouds',
@@ -23,6 +27,8 @@
             Cloud3,
             Cloud4,
             Cloud5,
+            Cloud6,
+            Cloud7
         }
     }
 </script>
@@ -60,5 +66,9 @@
 
     .cloud6 {
         @include cloud(6%, 1);
+    }
+
+    .cloud7 {
+        @include cloud(1%, 1);
     }
 </style>
