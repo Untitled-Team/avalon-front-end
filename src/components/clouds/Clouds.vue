@@ -54,13 +54,12 @@
     }
 
     .cloud3 {
-        @include cloud(2%, 1);
+        @include cloud(-1%, 1);
         opacity: .85;
     }
 
     .cloud4 {
-        @include cloud(4%, 3);
-        opacity: .8;
+        @include cloud(8%, 3);
     }
 
     .cloud5 {
@@ -69,10 +68,11 @@
     }
 
     .cloud6 {
-        @include cloud(6%, 3);
+        @include cloud(3%, 3);
+        opacity: .8;
     }
 
     .cloud7 {
-        @include cloud(-1%, 1);
+        @include cloud(2%, 3);
     }
 </style>
