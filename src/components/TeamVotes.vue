@@ -212,6 +212,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        z-index: 100000;
     }
 
     @media (max-height: 1500px) {
