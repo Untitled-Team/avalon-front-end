@@ -1,7 +1,8 @@
 <template>
     <div class="intro">
-        <img class="castle" src="@/assets/castleBigger.png">
+        <img class="castle" src="@/assets/castle.png">
         <img class="title" src="@/assets/titleBig.png">
+        <Clouds class="clouds"/>
         <div class="menuContent">
             <form id="joinGameForm" @submit.prevent="joinGame">
                 <div class="field">
@@ -36,9 +37,13 @@
 <script>
     import WebsocketService from "../services/WebsocketService";
     import store from "../store/index.js"
+    import Clouds from "./clouds/Clouds"
 
     export default {
         name: "Intro",
+        components: {
+            Clouds
+        },
         data: function () {
             return {
                 nickname: "",
@@ -111,6 +116,11 @@
         top: 6.5%;
         left: 20%;
         right: 20%;
+        z-index: 2;
+    }
+
+    .castle {
+        z-index: 1;
     }
 
     input[type=text] {
