@@ -19,7 +19,6 @@
     .cloud7 img {
         animation: float 22s linear infinite;
         width: 50%;
-        opacity: .5;
     }
 
     @-webkit-keyframes float {
