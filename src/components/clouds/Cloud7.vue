@@ -18,7 +18,7 @@
 
     .cloud7 img {
         animation: float 30s linear infinite;
-        width: 50%;
+        width: 38%;
     }
 
     @-webkit-keyframes float {
@@ -30,7 +30,7 @@
             transform: translate(-180%);
         }
         30.000001% {
-            transform: translate(180%);
+            transform: translate(240%);
         }
 
         100% {

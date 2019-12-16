@@ -17,8 +17,8 @@
     @import "../../styles/variables";
 
     .cloud6 img {
-        animation: float 30s linear infinite;
-        width: 50%;
+        animation: float 32s linear infinite;
+        width: 40%;
     }
 
     @-webkit-keyframes float {
@@ -27,10 +27,10 @@
         }
 
         70% {
-            transform: translate(-140%);
+            transform: translate(-170%);
         }
         70.000001% {
-            transform: translate(150%);
+            transform: translate(180%);
         }
 
         100% {
