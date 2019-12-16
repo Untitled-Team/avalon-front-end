@@ -17,7 +17,7 @@
     @import "../../styles/variables";
 
     .cloud1 img {
-        animation: float 11s linear infinite;
+        animation: float 30s linear infinite;
         width: 40%;
     }
 

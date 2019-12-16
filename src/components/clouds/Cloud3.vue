@@ -17,9 +17,8 @@
     @import "../../styles/variables";
 
     .cloud3 img {
-        animation: float 12s linear infinite;
-        width: 15%;
-        opacity: .85;
+        animation: float 69s linear infinite;
+        width: 25%;
     }
 
     @-webkit-keyframes float {
