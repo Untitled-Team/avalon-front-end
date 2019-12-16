@@ -17,8 +17,8 @@
     @import "../../styles/variables";
 
     .cloud2 img {
-        animation: float 10s linear infinite;
-        width: 25%;
+        animation: float 55s linear infinite;
+        width: 30%;
     }
 
     @-webkit-keyframes float {
