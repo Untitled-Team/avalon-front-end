@@ -264,7 +264,7 @@
 
     .roleTextWrapper {
         display: flex;
-        flex: 20 1 0;
+        flex: 20 1 auto;
         margin: 0 auto;
         height: 0;
 
@@ -275,7 +275,7 @@
 
     .rolePictureWrapper {
         display: flex;
-        flex: 40 1 0;
+        flex: 40 1 auto;
         justify-content: center;
         height: 0;
 
@@ -332,7 +332,7 @@
         }
 
         .rolePictureWrapper {
-            flex: 50 1 0;
+            flex: 50 1 auto;
             margin-left: 8%;
         }
     }

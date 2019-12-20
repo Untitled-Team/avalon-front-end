@@ -100,7 +100,7 @@
 
     .failure {
         display: flex;
-        flex: 1 1 0;
+        flex: 1 1 auto;
         flex-direction: column;
         align-items: center;
 
@@ -109,6 +109,7 @@
             flex: 1 1 0;
             margin-left: 5px;
             margin-right: 5px;
+            height: 0;
 
             .defeatText {
                 object-fit: contain;
@@ -118,9 +119,10 @@
         .daggerWrapper {
             margin-top: 5px;
             display: flex;
-            flex: 2 1 0;
+            flex: 2 1 auto;
             margin-left: 40%;
             margin-right: 5px;
+            height: 0;
 
             .dagger {
                 object-fit: contain;
@@ -142,15 +144,17 @@
 
     .success {
         display: flex;
+        flex-grow: 1;
         flex-direction: column;
         align-items: center;
 
         .victory {
             margin-top: 4px;
             display: flex;
-            flex: 1 1 0;
+            flex: 1 1 auto;
             margin-left: 5px;
             margin-right: 5px;
+            height: 0;
 
             .victoryText {
                 object-fit: contain;
@@ -159,9 +163,10 @@
 
         .flagWrapper {
             display: flex;
-            flex: 2 1 0;
+            flex: 2 1 auto;
             margin-left: 20%;
             margin-right: 5%;
+            height: 0;
 
             .flag {
                 object-fit: contain;
