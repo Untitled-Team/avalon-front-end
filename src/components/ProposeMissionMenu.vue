@@ -185,7 +185,7 @@
 
         .swordWrapper {
             display: flex;
-            flex: 1 1 0;
+            flex: 1 1 auto;
             height: 0;
             width: 65%;
             margin: 0 auto;
