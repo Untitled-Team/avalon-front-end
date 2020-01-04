@@ -7,8 +7,10 @@
 
                 <div>You cannot come back to this game.</div>
 
-                <button @click="toggleModalActive" class="stayInGame">Take me back!</button>
-                <button @click="resetToLobby" class="leaveGameButton">I'm sure</button>
+                <div class="buttonWrapper">
+                    <img @click="toggleModalActive" class="stayInGame" src="@/assets/takeMeBackButton.png">
+                    <img @click="resetToLobby" class="leaveGameButton" src="@/assets/confirmLeaveButton.png">
+                </div>
             </div>
         </div>
 
@@ -85,19 +87,20 @@
         margin: 0 auto;
         width: 90%;
         font-size: 2em;
-    }
 
-    .stayInGame {
-        color: $successful;
-        font-size: 25px;
-        margin: 5% 3%;
-        -webkit-tap-highlight-color: transparent;
-    }
+        .buttonWrapper {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 5%;
 
-    .leaveGameButton {
-        color: red;
-        font-size: 25px;
-        margin: 5% 3%;
-        -webkit-tap-highlight-color: transparent;
+            .stayInGame {
+                width: 45%;
+            }
+
+            .leaveGameButton {
+                width: 45%;
+            }
+        }
     }
 </style>
