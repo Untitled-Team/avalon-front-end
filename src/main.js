@@ -5,8 +5,14 @@ import router from './router'
 import store from "./store/index.js"
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+import VueAnalytics from 'vue-analytics';
 
 Vue.config.productionTip = false
+
+Vue.use(VueAnalytics, {
+    id: 'UA-154860861-1',
+    router
+});
 
 Vue.use(VueNativeSock, 'wss://avalonga.me/test', {
     store: store,
@@ -18,7 +24,7 @@ Vue.use(VueNativeSock, 'wss://avalonga.me/test', {
 Vue.use(Buefy);
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app');

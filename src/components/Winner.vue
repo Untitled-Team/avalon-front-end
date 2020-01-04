@@ -79,7 +79,9 @@
 
         .defeatScreenWrapper {
             flex: 1 1 0;
-            max-width: 70%;
+            max-width: 75%;
+            margin: 0 auto;
+            margin-top: 10px;
 
             img {
                 object-fit: contain;

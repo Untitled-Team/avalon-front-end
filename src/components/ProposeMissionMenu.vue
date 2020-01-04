@@ -154,7 +154,7 @@
         display: flex;
         flex-direction: column;
         margin: 0 auto;
-        width: 67%;
+        width: 59%;
     }
 
     .crossedSwords {
@@ -185,7 +185,7 @@
 
         .swordWrapper {
             display: flex;
-            flex: 1 1 0;
+            flex: 1 1 auto;
             height: 0;
             width: 65%;
             margin: 0 auto;
@@ -205,7 +205,7 @@
         margin: 0 auto;
         margin-top: 3px;
         padding: 1px;
-        max-width: 180px;
+        /*max-width: 180px;*/
         background: rgba(black, 0.11);
     }
 
@@ -288,7 +288,6 @@
         }
 
         .playerDiv {
-            max-width: 180px;
             font-size: 1.8em;
         }
     }

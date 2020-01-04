@@ -86,8 +86,8 @@ describe('Lobby.vue', () => {
             store.state.players  = expectedPlayers
             wrapper = shallowMount(Lobby, {store})
 
-            const lobbyReadyWrapper = wrapper.find('#lobbyReadyForm')
-            lobbyReadyWrapper.trigger("submit.prevent")
+            const lobbyReadyWrapper = wrapper.find('.beginButton')
+            lobbyReadyWrapper.trigger("click")
 
             assert.notCalled(WebsocketService.sendObj)
         });
@@ -97,8 +97,8 @@ describe('Lobby.vue', () => {
             store.state.players  = expectedPlayers
             wrapper = shallowMount(Lobby, {store})
 
-            const lobbyReadyWrapper = wrapper.find('#lobbyReadyForm')
-            lobbyReadyWrapper.trigger("submit.prevent")
+            const lobbyReadyWrapper = wrapper.find('.beginButton')
+            lobbyReadyWrapper.trigger("click")
 
             assert.notCalled(WebsocketService.sendObj)
         });
@@ -108,8 +108,8 @@ describe('Lobby.vue', () => {
             store.state.players  = expectedPlayers
             wrapper = shallowMount(Lobby, {store})
 
-            const lobbyReadyWrapper = wrapper.find('#lobbyReadyForm')
-            lobbyReadyWrapper.trigger("submit.prevent")
+            const lobbyReadyWrapper = wrapper.find('.beginButton')
+            lobbyReadyWrapper.trigger("click")
 
             assert.calledOnce(WebsocketService.sendObj)
         });
@@ -119,8 +119,8 @@ describe('Lobby.vue', () => {
             store.state.players  = expectedPlayers
             wrapper = shallowMount(Lobby, {store})
 
-            const lobbyReadyWrapper = wrapper.find('#lobbyReadyForm')
-            lobbyReadyWrapper.trigger("submit.prevent")
+            const lobbyReadyWrapper = wrapper.find('.beginButton')
+            lobbyReadyWrapper.trigger("click")
 
             assert.calledOnce(WebsocketService.sendObj)
         });

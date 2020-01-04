@@ -100,8 +100,9 @@
 
     .swordWrapper {
         display: flex;
-        flex: 10 1 0;
+        flex: 10 1 auto;
         margin: 0 auto;
+        height: 0;
         width: 65%;
         padding-top: 5px;
         padding-bottom: 5px;

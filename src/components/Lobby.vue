@@ -15,14 +15,14 @@
                 </div>
             </div>
 
-            <form id="lobbyReadyForm" @submit.prevent="startGame" v-show="correctPlayerNumbers">
-                <input type="submit" class="startButton button is-small" value="Begin"/>
-            </form>
+            <div class="buttonContainer">
+                <img src="@/assets/beginButtonBig.png" v-on:click="startGame" v-show="correctPlayerNumbers" class="beginButton">
+                <LeaveGame class="leaveGame"/>
+            </div>
 
             <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
                 5 - 10 players required
             </div>
-            <LeaveGame class="leaveGame" :parent="'Lobby'"/>
         </div>
     </div>
 </template>
@@ -61,11 +61,30 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .beginButton {
+        display: flex;
+        height: 30px;
+        margin-right: 3px;
+    }
+
+    .buttonContainer {
+        display: flex;
+        flex-direction: row;
+        margin: 0 auto;
+    }
+
+    .startButton {
+        display: flex;
+    }
+
     .leaveGame {
         display: flex;
-        flex: 1 1 0;
-        margin: 1% auto;
-        max-width: 40%;
+    }
+
+    .leaveGame {
+        img {
+            max-height: 40px;
+        }
     }
 
     .roomId {
