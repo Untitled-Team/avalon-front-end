@@ -16,6 +16,28 @@
         components: {
             Avalon,
         },
+        mounted() {
+            window.addEventListener("orientationchange", function() {
+                setInterval(function() {
+                    document.body.style.height = window.innerHeight + 'px';
+                }, 200)
+                setInterval(function() {
+                    document.body.style.height = window.innerHeight + 'px';
+                }, 400)
+                setInterval(function() {
+                    document.body.style.height = window.innerHeight + 'px';
+                }, 600)
+                setInterval(function() {
+                    document.body.style.height = window.innerHeight + 'px';
+                }, 800)
+                setInterval(function() {
+                    document.body.style.height = window.innerHeight + 'px';
+                }, 1000)
+                setInterval(function() {
+                    document.body.style.height = window.innerHeight + 'px';
+                }, 1500)
+            });
+        },
     }
 </script>
 

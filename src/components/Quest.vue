@@ -13,8 +13,10 @@
              activeIsIncompleteAndActiveIsCurrent: activeIsIncompleteAndActiveIsCurrent,
              activeMissionPassing: activeMissionPassing,
              activeMissionFailing: activeMissionFailing,
+             isFirstQuest: isFirst,
+             isLastQuest: isLast,
          }">
-            <div class="firstRow">
+            <div class="firstRow" :class="{first: isFirst, middle: isMiddle, last: isLast}">
                 <div class="overwrite"
                      v-bind:class="{active: isActive, inactive: !isActive, passing: didPass, failing: didFail, notCompleted: !completed, current: isCurrent}">
                 </div>
@@ -149,6 +151,14 @@
         height: 32px;
     }
 
+    .isFirstQuest {
+        padding-left: 0px;
+    }
+
+    .isLastQuest {
+        padding-right: 0px;
+    }
+
     .bannerContainer.first {
         padding-left: 0px;
     }
@@ -195,7 +205,21 @@
         height: 4px;
         padding: 0px 5%;
         margin: 0 auto;
-        box-shadow: -2px 0px rgba(black, 0.3), 2px 0px rgba(black, 0.3);
+    }
+
+    .bannerContainer {
+        .first {
+            box-shadow: 2px 0px rgba(black, 0.3);
+            /*padding-left: 0px;*/
+        }
+
+        .middle {
+            box-shadow: -2px 0px rgba(black, 0.3), 2px 0px rgba(black, 0.3);
+        }
+
+        .last {
+            box-shadow: -2px 0px rgba(black, 0.3);
+        }
     }
 
     .inactive > .bannerContainer > .firstRow {

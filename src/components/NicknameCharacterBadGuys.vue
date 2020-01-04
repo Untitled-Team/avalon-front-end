@@ -4,15 +4,18 @@
             <div class="is-centered"></div>
             <div class="permanentPlayerInfo is-centered">
 
-                <LeaveGame class="leaveGame" :parent="'NicknameCharacterBadGuys'"/>
+                <LeaveGame class="leaveGame"/>
 
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
-                <div id="badGuys" v-if="!isRegularGoodGuy" class="fontSizing">
+                <div id="badGuys" v-if="shouldSeeBadGuys" class="fontSizing">
                     {{badGuysText}}
                     <span v-for="(badGuy, index) in otherBadGuys" :key="index">
                         {{badGuy}}
                     </span>
+                </div>
+                <div id="merlin" v-if="isPercival" class="fontSizing">
+                    Merlin: {{merlin}} {{morgana}}
                 </div>
             </div>
         </div>
@@ -42,6 +45,12 @@
             character: function () {
                 return this.$store.getters.getCharacterFormatted
             },
+            merlin: function () {
+                return this.$store.state.PlayerInfo.merlin
+            },
+            morgana: function () {
+                return this.$store.state.PlayerInfo.morgana || " "
+            },
             isRegularGoodGuy: function () {
                 return this.$store.getters.getCharacterFormatted === 'Knight of Arthur'
             },
@@ -50,6 +59,15 @@
             },
             badGuysText: function () {
                 return this.$store.state.character === "Merlin" ? "Minions of Mordred:" : "Other Minions of Mordred:"
+            },
+            isPercival: function () {
+                return this.$store.state.character === "Percival"
+            },
+            isOberon: function () {
+                return this.$store.state.character === "Oberon"
+            },
+            shouldSeeBadGuys: function () {
+                return !this.isRegularGoodGuy && !this.isPercival && !this.isOberon
             }
         },
         methods: {

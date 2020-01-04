@@ -29,6 +29,7 @@ const getDefaultState = () => {
             questInfoDisplay: false,
             proposeMissionParty: false,
             proposedPartyVote: false,
+            teamVotesDisplay: false,
             passFailVote: false,
             displayPassFailVoteResults: false,
             assassinVote: false,
@@ -42,6 +43,11 @@ const getDefaultState = () => {
             proposedParty: [],
             playerHasVoted: false
         },
+        TeamVotesData: {
+            missionLeader: "",
+            approved: [],
+            denied: []
+        },
         DisplayPassFailVoteResults: {
             passVotes: 0,
             failVotes: 0,
@@ -54,6 +60,10 @@ const getDefaultState = () => {
         },
         ProposeMissionMenu: {
             proposalsLeft: -1
+        },
+        PlayerInfo: {
+            merlin: "changemelater",
+            morgana: ""
         }
     }
 }
@@ -151,15 +161,12 @@ export default new Vuex.Store({
             state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
         },
         displayPassFailVoteResultsToProposeMissionParty: ({state}) => {
-            state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
             state.gameState.proposeMissionParty = !state.gameState.proposeMissionParty
         },
         displayPassFailVoteResultsToAssassinVote: ({state}) => {
-            state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
             state.gameState.assassinVote = !state.gameState.assassinVote
         },
         displayPassFailVoteResultsToBadGuysWin: ({state}) => {
-            state.gameState.displayPassFailVoteResults = !state.gameState.displayPassFailVoteResults
             state.gameState.badGuysWin = !state.gameState.badGuysWin
         },
         assassinVoteToGoodGuysWin: ({state}) => {
@@ -169,6 +176,9 @@ export default new Vuex.Store({
         assassinVoteToBadGuysWin: ({state}) => {
             state.gameState.assassinVote = !state.gameState.assassinVote
             state.gameState.badGuysWin = !state.gameState.badGuysWin
+        },
+        turnOffDisplayPassFailVoteResults: ({state}) => {
+            state.gameState.displayPassFailVoteResults = false
         },
     },
     plugins: [vuexLocal.plugin]

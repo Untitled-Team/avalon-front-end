@@ -5,16 +5,18 @@
             <div class="innerWrapper">
                 <div>Are you sure you want to leave?</div>
 
-                <div>You cannot come back to this game.</div>
+                <div class="bottomText">You cannot come back to this game.</div>
 
-                <button @click="toggleModalActive" class="stayInGame">Take me back!</button>
-                <button @click="resetToLobby" class="leaveGameButton">I'm sure</button>
+                <div class="buttonWrapper">
+                    <img @click="toggleModalActive" class="stayInGame" src="@/assets/takeMeBackButton.png">
+                    <img @click="resetToLobby" class="leaveGameButton" src="@/assets/confirmLeaveButton.png">
+                </div>
             </div>
         </div>
 
 
         <img v-if="parentComponentIsLobby" src="@/assets/leaveButton.png" @click="toggleModalActive"
-             class="leaveGameButtonModal">
+             class="lobbyLeave">
 
         <img v-else src="@/assets/leaveGameButton.png" @click="toggleModalActive" class="leaveGameButtonModal">
     </div>
@@ -25,7 +27,6 @@
 
     export default {
         name: 'leaveGame',
-        props: ["parent"],
         data: function () {
             return {
                 modalActive: false,
@@ -39,13 +40,19 @@
                 this.$store.commit("resetState");
             },
             toggleModalActive: function () {
+                if (this.parentComponentIsWinner) {
+                    this.resetToLobby()
+                }
                 this.modalActive = !this.modalActive
             },
         },
         computed: {
             parentComponentIsLobby: function () {
-                return this.parent === "Lobby"
-            }
+                return this.$parent.$options.name === 'Lobby'
+            },
+            parentComponentIsWinner: function () {
+                return this.$parent.$options.name === 'Winner'
+            },
         }
     }
 </script>
@@ -53,9 +60,17 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .bottomText {
+        margin-top: 2%;
+    }
+    .lobbyLeave {
+        height: $defaultLobbyButtonHeight;
+    }
+
     .leaveGameButtonModal {
         padding-top: 5px;
         margin: auto;
+        /*object-fit: contain;*/
     }
 
     .leaveGameWrapper {
@@ -74,20 +89,24 @@
     .innerWrapper {
         margin: 0 auto;
         width: 90%;
-        font-size: 2em;
-    }
+        font-size: 2.3em;
 
-    .stayInGame {
-        color: $successful;
-        font-size: 25px;
-        margin: 5% 3%;
-        -webkit-tap-highlight-color: transparent;
-    }
+        .buttonWrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 5%;
 
-    .leaveGameButton {
-        color: red;
-        font-size: 25px;
-        margin: 5% 3%;
-        -webkit-tap-highlight-color: transparent;
+            .stayInGame {
+                height: 50px;
+                margin-top: 5%;
+            }
+
+            .leaveGameButton {
+                height: 50px;
+                margin-top: 5%;
+            }
+        }
     }
 </style>

@@ -1,7 +1,8 @@
 <template>
     <div class="intro">
-        <img class="castle" src="@/assets/castleBigger.png">
+        <img class="castle" src="@/assets/castle.png">
         <img class="title" src="@/assets/titleBig.png">
+        <Clouds class="clouds"/>
         <div class="menuContent">
             <div class="createAndJoinGameForms" v-if="!createGameConfigure">
                 <form id="joinGameForm" @submit.prevent="joinGame" v-if="!createGameConfigure">
@@ -15,7 +16,7 @@
                     </div>
                     <div class="field">
                         <button type="submit" id="joinGameSubmit">
-                            <img src="@/assets/joinGameButton.png">
+                            <img class="joinGameImg" src="@/assets/joinGameButton.png">
                         </button>
                     </div>
                 </form>
@@ -26,7 +27,7 @@
                     </div>
                     <div class="field">
                         <button type="submit" id="createGameSubmit">
-                            <img src="@/assets/createGameButton.png">
+                            <img class="createGameImg" src="@/assets/createGameButton.png">
                         </button>
                     </div>
                 </form>
@@ -56,9 +57,13 @@
 <script>
     import WebsocketService from "../services/WebsocketService";
     import store from "../store/index.js"
+    import Clouds from "./clouds/Clouds"
 
     export default {
         name: "Intro",
+        components: {
+            Clouds
+        },
         data: function () {
             return {
                 nickname: "",
@@ -95,6 +100,16 @@
     @import "../styles/variables";
     @import "../styles/mixins";
 
+    .joinGameImg {
+        max-height: 40px;
+        width: auto;
+    }
+
+    .createGameImg {
+        max-height: 40px;
+        width: auto;
+    }
+
     .configure {
         font-size: 3em;
         display: flex;
@@ -115,14 +130,6 @@
     button {
         background-color: inherit;
         border: 0;
-    }
-
-    #joinGameSubmit {
-        max-width: 50%;
-    }
-
-    #createGameSubmit {
-        max-width: 54%;
     }
 
     .menuContent {
@@ -150,6 +157,11 @@
         top: 6.5%;
         left: 20%;
         right: 20%;
+        z-index: 2;
+    }
+
+    .castle {
+        z-index: 1;
     }
 
     input[type=text] {
@@ -204,6 +216,14 @@
     }
 
     @media (max-height: 553px) {
+        .joinGameImg {
+            max-height: 34px;
+        }
+
+        .createGameImg {
+            max-height: 34px;
+        }
+
         .title {
             top: 2.5%;
         }
@@ -222,6 +242,14 @@
     }
 
     @media (max-height: 472px) {
+
+        .joinGameImg {
+            max-height: 34px;
+        }
+
+        .createGameImg {
+            max-height: 34px;
+        }
 
         .menuContent {
             margin-top: -20px;

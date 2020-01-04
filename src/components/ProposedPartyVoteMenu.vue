@@ -30,6 +30,7 @@
         </div>
         <div id="WaitingOnOthers" v-show="playerHasVoted">
             Waiting for others...
+            <img class="hourglass" src="@/assets/hourglass.png"/>
         </div>
     </div>
 </template>
@@ -160,6 +161,11 @@
     #WaitingOnOthers {
         padding-top: 40px;
         font-size: 3em;
+
+        .hourglass {
+            margin-top: 5%;
+            width: 50%;
+        }
     }
 
     .someMargin {
@@ -170,13 +176,13 @@
     }
 
     #approveButton {
-        margin-top: 5%;
+        margin-top: 5px;
         height: 40px;
     }
 
     #denyButton {
         height: 40px;
-        margin-top: 3%;
+        margin-top: 5px;
     }
 
     .playersTeam {

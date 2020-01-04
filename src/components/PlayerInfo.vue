@@ -1,7 +1,17 @@
 <template>
     <div class="wrapper">
         <div id="playerInfo"
-             :class="{backgroundGood: isGood, backgroundBad: isBad, backgroundAssassin: isAssassin, backgroundMerlin: isMerlin}">
+             :class="{
+                 backgroundGood: isGood,
+                 backgroundBad: isBad,
+                 backgroundAssassin: isAssassin,
+                 backgroundMerlin: isMerlin,
+                 backgroundPercival: isPercival,
+                 backgroundMordred: isMordred,
+                 backgroundOberon: isOberon,
+                 backgroundMorgana: isMorgana
+                }"
+        >
             <div class="knight character" v-if="isGood">
                 <div class="rolePreTextWrapper">
                     <div class="rolePreText">You are a...</div>
@@ -14,7 +24,7 @@
                 </div>
                 <div class="badGuysTextWrapper"></div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -37,7 +47,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonBig.png" v-on:click="moveToFirstMission">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
 
@@ -60,7 +70,7 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonBig.png"
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png"
                          v-on:click="moveToFirstMission">
                 </div>
             </div>
@@ -84,8 +94,94 @@
                     </div>
                 </div>
                 <div class="readyButtonWrapper">
-                    <img class="readyButton" src="@/assets/readyButtonBig.png"
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png"
                          v-on:click="moveToFirstMission">
+                </div>
+            </div>
+
+            <div class="percival character" v-if="isPercival">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are</div>
+                </div>
+                <div class="roleTextWrapper">
+                    PERCIVAL
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/percival.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <div class="badGuysText">
+                        <p class="allies">Merlin</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in merlinAndMorgana">
+                                {{badGuy}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
+                </div>
+            </div>
+
+            <div class="mordred character" v-if="isMordred">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are</div>
+                </div>
+                <div class="roleTextWrapper">
+                    MORDRED
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/mordred.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <div class="badGuysText">
+                        <p class="allies">Allies</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
+                </div>
+            </div>
+
+            <div class="oberon character" v-if="isOberon">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are...</div>
+                </div>
+                <div class="roleTextWrapper">
+                    OBERON
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/oberon.jpeg">
+                </div>
+                <div class="badGuysTextWrapper"></div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
+                </div>
+            </div>
+
+            <div class="morgana character" v-if="isMorgana">
+                <div class="rolePreTextWrapper">
+                    <div class="rolePreText">You are</div>
+                </div>
+                <div class="roleTextWrapper">
+                    <div class="morganaBigText"> m0rG4n4</div>
+                </div>
+                <div class="rolePictureWrapper">
+                    <img class="rolePicture" src="@/assets/morgana.png">
+                </div>
+                <div class="badGuysTextWrapper">
+                    <div class="badGuysText">
+                        <p class="allies">Allies</p>
+                        <div class="flexTest">
+                            <p class="badGuyName" :key="index" v-for="(badGuy, index) in otherBadGuys">{{badGuy}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="readyButtonWrapper">
+                    <img class="readyButton" src="@/assets/readyButtonWithTextBigFinal.png" v-on:click="moveToFirstMission">
                 </div>
             </div>
         </div>
@@ -104,6 +200,9 @@
             badGuys: function () {
                 return this.$store.state.badGuys
             },
+            merlinAndMorgana: function () {
+                return [this.$store.state.PlayerInfo.merlin, this.$store.state.PlayerInfo.morgana]
+            },
             otherBadGuys: function () {
                 return this.badGuys.filter(bg => bg !== this.$store.state.nickname);
             },
@@ -118,7 +217,19 @@
             },
             isAssassin: function () {
                 return this.$store.state.character === "Assassin"
-            }
+            },
+            isPercival: function () {
+                return this.$store.state.character === "Percival"
+            },
+            isMordred: function () {
+                return this.$store.state.character === "Mordred"
+            },
+            isOberon: function () {
+                return this.$store.state.character === "Oberon"
+            },
+            isMorgana: function () {
+                return this.$store.state.character === "Morgana"
+            },
         }
     }
 </script>
@@ -153,7 +264,7 @@
 
     .roleTextWrapper {
         display: flex;
-        flex: 20 1 0;
+        flex: 20 1 auto;
         margin: 0 auto;
         height: 0;
 
@@ -164,7 +275,7 @@
 
     .rolePictureWrapper {
         display: flex;
-        flex: 40 1 0;
+        flex: 40 1 auto;
         justify-content: center;
         height: 0;
 
@@ -221,7 +332,7 @@
         }
 
         .rolePictureWrapper {
-            flex: 50 1 0;
+            flex: 50 1 auto;
             margin-left: 8%;
         }
     }
@@ -287,5 +398,26 @@
 
     .backgroundBad {
         background-color: #C7383E;
+    }
+
+    .backgroundPercival {
+        background-color: #35966E;
+    }
+
+    .backgroundMordred {
+        background-color: #C7383E;
+    }
+
+    .backgroundOberon {
+        background-color: #C7383E;
+    }
+
+    .backgroundMorgana {
+        background-color: #C7383E;
+    }
+
+    .morganaBigText {
+        font-size: 35px;
+        margin-top: 10px;
     }
 </style>
