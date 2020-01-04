@@ -5,7 +5,7 @@
             <div class="innerWrapper">
                 <div>Are you sure you want to leave?</div>
 
-                <div>You cannot come back to this game.</div>
+                <div class="bottomText">You cannot come back to this game.</div>
 
                 <div class="buttonWrapper">
                     <img @click="toggleModalActive" class="stayInGame" src="@/assets/takeMeBackButton.png">
@@ -60,6 +60,9 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .bottomText {
+        margin-top: 2%;
+    }
     .lobbyLeave {
         height: $defaultLobbyButtonHeight;
     }
@@ -86,20 +89,23 @@
     .innerWrapper {
         margin: 0 auto;
         width: 90%;
-        font-size: 2em;
+        font-size: 2.3em;
 
         .buttonWrapper {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
             margin-top: 5%;
 
             .stayInGame {
-                width: 45%;
+                height: 50px;
+                margin-top: 5%;
             }
 
             .leaveGameButton {
-                width: 45%;
+                height: 50px;
+                margin-top: 5%;
             }
         }
     }
