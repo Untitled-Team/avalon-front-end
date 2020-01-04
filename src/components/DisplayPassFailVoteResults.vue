@@ -6,8 +6,6 @@
 </template>
 
 <script>
-    import WebsocketService from "../services/WebsocketService";
-
     export default {
         name: 'DisplayPassFailVotes',
         computed: {
@@ -18,15 +16,14 @@
                 return this.$store.state.DisplayPassFailVoteResults.failVotes
             },
         },
-        created() {
-            const sleep = (milliseconds) => {
+        methods: {
+            sleep: (milliseconds) => {
                 return new Promise(resolve => setTimeout(resolve, milliseconds))
             }
-            const votesDisplayedMessage = {
-                event: "QuestVotesDisplayed",
-            }
-            sleep(5000).then(() => {
-                WebsocketService.sendObj(this.$socket, votesDisplayedMessage)
+        },
+        created() {
+            this.sleep(5000).then(() => {
+                this.$store.dispatch('turnOffDisplayPassFailVoteResults')
             })
         }
     }
@@ -49,6 +46,7 @@
         right: 0;
         overflow: hidden;
         text-align: center;
+        z-index: 10000000;
 
         .vote {
             display: flex;
