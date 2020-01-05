@@ -13,7 +13,7 @@
                     {{ assassinVoteData.assassin }} is trying to assassinate Merlin...
                 </div>
 
-                <div v-if="playerIsAssassin">
+                <div class="assassination" v-if="playerIsAssassin">
                     <div id="assassin">{{ assassinVoteData.assassin }}, assassinate Merlin</div>
 
                     <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
