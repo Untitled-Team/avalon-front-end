@@ -146,7 +146,7 @@
 
     .modal {
         position: absolute;
-        color: #C7383E;
+        color: #b32a39;
     }
 
     input[type=radio] {
