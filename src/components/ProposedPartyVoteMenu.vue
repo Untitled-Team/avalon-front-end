@@ -29,7 +29,7 @@
             </div>
         </div>
         <div id="WaitingOnOthers" v-show="playerHasVoted">
-            Waiting for others...
+            <div class="waitingText">Waiting for others...</div>
             <img class="hourglass" src="@/assets/hourglass.png"/>
         </div>
     </div>
@@ -159,12 +159,26 @@
     }
 
     #WaitingOnOthers {
-        padding-top: 40px;
         font-size: 3em;
 
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        margin-bottom: 10%;
+
+        .waitingText {
+            display: flex;
+            align-items: center;
+            flex: 1 1 auto;
+            margin: 0 auto;
+        }
+
         .hourglass {
-            margin-top: 5%;
-            width: 50%;
+            max-height: 350px;
+            display: flex;
+            flex: 10 1 auto;
+            height: 0;
+            object-fit: contain;
         }
     }
 
