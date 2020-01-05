@@ -4,32 +4,34 @@
         <img class="title" src="@/assets/titleBig.png">
         <Clouds class="clouds"/>
         <div class="menuContent">
-            <form id="joinGameForm" @submit.prevent="joinGame">
-                <div class="field">
-                    <input id="joinGameNickname" v-model="nickname" type="text"
-                           placeholder="Player Nickname..." maxlength="12" required/>
-                </div>
-                <div class="field">
-                    <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
-                           required/>
-                </div>
-                <div class="field">
-                    <button type="submit" id="joinGameSubmit">
-                        <img class="joinGameImg" src="@/assets/joinGameButton.png">
-                    </button>
-                </div>
-            </form>
-            <form id="createGameForm" @submit.prevent="createGame">
-                <div class="field">
-                    <input id="createGameNickname" v-model="nickname" type="text"
-                           placeholder="Player Nickname..." maxlength="12" required/>
-                </div>
-                <div class="field">
-                    <button type="submit" id="createGameSubmit">
-                        <img class="createGameImg" src="@/assets/createGameButton.png">
-                    </button>
-                </div>
-            </form>
+            <div class="createAndJoinGameForms">
+                <form id="joinGameForm" @submit.prevent="joinGame">
+                    <div class="field">
+                        <input id="joinGameNickname" v-model="nickname" type="text"
+                               placeholder="Player Nickname..." maxlength="12" required/>
+                    </div>
+                    <div class="field">
+                        <input id="joinGameRoomId" v-model="roomId" type="text" placeholder="Room ID..."
+                               required/>
+                    </div>
+                    <div class="field">
+                        <button type="submit" id="joinGameSubmit">
+                            <img class="joinGameImg" src="@/assets/joinGameButton.png">
+                        </button>
+                    </div>
+                </form>
+                <form id="createGameForm" @submit.prevent="createGame">
+                    <div class="field">
+                        <input id="createGameNickname" v-model="nickname" type="text"
+                               placeholder="Player Nickname..." maxlength="12" required/>
+                    </div>
+                    <div class="field">
+                        <button type="submit" id="createGameSubmit">
+                            <img class="createGameImg" src="@/assets/createGameButton.png">
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </template>
@@ -47,7 +49,7 @@
         data: function () {
             return {
                 nickname: "",
-                roomId: ""
+                roomId: "",
             }
         },
         methods: {

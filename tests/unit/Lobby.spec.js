@@ -28,7 +28,7 @@ describe('Lobby.vue', () => {
 
     it('displays each player in the players prop', () => {
         let expectedPlayers = ["steve johannesberg", "ronald blump"];
-        store.state.players  = expectedPlayers
+        store.state.players = expectedPlayers
         wrapper = shallowMount(Lobby, {store})
 
         expectedPlayers.forEach(player => {
@@ -38,7 +38,7 @@ describe('Lobby.vue', () => {
 
     it('should show warning when less than 5 players in lobby', () => {
         let expectedPlayers = ["1", "2", "3", "4"]
-        store.state.players  = expectedPlayers
+        store.state.players = expectedPlayers
         wrapper = shallowMount(Lobby, {store})
 
         const warningWrapper = wrapper.find('#warning')
@@ -48,7 +48,7 @@ describe('Lobby.vue', () => {
 
     it('should show warning when greater than 10 players in lobby', () => {
         let expectedPlayers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
-        store.state.players  = expectedPlayers
+        store.state.players = expectedPlayers
         wrapper = shallowMount(Lobby, {store})
 
         const warningWrapper = wrapper.find('#warning')
@@ -58,7 +58,7 @@ describe('Lobby.vue', () => {
 
     it('should not show warning when 5 players in lobby', () => {
         let expectedPlayers = ["1", "2", "3", "4", "5"]
-        store.state.players  = expectedPlayers
+        store.state.players = expectedPlayers
         wrapper = shallowMount(Lobby, {store})
 
         const warningWrapper = wrapper.find('#warning')
@@ -68,7 +68,7 @@ describe('Lobby.vue', () => {
 
     it('should not show warning when 10 players in lobby', () => {
         let expectedPlayers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-        store.state.players  = expectedPlayers
+        store.state.players = expectedPlayers
         wrapper = shallowMount(Lobby, {store})
 
         const warningWrapper = wrapper.find('#warning')
@@ -83,7 +83,7 @@ describe('Lobby.vue', () => {
 
         it('should not sendObj with less than 5 players in the lobby', () => {
             let expectedPlayers = ["", "", "", ""]
-            store.state.players  = expectedPlayers
+            store.state.players = expectedPlayers
             wrapper = shallowMount(Lobby, {store})
 
             const lobbyReadyWrapper = wrapper.find('.beginButton')
@@ -94,7 +94,7 @@ describe('Lobby.vue', () => {
 
         it('should not sendObj with greater than 10 players in the lobby', () => {
             let expectedPlayers = ["", "", "", "", "", "", "", "", "", "", ""]
-            store.state.players  = expectedPlayers
+            store.state.players = expectedPlayers
             wrapper = shallowMount(Lobby, {store})
 
             const lobbyReadyWrapper = wrapper.find('.beginButton')
@@ -105,10 +105,11 @@ describe('Lobby.vue', () => {
 
         it('should sendObj with 5 players in the lobby', () => {
             let expectedPlayers = ["", "", "", "", ""]
-            store.state.players  = expectedPlayers
+            store.state.players = expectedPlayers
             wrapper = shallowMount(Lobby, {store})
+            wrapper.setData({createGameConfigure: true})
 
-            const lobbyReadyWrapper = wrapper.find('.beginButton')
+            const lobbyReadyWrapper = wrapper.find('.startGameButton')
             lobbyReadyWrapper.trigger("click")
 
             assert.calledOnce(WebsocketService.sendObj)
@@ -116,10 +117,11 @@ describe('Lobby.vue', () => {
 
         it('should sendObj with 10 players in the lobby', () => {
             let expectedPlayers = ["", "", "", "", "", "", "", "", "", ""]
-            store.state.players  = expectedPlayers
+            store.state.players = expectedPlayers
             wrapper = shallowMount(Lobby, {store})
+            wrapper.setData({createGameConfigure: true})
 
-            const lobbyReadyWrapper = wrapper.find('.beginButton')
+            const lobbyReadyWrapper = wrapper.find('.startGameButton')
             lobbyReadyWrapper.trigger("click")
 
             assert.calledOnce(WebsocketService.sendObj)

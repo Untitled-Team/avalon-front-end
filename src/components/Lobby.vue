@@ -3,7 +3,7 @@
         <img class="castle" src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
 
-        <div class="lobbyData">
+        <div class="lobbyData" v-if="!createGameConfigure">
             <div class="lobbyText">
                 <p class="waitingForPlayers is-size-4-mobile is-size-4-desktop" v-if="!correctPlayerNumbers">Waiting for
                     players...</p>
@@ -16,13 +16,50 @@
             </div>
 
             <div class="buttonContainer">
-                <img src="@/assets/beginButtonBig.png" v-on:click="startGame" v-show="correctPlayerNumbers" class="beginButton">
+                <img src="@/assets/beginButtonBig.png" v-on:click="toggleConfigureScreen" v-show="correctPlayerNumbers"
+                     class="beginButton">
                 <LeaveGame class="leaveGame"/>
             </div>
 
             <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
                 5 - 10 players required
             </div>
+        </div>
+
+        <div class="configure" v-if="createGameConfigure">
+            <div>OPTIONAL CHARACTERS:</div>
+
+            <label for="Morgana">
+                <img v-show="!morganaChecked" src="../assets/checkbox.png">
+                <img v-show="morganaChecked" src="../assets/badGuyChecked.png">
+                <span>Morgana</span>
+            </label>
+            <input type="checkbox" id="Morgana" v-model="optionalChars" value="Morgana">
+
+
+            <label for="Mordred">
+                <img v-show="!mordredChecked" class="checkboxImgMordred" src="../assets/checkbox.png">
+                <img v-show="mordredChecked" src="../assets/badGuyChecked.png">
+                <span>Mordred</span>
+            </label>
+            <input type="checkbox" id="Mordred" v-model="optionalChars" value="Mordred">
+
+            <label for="Percival">
+                <img v-show="!percivalChecked" class="checkboxImgPercival" src="../assets/checkbox.png">
+                <img v-show="percivalChecked" src="../assets/goodGuyChecked.png">
+                <span>Percival</span>
+            </label>
+            <input type="checkbox" id="Percival" v-model="optionalChars" value="Percival">
+
+            <label for="Oberon">
+                <img v-show="!oberonChecked" class="checkboxImgPercival" src="../assets/checkbox.png">
+                <img v-show="oberonChecked" src="../assets/badGuyChecked.png">
+                <span>Oberon</span>
+            </label>
+            <input type="checkbox" id="Oberon" v-model="optionalChars" value="Oberon">
+
+            <img class="startGameButton" @click="startGame" src="@/assets/createGameButton.png">
+            <button @click="toggleConfigureScreen">Back</button>
         </div>
     </div>
 </template>
@@ -36,6 +73,12 @@
         components: {
             LeaveGame
         },
+        data: function () {
+            return {
+                createGameConfigure: false,
+                optionalChars: [],
+            }
+        },
         computed: {
             players: function () {
                 return this.$store.state.players
@@ -46,13 +89,35 @@
             roomId: function () {
                 return this.$store.state.roomId
             },
+            morganaChecked: function () {
+                return this.optionalChars.includes("Morgana")
+            },
+            mordredChecked: function () {
+                return this.optionalChars.includes("Mordred")
+            },
+            percivalChecked: function () {
+                return this.optionalChars.includes("Percival")
+            },
+            oberonChecked: function () {
+                return this.optionalChars.includes("Oberon")
+            },
+
         },
         methods: {
             startGame: function () {
                 if (this.correctPlayerNumbers) {
-                    const StartGameMessage = {event: 'StartGame'};
+                    const config = {
+                        morgana: this.morganaChecked,
+                        mordred: this.mordredChecked,
+                        percival: this.percivalChecked,
+                        oberon: this.oberonChecked
+                    }
+                    const StartGameMessage = {event: 'StartGame', gameConfig: {...config}};
                     WebsocketService.sendObj(this.$socket, StartGameMessage);
                 }
+            },
+            toggleConfigureScreen: function () {
+                this.createGameConfigure = !this.createGameConfigure
             },
         },
     }
@@ -60,6 +125,44 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: 20px;
+            margin-right: 2%;
+        }
+
+        span {
+            padding-top: 2.5%;
+        }
+    }
+
+    input[type=checkbox] {
+        display: none;
+    }
+
+    .configure {
+        font-size: 3em;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            margin-top: 3%;
+            align-self: center;
+            max-width: 54%;
+        }
+
+        button {
+            border: 1px black solid;
+            background-color: grey;
+            width: 35%;
+            margin: 3% auto;
+        }
+    }
 
     .beginButton {
         display: flex;
