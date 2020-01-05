@@ -17,7 +17,7 @@
                     {{ assassinVoteData.assassin }} is trying to assassinate Merlin...
                 </div>
 
-                <div v-if="playerIsAssassin">
+                <div v-if="playerIsAssassin" class="assassinContainerStuff">
                     <div id="assassin">{{ assassinVoteData.assassin }}, assassinate Merlin</div>
 
                     <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
@@ -94,11 +94,15 @@
     @import "../styles/variables";
 
     .assassinateButtonImage {
-        width: 75%;
+        height: 40px;
+        margin: 0 auto;
     }
 
     .assassinateButton {
-        margin-top: 10%;
+        display: flex;
+        margin: 0 auto;
+        margin-top: 3%;
+        flex-direction: column;
         background-color: inherit;
         border: 0;
     }
@@ -124,8 +128,21 @@
         justify-content: center;
     }
 
+    .assassinContainerStuff {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+
+    #assassinVoteForm {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+
     .assassinImageWrapper {
         justify-content: center;
+
         width: 75%;
         margin: 0 auto;
 
@@ -154,10 +171,10 @@
     }
 
     label {
-        width: 58%;
+        width: 62%;
         max-width: 250px;
         cursor: pointer;
-        font-size: 2.25em;
+        font-size: 2.5em;
         display: inline-block;
         margin-bottom: 5px;
         padding: 2px;
@@ -170,13 +187,13 @@
     }
 
     #assassin {
-        font-size: 4em;
+        font-size: 3em;
         padding-bottom: 5px;
         margin-bottom: 3%;
     }
 
     #everyoneElse {
-        font-size: 4em;
+        font-size: 3em;
         width: 90%;
         margin: 0 auto;
     }
