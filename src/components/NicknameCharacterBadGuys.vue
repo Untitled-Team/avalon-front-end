@@ -15,7 +15,10 @@
                     </span>
                 </div>
                 <div id="merlin" v-if="isPercival" class="fontSizing">
-                    Merlin: {{merlin}} {{morgana}}
+                    Merlin:
+                    <span v-for="(m, index) in merlin" :key="index">
+                        {{m}}
+                    </span>
                 </div>
             </div>
         </div>
@@ -47,9 +50,6 @@
             },
             merlin: function () {
                 return this.$store.state.PlayerInfo.merlin
-            },
-            morgana: function () {
-                return this.$store.state.PlayerInfo.morgana || " "
             },
             isRegularGoodGuy: function () {
                 return this.$store.getters.getCharacterFormatted === 'Knight of Arthur'

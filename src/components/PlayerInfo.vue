@@ -202,7 +202,7 @@
                 return this.$store.state.badGuys
             },
             merlinAndMorgana: function () {
-                return [this.$store.state.PlayerInfo.merlin, this.$store.state.PlayerInfo.morgana]
+                return this.$store.state.PlayerInfo.merlin;
             },
             otherBadGuys: function () {
                 return this.badGuys.filter(bg => bg !== this.$store.state.nickname);

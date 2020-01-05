@@ -102,7 +102,9 @@
                 let msgJSON = JSON.parse(msg.data)
                 console.log(msgJSON)
 
-                if (msgJSON.event === 'MoveToLobby') {
+                if (msgJSON.event === 'GameConfig') {
+                    this.$store.state.config = msgJSON.config;
+                } else  if (msgJSON.event === 'MoveToLobby') {
                     store.dispatch('introToLobbyStep')
                     store.state.players = msgJSON.players
                     store.state.roomId = msgJSON.roomId
@@ -111,6 +113,7 @@
                 } else if (msgJSON.event === 'PlayerInfo') {
                     store.state.character = msgJSON.character
                     store.state.badGuys = msgJSON.badGuys
+                    store.state.PlayerInfo.merlin = msgJSON.merlin
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
                     //reset the playerHasVoted property so players can approve or deny the next party.
