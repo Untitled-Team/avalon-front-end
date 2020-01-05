@@ -28,7 +28,9 @@
                             </label>
                         </div>
 
-                        <input type="submit" class="button is-small" value="Submit Guess">
+                        <button type="submit" class="assassinateButton">
+                            <img class="assassinateButtonImage" src="@/assets/assassinateButton.png">
+                        </button>
                     </form>
                 </div>
             </div>
@@ -90,6 +92,16 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .assassinateButtonImage {
+        width: 75%;
+    }
+
+    .assassinateButton {
+        margin-top: 10%;
+        background-color: inherit;
+        border: 0;
+    }
 
     .modal {
         //puts this in front of the player info modal
@@ -160,6 +172,7 @@
     #assassin {
         font-size: 4em;
         padding-bottom: 5px;
+        margin-bottom: 3%;
     }
 
     #everyoneElse {
