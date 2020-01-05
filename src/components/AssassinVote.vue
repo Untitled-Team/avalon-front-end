@@ -13,7 +13,7 @@
                     {{ assassinVoteData.assassin }} is trying to assassinate Merlin...
                 </div>
 
-                <div v-if="playerIsAssassin" class="assassinContainerStuff">
+                <div class="assassination" v-if="playerIsAssassin">
                     <div id="assassin">{{ assassinVoteData.assassin }}, assassinate Merlin</div>
 
                     <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
@@ -130,7 +130,7 @@
         justify-content: center;
     }
 
-    .assassinContainerStuff {
+    .assassination {
         display: flex;
         flex-direction: column;
         flex: 1 1 auto;
