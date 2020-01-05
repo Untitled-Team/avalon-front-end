@@ -62,9 +62,6 @@
                 }
                 WebsocketService.sendObj(this.$socket, joinGameMessage)
             },
-            toggleConfigureScreen: function () {
-                this.createGameConfigure = !this.createGameConfigure
-            },
             createGame: function () {
                 store.commit("setNickname", this.nickname);
                 const createGameMessage = {
