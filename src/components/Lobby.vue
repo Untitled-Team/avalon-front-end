@@ -58,7 +58,7 @@
             </label>
             <input type="checkbox" id="Oberon" v-model="optionalChars" value="Oberon">
 
-            <img @click="startGame" src="@/assets/createGameButton.png">
+            <img class="startGameButton" @click="startGame" src="@/assets/createGameButton.png">
             <button @click="toggleConfigureScreen">Back</button>
         </div>
     </div>
