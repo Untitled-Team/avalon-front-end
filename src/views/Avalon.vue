@@ -111,6 +111,7 @@
                 } else if (msgJSON.event === 'PlayerInfo') {
                     store.state.character = msgJSON.character
                     store.state.badGuys = msgJSON.badGuys
+                    store.state.PlayerInfo.merlin = msgJSON.merlin
                     store.dispatch("lobbyStepToStepTwo")
                 } else if (msgJSON.event === 'TeamAssignmentPhase') {
                     //reset the playerHasVoted property so players can approve or deny the next party.
