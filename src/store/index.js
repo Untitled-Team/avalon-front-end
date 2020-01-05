@@ -63,7 +63,8 @@ const getDefaultState = () => {
         },
         PlayerInfo: {
             merlin: []
-        }
+        },
+        Config: {}
     }
 }
 

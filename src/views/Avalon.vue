@@ -102,7 +102,9 @@
                 let msgJSON = JSON.parse(msg.data)
                 console.log(msgJSON)
 
-                if (msgJSON.event === 'MoveToLobby') {
+                if (msgJSON.event === 'GameConfig') {
+                    this.$store.state.config = msgJSON.config;
+                } else  if (msgJSON.event === 'MoveToLobby') {
                     store.dispatch('introToLobbyStep')
                     store.state.players = msgJSON.players
                     store.state.roomId = msgJSON.roomId
