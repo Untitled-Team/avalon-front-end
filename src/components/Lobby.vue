@@ -3,7 +3,7 @@
         <img class="castle" src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
 
-        <div class="lobbyData">
+        <div class="lobbyData" v-if="!createGameConfigure">
             <div class="lobbyText">
                 <p class="waitingForPlayers is-size-4-mobile is-size-4-desktop" v-if="!correctPlayerNumbers">Waiting for
                     players...</p>
@@ -16,13 +16,50 @@
             </div>
 
             <div class="buttonContainer">
-                <img src="@/assets/beginButtonBig.png" v-on:click="startGame" v-show="correctPlayerNumbers" class="beginButton">
+                <img src="@/assets/beginButtonBig.png" v-on:click="toggleConfigureScreen" v-show="correctPlayerNumbers"
+                     class="beginButton">
                 <LeaveGame class="leaveGame"/>
             </div>
 
             <div id="warning" class="gameRequirement is-size-6-mobile" v-if="!correctPlayerNumbers">
                 5 - 10 players required
             </div>
+        </div>
+
+        <div class="configure" v-if="createGameConfigure">
+            <button @click="toggleConfigureScreen">back</button>
+            <div>CHARACTERS:</div>
+
+            <label for="Morgana">
+                <img v-show="!morganaChecked" src="../assets/checkbox.png">
+                <img v-show="morganaChecked" src="../assets/badGuyChecked.png">
+                Morgana
+            </label>
+            <input type="checkbox" id="Morgana" v-model="optionalChars" value="Morgana">
+
+
+            <label for="Mordred">
+                <img v-show="!mordredChecked" class="checkboxImgMordred" src="../assets/checkbox.png">
+                <img v-show="mordredChecked" src="../assets/badGuyChecked.png">
+                Mordred
+            </label>
+            <input type="checkbox" id="Mordred" v-model="optionalChars" value="Mordred">
+
+            <label for="Percival">
+                <img v-show="!percivalChecked" class="checkboxImgPercival" src="../assets/checkbox.png">
+                <img v-show="percivalChecked" src="../assets/goodGuyChecked.png">
+                Percival
+            </label>
+            <input type="checkbox" id="Percival" v-model="optionalChars" value="Percival">
+
+            <label for="Oberon">
+                <img v-show="!oberonChecked" class="checkboxImgPercival" src="../assets/checkbox.png">
+                <img v-show="oberonChecked" src="../assets/badGuyChecked.png">
+                Oberon
+            </label>
+            <input type="checkbox" id="Oberon" v-model="optionalChars" value="Oberon">
+
+            <img @click="startGame" src="@/assets/createGameButton.png">
         </div>
     </div>
 </template>
@@ -36,6 +73,12 @@
         components: {
             LeaveGame
         },
+        data: function () {
+            return {
+                createGameConfigure: false,
+                optionalChars: [],
+            }
+        },
         computed: {
             players: function () {
                 return this.$store.state.players
@@ -46,6 +89,19 @@
             roomId: function () {
                 return this.$store.state.roomId
             },
+            morganaChecked: function () {
+                return this.optionalChars.includes("Morgana")
+            },
+            mordredChecked: function () {
+                return this.optionalChars.includes("Mordred")
+            },
+            percivalChecked: function () {
+                return this.optionalChars.includes("Percival")
+            },
+            oberonChecked: function () {
+                return this.optionalChars.includes("Oberon")
+            },
+
         },
         methods: {
             startGame: function () {
@@ -54,12 +110,56 @@
                     WebsocketService.sendObj(this.$socket, StartGameMessage);
                 }
             },
+            toggleConfigureScreen: function () {
+                this.createGameConfigure = !this.createGameConfigure
+            },
         },
     }
 </script>
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: 20px;
+        }
+    }
+
+    .badGuyChecked {
+        display: block;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: url(../assets/badGuyChecked.png) no-repeat;
+        width: 180px; /* Width of new image */
+        height: 236px; /* Height of new image */
+        padding-left: 180px; /* Equal to width of new image */
+    }
+
+    input[type=checkbox] {
+        display: none;
+    }
+
+    .configure {
+        font-size: 3em;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            margin-top: 3%;
+            align-self: center;
+            max-width: 54%;
+        }
+
+        button {
+            border: 1px black solid;
+            background-color: grey;
+        }
+    }
 
     .beginButton {
         display: flex;

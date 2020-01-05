@@ -4,8 +4,8 @@
         <img class="title" src="@/assets/titleBig.png">
         <Clouds class="clouds"/>
         <div class="menuContent">
-            <div class="createAndJoinGameForms" v-if="!createGameConfigure">
-                <form id="joinGameForm" @submit.prevent="joinGame" v-if="!createGameConfigure">
+            <div class="createAndJoinGameForms">
+                <form id="joinGameForm" @submit.prevent="joinGame">
                     <div class="field">
                         <input id="joinGameNickname" v-model="nickname" type="text"
                                placeholder="Player Nickname..." maxlength="12" required/>
@@ -20,7 +20,7 @@
                         </button>
                     </div>
                 </form>
-                <form id="createGameForm" @submit.prevent="toggleConfigureScreen">
+                <form id="createGameForm" @submit.prevent="createGame">
                     <div class="field">
                         <input id="createGameNickname" v-model="nickname" type="text"
                                placeholder="Player Nickname..." maxlength="12" required/>
@@ -31,24 +31,6 @@
                         </button>
                     </div>
                 </form>
-            </div>
-
-            <div class="configure" v-if="createGameConfigure">
-                <button @click="toggleConfigureScreen">back</button>
-                <div>CHARACTERS:</div>
-                <label><input type="checkbox" name="char1">optional char #1</label>
-                <label><input type="checkbox" name="char2">optional char #2</label>
-                <label><input type="checkbox" name="char3">optional char #3</label>
-                <label><input type="checkbox" name="char4">optional char #4</label>
-
-                <br/>
-                <br/>
-
-                <div>GAME MODE:</div>
-                <label><input type="radio" name="gameMode">easy</label>
-                <label><input type="radio" name="gameMode">hard</label>
-
-                <img @click="createGame" src="@/assets/createGameButton.png">
             </div>
         </div>
     </div>
@@ -68,7 +50,6 @@
             return {
                 nickname: "",
                 roomId: "",
-                createGameConfigure: false
             }
         },
         methods: {
@@ -108,23 +89,6 @@
     .createGameImg {
         max-height: 40px;
         width: auto;
-    }
-
-    .configure {
-        font-size: 3em;
-        display: flex;
-        flex-direction: column;
-
-        img {
-            margin-top: 3%;
-            align-self: center;
-            max-width: 54%;
-        }
-
-        button {
-            border: 1px black solid;
-            background-color: grey;
-        }
     }
 
     button {
