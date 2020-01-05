@@ -81,6 +81,20 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .assassinateButtonImage {
+        height: 40px;
+        margin: 0 auto;
+    }
+
+    .assassinateButton {
+        display: flex;
+        margin: 0 auto;
+        margin-top: 3%;
+        flex-direction: column;
+        background-color: inherit;
+        border: 0;
+    }
+
     .toggleAssassinVoteScreenButton {
         position: absolute;
         bottom: 0;
@@ -93,11 +107,6 @@
         font-size: 3em;
         font-family: inherit;
         border: 2px solid tomato;
-    }
-
-    .assassinateButton {
-        margin-top: 10%;
-        width: 75%;
     }
 
     .modal {
@@ -121,8 +130,21 @@
         justify-content: center;
     }
 
+    .assassination {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+
+    #assassinVoteForm {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+
     .assassinImageWrapper {
         justify-content: center;
+
         width: 75%;
         margin: 0 auto;
 
@@ -151,10 +173,10 @@
     }
 
     label {
-        width: 58%;
+        width: 62%;
         max-width: 250px;
         cursor: pointer;
-        font-size: 2.25em;
+        font-size: 2.5em;
         display: inline-block;
         margin-bottom: 5px;
         padding: 2px;
@@ -167,13 +189,13 @@
     }
 
     #assassin {
-        font-size: 4em;
+        font-size: 3em;
         padding-bottom: 5px;
         margin-bottom: 3%;
     }
 
     #everyoneElse {
-        font-size: 4em;
+        font-size: 3em;
         width: 90%;
         margin: 0 auto;
     }
