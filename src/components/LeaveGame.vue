@@ -89,7 +89,7 @@
     .innerWrapper {
         margin: 0 auto;
         width: 90%;
-        font-size: 2.3em;
+        font-size: 1.5rem;
 
         .buttonWrapper {
             display: flex;

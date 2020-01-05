@@ -174,6 +174,7 @@
         }
 
         .hourglass {
+            max-height: 350px;
             display: flex;
             flex: 10 1 auto;
             height: 0;
