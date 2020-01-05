@@ -20,6 +20,13 @@
                         {{m}}
                     </span>
                 </div>
+                <div class="specialCharacters fontSizing">
+                    Special Characters enabled:
+                    <div v-if="percivalEnabled">Percival</div>
+                    <div v-if="oberonEnabled">Oberon</div>
+                    <div v-if="morganaEnabled">Morgana</div>
+                    <div v-if="mordredEnabled">Mordred</div>
+                </div>
             </div>
         </div>
         <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">
@@ -65,6 +72,18 @@
             },
             isOberon: function () {
                 return this.$store.state.character === "Oberon"
+            },
+            percivalEnabled: function() {
+                return this.$store.state.config.percival;
+            },
+            oberonEnabled: function() {
+                return this.$store.state.config.oberon;
+            },
+            morganaEnabled: function() {
+                return this.$store.state.config.morgana;
+            },
+            mordredEnabled: function() {
+                return this.$store.state.config.mordred;
             },
             shouldSeeBadGuys: function () {
                 return !this.isRegularGoodGuy && !this.isPercival && !this.isOberon
