@@ -100,18 +100,26 @@
     }
 
     .goodGuysWin {
-        margin-top: 10px;
-        flex: 0 1 0;
-        justify-content: center;
+        display: flex;
+        flex: 3 1 auto;
+        flex-direction: column;
 
         .goodGuysWinTextWrapper {
-            margin-bottom: 15%;
+            display: flex;
+            flex: 1 1 auto;
+            margin: 0 auto;
+            height: 0;
+            img {
+                object-fit: contain;
+            }
+            margin-bottom: 5%;
+            margin-top: 2%;
         }
 
         .victoryScreenWrapper {
-            flex: 1 1 0;
-            max-width: 100%;
-            margin-bottom: 10%;
+            display: flex;
+            flex: 5 1 auto;
+            height: 0;
 
             img {
                 object-fit: contain;
@@ -123,7 +131,7 @@
         margin-top: 5px;
         display: flex;
         flex: 1 1 0;
-        font-size: 3em;
+        font-size: 1.25rem;
         color: floralwhite;
         flex-direction: column;
     }
