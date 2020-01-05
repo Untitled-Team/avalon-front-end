@@ -112,7 +112,7 @@
                         percival: this.percivalChecked,
                         oberon: this.oberonChecked
                     }
-                    const StartGameMessage = {event: 'StartGame', gameConfig: {...config}};
+                    const StartGameMessage = {event: 'StartGame', config: {...config}};
                     WebsocketService.sendObj(this.$socket, StartGameMessage);
                 }
             },
