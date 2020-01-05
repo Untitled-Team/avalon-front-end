@@ -27,13 +27,12 @@
         </div>
 
         <div class="configure" v-if="createGameConfigure">
-            <button @click="toggleConfigureScreen">back</button>
-            <div>CHARACTERS:</div>
+            <div>OPTIONAL CHARACTERS:</div>
 
             <label for="Morgana">
                 <img v-show="!morganaChecked" src="../assets/checkbox.png">
                 <img v-show="morganaChecked" src="../assets/badGuyChecked.png">
-                Morgana
+                <span>Morgana</span>
             </label>
             <input type="checkbox" id="Morgana" v-model="optionalChars" value="Morgana">
 
@@ -41,25 +40,26 @@
             <label for="Mordred">
                 <img v-show="!mordredChecked" class="checkboxImgMordred" src="../assets/checkbox.png">
                 <img v-show="mordredChecked" src="../assets/badGuyChecked.png">
-                Mordred
+                <span>Mordred</span>
             </label>
             <input type="checkbox" id="Mordred" v-model="optionalChars" value="Mordred">
 
             <label for="Percival">
                 <img v-show="!percivalChecked" class="checkboxImgPercival" src="../assets/checkbox.png">
                 <img v-show="percivalChecked" src="../assets/goodGuyChecked.png">
-                Percival
+                <span>Percival</span>
             </label>
             <input type="checkbox" id="Percival" v-model="optionalChars" value="Percival">
 
             <label for="Oberon">
                 <img v-show="!oberonChecked" class="checkboxImgPercival" src="../assets/checkbox.png">
                 <img v-show="oberonChecked" src="../assets/badGuyChecked.png">
-                Oberon
+                <span>Oberon</span>
             </label>
             <input type="checkbox" id="Oberon" v-model="optionalChars" value="Oberon">
 
             <img @click="startGame" src="@/assets/createGameButton.png">
+            <button @click="toggleConfigureScreen">Back</button>
         </div>
     </div>
 </template>
@@ -106,7 +106,13 @@
         methods: {
             startGame: function () {
                 if (this.correctPlayerNumbers) {
-                    const StartGameMessage = {event: 'StartGame'};
+                    const config = {
+                        morgana: this.morganaChecked,
+                        mordred: this.mordredChecked,
+                        percival: this.percivalChecked,
+                        oberon: this.oberonChecked
+                    }
+                    const StartGameMessage = {event: 'StartGame', gameConfig: {...config}};
                     WebsocketService.sendObj(this.$socket, StartGameMessage);
                 }
             },
@@ -127,17 +133,12 @@
 
         img {
             height: 20px;
+            margin-right: 2%;
         }
-    }
 
-    .badGuyChecked {
-        display: block;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        background: url(../assets/badGuyChecked.png) no-repeat;
-        width: 180px; /* Width of new image */
-        height: 236px; /* Height of new image */
-        padding-left: 180px; /* Equal to width of new image */
+        span {
+            padding-top: 2.5%;
+        }
     }
 
     input[type=checkbox] {
@@ -158,6 +159,8 @@
         button {
             border: 1px black solid;
             background-color: grey;
+            width: 35%;
+            margin: 3% auto;
         }
     }
 
