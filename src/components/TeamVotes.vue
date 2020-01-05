@@ -3,9 +3,9 @@
         <div class="playerInfoModal" v-if="modalActive">
             <div class="scrollContainer">
                 <div class="scrollTop">
-                        <img class="leftHandScroll" src="@/assets/scrollEdgeBig.png">
-                        <div class="scrollyPart"></div>
-                        <img class="rightHandScroll" src="@/assets/scrollEdgeBig.png">
+                    <img class="leftHandScroll" src="@/assets/scrollEdgeBig.png">
+                    <div class="scrollyPart"></div>
+                    <img class="rightHandScroll" src="@/assets/scrollEdgeBig.png">
                 </div>
                 <div class="votesContainer">
                     <div class="votesHeader">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="approval" v-if="approvedExist">
                         <div class="approvers" :key="index" v-for="(player, index) in approved">
-                        {{ player }}
+                            {{ player }}
                         </div>
                     </div>
                     <div class="bigText" v-if="deniedExist">
@@ -140,6 +140,7 @@
             height: 38px;
             width: auto;
         }
+
         color: black;
     }
 
@@ -182,6 +183,7 @@
         margin: 0 auto;
         margin-top: 10px;
         margin-bottom: 5%;
+
         img {
             object-fit: contain;
         }
@@ -207,12 +209,15 @@
         margin: auto;
         position: absolute;
         background: rgba(black, 0.3);
-        top: 0; left: 0; bottom: 0; right: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        z-index: 100000;
+        z-index: 999;
     }
 
     @media (max-height: 1500px) {

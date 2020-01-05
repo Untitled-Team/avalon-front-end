@@ -1,11 +1,17 @@
 <template>
     <div id="winner" :class="{defeat: badGuysWin, victory: goodGuysWin}">
         <div class="badGuysWin" v-show="badGuysWin">
+            <div class="badGuysWinTextWrapper">
+                <img src="@/assets/badGuysWinText.png">
+            </div>
             <div class="defeatScreenWrapper">
                 <img class="defeatScreen" src="@/assets/defeatScreen.png">
             </div>
         </div>
         <div class="goodGuysWin" v-show="goodGuysWin">
+            <div class="goodGuysWinTextWrapper">
+                <img src="@/assets/goodGuysWinText.png">
+            </div>
             <div class="victoryScreenWrapper">
                 <img class="victoryScreen" src="@/assets/victoryScreen.png">
             </div>
@@ -70,18 +76,22 @@
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
-        /*justify-content: flex-start;*/
     }
 
     .badGuysWin {
         margin-top: 10px;
         justify-content: center;
 
+        .badGuysWinTextWrapper {
+            margin-bottom: 15%;
+        }
+
         .defeatScreenWrapper {
             flex: 1 1 0;
             max-width: 75%;
             margin: 0 auto;
             margin-top: 10px;
+            margin-bottom: 10%;
 
             img {
                 object-fit: contain;
@@ -94,9 +104,14 @@
         flex: 0 1 0;
         justify-content: center;
 
+        .goodGuysWinTextWrapper {
+            margin-bottom: 15%;
+        }
+
         .victoryScreenWrapper {
             flex: 1 1 0;
             max-width: 100%;
+            margin-bottom: 10%;
 
             img {
                 object-fit: contain;
