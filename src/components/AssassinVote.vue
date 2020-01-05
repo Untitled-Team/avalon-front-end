@@ -4,10 +4,6 @@
         <div class="modal" :class="{'is-active': modalActive === true}">
             <div class="modal-background"></div>
             <div class="modal-content containAll">
-                <div class="viewMissionsButtonWrapper">
-                    <button class="viewMissionButton" @click="toggleModalActive">View Mission History</button>
-                </div>
-
                 <div class="assassinImageWrapper">
                     <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
                 </div>
@@ -17,29 +13,24 @@
                     {{ assassinVoteData.assassin }} is trying to assassinate Merlin...
                 </div>
 
-                <div v-if="playerIsAssassin">
+                <div class="assassination" v-if="playerIsAssassin">
                     <div id="assassin">{{ assassinVoteData.assassin }}, assassinate Merlin</div>
 
-                    <form id="assassinVoteForm" @submit.prevent="submitAssassinGuess">
-                        <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
-                            <label :class="{ selected: goodGuy === guess }">
-                                <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess"
-                                       :disabled="!playerIsAssassin"/>{{ goodGuy }}
-                            </label>
-                        </div>
+                    <div :key="index" v-for="(goodGuy, index) in assassinVoteData.goodGuys" class="lessPadding">
+                        <label :class="{ selected: goodGuy === guess }">
+                            <input id="goodGuy" type="radio" :value="goodGuy" v-model="guess"
+                                   :disabled="!playerIsAssassin"/>{{ goodGuy }}
+                        </label>
+                    </div>
 
-                        <button type="submit" class="assassinateButton">
-                            <img class="assassinateButtonImage" src="@/assets/assassinateButton.png">
-                        </button>
-                    </form>
+                    <img @click="submitAssassinGuess" class="assassinateButton" src="@/assets/assassinateButton.png">
                 </div>
             </div>
         </div>
 
-        <div v-if="!modalActive && playerIsAssassin"
-             :class="{successful: activeIsPassed, failed: activeIsFailed, incomplete: !activeQuestHasData}">
-            <button @click="toggleModalActive">replace me w/ a cool new pixel button</button>
-        </div>
+        <button class="toggleAssassinVoteScreenButton" @click="toggleModalActive">{{ toggleAssassinVoteScreenButtonText
+            }}
+        </button>
     </div>
 </template>
 
@@ -51,7 +42,8 @@
         data: function () {
             return {
                 guess: "",
-                modalActive: true
+                modalActive: true,
+                toggleAssassinVoteScreenButtonText: 'Review Quests'
             }
         },
         methods: {
@@ -65,20 +57,16 @@
             },
             toggleModalActive: function () {
                 this.modalActive = !this.modalActive
+                if (this.modalActive) {
+                    this.toggleAssassinVoteScreenButtonText = 'Review Quests'
+                } else {
+                    this.toggleAssassinVoteScreenButtonText = 'Return to Vote'
+                }
             },
         },
         computed: {
             playerIsAssassin: function () {
                 return this.$store.getters.getNickname === this.assassinVoteData.assassin
-            },
-            activeIsPassed: function () {
-                return this.activeQuestData.pass === true
-            },
-            activeIsFailed: function () {
-                return this.activeQuestData.pass === false
-            },
-            activeQuestHasData: function () {
-                return this.activeQuestData.pass !== null
             },
             activeQuestData: function () {
                 return this.$store.state.missions[this.$store.state.activeMission - 1]
@@ -93,14 +81,23 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
-    .assassinateButtonImage {
-        width: 75%;
+    .toggleAssassinVoteScreenButton {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 40px;
+        background: #b32a39;
+        width: 100%;
+        z-index: 99999999999999;
+        color: ghostwhite;
+        font-size: 3em;
+        font-family: inherit;
+        border: 2px solid tomato;
     }
 
     .assassinateButton {
         margin-top: 10%;
-        background-color: inherit;
-        border: 0;
+        width: 75%;
     }
 
     .modal {

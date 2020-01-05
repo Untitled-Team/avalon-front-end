@@ -59,7 +59,7 @@ describe('AssassinVote.vue', () => {
                 store
             })
 
-        wrapper.find('#assassinVoteForm').trigger('submit.prevent')
+        wrapper.find('.assassinateButton').trigger('click')
 
         assert.calledWith(WebsocketService.sendObj, match.any, expectedMessage)
     })
@@ -69,10 +69,10 @@ describe('AssassinVote.vue', () => {
         store.state.assassinVote.assassinVoteData.goodGuys = expectedGoodGuys
         wrapper = shallowMount(AssassinVote, {store})
 
-        const assassinFormWrapper = wrapper.find('#assassinVoteForm')
+        const assassinationWrapper = wrapper.find('.assassination')
 
         expectedGoodGuys.forEach((goodGuy) => {
-            expect(assassinFormWrapper.text()).to.include(goodGuy, `${goodGuy} not in the form!`)
+            expect(assassinationWrapper.text()).to.include(goodGuy, `${goodGuy} not in the form!`)
         })
     })
 

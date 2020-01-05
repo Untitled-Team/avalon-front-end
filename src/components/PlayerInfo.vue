@@ -114,7 +114,8 @@
                         <p class="allies">Merlin</p>
                         <div class="flexTest">
                             <p class="badGuyName" :key="index" v-for="(badGuy, index) in merlinAndMorgana">
-                                {{badGuy}}</p>
+                                {{badGuy}}
+                            </p>
                         </div>
                     </div>
                 </div>
