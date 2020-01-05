@@ -62,8 +62,7 @@ const getDefaultState = () => {
             proposalsLeft: -1
         },
         PlayerInfo: {
-            merlin: "changemelater",
-            morgana: ""
+            merlin: []
         }
     }
 }
