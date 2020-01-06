@@ -29,34 +29,44 @@
         <div class="configure" v-if="createGameConfigure">
             <div>OPTIONAL CHARACTERS:</div>
 
-            <label for="Morgana">
-                <img v-show="!morganaChecked" src="../assets/checkbox.png">
-                <img v-show="morganaChecked" src="../assets/badGuyChecked.png">
-                <span>Morgana</span>
-            </label>
-            <input type="checkbox" id="Morgana" v-model="optionalChars" value="Morgana">
-
-
-            <label for="Mordred">
-                <img v-show="!mordredChecked" class="checkboxImgMordred" src="../assets/checkbox.png">
-                <img v-show="mordredChecked" src="../assets/badGuyChecked.png">
-                <span>Mordred</span>
-            </label>
-            <input type="checkbox" id="Mordred" v-model="optionalChars" value="Mordred">
-
             <label for="Percival">
                 <img v-show="!percivalChecked" class="checkboxImgPercival" src="../assets/checkbox.png">
                 <img v-show="percivalChecked" src="../assets/goodGuyChecked.png">
                 <span>Percival</span>
             </label>
             <input type="checkbox" id="Percival" v-model="optionalChars" value="Percival">
+            <div class="spacing"></div>
+
+            <label for="Mordred">
+                <img v-show="!mordredChecked && !mordredDisabled" class="checkboxImgMordred"
+                     src="../assets/checkbox.png">
+                <img v-show="mordredChecked" src="../assets/badGuyChecked.png">
+                <img v-show="!mordredChecked && mordredDisabled" src="../assets/disabledCheckbox.png">
+                <span>Mordred</span>
+            </label>
+            <input type="checkbox" id="Mordred" v-model="optionalChars" value="Mordred"
+                   :disabled="!mordredChecked && mordredDisabled">
+            <div class="spacing"></div>
 
             <label for="Oberon">
-                <img v-show="!oberonChecked" class="checkboxImgPercival" src="../assets/checkbox.png">
+                <img v-show="!oberonChecked && !oberonDisabled" class="checkboxImgPercival"
+                     src="../assets/checkbox.png">
                 <img v-show="oberonChecked" src="../assets/badGuyChecked.png">
+                <img v-show="!oberonChecked && oberonDisabled" src="../assets/disabledCheckbox.png">
                 <span>Oberon</span>
             </label>
-            <input type="checkbox" id="Oberon" v-model="optionalChars" value="Oberon">
+            <input type="checkbox" id="Oberon" v-model="optionalChars" value="Oberon"
+                   :disabled="!oberonChecked && oberonDisabled">
+            <div class="spacing"></div>
+
+            <label for="Morgana">
+                <img v-show="!morganaChecked && !morganaDisabled" src="../assets/checkbox.png">
+                <img v-show="morganaChecked" src="../assets/badGuyChecked.png">
+                <img v-show="!morganaChecked && morganaDisabled" src="../assets/disabledCheckbox.png">
+                <span>Morgana</span>
+            </label>
+            <input type="checkbox" id="Morgana" v-model="optionalChars" value="Morgana"
+                   :disabled="!morganaChecked && morganaDisabled">
 
             <img class="startGameButton" @click="startGame" src="@/assets/createGameButton.png">
             <button @click="toggleConfigureScreen">Back</button>
@@ -101,7 +111,26 @@
             oberonChecked: function () {
                 return this.optionalChars.includes("Oberon")
             },
-
+            countOfOptionalBaddies: function () {
+                return this.optionalChars.filter(x => x !== "Percival").length
+            },
+            optionalBadGuysMaxed: function () {
+                if (this.players.length < 7 && this.countOfOptionalBaddies >= 1) {
+                    return true
+                } else if (this.players.length < 10 && this.countOfOptionalBaddies >= 2) {
+                    return true
+                }
+                return false
+            },
+            morganaDisabled: function () {
+                return !this.optionalChars.includes("Percival") || this.optionalBadGuysMaxed
+            },
+            mordredDisabled: function () {
+                return this.optionalBadGuysMaxed
+            },
+            oberonDisabled: function () {
+                return this.optionalBadGuysMaxed
+            }
         },
         methods: {
             startGame: function () {
@@ -125,6 +154,11 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables";
+
+    .spacing {
+        margin-top: 1.5%;
+        width: 100%;
+    }
 
     label {
         display: flex;
