@@ -29,9 +29,7 @@
                         </div>
                     </div>
 
-                    <div>
-                        <button class="okButton" v-on:click="acknowledge">OK</button>
-                    </div>
+                    <img @click="acknowledge" class="okButton" src="@/assets/okButton.png">
                 </div>
                 <div class="scrollTop">
                     <img class="leftHandScroll" src="@/assets/scrollEdgeBig.png">
@@ -145,18 +143,9 @@
     }
 
     .okButton {
-        font-family: inherit;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        border-radius: 0;
-        border: white solid 1px;
-        appearance: none;
-        padding-right: 23px;
-        padding-left: 25px;
-        font-size: 2.3em;
-        font-weight: bold;
-        color: #2f3026;
-        background: whitesmoke;
+        display: flex;
+        align-self: center;
+        width: 40%;
         margin-top: 10px;
         margin-bottom: 5px;
     }
