@@ -64,7 +64,10 @@ const getDefaultState = () => {
         PlayerInfo: {
             merlin: []
         },
-        Config: {}
+        Config: {},
+        NicknameCharacterBadGuys: {
+            modalActive: false
+        }
     }
 }
 
