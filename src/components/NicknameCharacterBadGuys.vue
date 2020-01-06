@@ -8,7 +8,7 @@
 
                 <div id="nickname" class="fontSizing">Nickname: {{ nickname }}</div>
                 <div id="character" class="fontSizing">Role: {{ character }}</div>
-                <div id="badGuys" v-if="shouldSeeBadGuys" class="fontSizing">
+                <div id="badGuys" v-if="shouldSeeBadGuys && otherBadGuys.length !== 0" class="fontSizing">
                     {{badGuysText}}
                     <span v-for="(badGuy, index) in otherBadGuys" :key="index">
                         {{badGuy}}
