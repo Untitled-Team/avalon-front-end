@@ -1,7 +1,7 @@
 <template>
     <div id="nicknameCharacterBadGuys">
         <div class="playerInfoModal" v-if="modalActive">
-            <div class="is-centered"></div>
+<!--            <div class="is-centered"></div>-->
             <div class="permanentPlayerInfo is-centered">
 
                 <LeaveGame class="leaveGame"/>
@@ -29,9 +29,47 @@
                 </div>
             </div>
         </div>
-        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">
-            Player Information
+
+        <div class="envelopeContainer" v-on:click="toggleModalActive" :class="{openedEnvelope: openedEnvelope}">
+            <div class="envelopeTop"></div>
+            <div class="redStamp">
+                <img class="rolePicture" src="@/assets/redStampEnvelope.png">
+            </div>
+            <div class="envelopeRowContainer">
+                <div class="firstRow">
+                    <div class="overwrite">
+                    </div>
+                </div>
+                <div class="secondRow">
+                    <div class="overwrite">
+                    </div>
+                </div>
+                <div class="thirdRow">
+                    <div class="overwrite">
+                    </div>
+                </div>
+                <div class="fourthRow">
+                    <div class="overwrite">
+                    </div>
+                </div>
+                <div class="fifthRow">
+                    <div class="overwrite">
+                    </div>
+                </div>
+                <div class="sixthRow">
+                    <div class="overwrite">
+                    </div>
+                </div>
+                <div class="finalRow">
+<!--                    <div class="overwrite">-->
+<!--                    </div>-->
+                </div>
+            </div>
         </div>
+
+<!--        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">-->
+<!--            Player Information-->
+<!--        </div>-->
     </div>
 </template>
 
@@ -42,11 +80,6 @@
         name: 'NicknameCharacterBadGuys',
         components: {
             LeaveGame
-        },
-        data: () => {
-            return {
-                modalActive: false
-            }
         },
         computed: {
             nickname: function () {
@@ -87,17 +120,133 @@
             },
             shouldSeeBadGuys: function () {
                 return !this.isRegularGoodGuy && !this.isPercival && !this.isOberon
+            },
+            openedEnvelope: function () {
+                return this.$store.state.NicknameCharacterBadGuys.modalActive
+            },
+            modalActive: function () {
+                return this.$store.state.NicknameCharacterBadGuys.modalActive
             }
         },
         methods: {
             toggleModalActive: function () {
-                this.modalActive = !this.modalActive
+                this.$store.state.NicknameCharacterBadGuys.modalActive = !this.$store.state.NicknameCharacterBadGuys.modalActive
             },
         }
     }
 </script>
 
 <style scoped>
+
+    .redStamp {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 7px;
+        height: 20px;
+    }
+
+    .openedEnvelope > .redStamp {
+        display: none;
+    }
+
+    .overwrite {
+        background: #f5ede4;
+        height: 100%;
+    }
+
+    .openedEnvelope .overwrite {
+        background: whitesmoke;
+    }
+
+    .envelopeContainer {
+        width: 95%;
+        margin: 0 auto;
+
+    }
+
+    .envelopeTop {
+        width: calc(100% - 8px);
+        margin: 0 auto;
+        height: 5px;
+        background: #f5ede4;
+    }
+
+    .openedEnvelope > .envelopeTop {
+        background: whitesmoke;
+    }
+
+    .envelopeRowContainer {
+        background: #f5ede4;
+        /*background: #8b77a7;*/
+        border-left: #decab3 4px solid;
+        border-right: #decab3 4px solid;
+    }
+
+    .firstRow {
+        width: calc(100%);
+        height: 4px;
+        padding: 0px 6%;
+        background: #decab3;
+        /*border-left: #F7E26B 4px solid;*/
+        /*border-right: #F7E26B 4px solid;*/
+        /*background: $bannerOutline;*/
+        margin: 0 auto;
+        /*box-shadow: 0px 4px rgba(black, 0.3), -2px 0px rgba(black, 0.3), 2px 0px rgba(black, 0.3);*/
+    }
+
+    .secondRow {
+        width: 88%;/*calc(90% - 8px);*/
+        height: 4px;
+        background-color: #decab3;
+        /*box-shadow: 0px 4px rgba(black, 0.3);*/
+        padding: 0px 10%;
+        /*background: $bannerOutline;*/
+        margin: 0 auto;
+    }
+
+    .thirdRow {
+        width: 68%;
+        height: 4px;
+        background-color: #decab3;
+        /*box-shadow: 0px 4px rgba(black, 0.3);*/
+        padding: 0px 10%;
+        /*background: $bannerOutline;*/
+        margin: 0 auto;
+    }
+
+    .fourthRow {
+        width: 48%;
+        height: 4px;
+        background-color: #decab3;
+        /*box-shadow: 0px 4px rgba(black, 0.3);*/
+        padding: 0px 10%;
+        /*background: $bannerOutline;*/
+        margin: 0 auto;
+    }
+
+    .fifthRow {
+        width: 28%;
+        height: 4px;
+        background-color: #decab3;
+        padding: 0px calc(14% - 10px);
+        margin: 0 auto;
+    }
+
+    .sixthRow {
+        width: 20px;
+        height: 4px;
+        background-color: #decab3;
+        padding: 0px 10px;
+        margin: 0 auto;
+    }
+
+    .finalRow {
+        width: 100%;
+        height: 11px;
+        background-color: #f5ede4;
+    }
+
     #nicknameCharacterBadGuys {
         overflow: visible;
     }
@@ -108,7 +257,7 @@
     }
 
     .permanentPlayerInfo {
-        background-color: lightgrey;
+        background-color: whitesmoke;
         font-size: 2em;
     }
 
@@ -117,25 +266,18 @@
     }
 
     .modal-background {
-        background: lightgrey;
+        background: white;
         border-top: grey;
     }
 
     .playerInfoModal {
-        position: absolute;
-        width: 25%;
-        top: initial;
+        color: #2f3026;
+        position: fixed;
+        right: calc(2.5% + 4px);
+        left: calc(2.5% + 4px);
         bottom: 40px;
-        width: 100%;
-    }
+        width: calc(95% - 8px);
 
-    #toggleModalButton {
-        bottom: 0;
-        left: 0;
-        height: 40px;
-        border: grey .5em solid;
-        background: lightgrey;
-        width: 100%;
     }
 
     @media (min-width: 600px) {

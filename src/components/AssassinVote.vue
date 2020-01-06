@@ -23,7 +23,7 @@
                         </label>
                     </div>
 
-                    <img @click="submitAssassinGuess" class="assassinateButton" src="@/assets/assassinateButton.png">
+                    <img @click="submitAssassinGuess" class="assassinateButtonImage" src="@/assets/assassinateButton.png">
                 </div>
             </div>
         </div>
@@ -84,6 +84,7 @@
     .assassinateButtonImage {
         height: 40px;
         margin: 0 auto;
+        margin-top: 4px;
     }
 
     .assassinateButton {

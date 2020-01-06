@@ -51,12 +51,19 @@
         <div id="NoQuestData" v-if="!questHasData">
             This quest hasn't happened yet!
         </div>
+
+        <NicknameCharacterBadGuys/>
     </div>
 </template>
 
 <script>
+    import NicknameCharacterBadGuys from "../components/NicknameCharacterBadGuys";
+
     export default {
         name: 'NotCurrentMissionData',
+        components: {
+            NicknameCharacterBadGuys
+        },
         computed: {
             isPassed: function () {
                 return this.activeQuestData.pass === true
@@ -85,12 +92,18 @@
         font-size: 1.5rem;
         margin-left: 5%;
         margin-right: 5%;
+        display: flex;
+        flex: 1 1 0;
     }
 
     #notCurrentMissionData {
         color: whitesmoke;
         display: flex;
         flex: 1 1 0;
+
+            flex-direction: column;
+            /*flex-grow: 1;*/
+            /*background: #848484;*/
     }
 
     .missionHistory {
@@ -196,7 +209,7 @@
     }
 
     .notCompleted {
-        font-size: 5em;
+        /*font-size: 5em;*/
         background: $incomplete;
     }
 </style>
