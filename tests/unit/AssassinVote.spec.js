@@ -59,7 +59,7 @@ describe('AssassinVote.vue', () => {
                 store
             })
 
-        wrapper.find('.assassinateButton').trigger('click')
+        wrapper.find('.assassinateButtonImage').trigger('click')
 
         assert.calledWith(WebsocketService.sendObj, match.any, expectedMessage)
     })

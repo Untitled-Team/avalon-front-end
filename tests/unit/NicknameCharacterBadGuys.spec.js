@@ -20,6 +20,10 @@ describe('NicknameCharacterBadGuys.vue', () => {
             state: {
                 nickname: "",
                 badGuys: [],
+                NicknameCharacterBadGuys: {
+                    modalActive: false
+                },
+                config: {}
             },
             getters
         })
@@ -29,8 +33,8 @@ describe('NicknameCharacterBadGuys.vue', () => {
         const expectedNickname = 'steve'
         store.state.nickname = 'steve'
         wrapper = shallowMount(NicknameCharacterBadGuys, {store})
-        wrapper.find('#toggleModalButton').trigger('click')
-
+        wrapper.find('.envelopeContainer').trigger('click')
+        
         const nicknameWrapper = wrapper.find('#nickname')
 
         expect(nicknameWrapper.text()).to.include(expectedNickname)
@@ -39,7 +43,7 @@ describe('NicknameCharacterBadGuys.vue', () => {
     it('should display the character from the store', () => {
         const expectedCharacter = 'Merlin'
         wrapper = shallowMount(NicknameCharacterBadGuys, {store})
-        wrapper.find('#toggleModalButton').trigger('click')
+        wrapper.find('.envelopeContainer').trigger('click')
 
 
         const characterWrapper = wrapper.find('#character')
@@ -51,7 +55,7 @@ describe('NicknameCharacterBadGuys.vue', () => {
         let expectedBadGuys = ["a", "b", "c"];
         store.state.badGuys = expectedBadGuys
         wrapper = shallowMount(NicknameCharacterBadGuys, {store})
-        wrapper.find('#toggleModalButton').trigger('click')
+        wrapper.find('.envelopeContainer').trigger('click')
 
         const badGuysWrapper = wrapper.find('#badGuys')
 
