@@ -23,8 +23,10 @@
                         </label>
                     </div>
 
-                    <img @click="submitAssassinGuess" class="assassinateButton" src="@/assets/assassinateButton.png">
+                    <img @click="submitAssassinGuess" class="assassinateButtonImage" src="@/assets/assassinateButton.png">
                 </div>
+
+                <LeaveGame class="leaveGame"/>
             </div>
         </div>
 
@@ -35,10 +37,14 @@
 </template>
 
 <script>
+    import LeaveGame from "./LeaveGame"
     import WebsocketService from "../services/WebsocketService"
 
     export default {
         name: 'AssassinVote',
+        components: {
+            LeaveGame
+        },
         data: function () {
             return {
                 guess: "",
@@ -81,9 +87,16 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .leaveGame {
+        margin: 3% auto;
+        max-width: 90%;
+        width: 60%;
+    }
+
     .assassinateButtonImage {
         height: 40px;
         margin: 0 auto;
+        margin-top: 4px;
     }
 
     .assassinateButton {
