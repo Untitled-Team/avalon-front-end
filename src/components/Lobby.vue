@@ -34,39 +34,40 @@
                 <img v-show="percivalChecked" src="../assets/goodGuyChecked.png">
                 <span>Percival</span>
             </label>
-            <input type="checkbox" id="Percival" v-model="optionalChars" value="Percival">
+            <input type="checkbox" id="Percival" v-model="optionalChars" value="Percival"
+                   @change="uncheckMorganaIfPercyUnchecked">
             <div class="spacing"></div>
 
             <label for="Mordred">
                 <img v-show="!mordredChecked && !mordredDisabled" class="checkboxImgMordred"
                      src="../assets/checkbox.png">
                 <img v-show="mordredChecked" src="../assets/badGuyChecked.png">
-                <img v-show="!mordredChecked && mordredDisabled" src="../assets/disabledCheckbox.png">
+                <img v-show="mordredDisabled" src="../assets/disabledCheckbox.png">
                 <span>Mordred</span>
             </label>
             <input type="checkbox" id="Mordred" v-model="optionalChars" value="Mordred"
-                   :disabled="!mordredChecked && mordredDisabled">
+                   :disabled="mordredDisabled">
             <div class="spacing"></div>
 
             <label for="Oberon">
                 <img v-show="!oberonChecked && !oberonDisabled" class="checkboxImgPercival"
                      src="../assets/checkbox.png">
                 <img v-show="oberonChecked" src="../assets/badGuyChecked.png">
-                <img v-show="!oberonChecked && oberonDisabled" src="../assets/disabledCheckbox.png">
+                <img v-show="oberonDisabled" src="../assets/disabledCheckbox.png">
                 <span>Oberon</span>
             </label>
             <input type="checkbox" id="Oberon" v-model="optionalChars" value="Oberon"
-                   :disabled="!oberonChecked && oberonDisabled">
+                   :disabled="oberonDisabled">
             <div class="spacing"></div>
 
             <label for="Morgana">
                 <img v-show="!morganaChecked && !morganaDisabled" src="../assets/checkbox.png">
                 <img v-show="morganaChecked" src="../assets/badGuyChecked.png">
-                <img v-show="!morganaChecked && morganaDisabled" src="../assets/disabledCheckbox.png">
+                <img v-show="morganaDisabled" src="../assets/disabledCheckbox.png">
                 <span>Morgana</span>
             </label>
             <input type="checkbox" id="Morgana" v-model="optionalChars" value="Morgana"
-                   :disabled="!morganaChecked && morganaDisabled">
+                   :disabled="morganaDisabled">
 
             <img class="startGameButton" @click="startGame" src="@/assets/createGameButton.png">
             <button @click="toggleConfigureScreen">Back</button>
@@ -123,13 +124,13 @@
                 return false
             },
             morganaDisabled: function () {
-                return !this.optionalChars.includes("Percival") || this.optionalBadGuysMaxed
+                return (!this.optionalChars.includes("Percival") || this.optionalBadGuysMaxed) && !this.optionalChars.includes("Morgana")
             },
             mordredDisabled: function () {
-                return this.optionalBadGuysMaxed
+                return this.optionalBadGuysMaxed && !this.optionalChars.includes("Mordred")
             },
             oberonDisabled: function () {
-                return this.optionalBadGuysMaxed
+                return this.optionalBadGuysMaxed && !this.optionalChars.includes("Oberon")
             }
         },
         methods: {
@@ -148,6 +149,11 @@
             toggleConfigureScreen: function () {
                 this.createGameConfigure = !this.createGameConfigure
             },
+            uncheckMorganaIfPercyUnchecked: function (e) {
+                if (!e.target.checked) {
+                    this.optionalChars = this.optionalChars.filter(optionalChar => optionalChar != "Morgana")
+                }
+            }
         },
     }
 </script>
