@@ -40,6 +40,18 @@
                 </div>
                 <div class="spacing"></div>
 
+                <div class="optionalChar morganaWrapper">
+                    <label for="Morgana">
+                        <img v-show="!morganaChecked && !morganaDisabled" src="../assets/checkbox.png">
+                        <img v-show="morganaChecked" src="../assets/badGuyChecked.png">
+                        <img v-show="morganaDisabled" src="../assets/disabledCheckbox.png">
+                        <span>Morgana</span>
+                    </label>
+                    <input type="checkbox" id="Morgana" v-model="optionalChars" value="Morgana"
+                           :disabled="morganaDisabled">
+                </div>
+                <div class="spacing"></div>
+
                 <div class="optionalChar">
                     <label for="Mordred">
                         <img v-show="!mordredChecked && !mordredDisabled" class="checkboxImgMordred"
@@ -63,18 +75,6 @@
                     </label>
                     <input type="checkbox" id="Oberon" v-model="optionalChars" value="Oberon"
                            :disabled="oberonDisabled">
-                </div>
-                <div class="spacing"></div>
-
-                <div class="optionalChar">
-                    <label for="Morgana">
-                        <img v-show="!morganaChecked && !morganaDisabled" src="../assets/checkbox.png">
-                        <img v-show="morganaChecked" src="../assets/badGuyChecked.png">
-                        <img v-show="morganaDisabled" src="../assets/disabledCheckbox.png">
-                        <span>Morgana</span>
-                    </label>
-                    <input type="checkbox" id="Morgana" v-model="optionalChars" value="Morgana"
-                           :disabled="morganaDisabled">
                 </div>
             </div>
 
@@ -214,6 +214,10 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: left;
+            }
+
+            .morganaWrapper {
+                margin-left: 15%;
             }
         }
 
