@@ -155,6 +155,15 @@
                 }
             }
         },
+        watch: {
+            players: function () {
+                if (this.$store.state.players.length === 9 && this.countOfOptionalBaddies === 3 || this.$store.state.players.length === 6 && this.countOfOptionalBaddies === 2) {
+                    let optionalBaddies = this.optionalChars.filter(x => x !== "Percival")
+                    optionalBaddies.pop()
+                    this.optionalChars = optionalBaddies.concat(this.optionalChars.filter(x => x === "Percival"))
+                }
+            }
+        }
     }
 </script>
 
