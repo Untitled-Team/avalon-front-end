@@ -2,19 +2,18 @@
     <div id="nicknameCharacterBadGuys">
         <div class="playerInfoModal" v-if="modalActive">
             <div @click.self="toggleModalActive" class="permanentPlayerInfo is-centered">
-
                 <LeaveGame class="leaveGame"/>
 
-                <div id="nickname" class="fontSizing" @click.self="toggleModalActive">Nickname: {{ nickname }}</div>
-                <div id="character" class="fontSizing" @click.self="toggleModalActive">Role: {{ character }}</div>
+                <div id="nickname" class="fontSizing" @click="toggleModalActive">Nickname: {{ nickname }}</div>
+                <div id="character" class="fontSizing" @click="toggleModalActive">Role: {{ character }}</div>
                 <div id="badGuys" v-if="shouldSeeBadGuys && otherBadGuys.length !== 0" class="fontSizing"
-                     @click.self="toggleModalActive">
+                     @click="toggleModalActive">
                     {{badGuysText}}
                     <span v-for="(badGuy, index) in otherBadGuys" :key="index">
                         {{badGuy}}
                     </span>
                 </div>
-                <div id="merlin" v-if="isPercival" class="fontSizing" @click.self="toggleModalActive">
+                <div id="merlin" v-if="isPercival" class="fontSizing" @click="toggleModalActive">
                     Merlin:
                     <span v-for="(m, index) in merlin" :key="index">
                         {{m}}
