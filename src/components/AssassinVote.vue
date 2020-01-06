@@ -33,9 +33,6 @@
         <button class="toggleAssassinVoteScreenButton" @click="toggleModalActive">{{ toggleAssassinVoteScreenButtonText
             }}
         </button>
-
-
-
     </div>
 </template>
 
