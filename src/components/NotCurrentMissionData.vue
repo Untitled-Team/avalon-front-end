@@ -100,10 +100,7 @@
         color: whitesmoke;
         display: flex;
         flex: 1 1 0;
-
-            flex-direction: column;
-            /*flex-grow: 1;*/
-            /*background: #848484;*/
+        flex-direction: column;
     }
 
     .missionHistory {
@@ -209,7 +206,6 @@
     }
 
     .notCompleted {
-        /*font-size: 5em;*/
         background: $incomplete;
     }
 </style>

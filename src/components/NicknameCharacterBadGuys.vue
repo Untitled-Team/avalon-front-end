@@ -1,7 +1,6 @@
 <template>
     <div id="nicknameCharacterBadGuys">
         <div class="playerInfoModal" v-if="modalActive">
-<!--            <div class="is-centered"></div>-->
             <div class="permanentPlayerInfo is-centered">
 
                 <LeaveGame class="leaveGame"/>
@@ -61,15 +60,9 @@
                     </div>
                 </div>
                 <div class="finalRow">
-<!--                    <div class="overwrite">-->
-<!--                    </div>-->
                 </div>
             </div>
         </div>
-
-<!--        <div id="toggleModalButton" v-on:click="toggleModalActive" class="is-size-5-mobile is-size-5-desktop">-->
-<!--            Player Information-->
-<!--        </div>-->
     </div>
 </template>
 
@@ -178,7 +171,6 @@
 
     .envelopeRowContainer {
         background: #f5ede4;
-        /*background: #8b77a7;*/
         border-left: #decab3 4px solid;
         border-right: #decab3 4px solid;
     }
@@ -188,20 +180,14 @@
         height: 4px;
         padding: 0px 6%;
         background: #decab3;
-        /*border-left: #F7E26B 4px solid;*/
-        /*border-right: #F7E26B 4px solid;*/
-        /*background: $bannerOutline;*/
         margin: 0 auto;
-        /*box-shadow: 0px 4px rgba(black, 0.3), -2px 0px rgba(black, 0.3), 2px 0px rgba(black, 0.3);*/
     }
 
     .secondRow {
-        width: 88%;/*calc(90% - 8px);*/
+        width: 88%;
         height: 4px;
         background-color: #decab3;
-        /*box-shadow: 0px 4px rgba(black, 0.3);*/
         padding: 0px 10%;
-        /*background: $bannerOutline;*/
         margin: 0 auto;
     }
 
@@ -209,9 +195,7 @@
         width: 68%;
         height: 4px;
         background-color: #decab3;
-        /*box-shadow: 0px 4px rgba(black, 0.3);*/
         padding: 0px 10%;
-        /*background: $bannerOutline;*/
         margin: 0 auto;
     }
 
@@ -219,9 +203,7 @@
         width: 48%;
         height: 4px;
         background-color: #decab3;
-        /*box-shadow: 0px 4px rgba(black, 0.3);*/
         padding: 0px 10%;
-        /*background: $bannerOutline;*/
         margin: 0 auto;
     }
 
