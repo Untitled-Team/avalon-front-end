@@ -5,6 +5,9 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
         <Avalon/>
+        <div id="landscapeContent">
+            Please turn your phone back to the upright position.
+        </div>
     </div>
 </template>
 
@@ -18,23 +21,24 @@
         },
         mounted() {
             window.addEventListener("orientationchange", function() {
+
                 setInterval(function() {
-                    document.body.style.height = window.innerHeight + 'px';
+                    document.body.style.height = "100%";
                 }, 200)
                 setInterval(function() {
-                    document.body.style.height = window.innerHeight + 'px';
+                    document.body.style.height = "100%";
                 }, 400)
                 setInterval(function() {
-                    document.body.style.height = window.innerHeight + 'px';
+                    document.body.style.height = "100%";
                 }, 600)
                 setInterval(function() {
-                    document.body.style.height = window.innerHeight + 'px';
+                    document.body.style.height = "100%";
                 }, 800)
                 setInterval(function() {
-                    document.body.style.height = window.innerHeight + 'px';
+                    document.body.style.height = "100%";
                 }, 1000)
                 setInterval(function() {
-                    document.body.style.height = window.innerHeight + 'px';
+                    document.body.style.height = "100%";
                 }, 1500)
             });
         },
@@ -72,6 +76,7 @@ body {
         color: #2f3026;
         font-size-adjust: 1;
     }
+
     .biggerText {
         font-size: 4em;
     }
@@ -83,5 +88,20 @@ body {
     .mediumText {
         font-size: 1.7em;
     }
+
+    #landscapeContent {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        font-size: 2rem;
+        color: whitesmoke;
+        background: #31A2F2;
+    }
+
+@media (orientation: portrait) {
+    #landscapeContent {
+        display: none;
+    }
+}
 
 </style>
