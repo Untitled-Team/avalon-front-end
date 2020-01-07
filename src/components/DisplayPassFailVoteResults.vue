@@ -14,6 +14,7 @@
         data: function () {
             return {
                 totalVotes: [],
+                TIMEOUT_IN_MS: 1500,
             }
         },
         computed: {
@@ -34,18 +35,18 @@
                 this.totalVotes.push(null)
             }
             for (let i = 0; i < this.passVotes; i++) {
-                this.sleep((i + 1) * 1500).then(() => {
+                this.sleep((i + 1) * this.TIMEOUT_IN_MS).then(() => {
                     Vue.set(this.totalVotes, i, true)
                 })
             }
             for (let i = 0; i < this.failVotes; i++) {
-                this.sleep((this.passVotes + i + 1) * 1500).then(() => {
+                this.sleep((this.passVotes + i + 1) * this.TIMEOUT_IN_MS).then(() => {
                     Vue.set(this.totalVotes, this.passVotes + i, false)
                 })
             }
 
             //whole screen should disappear after every vote has been displayed for 1.5 seconds
-            this.sleep(this.totalVotes.length * 1500 + 1500).then(() => {
+            this.sleep(this.totalVotes.length * this.TIMEOUT_IN_MS + this.TIMEOUT_IN_MS).then(() => {
                 this.$store.dispatch('turnOffDisplayPassFailVoteResults')
             })
         },
