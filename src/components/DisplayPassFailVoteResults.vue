@@ -1,13 +1,21 @@
 <template>
     <div id="displayPassFailVotes">
-        <div v-for="(passVote, index) in passVotes" :key="'pass' + index" class="vote pass"></div>
-        <div v-for="(failVote, index) in failVotes" :key="'fail' + index" class="vote fail"></div>
+        <div v-for="(vote, i) in totalVotes" :key="'vote' + i" class="vote"
+             :class="{blankVote: totalVotes[i] == null, pass: totalVotes[i] === true, fail: totalVotes[i] === false}">
+        </div>
     </div>
 </template>
 
 <script>
+    import Vue from "vue";
+
     export default {
         name: 'DisplayPassFailVotes',
+        data: function () {
+            return {
+                totalVotes: [],
+            }
+        },
         computed: {
             passVotes: function () {
                 return this.$store.state.DisplayPassFailVoteResults.passVotes
@@ -22,10 +30,25 @@
             }
         },
         created() {
-            this.sleep(5000).then(() => {
+            for (let i = 0; i < this.passVotes + this.failVotes; i++) {
+                this.totalVotes.push(null)
+            }
+            for (let i = 0; i < this.passVotes; i++) {
+                this.sleep((i + 1) * 1500).then(() => {
+                    Vue.set(this.totalVotes, i, true)
+                })
+            }
+            for (let i = 0; i < this.failVotes; i++) {
+                this.sleep((this.passVotes + i + 1) * 1500).then(() => {
+                    Vue.set(this.totalVotes, this.passVotes + i, false)
+                })
+            }
+
+            //whole screen should disappear after every vote has been displayed for 1.5 seconds
+            this.sleep(this.totalVotes.length * 1500 + 1500).then(() => {
                 this.$store.dispatch('turnOffDisplayPassFailVoteResults')
             })
-        }
+        },
     }
 </script>
 
@@ -60,6 +83,10 @@
 
         .fail {
             background: #b00404;
+        }
+
+        .blankVote {
+            background: #2f3026;
         }
 
         :first-child {
