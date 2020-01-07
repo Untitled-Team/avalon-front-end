@@ -23,7 +23,8 @@
             window.addEventListener("orientationchange", function() {
 
                 setInterval(function() {
-                    document.body.style.height = "100%";
+                    document.body.style.height = window.innerHeight + 'px';
+                    // document.body.style.height = "100%";
                 }, 200)
                 setInterval(function() {
                     document.body.style.height = "100%";
