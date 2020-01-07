@@ -1,5 +1,6 @@
 <template>
-    <div class="main">
+    <div class="main" id="portraitContent">
+
         <Intro v-if="intro"/>
         <Lobby v-if="lobby"/>
         <PlayerInfo v-if="playerInfo"/>
@@ -23,8 +24,8 @@
 
 
             </div>
-        </div>
         <Winner v-if="teamHasWon"/>
+        </div>
     </div>
 </template>
 
@@ -223,5 +224,11 @@
         flex-direction: column;
         flex-grow: 1;
         background: $current;
+    }
+
+    @media (orientation: landscape) {
+        #portraitContent {
+            display: none;
+        }
     }
 </style>
