@@ -16,15 +16,14 @@
                     <ProposeMissionMenu v-if="proposeMissionParty"/>
                     <ProposedPartyVoteMenu v-if="proposedPartyVote"/>
                     <PassFailVote v-if="passFailVote"/>
-                    <DisplayPassFailVoteResults v-if="displayPassFailVoteResults"/>
                     <NicknameCharacterBadGuys v-if="questInfoDisplay"/>
                 </div>
 
                 <NotCurrentMissionData v-if="!activeMissionAlsoCurrent"/>
 
-
             </div>
         </div>
+        <DisplayPassFailVoteResults v-if="displayPassFailVoteResults"/>
         <Winner v-if="teamHasWon"/>
     </div>
 </template>
