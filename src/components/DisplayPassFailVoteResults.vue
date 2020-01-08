@@ -79,11 +79,11 @@
         }
 
         .pass {
-            background: #04b004;
+            background: url(../assets/passTextBig.png) no-repeat center;
         }
 
         .fail {
-            background: #b00404;
+            background: url(../assets/failTextBig.png) no-repeat center;
         }
 
         .blankVote {
