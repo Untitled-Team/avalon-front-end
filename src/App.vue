@@ -25,22 +25,22 @@
                 setInterval(function() {
                     document.body.style.height = window.innerHeight + 'px';
                     // document.body.style.height = "100%";
-                }, 200)
+                }, 10)
                 setInterval(function() {
                     document.body.style.height = "100%";
-                }, 400)
+                }, 50)
                 setInterval(function() {
                     document.body.style.height = "100%";
-                }, 600)
-                setInterval(function() {
-                    document.body.style.height = "100%";
-                }, 800)
-                setInterval(function() {
-                    document.body.style.height = "100%";
-                }, 1000)
-                setInterval(function() {
-                    document.body.style.height = "100%";
-                }, 1500)
+                }, 300)
+                // setInterval(function() {
+                //     document.body.style.height = "100%";
+                // }, 800)
+                // setInterval(function() {
+                //     document.body.style.height = "100%";
+                // }, 1000)
+                // setInterval(function() {
+                //     document.body.style.height = "100%";
+                // }, 1500)
             });
         },
     }
