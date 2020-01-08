@@ -1,8 +1,8 @@
 <template>
     <div class="intro">
-        <img class="castle" src="@/assets/castle.png">
+        <img class="castle" src="@/assets/castleBigger.png">
         <img class="title" src="@/assets/titleBig.png">
-        <Clouds class="clouds"/>
+        <!--        <Clouds class="clouds"/>-->
         <div class="menuContent">
             <div class="createAndJoinGameForms">
                 <form id="joinGameForm" @submit.prevent="joinGame">
