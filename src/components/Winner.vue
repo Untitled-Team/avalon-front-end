@@ -79,19 +79,26 @@
     }
 
     .badGuysWin {
-        margin-top: 10px;
-        justify-content: center;
+        display: flex;
+        flex: 3 1 auto;
+        flex-direction: column;
 
         .badGuysWinTextWrapper {
-            margin-bottom: 15%;
+            display: flex;
+            flex: 1 1 auto;
+            margin: 0 auto;
+            height: 0;
+            img {
+                object-fit: contain;
+            }
+            margin-bottom: 5%;
+            margin-top: 2%;
         }
 
         .defeatScreenWrapper {
-            flex: 1 1 0;
-            max-width: 75%;
-            margin: 0 auto;
-            margin-top: 10px;
-            margin-bottom: 10%;
+            display: flex;
+            flex: 5 1 auto;
+            height: 0;
 
             img {
                 object-fit: contain;
