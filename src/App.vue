@@ -21,26 +21,13 @@
         },
         mounted() {
             window.addEventListener("orientationchange", function() {
-
-                setInterval(function() {
+                setTimeout(function() {
                     document.body.style.height = window.innerHeight + 'px';
                     // document.body.style.height = "100%";
-                }, 10)
-                setInterval(function() {
+                }, 500)
+                setTimeout(function() {
                     document.body.style.height = "100%";
-                }, 50)
-                setInterval(function() {
-                    document.body.style.height = "100%";
-                }, 300)
-                // setInterval(function() {
-                //     document.body.style.height = "100%";
-                // }, 800)
-                // setInterval(function() {
-                //     document.body.style.height = "100%";
-                // }, 1000)
-                // setInterval(function() {
-                //     document.body.style.height = "100%";
-                // }, 1500)
+                }, 600)
             });
         },
     }
