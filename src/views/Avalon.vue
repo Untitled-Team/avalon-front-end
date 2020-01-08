@@ -24,8 +24,8 @@
 
 
             </div>
-        <Winner v-if="teamHasWon"/>
         </div>
+        <Winner v-if="teamHasWon"/>
     </div>
 </template>
 
@@ -107,7 +107,7 @@
 
                 if (msgJSON.event === 'GameConfig') {
                     this.$store.state.config = msgJSON.config;
-                } else  if (msgJSON.event === 'MoveToLobby') {
+                } else if (msgJSON.event === 'MoveToLobby') {
                     store.dispatch('introToLobbyStep')
                     store.state.players = msgJSON.players
                     store.state.roomId = msgJSON.roomId
