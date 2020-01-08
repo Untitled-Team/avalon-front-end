@@ -4,6 +4,8 @@
         <div class="modal" :class="{'is-active': modalActive === true}">
             <div class="modal-background"></div>
             <div class="modal-content containAll">
+                <LeaveGame class="leaveGame" :class="{extraPadding: playerIsAssassin}"/>
+
                 <div class="assassinImageWrapper">
                     <img class="rolePictureAssassin" src="@/assets/assassinBig.png">
                 </div>
@@ -23,10 +25,9 @@
                         </label>
                     </div>
 
-                    <img @click="submitAssassinGuess" class="assassinateButtonImage" src="@/assets/assassinateButton.png">
+                    <img @click="submitAssassinGuess" class="assassinateButtonImage"
+                         src="@/assets/assassinateButton.png">
                 </div>
-
-                <LeaveGame class="leaveGame"/>
             </div>
         </div>
 
@@ -87,22 +88,26 @@
 <style lang="scss" scoped>
     @import "../styles/variables";
 
+    .extraPadding {
+        padding-bottom: 10%;
+    }
+
     .leaveGame {
-        margin: 3% auto;
-        max-width: 90%;
+        display: flex;
+        justify-self: flex-start;
+        align-self: center;
+        max-width: 25%;
         width: 60%;
     }
 
     .assassinateButtonImage {
         height: 40px;
-        margin: 0 auto;
-        margin-top: 4px;
+        margin: 4px auto 0;
     }
 
     .assassinateButton {
         display: flex;
-        margin: 0 auto;
-        margin-top: 3%;
+        margin: 3% auto 0;
         flex-direction: column;
         background-color: inherit;
         border: 0;
@@ -140,13 +145,14 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        justify-content: center;
+        justify-content: space-between;
+        padding-bottom: 20%;
     }
 
     .assassination {
+        margin-top: 20%;
         display: flex;
         flex-direction: column;
-        flex: 1 1 auto;
     }
 
     #assassinVoteForm {
@@ -158,7 +164,7 @@
     .assassinImageWrapper {
         justify-content: center;
 
-        width: 75%;
+        width: 85%;
         margin: 0 auto;
 
         img {
@@ -260,11 +266,17 @@
     }
 
     @media (max-height: 700px) {
+        .assassinImageWrapper {
+            width: 60%;
+            margin-top: 5%;
+        }
 
+        .extraPadding {
+            padding-bottom: 0;
+        }
     }
 
     @media (max-height: 553px) {
-
 
     }
 
@@ -272,6 +284,8 @@
         .assassinImageWrapper {
             display: none;
         }
-
+        .extraPadding {
+            padding-bottom: 0;
+        }
     }
 </style>
