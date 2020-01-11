@@ -80,8 +80,8 @@ body {
     #landscapeContent {
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 10px;
-        font-size: 1.7rem;
+        padding-top: 20px;
+        font-size: 1.6rem;
         color: whitesmoke;
         background: #31A2F2;
     }
