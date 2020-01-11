@@ -6,7 +6,7 @@
         </head>
         <Avalon/>
         <div id="landscapeContent">
-            Please turn your phone back to the upright position.
+            This website is designed for mobile. If you are on a browser please switch to your phone or shrink the browser window. If you are on a phone and you see this please turn your phone back to upright position.
         </div>
     </div>
 </template>
@@ -81,7 +81,7 @@ body {
         padding-left: 10px;
         padding-right: 10px;
         padding-top: 10px;
-        font-size: 2rem;
+        font-size: 1.7rem;
         color: whitesmoke;
         background: #31A2F2;
     }
