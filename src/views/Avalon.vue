@@ -1,5 +1,5 @@
 <template>
-    <div class="main" id="portraitContent">
+    <div class="main">
 
         <Intro v-if="intro"/>
         <Lobby v-if="lobby"/>
@@ -223,11 +223,5 @@
         flex-direction: column;
         flex-grow: 1;
         background: $current;
-    }
-
-    @media (orientation: landscape) {
-        #portraitContent {
-            display: none;
-        }
     }
 </style>

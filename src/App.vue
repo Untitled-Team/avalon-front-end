@@ -6,7 +6,8 @@
         </head>
         <Avalon/>
         <div id="landscapeContent">
-            This website is designed for mobile. If you are on a browser please switch to your phone or shrink the browser window. If you are on a phone and you see this please turn your phone back to upright position.
+            This website is designed for mobile. If you are on a browser please switch to your phone or shrink the
+            browser window. If you are on a phone and you see this please turn your phone back to upright position.
         </div>
     </div>
 </template>
@@ -19,46 +20,38 @@
         components: {
             Avalon,
         },
-        mounted() {
-            window.addEventListener("orientationchange", function() {
-                setTimeout(function() {
-                    document.body.style.height = window.innerHeight + 'px';
-                    // document.body.style.height = "100%";
-                }, 500)
-                setTimeout(function() {
-                    document.body.style.height = "100%";
-                }, 600)
-            });
-        },
     }
 </script>
 
-<style>
-@font-face {
-    font-family: "Fairfax";
-    src: url("./assets/Fairfax.ttf");
-}
+<style lang="scss">
+    @import "styles/variables";
 
-html,
-body {
-    height: 100%;
-    overflow: auto;
-}
-body {
-    position: relative;
-    margin: 0 auto;
-    padding: 2rem;
-    max-width: 1200px;
-    box-sizing: border-box;
-    background: #31A2F2;
-    color: #fff;
-    overscroll-behavior-y: none;
-}
+    @font-face {
+        font-family: "Fairfax";
+        src: url("./assets/Fairfax.ttf");
+    }
 
-#app {
-    overflow-y: scroll;
-    background-color: #5B585F;
-    font: bold 8px Fairfax, Fairfax;
+    html,
+    body {
+        height: 100%;
+        overflow: auto;
+    }
+
+    body {
+        position: relative;
+        margin: 0 auto;
+        padding: 2rem;
+        max-width: 1200px;
+        box-sizing: border-box;
+        background: #31A2F2;
+        color: #fff;
+        overscroll-behavior-y: none;
+    }
+
+    #app {
+        overflow-y: scroll;
+        background-color: #5B585F;
+        font: bold 8px Fairfax, Fairfax;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2f3026;
@@ -78,18 +71,23 @@ body {
     }
 
     #landscapeContent {
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 20px;
-        font-size: 1.6rem;
-        color: whitesmoke;
-        background: #31A2F2;
-    }
-
-@media (orientation: portrait) {
-    #landscapeContent {
         display: none;
     }
-}
+
+    @media screen and (orientation: landscape) and (min-width: 600px) {
+        #landscapeContent {
+            display: initial;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+            font-size: 22px;
+            color: whitesmoke;
+            padding: 20px;
+            background: $water;
+        }
+    }
 
 </style>
