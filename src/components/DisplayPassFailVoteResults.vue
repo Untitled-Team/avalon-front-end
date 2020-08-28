@@ -70,7 +70,7 @@
         right: 0;
         overflow: hidden;
         text-align: center;
-        z-index: 10000000;
+        z-index: 999999999999999;
 
         .vote {
             display: flex;

@@ -1,5 +1,6 @@
 <template>
     <div class="main">
+
         <Intro v-if="intro"/>
         <Lobby v-if="lobby"/>
         <PlayerInfo v-if="playerInfo"/>
@@ -15,15 +16,14 @@
                     <ProposeMissionMenu v-if="proposeMissionParty"/>
                     <ProposedPartyVoteMenu v-if="proposedPartyVote"/>
                     <PassFailVote v-if="passFailVote"/>
-                    <DisplayPassFailVoteResults v-if="displayPassFailVoteResults"/>
                     <NicknameCharacterBadGuys v-if="questInfoDisplay"/>
                 </div>
 
                 <NotCurrentMissionData v-if="!activeMissionAlsoCurrent"/>
 
-
             </div>
         </div>
+        <DisplayPassFailVoteResults v-if="displayPassFailVoteResults"/>
         <Winner v-if="teamHasWon"/>
     </div>
 </template>
@@ -106,7 +106,7 @@
 
                 if (msgJSON.event === 'GameConfig') {
                     this.$store.state.config = msgJSON.config;
-                } else  if (msgJSON.event === 'MoveToLobby') {
+                } else if (msgJSON.event === 'MoveToLobby') {
                     store.dispatch('introToLobbyStep')
                     store.state.players = msgJSON.players
                     store.state.roomId = msgJSON.roomId

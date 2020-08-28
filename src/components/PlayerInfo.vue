@@ -176,7 +176,7 @@
                     <div class="morganaBigText"> m0rG4n4</div>
                 </div>
                 <div class="rolePictureWrapper">
-                    <img class="rolePicture" src="@/assets/morgana.png">
+<!--                    <img class="rolePicture" src="@/assets/morgana.png">-->
                 </div>
                 <div class="badGuysTextWrapper">
                     <div class="badGuysText">
