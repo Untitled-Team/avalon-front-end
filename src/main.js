@@ -24,7 +24,7 @@ Vue.use(VueNativeSock, 'wss://backend.avalonga.me/test', {
 Vue.use(Buefy);
 
 new Vue({
-    router,
+    // router,
     store,
     render: h => h(App)
 }).$mount('#app');
