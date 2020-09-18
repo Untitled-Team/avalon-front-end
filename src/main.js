@@ -10,8 +10,8 @@ import VueAnalytics from 'vue-analytics';
 Vue.config.productionTip = false
 
 Vue.use(VueAnalytics, {
-    id: 'UA-154860861-1',
-    router
+    id: 'UA-154860861-1'
+    // router
 });
 
 Vue.use(VueNativeSock, 'wss://backend.avalonga.me/test', {
