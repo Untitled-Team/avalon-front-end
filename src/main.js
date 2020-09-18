@@ -14,7 +14,7 @@ Vue.use(VueAnalytics, {
     router
 });
 
-Vue.use(VueNativeSock, 'wss://avalonga.me/test', {
+Vue.use(VueNativeSock, 'wss://backend.avalonga.me/test', {
     store: store,
     format: 'json',
     reconnection: true,      // (Boolean) whether to reconnect automatically (false)
